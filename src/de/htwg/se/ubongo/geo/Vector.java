@@ -1,6 +1,6 @@
 package de.htwg.se.ubongo.geo;
 
-/** TODO
+/** A Vector contains a x- and y-value and is used for moving geometric objects.
  * @author Patrick Leber
  * @version 24.10.2014 */
 public final class Vector {
