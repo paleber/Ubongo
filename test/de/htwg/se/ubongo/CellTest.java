@@ -21,20 +21,20 @@ public class CellTest {
 	@Test
 	public void testGetPosX() {
 		cell1.setPos(3, 0);
-		assertEquals(cell1.getXPos(), 3);		
+		assertEquals(cell1.getPosX(), 3);		
 	}
 	
 	@Test
 	public void testGetPosY() {
 		cell1.setPos(0, -2);
-		assertEquals(cell1.getYPos(), -2);		
+		assertEquals(cell1.getPosY(), -2);		
 	}
 	
 	@Test
 	public void testSetPosition() {
 		cell1.setPos(2, 5);
-		assertEquals(cell1.getXPos(), 2);
-		assertEquals(cell1.getYPos(), 5);
+		assertEquals(cell1.getPosX(), 2);
+		assertEquals(cell1.getPosY(), 5);
 	}
 	
 }
