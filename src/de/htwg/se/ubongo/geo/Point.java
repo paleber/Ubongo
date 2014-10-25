@@ -10,8 +10,17 @@ public final class Point {
 
 	protected double x, y;
 
+	public Point() {
+		set(0, 0);
+	}
+
 	public Point(final double x, final double y) {
 		set(x, y);
+	}
+	
+	public Point(final Point other) {
+		x = other.x;
+		y = other.y;
 	}
 
 	public void set(final double x, final double y) {
@@ -41,11 +50,11 @@ public final class Point {
 		x -= pivot.x;
 		y -= pivot.y;
 
-		double xi = x * cos + y * sin;
-		double yi = -x * sin + y * cos;
+		double xn = x * cos + y * sin;
+		double yn = -x * sin + y * cos;
 
-		x = xi + pivot.x;
-		y = yi + pivot.y;
+		x = xn + pivot.x;
+		y = yn + pivot.y;
 
 	}
 
