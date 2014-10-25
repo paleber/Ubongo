@@ -11,9 +11,7 @@ import org.junit.Test;
 public class PointTest {
 
 	private Point p;
-	
-	/** TODO
-	 * @throws java.lang.Exception */
+
 	@Before
 	public void setUp() throws Exception {
 		p = new Point(2, 3);
@@ -46,22 +44,36 @@ public class PointTest {
 	public void testMove() {
 		
 		p.move(new Vector(4, 5));
-		assertTrue(p.Equals(new Point(6, 8), 1E-9));
+		assertTrue(p.equals(new Point(6, 8), 1E-9));
 		
 		p.move(new Vector(1, 0));
-		assertFalse(p.Equals(new Point(6, 8), 1E-9));
+		assertFalse(p.equals(new Point(6, 8), 1E-9));
 		
 	}
 
 	@Test
 	public void testRotateAround() {
-		fail("Not yet implemented");
+		
+		p.set(0, 3);
+		p.rotateAround(90, new Point(0,0));
+		assertTrue(p.equals(new Point(3, 0), 1E-9));
+		
+		p.set(1, 0);
+		p.rotateAround(180, new Point(3,1));
+		assertTrue(p.equals(new Point(5, 2), 1E-9));
+		
 	}
 	
 	@Test
 	public void testEquals() {
-		assertTrue(p.Equals(new Point(1, 2), 1E-9));
-		assertFalse(p.Equals(new Point(3, 4), 1E-9));
+		assertTrue(p.equals(new Point(2, 3), 1E-9));
+		assertFalse(p.equals(new Point(2, 5), 1E-9));
+		assertFalse(p.equals(new Point(5, 3), 1E-9));
+	}
+	
+	@Test
+	public void testToString() {
+		assertEquals("(2.000000|3.000000)", p.toString());
 	}
 
 }

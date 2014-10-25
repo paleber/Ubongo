@@ -1,5 +1,7 @@
 package de.htwg.se.ubongo.geo;
 
+import java.util.Locale;
+
 /** A Point contains a x- and y-value. It can be moved along a Vector and
  * rotated around a other Point.
  * @author Patrick Leber
@@ -30,22 +32,38 @@ public final class Point {
 		y += v.y;
 	}
 
-	public void rotateAround( final double angleDeg,final Point pivot) {
-		// TODO
-	}
-	
-	public boolean Equals(Point other, double tolerance) {
-		
-		if(Math.abs(other.x - x) > tolerance) {
-			return false;
-		}
-		
-		if(Math.abs(other.y - y) > tolerance) {
-			return false;
-		}
-		
-		return true;
-		
+	public void rotateAround(final double angleDeg, final Point pivot) {
+
+		double angleRad = Math.toRadians(angleDeg);
+		double sin = Math.sin(angleRad);
+		double cos = Math.cos(angleRad);
+
+		x -= pivot.x;
+		y -= pivot.y;
+
+		double xi = x * cos + y * sin;
+		double yi = -x * sin + y * cos;
+
+		x = xi + pivot.x;
+		y = yi + pivot.y;
+
 	}
 
+	public boolean equals(Point other, double tolerance) {
+
+		if (Math.abs(other.x - x) > tolerance) {
+			return false;
+		}
+
+		if (Math.abs(other.y - y) > tolerance) {
+			return false;
+		}
+
+		return true;
+
+	}
+
+	public String toString() {
+		return String.format(Locale.ENGLISH, "(%.6f|%.6f)", x, y);
+	}
 }

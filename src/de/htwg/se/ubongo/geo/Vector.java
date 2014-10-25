@@ -7,7 +7,7 @@ public final class Vector {
 
 	protected double x, y;
 	
-	public Vector(final int x, final int y) {
+	public Vector(final double x, final double y) {
 		set(x, y);
 	}
 	
