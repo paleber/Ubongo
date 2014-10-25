@@ -30,8 +30,22 @@ public final class Point {
 		y += v.y;
 	}
 
-	public void rotateAround(final Point other, final double angleDeg) {
+	public void rotateAround( final double angleDeg,final Point pivot) {
 		// TODO
+	}
+	
+	public boolean Equals(Point other, double tolerance) {
+		
+		if(Math.abs(other.x - x) > tolerance) {
+			return false;
+		}
+		
+		if(Math.abs(other.y - y) > tolerance) {
+			return false;
+		}
+		
+		return true;
+		
 	}
 
 }
