@@ -3,12 +3,14 @@ package de.htwg.se.ubongo.geo;
 /** A Polygon connects several Points.
  * @author Patrick Leber
  * @version 25.10.2014 */
-public class Polygon {
+public final class Polygon {
 
-	private final Point[] point;
+	protected final Point[] point;
 
 	public Polygon(final int numbPoint) {
-		assert numbPoint >= 3;
+		if(numbPoint < 3) {
+			throw new IllegalArgumentException("Polygon need at least 3 Points.");
+		}
 
 		point = new Point[numbPoint];
 		for (int i = 0; i < point.length; i++) {
@@ -31,7 +33,18 @@ public class Polygon {
 			p.move(v);
 		}
 	}
+	
+	public int numbPoint() {
+		return point.length;
+	}
+	
+	public Point getPoint(int index) throws IndexOutOfBoundsException {
+		return point[index];
+	}
 
+	/** Calculate the average of all x and y values seperated and
+	 * return the averages as Point.
+	 * @return mid */
 	public Point getMid() {
 		double x = 0;
 		double y = 0;
