@@ -4,13 +4,13 @@ import static org.junit.Assert.fail;
 
 import org.junit.Test;
 
-public class PolygonTest {
+public class Polygon2DTest {
 
 	@Test
 	public void testConstructor() {
 		//Polygon fp = new Polygon(2);
-		new Polygon(2);
-		new Polygon(5);
+		new Polygon2D(2);
+		new Polygon2D(5);
 	}
 
 	@Test
