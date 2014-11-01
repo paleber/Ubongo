@@ -8,6 +8,8 @@ import java.util.Locale;
  * @version 24.10.2014 */
 public final class Point2D {
 
+    private static final double FACTOR_DOUBLE = 2;
+    
     protected double x, y;
 
     public Point2D() {
@@ -66,6 +68,15 @@ public final class Point2D {
     }
 
     public String toString() {
-        return String.format(Locale.ENGLISH, "(%.6f|%.6f)", x, y);
+        return String.format(Locale.ENGLISH, "(%.3f|%.3f)", x, y);
     }
+
+    public void mirrorX(int yAxis) {
+        x += (yAxis - x) * FACTOR_DOUBLE;
+    }
+
+    public void mirrorY(int xAxis) {
+        y += (xAxis - y) * FACTOR_DOUBLE;
+    }
+
 }

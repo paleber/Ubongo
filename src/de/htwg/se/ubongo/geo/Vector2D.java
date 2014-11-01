@@ -1,5 +1,7 @@
 package de.htwg.se.ubongo.geo;
 
+import java.util.Locale;
+
 /** A Vector2D contains a x- and y-value and is used for moving geometric
  * objects.
  * @author Patrick Leber
@@ -14,6 +16,10 @@ public final class Vector2D {
 
     public Vector2D(final double x, final double y) {
         set(x, y);
+    }
+
+    public Vector2D(final Point2D p, final Point2D q) {
+        set(q.x - p.x, q.y - p.y);
     }
 
     public Vector2D(final Vector2D other) {
@@ -32,6 +38,10 @@ public final class Vector2D {
 
     public double getY() {
         return y;
+    }
+
+    public String toString() {
+        return String.format(Locale.ENGLISH, "<%.3f|%.3f>", x, y);
     }
 
 }

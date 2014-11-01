@@ -4,7 +4,7 @@ import static org.junit.Assert.assertEquals;
 
 import org.junit.Test;
 
-/** TODO
+/** Vector Tests.
  * @author Patrick Leber
  * @version 25.10.2014 */
 public class Vector2DTest {
@@ -23,6 +23,13 @@ public class Vector2DTest {
 		Vector2D v = new Vector2D(4, 5);
 		assertEquals(4, v.x, 0);
 		assertEquals(5, v.y, 0);
+	}
+	
+	@Test
+	public void testConstructor2Point() {
+	    Vector2D v = new Vector2D(new Point2D(- 1, 1), new Point2D(1, 2));
+	    assertEquals(2, v.x, 0);
+        assertEquals(1, v.y, 0);
 	}
 	
 	@Test
@@ -49,5 +56,10 @@ public class Vector2DTest {
 	public void testGetY() {
 		assertEquals(2, u.getY(), 0);
 	}
+	
+	@Test
+    public void testToString() {
+        assertEquals("<3.000|2.000>", u.toString());
+    }
 
 }

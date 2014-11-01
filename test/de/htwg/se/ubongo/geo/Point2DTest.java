@@ -93,7 +93,21 @@ public class Point2DTest {
 	
 	@Test
 	public void testToString() {
-		assertEquals("(2.000000|3.000000)", q.toString());
+		assertEquals("(2.000|3.000)", q.toString());
 	}
 
+	
+	@Test
+	public void testMirrorX() {
+	    Point2D p = new Point2D(1, 0);
+	    p.mirrorX(-1);
+	    assertEquals(-3, p.x, delta);
+	}
+	
+	@Test
+    public void testMirrorY() {
+        Point2D p = new Point2D(0, 1);
+        p.mirrorY(3);
+        assertEquals(5, p.y, delta);
+    }
 }
