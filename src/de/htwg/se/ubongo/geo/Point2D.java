@@ -8,64 +8,64 @@ import java.util.Locale;
  * @version 24.10.2014 */
 public final class Point2D {
 
-	protected double x, y;
+    protected double x, y;
 
-	public Point2D() {
-		set(0, 0);
-	}
+    public Point2D() {
+        set(0, 0);
+    }
 
-	public Point2D(final double x, final double y) {
-		set(x, y);
-	}
-	
-	public Point2D(final Point2D other) {
-		x = other.x;
-		y = other.y;
-	}
+    public Point2D(final double x, final double y) {
+        set(x, y);
+    }
 
-	public void set(final double x, final double y) {
-		this.x = x;
-		this.y = y;
-	}
+    public Point2D(final Point2D other) {
+        x = other.x;
+        y = other.y;
+    }
 
-	public double getX() {
-		return x;
-	}
+    public void set(final double x, final double y) {
+        this.x = x;
+        this.y = y;
+    }
 
-	public double getY() {
-		return y;
-	}
+    public double getX() {
+        return x;
+    }
 
-	public void move(Vector2D v) {
-		x += v.x;
-		y += v.y;
-	}
+    public double getY() {
+        return y;
+    }
 
-	public void rotateAround(final double angleDeg, final Point2D pivot) {
-		double angleRad = Math.toRadians(angleDeg);
-		double sin = Math.sin(angleRad);
-		double cos = Math.cos(angleRad);
+    public void move(Vector2D v) {
+        x += v.x;
+        y += v.y;
+    }
 
-		x -= pivot.x;
-		y -= pivot.y;
+    public void rotateAround(final double angleDeg, final Point2D pivot) {
+        double angleRad = Math.toRadians(angleDeg);
+        double sin = Math.sin(angleRad);
+        double cos = Math.cos(angleRad);
 
-		double xn = x * cos + y * sin;
-		double yn = -x * sin + y * cos;
+        x -= pivot.x;
+        y -= pivot.y;
 
-		x = xn + pivot.x;
-		y = yn + pivot.y;
+        double xn = x * cos + y * sin;
+        double yn = -x * sin + y * cos;
 
-	}
-	
-	public double distanceTo(Point2D other) {
-		return Math.sqrt(distanceSquareTo(other));
-	}
-	
-	public double distanceSquareTo(Point2D other) {
-		return (x - other.x) * (x - other.x) + (y - other.y) * (y - other.y);
-	}
+        x = xn + pivot.x;
+        y = yn + pivot.y;
 
-	public String toString() {
-		return String.format(Locale.ENGLISH, "(%.6f|%.6f)", x, y);
-	}
+    }
+
+    public double distanceTo(Point2D other) {
+        return Math.sqrt(distanceSquareTo(other));
+    }
+
+    public double distanceSquareTo(Point2D other) {
+        return (x - other.x) * (x - other.x) + (y - other.y) * (y - other.y);
+    }
+
+    public String toString() {
+        return String.format(Locale.ENGLISH, "(%.6f|%.6f)", x, y);
+    }
 }

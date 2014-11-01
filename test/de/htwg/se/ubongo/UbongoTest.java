@@ -10,7 +10,7 @@ public class UbongoTest {
 
 	@Before
 	public void setUp()  {
-		new Ubongo();
+		//new Ubongo();
 	}
 	
 	@Test
