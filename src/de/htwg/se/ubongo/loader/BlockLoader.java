@@ -27,6 +27,7 @@ public final class BlockLoader {
     public static final Block getBlock(int blocknum) {
         if (blocknum >= NUM_BLOCKS) {
             Logger.getLogger(BlockLoader.class.getName()).log(Level.SEVERE, "block out of range");
+            // TODO throw IllegalArgumentException();
         }
 
         if (blockstore[blocknum] == null) {
