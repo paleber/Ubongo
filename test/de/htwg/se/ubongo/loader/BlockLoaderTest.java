@@ -1,13 +1,15 @@
 package de.htwg.se.ubongo.loader;
 
-import junit.framework.TestCase;
+
 import org.junit.Test;
 
-public class BlockLoaderTest extends TestCase {
+import static org.junit.Assert.assertNotNull;
+
+public class BlockLoaderTest {
 
     @Test
-    public void testLoadBlock() throws Exception {
-        BlockLoader l = new BlockLoader();
-        System.out.println(l.getBlock(2).toString());
+    public void testGetBlock() throws Exception {
+        assertNotNull(BlockLoader.getBlock(10));
+        assertNotNull(BlockLoader.getBlock(10));
     }
 }

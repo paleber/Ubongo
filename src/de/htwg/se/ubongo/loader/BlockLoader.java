@@ -7,6 +7,8 @@ import java.io.FileReader;
 import java.io.IOException;
 import java.util.LinkedList;
 import java.util.List;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 
 
 /**
@@ -21,17 +23,23 @@ public final class BlockLoader {
 
     private static final Block[] blockstore = new Block[NUM_BLOCKS];
 
-    BlockLoader() {
-    }
 
-    Block getBlock(int blocknum) {
-        if (blockstore[blocknum] == null) {
-            blockstore[blocknum] = loadBlock(blocknum);
+    public static final Block getBlock(int blocknum) {
+        if (blocknum >= NUM_BLOCKS) {
+            Logger.getLogger(BlockLoader.class.getName()).log(Level.SEVERE, "block out of range");
         }
+
+        if (blockstore[blocknum] == null) {
+            Logger.getLogger(BlockLoader.class.getName()).log(Level.FINE, "loading block");
+            blockstore[blocknum] = loadBlock(blocknum);
+        } else {
+            Logger.getLogger(BlockLoader.class.getName()).log(Level.FINER, "block already cached");
+        }
+
         return blockstore[blocknum];
     }
 
-    private Block loadBlock(int blocknum) {
+    private static final Block loadBlock(int blocknum) {
         Block block;
 
         try {
@@ -49,6 +57,7 @@ public final class BlockLoader {
 
             block = new Block(l.toArray(new byte[0][]));
         } catch (IOException e) {
+            Logger.getLogger(BlockLoader.class.getName()).log(Level.SEVERE, e.getMessage());
             return null;
         }
 
