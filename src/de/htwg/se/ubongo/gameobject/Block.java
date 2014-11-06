@@ -1,22 +1,26 @@
 package de.htwg.se.ubongo.gameobject;
 
-import java.util.ArrayList;
-import java.util.List;
-
 import de.htwg.se.ubongo.geo.Point2D;
 import de.htwg.se.ubongo.geo.Polygon2D;
 import de.htwg.se.ubongo.geo.Vector2D;
+
+import java.util.ArrayList;
+import java.util.List;
 
 /** Block.
  * @author Patrick Leber
  * @version 01.11.2014 */
 public final class Block {
 
-    protected List<Polygon2D> list = new ArrayList<Polygon2D>();
+    protected List<Polygon2D> list = new ArrayList<>();
     
     private static final double ROTATE_STEP = 90;
-    
-    private static final double FACTOR_HALF = 0.5f;
+
+    private static final double FACTOR_HALF = 0.5d;
+
+    public Block(int[][] points) {
+        //TODO: implement this smarter than currently.
+    }
 
     public Block(final byte[][] array) {
         for (int x = 0; x < array.length; x++) {
