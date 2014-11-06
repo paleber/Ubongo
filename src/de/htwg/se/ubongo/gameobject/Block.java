@@ -114,4 +114,10 @@ public final class Block {
 		}
 	}
 
+	public void move(Vector2D v) {
+		for(Polygon2D poly: list) {
+			poly.move(v);
+		}
+	}
+	
 }
