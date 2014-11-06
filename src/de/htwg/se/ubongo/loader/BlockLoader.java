@@ -42,8 +42,8 @@ public final class BlockLoader {
     private static final Block loadBlock(int blocknum) {
         Block block;
 
-        try {
-            List<byte[]> l = new LinkedList();
+        try { // TODO tryWithResource
+            List<byte[]> l = new LinkedList<>();
             BufferedReader reader = new BufferedReader(new FileReader("res/blocks/" + String.valueOf(blocknum)));
             String s;
 
@@ -55,7 +55,7 @@ public final class BlockLoader {
                 l.add(bs);
             }
 
-            block = new Block(l.toArray(new byte[0][]));
+            block = new Block(l.toArray(new byte[0][])); // TODO use new Block(int[][]) instead
         } catch (IOException e) {
             Logger.getLogger(BlockLoader.class.getName()).log(Level.SEVERE, e.getMessage());
             return null;
