@@ -7,96 +7,111 @@ import de.htwg.se.ubongo.geo.Vector2D;
 import java.util.ArrayList;
 import java.util.List;
 
-/** Block.
+/**
+ * Block.
+ * 
  * @author Patrick Leber
- * @version 01.11.2014 */
+ * @version 01.11.2014
+ */
 public final class Block {
 
-    protected List<Polygon2D> list = new ArrayList<>();
-    
-    private static final double ROTATE_STEP = 90;
+	protected final List<Polygon2D> list = new ArrayList<>();
 
-    private static final double FACTOR_HALF = 0.5d;
+	private static final double ROTATE_STEP = 90;
+	private static final double FACTOR_HALF = 0.5d;
 
-    public Block(int[][] points) {
-        //TODO: implement this smarter than currently.
-    }
+	public Block(int[] x, int[] y) {
+		if (x.length != y.length) {
+			throw new IllegalArgumentException();
+		}
 
-    public Block(final byte[][] array) {
-        for (int x = 0; x < array.length; x++) {
-            for (int y = 0; y < array[x].length; y++) {
-                if (array[x][y] > 0) {
-                    Polygon2D p = new Polygon2D();
-                    p.addPoint(y, x);
-                    p.addPoint(y + 1, x);
-                    p.addPoint(y + 1, x + 1);
-                    p.addPoint(y, x + 1);
-                    list.add(p);
-                }
-            }
-        }
-    }
+		for (int i = 0; i < x.length; i++) {
+			Polygon2D p = new Polygon2D();
+			p.addPoint(x[i], y[i]);
+			p.addPoint(x[i] + 1, y[i]);
+			p.addPoint(x[i] + 1, y[i] + 1);
+			p.addPoint(x[i], y[i] + 1);
+			list.add(p);
+		}
+	}
 
-    public String toString() {
-        StringBuilder builder = new StringBuilder();
-        builder.append('{');
-        for (Polygon2D poly : list) {
-            builder.append(poly.getMid());
-        }
-        builder.append('}');
-        return builder.toString();
-    }
+	@Deprecated
+	public Block(final byte[][] array) {
+		for (int x = 0; x < array.length; x++) {
+			for (int y = 0; y < array[x].length; y++) {
+				if (array[x][y] > 0) {
+					Polygon2D p = new Polygon2D();
+					p.addPoint(y, x);
+					p.addPoint(y + 1, x);
+					p.addPoint(y + 1, x + 1);
+					p.addPoint(y, x + 1);
+					list.add(p);
+				}
+			}
+		}
+	}
 
-    public Point2D getMid() {
-        double xmin = Double.MAX_VALUE;
-        double xmax = -Double.MAX_VALUE;
-        double ymin = Double.MAX_VALUE;
-        double ymax = -Double.MAX_VALUE;
+	public String toString() {
+		StringBuilder builder = new StringBuilder();
+		builder.append('{');
+		for (Polygon2D poly : list) {
+			builder.append(poly.getMid());
+		}
+		builder.append('}');
+		return builder.toString();
+	}
 
-        for (Polygon2D p : list) {
-            Point2D m = p.getMid();
-            xmin = Math.min(m.getX(), xmin);
-            xmax = Math.max(m.getX(), xmax);
-            ymin = Math.min(m.getY(), ymin);
-            ymax = Math.max(m.getY(), ymax);
-        }
-    
-        return new Point2D((xmin + xmax) * FACTOR_HALF, (ymin + ymax) * FACTOR_HALF);
+	public Point2D getMid() {
+		double xmin = Double.MAX_VALUE;
+		double xmax = -Double.MAX_VALUE;
+		double ymin = Double.MAX_VALUE;
+		double ymax = -Double.MAX_VALUE;
 
-    }
+		for (Polygon2D p : list) {
+			Point2D m = p.getMid();
+			xmin = Math.min(m.getX(), xmin);
+			xmax = Math.max(m.getX(), xmax);
+			ymin = Math.min(m.getY(), ymin);
+			ymax = Math.max(m.getY(), ymax);
+		}
 
-    public void setMid(double x, double y) {
-        Vector2D v = new Vector2D(getMid(), new Point2D(x, y));
-        for(Polygon2D poly: list) {
-            poly.move(v);
-        }
-    }
+		return new Point2D((xmin + xmax) * FACTOR_HALF, (ymin + ymax)
+				* FACTOR_HALF);
 
-    public void mirrorX(final int y) {
-        for(Polygon2D poly: list) {
-            poly.mirrorX(y);
-        }
-    }
+	}
 
-    public void mirrorY(final int x) {
-        for(Polygon2D poly: list) {
-            poly.mirrorY(x);
-        }
-    }
+	public void setMid(double x, double y) {
+		Vector2D v = new Vector2D(getMid(), new Point2D(x, y));
+		for (Polygon2D poly : list) {
+			poly.move(v);
+		}
+	}
 
-    public void rotateLeft() {
-        rotate(-ROTATE_STEP);
-    }
+	public void mirrorX(final int y) {
+		for (Polygon2D poly : list) {
+			poly.mirrorX(y);
+		}
+	}
 
-    public void rotateRight() {
-        rotate(ROTATE_STEP);
-    }
-    
-    private void rotate(final double deg) {
-        Point2D mid = getMid();
-        for(Polygon2D poly: list) {
-            poly.rotateAround(deg, mid);
-        }
-    }
+	public void mirrorY(final int x) {
+		for (Polygon2D poly : list) {
+			poly.mirrorY(x);
+		}
+	}
+
+	public void rotateLeft() {
+		rotate(-ROTATE_STEP);
+	}
+
+	public void rotateRight() {
+		rotate(ROTATE_STEP);
+	}
+
+	private void rotate(final double deg) {
+		Point2D mid = getMid();
+		for (Polygon2D poly : list) {
+			poly.rotateAround(deg, mid);
+		}
+	}
 
 }
