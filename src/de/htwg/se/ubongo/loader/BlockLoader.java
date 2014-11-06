@@ -55,7 +55,7 @@ public final class BlockLoader {
                 l.add(bs);
             }
 
-            block = new Block(l.toArray(new byte[0][])); // TODO use new Block(int[][]) instead
+            block = new Block(l.toArray(new byte[0][])); // TODO use new Block(int[] xCoords, int[] yCoords) instead
         } catch (IOException e) {
             Logger.getLogger(BlockLoader.class.getName()).log(Level.SEVERE, e.getMessage());
             return null;
