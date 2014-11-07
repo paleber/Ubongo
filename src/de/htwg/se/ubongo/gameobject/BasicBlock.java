@@ -15,17 +15,20 @@ public abstract class BasicBlock {
     private static final double FACTOR_HALF = 0.5d;
     protected final List<Polygon2D> list = new ArrayList<>();
 
-    protected BasicBlock(int[] x, int[] y) {
-        if (x.length != y.length) {
+    protected BasicBlock(List<Integer> coords) {
+        if (coords.size() % 2 == 1) {
             throw new IllegalArgumentException();
         }
 
-        for (int i = 0; i < x.length; i++) {
+        for (int i = 0; i < coords.size(); i += 2) {
+            final int x = coords.get(i);
+            final int y = coords.get(i + 1);
+
             Polygon2D p = new Polygon2D();
-            p.addPoint(x[i], y[i]);
-            p.addPoint(x[i] + 1, y[i]);
-            p.addPoint(x[i] + 1, y[i] + 1);
-            p.addPoint(x[i], y[i] + 1);
+            p.addPoint(x, y);
+            p.addPoint(x + 1, y);
+            p.addPoint(x + 1, y + 1);
+            p.addPoint(x, y + 1);
             list.add(p);
         }
     }

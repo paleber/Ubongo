@@ -1,5 +1,7 @@
 package de.htwg.se.ubongo.gameobject;
 
+import java.util.List;
+
 import de.htwg.se.ubongo.geo.Point2D;
 import de.htwg.se.ubongo.geo.Polygon2D;
 import de.htwg.se.ubongo.geo.Vector2D;
@@ -12,27 +14,8 @@ public final class Block extends BasicBlock {
 
     private static final double ROTATE_STEP = 90;
 
-    public Block(int[] x, int[] y) {
-        super(x, y);
-    }
-
-    @Deprecated
-    public Block(final byte[][] array) {
-
-        super(new int[] {}, new int[] {});
-
-        for (int x = 0; x < array.length; x++) {
-            for (int y = 0; y < array[x].length; y++) {
-                if (array[x][y] > 0) {
-                    Polygon2D p = new Polygon2D();
-                    p.addPoint(y, x);
-                    p.addPoint(y + 1, x);
-                    p.addPoint(y + 1, x + 1);
-                    p.addPoint(y, x + 1);
-                    list.add(p);
-                }
-            }
-        }
+    public Block(List<Integer> coords) {
+        super(coords);
     }
 
     public void mirrorX(final int y) {
