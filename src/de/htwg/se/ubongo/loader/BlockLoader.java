@@ -26,8 +26,7 @@ public final class BlockLoader {
 
     public static final Block getBlock(int blocknum) {
         if (blocknum >= NUM_BLOCKS) {
-            Logger.getLogger(BlockLoader.class.getName()).log(Level.SEVERE, "block out of range");
-            // TODO throw IllegalArgumentException();
+            throw new IllegalArgumentException("block out of range");
         }
 
         if (blockstore[blocknum] == null) {
@@ -43,20 +42,24 @@ public final class BlockLoader {
     private static final Block loadBlock(int blocknum) {
         Block block;
 
-        try { // TODO tryWithResource
-            List<byte[]> l = new LinkedList<>();
-            BufferedReader reader = new BufferedReader(new FileReader("res/blocks/" + String.valueOf(blocknum)));
+        try (BufferedReader reader = new BufferedReader(new FileReader("res/blocks/" + String.valueOf(blocknum)))) {
+            List<Integer> data = new LinkedList<>();
+            int x = 0;
+            int y = 0;
             String s;
 
             while ((s = reader.readLine()) != null) {
-                byte[] bs = s.getBytes();
-                for (int i = 0; i < bs.length; i++) {
-                    bs[i] -= '0';
+                for (byte b : s.getBytes()) {
+                    if (b != '0') {
+                        data.add(x);
+                        data.add(y);
+                    }
+                    x++;
                 }
-                l.add(bs);
+                y++;
             }
 
-            block = new Block(l.toArray(new byte[0][])); // TODO use new Block(int[] xCoords, int[] yCoords) instead
+            block = new Block(data);
         } catch (IOException e) {
             Logger.getLogger(BlockLoader.class.getName()).log(Level.SEVERE, e.getMessage());
             return null;
