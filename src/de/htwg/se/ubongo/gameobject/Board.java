@@ -1,12 +1,14 @@
 package de.htwg.se.ubongo.gameobject;
 
+import java.util.List;
+
 /** Board.
  * @author Patrick Leber
  * @version 01.11.2014 */
 public final class Board extends BasicBlock {
 
-    public Board(int[] x, int[] y) {
-        super(x, y);
+    public Board(List<Integer> coords) {
+        super(coords);
     }
 
 }

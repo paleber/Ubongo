@@ -18,9 +18,9 @@ public class Polygon2DTest {
     @Test
     public void testRotateAround() {
         Polygon2D poly = new Polygon2D();
-        poly.addPoint(1, 1);
-        poly.rotateAround(180, new Point2D(0, 0));
-        assertTrue(poly.list.get(0).distanceSquareTo(new Point2D(-1, -1)) < delta);
+        poly.addPoint(0, 1);
+        poly.rotateAround(90, new Point2D(0, 0));
+        assertTrue(poly.list.get(0).distanceSquareTo(new Point2D(-1, 0)) < delta);
     }
 
     @Test

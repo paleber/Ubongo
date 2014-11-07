@@ -51,8 +51,8 @@ public final class Point2D {
         x -= pivot.x;
         y -= pivot.y;
 
-        double xn = x * cos + y * sin;
-        double yn = -x * sin + y * cos;
+        double xn = x * cos - y * sin;
+        double yn = x * sin + y * cos;
 
         x = xn + pivot.x;
         y = yn + pivot.y;

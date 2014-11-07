@@ -2,6 +2,10 @@ package de.htwg.se.ubongo.gameobject;
 
 import static org.junit.Assert.assertTrue;
 
+import java.util.ArrayList;
+import java.util.List;
+
+import org.junit.Before;
 import org.junit.Test;
 
 import de.htwg.se.ubongo.geo.Point2D;
@@ -15,51 +19,60 @@ public final class BlockTest {
 
     private static final double delta = 1e-9;
 
-    @Test
-    public void testConstructorDepri() {
-        Block block = new Block(new byte[][] { { 1, 1, 1 }, { 0, 0, 1 } });
-        Point2D mid = block.list.get(3).getMid();
-        assertTrue(mid.distanceSquareTo(new Point2D(2.5, 1.5)) < delta);
+    private static final List<Integer> LIST_T_BLOCK = new ArrayList<>();
+    static {
+        int[] coords = { 0, 0, 1, 0, 2, 0, 1, 1 };
+        for (Integer i : coords) {
+            LIST_T_BLOCK.add(i);
+        }
+    }
+
+    private Block tBlock;
+
+    @Before
+    public void SetUp() {
+        tBlock = new Block(LIST_T_BLOCK);
     }
 
     @Test
     public void testMirrorX() {
-        Block b = new Block(new int[] { 0 }, new int[] { 0 });
-        b.mirrorX(0);
-        assertTrue(b.list.get(0).getMid()
-                .distanceSquareTo(new Point2D(-0.5, 0.5)) < delta);
+        tBlock.mirrorX(-1);
+        assertTrue(tBlock.list.get(0).getMid()
+                .distanceSquareTo(new Point2D(-2.5, 0.5)) < delta);
     }
 
     @Test
     public void testMirrorY() {
-        Block b = new Block(new int[] { 0 }, new int[] { 0 });
-        b.mirrorY(0);
-        assertTrue(b.list.get(0).getMid()
-                .distanceSquareTo(new Point2D(0.5, -0.5)) < delta);
+        tBlock.mirrorY(1);
+        assertTrue(tBlock.list.get(1).getMid()
+                .distanceSquareTo(new Point2D(1.5, 1.5)) < delta);
     }
 
     @Test
     public void rotateLeft() {
-        Block b = new Block(new int[] { 0, 1 }, new int[] { 0, 0 });
-        b.setMid(0, 0);
-        b.rotateLeft();
-        assertTrue(b.list.get(0).getMid()
-                .distanceSquareTo(new Point2D(0, -0.5)) < delta);
+        tBlock.setMid(0, 0);
+        System.out.println(tBlock);
+        tBlock.rotateLeft();
+        System.out.println(tBlock);
+        System.out.println("___");
+        assertTrue(tBlock.list.get(1).getMid()
+                .distanceSquareTo(new Point2D(-0.5, 0)) < delta);
     }
 
     @Test
     public void rotateRight() {
-        Block b = new Block(new int[] { 0, 1 }, new int[] { 0, 0 });
-        b.setMid(0, 0);
-        b.rotateRight();
-        assertTrue(b.list.get(0).getMid().distanceSquareTo(new Point2D(0, 0.5)) < delta);
+        tBlock.setMid(0, 0);
+        System.out.println(tBlock);
+        tBlock.rotateRight();
+        System.out.println(tBlock);
+        assertTrue(tBlock.list.get(1).getMid()
+                .distanceSquareTo(new Point2D(0.5, 0)) < delta);
     }
 
     @Test
     public void testMove() {
-        Block b = new Block(new int[] { 0 }, new int[] { 0 });
-        b.move(new Vector2D(1, 1));
-        assertTrue(b.list.get(0).getMid()
+        tBlock.move(new Vector2D(1, 1));
+        assertTrue(tBlock.list.get(0).getMid()
                 .distanceSquareTo(new Point2D(1.5, 1.5)) < delta);
     }
 

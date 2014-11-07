@@ -73,7 +73,7 @@ public class Point2DTest {
 		
 		p.set(0, 3);
 		p.rotateAround(90, new Point2D(0, 0));
-		assertTrue(p.distanceSquareTo(new Point2D(3, 0)) < 1E-9);
+		assertTrue(p.distanceSquareTo(new Point2D(-3, 0)) < 1E-9);
 
 		p.set(1, 0);
 		p.rotateAround(180, new Point2D(3, 1));
