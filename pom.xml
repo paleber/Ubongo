@@ -2,7 +2,7 @@
 POM/4.0.0 http:// maven.apache.org/xsd/maven-4.0.0.xsd">   
 <modelVersion>4.0.0</modelVersion>    
 <groupId>SE2014WS-17-Ubongo</groupId> 
-<arBfactId>SE2014WS-17-Ubongo</arBfactId>   
+<artifactId>SE2014WS-17-Ubongo</artifactId>   
 <version>0.0.1‐SNAPSHOT</version>   
 <build>   
 <sourceDirectory>src</sourceDirectory>   
