@@ -21,7 +21,7 @@ POM/4.0.0 http:// maven.apache.org/xsd/maven-4.0.0.xsd">
 <dependencies>    
 <dependency>  
 <groupId>junit</groupId>  
-<arBfactId>junit</arBfactId>  
+<artifactId>junit</artifactId>  
 <version>4.10</version>   
 <scope>test</scope>   
 </dependency> 
