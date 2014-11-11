@@ -1,20 +1,20 @@
 <project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocaBon="hcp://maven.apache.org/ 
 POM/4.0.0 http:// maven.apache.org/xsd/maven-4.0.0.xsd">   
 <modelVersion>4.0.0</modelVersion>    
-<groupId>de.htwg.se</groupId> 
-<arBfactId>Ubongo</arBfactId>   
-<version>0.0.1-­‐SNAPSHOT</version>   
+<groupId>SE2014WS-17-Ubongo</groupId> 
+<arBfactId>SE2014WS-17-Ubongo</arBfactId>   
+<version>0.0.1‐SNAPSHOT</version>   
 <build>   
-< sourceDirectory>src</sourceDirectory>   
-< testSourceDirectory>test</testSourceDirectory>  
+<sourceDirectory>src</sourceDirectory>   
+<testSourceDirectory>test</testSourceDirectory>  
 <plugins> 
 <plugin>  
-< arBfactId>maven-­‐compiler-­‐plugin</ arBfactId>    
+<artifactId>maven‐compiler‐plugin</artifactId>    
 <version>3.1</version>    
-<conﬁguraBon> 
+<configuration> 
 <source/> 
 <target/> 
-</conﬁguraBon>    
+</configuration>    
 </plugin> 
 </plugins>    
 </build>  
