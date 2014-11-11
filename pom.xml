@@ -2,7 +2,7 @@
 POM/4.0.0 http:// maven.apache.org/xsd/maven-4.0.0.xsd">   
 <modelVersion>4.0.0</modelVersion>    
 <groupId>de.htwg.se</groupId> 
-<arBfactId>Uno2</arBfactId>   
+<arBfactId>Ubongo</arBfactId>   
 <version>0.0.1-­‐SNAPSHOT</version>   
 <build>   
 < sourceDirectory>src</sourceDirectory>   
