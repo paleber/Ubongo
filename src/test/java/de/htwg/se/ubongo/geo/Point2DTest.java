@@ -23,28 +23,28 @@ public class Point2DTest {
 		assertEquals(0, p.getY(), 0);
 	}
 
-	/*
+	
 	@Test
 	public void testConstructorParameter() {
 		Point2D p = new Point2D(2, 3);
-		assertEquals(p.x, 2, 0);
-		assertEquals(p.y, 3, 0);
+		assertEquals(p.getX(), 2, 0);
+		assertEquals(p.getY(), 3, 0);
 	}
 	
 	@Test
 	public void testConstructorCopy() {
 		Point2D p = new Point2D(q);
-		assertEquals(p.x, 2, 0);
-		assertEquals(p.y, 3, 0);
+		assertEquals(p.getX(), 2, 0);
+		assertEquals(p.getY(), 3, 0);
 	}
 
 	@Test
 	public void testSet() {
 		Point2D p = new Point2D();
 		p.set(4, 5);
-		assertEquals(4, p.x, 0);
-		assertEquals(5, p.y, 0);
-	} */
+		assertEquals(4, p.getX(), 0);
+		assertEquals(5, p.getY(), 0);
+	} 
 
 	@Test
 	public void testGetX() {
@@ -99,18 +99,18 @@ public class Point2DTest {
 		assertEquals("(2.000|3.000)", q.toString());
 	}
 
-	/*
+	
 	@Test
 	public void testMirrorX() {
 	    Point2D p = new Point2D(1, 0);
 	    p.mirrorX(-1);
-	    assertEquals(-3, p.x, delta);
+	    assertEquals(-3, p.getX(), delta);
 	}
 	
 	@Test
     public void testMirrorY() {
         Point2D p = new Point2D(0, 1);
         p.mirrorY(3);
-        assertEquals(5, p.y, delta);
-    } */
+        assertEquals(5, p.getY(), delta);
+    } 
 }
