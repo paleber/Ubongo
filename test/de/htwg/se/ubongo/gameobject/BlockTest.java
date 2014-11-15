@@ -35,7 +35,6 @@ public final class BlockTest {
         tBlock = new Block(LIST_T_BLOCK);
     }
 
-    /*
     @Test
     public void testMirrorX() {
         tBlock.mirrorX(-1);
@@ -77,5 +76,5 @@ public final class BlockTest {
         assertTrue(tBlock.list.get(0).getMid()
                 .distanceSquareTo(new Point2D(1.5, 1.5)) < delta);
     }
-*/
+
 }
