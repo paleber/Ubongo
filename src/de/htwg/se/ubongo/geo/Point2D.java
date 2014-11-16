@@ -2,8 +2,7 @@ package de.htwg.se.ubongo.geo;
 
 import java.util.Locale;
 
-/** A Point contains a x- and y-value. It can be moved along a Vector and
- * rotated around a other Point.
+/** Point wih x- and y-value.
  * @author Patrick Leber
  * @version 24.10.2014 */
 public final class Point2D {
@@ -102,6 +101,8 @@ public final class Point2D {
         return (x - other.x) * (x - other.x) + (y - other.y) * (y - other.y);
     }
 
+    /** Get Point as String.
+     * @return point as string */
     public String toString() {
         return String.format(Locale.ENGLISH, "(%.3f|%.3f)", x, y);
     }
