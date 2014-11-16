@@ -9,22 +9,31 @@ import java.util.Locale;
 public final class Point2D {
 
     private static final double FACTOR_DOUBLE = 2;
-    
+
     private double x, y;
 
+    /** Default-Constructor, initialize x and y with 0. */
     public Point2D() {
         set(0, 0);
     }
 
+    /** Value-Constructor.
+     * @param x x-Value
+     * @param y y-Value */
     public Point2D(final double x, final double y) {
         set(x, y);
     }
 
+    /** Copy-Constructor.
+     * @param other point to copy */
     public Point2D(final Point2D other) {
         x = other.x;
         y = other.y;
     }
 
+    /** Set value of x and y.
+     * @param x x-Value
+     * @param y y-Value */
     public void set(final double x, final double y) {
         this.x = x;
         this.y = y;
