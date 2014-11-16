@@ -19,13 +19,13 @@ public final class Block extends BasicBlock {
     }
 
     public void mirrorX(final int y) {
-        for (Polygon2D poly : list) {
+        for (Polygon2D poly : getList()) {
             poly.mirrorX(y);
         }
     }
 
     public void mirrorY(final int x) {
-        for (Polygon2D poly : list) {
+        for (Polygon2D poly : getList()) {
             poly.mirrorY(x);
         }
     }
@@ -40,13 +40,13 @@ public final class Block extends BasicBlock {
 
     private void rotate(final double deg) {
         Point2D mid = getMid();
-        for (Polygon2D poly : list) {
+        for (Polygon2D poly : getList()) {
             poly.rotateAround(deg, mid);
         }
     }
 
     public void move(Vector2D v) {
-        for (Polygon2D poly : list) {
+        for (Polygon2D poly : getList()) {
             poly.move(v);
         }
     }

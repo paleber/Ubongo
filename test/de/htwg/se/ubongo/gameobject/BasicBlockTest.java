@@ -30,10 +30,15 @@ public class BasicBlockTest {
     private static final BasicBlock T_BLOCK = new Block(LIST_T_BLOCK);
 
     @Test
+    public void testGetList() {
+        BasicBlock block = new Block(LIST_T_BLOCK);
+        assertEquals(4, block.getList().size());
+    }
+    
+    @Test
     public void testConstructor() {
         BasicBlock block = new Block(LIST_T_BLOCK);
-        assertTrue(block.list.get(1).getMid().distanceTo(new Point2D(1.5, 0.5)) < DELTA);
-        assertEquals(4, block.list.size());
+        assertTrue(block.getList().get(1).getMid().distanceTo(new Point2D(1.5, 0.5)) < DELTA);
     }
 
     @Test(expected = IllegalArgumentException.class)

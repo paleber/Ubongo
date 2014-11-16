@@ -8,7 +8,7 @@ import java.util.List;
  * @version 25.10.2014 */
 public final class Polygon2D {
 
-    protected final List<Point2D> list = new ArrayList<>();
+    private final List<Point2D> list = new ArrayList<>();
 
     public void addPoint(double x, double y) {
         list.add(new Point2D(x, y));
@@ -38,8 +38,8 @@ public final class Polygon2D {
         double x = 0;
         double y = 0;
         for (Point2D p : list) {
-            x += p.x;
-            y += p.y;
+            x += p.getX();
+            y += p.getY();
         }
         return new Point2D(x / list.size(), y / list.size());
     }

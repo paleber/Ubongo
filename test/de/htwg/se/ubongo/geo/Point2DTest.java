@@ -23,7 +23,6 @@ public class Point2DTest {
 		assertEquals(0, p.getY(), 0);
 	}
 
-	
 	@Test
 	public void testConstructorParameter() {
 		Point2D p = new Point2D(2, 3);
@@ -113,4 +112,6 @@ public class Point2DTest {
         p.mirrorY(3);
         assertEquals(5, p.getY(), delta);
     } 
+	
+	
 }

@@ -38,14 +38,14 @@ public final class BlockTest {
     @Test
     public void testMirrorX() {
         tBlock.mirrorX(-1);
-        assertTrue(tBlock.list.get(0).getMid()
+        assertTrue(tBlock.getList().get(0).getMid()
                 .distanceSquareTo(new Point2D(-2.5, 0.5)) < delta);
     }
 
     @Test
     public void testMirrorY() {
         tBlock.mirrorY(1);
-        assertTrue(tBlock.list.get(1).getMid()
+        assertTrue(tBlock.getList().get(1).getMid()
                 .distanceSquareTo(new Point2D(1.5, 1.5)) < delta);
     }
 
@@ -56,7 +56,7 @@ public final class BlockTest {
         tBlock.rotateLeft();
         System.out.println(tBlock);
         System.out.println("___");
-        assertTrue(tBlock.list.get(1).getMid()
+        assertTrue(tBlock.getList().get(1).getMid()
                 .distanceSquareTo(new Point2D(-0.5, 0)) < delta);
     }
 
@@ -66,14 +66,14 @@ public final class BlockTest {
         System.out.println(tBlock);
         tBlock.rotateRight();
         System.out.println(tBlock);
-        assertTrue(tBlock.list.get(1).getMid()
+        assertTrue(tBlock.getList().get(1).getMid()
                 .distanceSquareTo(new Point2D(0.5, 0)) < delta);
     }
 
     @Test
     public void testMove() {
         tBlock.move(new Vector2D(1, 1));
-        assertTrue(tBlock.list.get(0).getMid()
+        assertTrue(tBlock.getList().get(0).getMid()
                 .distanceSquareTo(new Point2D(1.5, 1.5)) < delta);
     }
 

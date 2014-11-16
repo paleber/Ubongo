@@ -13,7 +13,7 @@ import de.htwg.se.ubongo.geo.Vector2D;
 public abstract class BasicBlock {
 
     private static final double FACTOR_HALF = 0.5d;
-    protected final List<Polygon2D> list = new ArrayList<>();
+    private final List<Polygon2D> list = new ArrayList<>();
 
     protected BasicBlock(List<Integer> coords) {
         if (coords.size() % 2 == 1) {
@@ -31,6 +31,10 @@ public abstract class BasicBlock {
             p.addPoint(x, y + 1);
             list.add(p);
         }
+    }
+    
+    protected List<Polygon2D> getList() {
+        return list;
     }
 
     public Point2D getMid() {

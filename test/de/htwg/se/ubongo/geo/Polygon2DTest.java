@@ -15,7 +15,7 @@ public class Polygon2DTest {
     public void testAddPoint() {
         Polygon2D poly = new Polygon2D();
         poly.addPoint(7, 8);
-        assertTrue(poly.list.get(0).distanceSquareTo(new Point2D(7, 8)) < delta);
+        assertTrue(poly.getPoint(0).distanceSquareTo(new Point2D(7, 8)) < delta);
     }
 
     @Test
@@ -23,7 +23,7 @@ public class Polygon2DTest {
         Polygon2D poly = new Polygon2D();
         poly.addPoint(0, 1);
         poly.rotateAround(90, new Point2D(0, 0));
-        assertTrue(poly.list.get(0).distanceSquareTo(new Point2D(-1, 0)) < delta);
+        assertTrue(poly.getPoint(0).distanceSquareTo(new Point2D(-1, 0)) < delta);
     }
 
     @Test
@@ -31,7 +31,7 @@ public class Polygon2DTest {
         Polygon2D poly = new Polygon2D();
         poly.addPoint(0, 0);
         poly.move(new Vector2D(1, 2));
-        assertTrue(poly.list.get(0).distanceSquareTo(new Point2D(1, 2)) < delta);
+        assertTrue(poly.getPoint(0).distanceSquareTo(new Point2D(1, 2)) < delta);
     }
 
     @Test
@@ -71,7 +71,7 @@ public class Polygon2DTest {
         Polygon2D poly = new Polygon2D();
         poly.addPoint(4, 5);
         poly.mirrorX(1);
-        assertEquals(-2, poly.list.get(0).x, delta);
+        assertEquals(-2, poly.getPoint(0).getX(), delta);
     }
 
     @Test
@@ -79,6 +79,6 @@ public class Polygon2DTest {
         Polygon2D poly = new Polygon2D();
         poly.addPoint(4, 5);
         poly.mirrorY(1);
-        assertEquals(-3, poly.list.get(0).y, delta);
+        assertEquals(-3, poly.getPoint(0).getY(), delta);
     }
 }

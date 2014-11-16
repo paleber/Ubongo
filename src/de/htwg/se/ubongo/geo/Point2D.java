@@ -10,7 +10,7 @@ public final class Point2D {
 
     private static final double FACTOR_DOUBLE = 2;
     
-    protected double x, y;
+    private double x, y;
 
     public Point2D() {
         set(0, 0);
@@ -39,8 +39,8 @@ public final class Point2D {
     }
 
     public void move(Vector2D v) {
-        x += v.x;
-        y += v.y;
+        x += v.getX();
+        y += v.getY();
     }
 
     public void rotateAround(final double angleDeg, final Point2D pivot) {
@@ -56,7 +56,6 @@ public final class Point2D {
 
         x = xn + pivot.x;
         y = yn + pivot.y;
-
     }
 
     public double distanceTo(Point2D other) {
