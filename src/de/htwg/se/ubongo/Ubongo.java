@@ -1,7 +1,7 @@
 package de.htwg.se.ubongo;
 
 /** @author Admin */
-public class Ubongo {
+public final class Ubongo {
 
     private Ubongo() {
     }
