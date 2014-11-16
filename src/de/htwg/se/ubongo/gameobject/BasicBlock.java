@@ -10,7 +10,7 @@ import de.htwg.se.ubongo.geo.Vector2D;
 /** Superclass for Block and Board.
  * @author Patrick Leber
  * @version 07.11.2014 */
-public abstract class BasicBlock {
+abstract class BasicBlock {
 
     private static final double FACTOR_HALF = 0.5d;
     private final List<Polygon2D> list = new ArrayList<>();
