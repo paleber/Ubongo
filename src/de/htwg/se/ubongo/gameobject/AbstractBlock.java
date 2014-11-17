@@ -74,8 +74,8 @@ abstract class AbstractBlock {
     public String toString() {
         StringBuilder builder = new StringBuilder();
         builder.append('{');
-        for (Polygon2D poly : poly) {
-            builder.append(poly.getMid());
+        for (Polygon2D p : poly) {
+            builder.append(p.getMid());
         }
         builder.append('}');
         return builder.toString();
