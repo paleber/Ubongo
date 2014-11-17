@@ -10,7 +10,7 @@ import de.htwg.se.ubongo.geo.Point2D;
  * @version 01.11.2014 */
 public final class Board extends AbstractBlock {
 
-    private static final double delta = 1e-9;
+    private static final double DELTA = 1e-9;
     
     private final List<Block> blocks = new LinkedList<>();
     private final Field[] field;
@@ -37,7 +37,7 @@ public final class Board extends AbstractBlock {
             if (f.full) {
                 continue;
             }
-            if (f.mid.distanceSquareTo(mid) < delta) {
+            if (f.mid.distanceSquareTo(mid) < DELTA) {
                 return f;
             }
         }
