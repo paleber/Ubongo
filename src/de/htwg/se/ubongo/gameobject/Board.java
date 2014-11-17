@@ -3,10 +3,12 @@ package de.htwg.se.ubongo.gameobject;
 import java.util.LinkedList;
 import java.util.List;
 
+import de.htwg.se.ubongo.geo.Point2D;
+
 /** Board.
  * @author Patrick Leber
  * @version 01.11.2014 */
-public final class Board extends BasicBlock {
+public final class Board extends AbstractBlock {
 
     private final List<Block> blocks = new LinkedList<>();
 
@@ -15,7 +17,8 @@ public final class Board extends BasicBlock {
     }
 
     public boolean addBlock(final Block b) {
-        // calc best position
+    	List<Point2D> mids = b.getAnchoredMids();
+
         // check if free
         // einrasten wenn frei, return true
         // ansonsten false
