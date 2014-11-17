@@ -37,11 +37,11 @@ abstract class AbstractBlock {
     	return poly;
     }
     
-    protected Polygon2D getPoly(int index) {
+    public Polygon2D getPoly(int index) {
         return poly[index];
     }
     
-    protected int numPolys() {
+    public int numPolys() {
     	return poly.length;
     }
 
