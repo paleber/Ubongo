@@ -52,10 +52,7 @@ public final class BlockTest {
     @Test
     public void rotateLeft() {
         tBlock.setMid(0, 0);
-        System.out.println(tBlock);
         tBlock.rotateLeft();
-        System.out.println(tBlock);
-        System.out.println("___");
         assertTrue(tBlock.getPoly(1).getMid()
                 .distanceSquareTo(new Point2D(-0.5, 0)) < delta);
     }
@@ -63,9 +60,7 @@ public final class BlockTest {
     @Test
     public void rotateRight() {
         tBlock.setMid(0, 0);
-        System.out.println(tBlock);
         tBlock.rotateRight();
-        System.out.println(tBlock);
         assertTrue(tBlock.getPoly(1).getMid()
                 .distanceSquareTo(new Point2D(0.5, 0)) < delta);
     }
@@ -75,6 +70,15 @@ public final class BlockTest {
         tBlock.move(new Vector2D(1, 1));
         assertTrue(tBlock.getPoly(0).getMid()
                 .distanceSquareTo(new Point2D(1.5, 1.5)) < delta);
+    }
+    
+    @Test
+    public void testAnchoredMids() {
+        System.out.println(tBlock.getPoly(0).getMid());
+        tBlock.move(new Vector2D(1.2, 0.7));
+        System.out.println(tBlock.getAnchoredMids().get(0));
+        assertTrue(tBlock.getAnchoredMids().get(0).distanceSquareTo(new Point2D(1.5, 1.5)) < delta);
+        
     }
 
 }
