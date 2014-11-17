@@ -74,9 +74,7 @@ public final class BlockTest {
     
     @Test
     public void testAnchoredMids() {
-        System.out.println(tBlock.getPoly(0).getMid());
         tBlock.move(new Vector2D(1.2, 0.7));
-        System.out.println(tBlock.getAnchoredMids().get(0));
         assertTrue(tBlock.getAnchoredMids().get(0).distanceSquareTo(new Point2D(1.5, 1.5)) < delta);
         
     }
