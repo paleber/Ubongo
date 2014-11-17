@@ -1,6 +1,5 @@
 package de.htwg.se.ubongo.gameobject;
 
-import java.util.ArrayList;
 import java.util.LinkedList;
 import java.util.List;
 
@@ -12,55 +11,71 @@ import de.htwg.se.ubongo.geo.Point2D;
 public final class Board extends AbstractBlock {
 
     private final List<Block> blocks = new LinkedList<>();
-    private final List<Point2D> mid = new ArrayList<>();
-    
-    public Board(final List<Integer> coords) {
-        super(coords);
-        for(int i = 0; i < numPolys(); i++) {
-        	mid.add(getPoly(i).getMid());
+    private final Field[] field;
+
+    private static final class Field {
+        private final Point2D mid;
+        private boolean full = true;
+
+        private Field(final Point2D mid) {
+            this.mid = mid;
         }
     }
-    
-    private List<Point2D> calcFreeMids() {
-    	List<Point2D> list = new LinkedList<>(mid);
-    	
-    	for(Block b: blocks) {
-    		for(Point2D p: b.getAnchoredMids()) {
-    			for(Point2D q: list ) {
-    				if(p.distanceSquareTo(q) < 1e-9) {
-    					list.remove(q);
-    					continue;
-    				}
-    			}
-    		}
-    	}
-    	
-    	return list;
+
+    public Board(final List<Integer> coords) {
+        super(coords);
+        field = new Field[numPolys()];
+        for (int i = 0; i < field.length; i++) {
+            field[i] = new Field(getPoly(i).getMid());
+        }
+    }
+
+    private Field getField(Point2D mid) {
+        for (Field f : field) {
+            if (f.full) {
+                continue;
+            }
+            if (f.mid.distanceSquareTo(mid) < 1e-9) {
+                return f;
+            }
+        }
+        return null;
     }
 
     public boolean addBlock(final Block block) {
-    	
-    	// Create
-    	List<Point2D> list = calcFreeMids();
-    	
-    	for(Point2D p: block.getAnchoredMids()) {
-    		for(Point2D q: list) {
-    			
-    		}
-    	}
-    	
-    	
-    	
-    	List<Point2D> blockMids = block.getAnchoredMids();
-    	
-        // check if free
-        // einrasten wenn frei, return true
-        // ansonsten false
-        return false;
+        List<Field> list = new LinkedList<>();
+        for (Point2D mid : block.getAnchoredMids()) {
+            Field f = getField(mid);
+            if (f != null && !f.full) {
+                f.full = true;
+                list.add(f);
+            } else {
+                break;
+            }
+        }
+
+        if (block.numPolys() != list.size()) {
+            for (Field f : list) {
+                f.full = false;
+            }
+            return false;
+        }
+
+        blocks.add(block);
+        return true;
     }
 
-    public boolean removeBlock(final Block b) {
-        return blocks.remove(b);
+    public boolean removeBlock(final Block block) {
+        if (!blocks.contains(block)) {
+            return false;
+        }
+        for (Point2D mid : block.getAnchoredMids()) {
+            Field f = getField(mid);
+            if (f != null) {
+                f.full = false;
+            }
+        }
+        return true;
     }
 
 }
