@@ -66,8 +66,8 @@ abstract class AbstractBlock {
 
     public void setMid(double x, double y) {
         Vector2D v = new Vector2D(getMid(), new Point2D(x, y));
-        for (Polygon2D poly : poly) {
-            poly.move(v);
+        for (Polygon2D p : poly) {
+            p.move(v);
         }
     }
 
