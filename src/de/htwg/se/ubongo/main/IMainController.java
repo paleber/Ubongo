@@ -6,9 +6,11 @@ package de.htwg.se.ubongo.main;
 public interface IMainController {
 
     void showGame();
-    
+
     void showHelp();
-    
+
+    void start();
+
     void exit();
-    
+
 }

@@ -1,40 +1,40 @@
-package de.htwg.se.ubongo.tui;
+package de.htwg.se.ubongo.gui;
 
 import java.util.Scanner;
 
 import de.htwg.se.ubongo.main.IMainController;
 import de.htwg.se.ubongo.main.MainController;
 
-/** TODO
+/** MainControllerGUI.
  * @author Patrick Leber
  * @version 18.11.2014 */
-public class MainControllerTUI implements IMainController {
+public class MainControllerGUI implements IMainController {
 
     private final MainController mainCtrl;
 
-    private static final MainControllerTUI INSTANCE = new MainControllerTUI();
+    private static final MainControllerGUI INSTANCE = new MainControllerGUI();
 
-    public static MainControllerTUI getInstance() {
+    public static MainControllerGUI getInstance() {
         return INSTANCE;
     }
 
-    private MainControllerTUI() {
+    private MainControllerGUI() {
         mainCtrl = MainController.register(this);
     }
 
     @Override
     public void showGame() {
-        System.out.println("Not implemented: Show Game");
+        System.out.println("GUI: Not implemented: Show Game");
     }
 
     @Override
     public void showHelp() {
-        System.out.println("Not implemented: Show Help");
+        System.out.println("GUI: Not implemented: Show Help");
     }
 
     @Override
     public void exit() {
-        System.out.println("Beende Programm");
+        System.out.println("GUI: Beende Programm");
     }
 
     @Override

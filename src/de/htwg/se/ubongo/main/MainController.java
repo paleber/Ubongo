@@ -6,13 +6,17 @@ import java.util.List;
 /** TODO
  * @author Patrick Leber
  * @version 18.11.2014 */
-public class MainController implements IMainController {
+public final class MainController implements IMainController {
 
     private final List<IMainController> imc = new ArrayList<>();
 
     private static final MainController INSTANCE = new MainController();
 
     private MainController() {
+    }
+    
+    public static MainController getInstance() {
+        return INSTANCE;
     }
 
     public static MainController register(IMainController i) {
@@ -35,6 +39,13 @@ public class MainController implements IMainController {
     public void exit() {
         for (IMainController i : imc) {
             i.exit();
+        }
+    }
+
+    @Override
+    public void start() {
+        for (IMainController i: imc) {
+            i.start();
         }
     }
 
