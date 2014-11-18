@@ -14,11 +14,11 @@ public class MainControllerTUI implements IMainController {
 
     public MainControllerTUI() {
         mainCtrl = MainController.register(this);
-        
+
         Scanner in = new Scanner(System.in);
-        
-        while(in.hasNext()) {
-            switch(in.next()) {
+
+        while (in.hasNext()) {
+            switch (in.next()) {
             case "game":
                 mainCtrl.showGame();
                 break;
@@ -30,26 +30,22 @@ public class MainControllerTUI implements IMainController {
                 in.close();
                 break;
             }
-            
-            
-            
         }
-        
     }
-    
+
     @Override
     public void showGame() {
-        System.out.println("Zeige Spiel");
+        System.out.println("Not implemented: Show Game");
     }
 
     @Override
     public void showHelp() {
-        System.out.println("Zeige Hilfe");
+        System.out.println("Not implemented: Show Help");
     }
 
     @Override
     public void exit() {
-        System.out.println("Beende Programm");   
+        System.out.println("Beende Programm");
     }
 
 }
