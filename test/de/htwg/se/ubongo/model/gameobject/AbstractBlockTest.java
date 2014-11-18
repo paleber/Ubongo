@@ -1,4 +1,4 @@
-package de.htwg.se.ubongo.gameobject;
+package de.htwg.se.ubongo.model.gameobject;
 
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertTrue;
@@ -7,9 +7,9 @@ import java.util.ArrayList;
 import java.util.LinkedList;
 import java.util.List;
 
-import de.htwg.se.ubongo.gameobject.AbstractBlock;
-import de.htwg.se.ubongo.gameobject.Block;
-import de.htwg.se.ubongo.geo.Point2D;
+import de.htwg.se.ubongo.model.gameobject.AbstractBlock;
+import de.htwg.se.ubongo.model.gameobject.Block;
+import de.htwg.se.ubongo.model.geo.Point2D;
 
 import org.junit.Test;
 

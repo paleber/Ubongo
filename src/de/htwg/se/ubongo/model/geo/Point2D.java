@@ -1,4 +1,4 @@
-package de.htwg.se.ubongo.geo;
+package de.htwg.se.ubongo.model.geo;
 
 import java.util.Locale;
 

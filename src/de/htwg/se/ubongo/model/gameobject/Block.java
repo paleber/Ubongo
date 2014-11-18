@@ -1,11 +1,11 @@
-package de.htwg.se.ubongo.gameobject;
+package de.htwg.se.ubongo.model.gameobject;
 
 import java.util.LinkedList;
 import java.util.List;
 
-import de.htwg.se.ubongo.geo.Point2D;
-import de.htwg.se.ubongo.geo.Polygon2D;
-import de.htwg.se.ubongo.geo.Vector2D;
+import de.htwg.se.ubongo.model.geo.Point2D;
+import de.htwg.se.ubongo.model.geo.Polygon2D;
+import de.htwg.se.ubongo.model.geo.Vector2D;
 
 /**
  * Block.

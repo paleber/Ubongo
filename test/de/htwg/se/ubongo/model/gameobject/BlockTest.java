@@ -1,13 +1,13 @@
-package de.htwg.se.ubongo.gameobject;
+package de.htwg.se.ubongo.model.gameobject;
 
 import static org.junit.Assert.assertTrue;
 
 import java.util.ArrayList;
 import java.util.List;
 
-import de.htwg.se.ubongo.gameobject.Block;
-import de.htwg.se.ubongo.geo.Point2D;
-import de.htwg.se.ubongo.geo.Vector2D;
+import de.htwg.se.ubongo.model.gameobject.Block;
+import de.htwg.se.ubongo.model.geo.Point2D;
+import de.htwg.se.ubongo.model.geo.Vector2D;
 
 import org.junit.Before;
 import org.junit.Test;

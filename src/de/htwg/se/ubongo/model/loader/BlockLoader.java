@@ -1,6 +1,6 @@
-package de.htwg.se.ubongo.loader;
+package de.htwg.se.ubongo.model.loader;
 
-import de.htwg.se.ubongo.gameobject.Block;
+import de.htwg.se.ubongo.model.gameobject.Block;
 
 import java.io.BufferedReader;
 import java.io.FileReader;
