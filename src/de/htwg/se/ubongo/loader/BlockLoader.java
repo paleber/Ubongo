@@ -1,5 +1,7 @@
 package de.htwg.se.ubongo.loader;
 
+import de.htwg.se.ubongo.gameobject.Block;
+
 import java.io.BufferedReader;
 import java.io.FileReader;
 import java.io.IOException;
@@ -8,14 +10,10 @@ import java.util.List;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
-import de.htwg.se.ubongo.gameobject.Block;
-
 /** Created by Konstantin on 06.11.2014. laden und Instanz behalten. */
 public final class BlockLoader {
 
     public static final int NUM_BLOCKS = 12;
-    public static final int NUM_VARIANTS = 6;
-    public static final int NUM_BOARDS = 72;
 
     private BlockLoader() {
     }
