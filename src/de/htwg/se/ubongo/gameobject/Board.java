@@ -11,13 +11,13 @@ import de.htwg.se.ubongo.geo.Point2D;
 public final class Board extends AbstractBlock {
 
     private static final double DELTA = 1e-9;
-    
+
     private final List<Block> blocks = new LinkedList<>();
     private final Field[] field;
 
     private static final class Field {
         private final Point2D mid;
-        private boolean full = true;
+        private boolean full = false;
 
         private Field(final Point2D mid) {
             this.mid = mid;
@@ -32,28 +32,30 @@ public final class Board extends AbstractBlock {
         }
     }
 
-    private Field getField(Point2D mid) {
+    private Field getField(Point2D mid, boolean isFull) {
         for (Field f : field) {
-            if (f.full) {
+            if (f.full != isFull) {
                 continue;
             }
             if (f.mid.distanceSquareTo(mid) < DELTA) {
+                System.out.println(mid + " == " + f.mid);
                 return f;
             }
+            System.out.println(mid + " ist nicht " + f.mid);
         }
         return null;
     }
 
     public boolean addBlock(final Block block) {
         List<Field> list = new LinkedList<>();
+
         for (Point2D mid : block.getAnchoredMids()) {
-            Field f = getField(mid);
-            if (f != null && !f.full) {
-                f.full = true;
-                list.add(f);
-            } else {
+            Field f = getField(mid, false);
+            if (f == null) {
                 break;
             }
+            f.full = true;
+            list.add(f);
         }
 
         if (block.numPolys() != list.size()) {
@@ -71,11 +73,14 @@ public final class Board extends AbstractBlock {
         if (!blocks.contains(block)) {
             return false;
         }
+        blocks.remove(block);
         for (Point2D mid : block.getAnchoredMids()) {
-            Field f = getField(mid);
-            if (f != null) {
-                f.full = false;
+            Field f = getField(mid, true);
+            if (f == null) {
+                throw new IllegalStateException(
+                        "Block moved to other anchor while on Board");
             }
+            f.full = false;
         }
         return true;
     }
