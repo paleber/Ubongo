@@ -23,15 +23,15 @@ public class MainControllerGUI implements IMainController {
         content.setLayout(new GridLayout(3, 1));
 
         JButton bnGame = new JButton("Neues Spiel");
-        bnGame.addActionListener(ae -> MainController.showGame());
+        //bnGame.addActionListener(ae -> MainController.showGame());
         content.add(bnGame);
 
         JButton bnHelp = new JButton("Hilfe");
-        bnHelp.addActionListener(ae -> MainController.showHelp());
+        //bnHelp.addActionListener(ae -> MainController.showHelp());
         content.add(bnHelp);
 
         JButton bnExit = new JButton("Beenden");
-        bnExit.addActionListener(ae -> MainController.exit());
+        //bnExit.addActionListener(ae -> MainController.exit());
         content.add(bnExit);
 
         frame.setContent(content);
