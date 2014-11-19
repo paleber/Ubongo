@@ -1,24 +1,29 @@
 package de.htwg.se.ubongo.tui;
 
-/** Static Class Console for TUI Input and Output, only reading and writing
- * complete lines. */
+/** Console for TUI Input and Output, only reading and writing complete lines. */
 public class Console {
 
-    /* Private Constructor, Utility Class. */
-    private Console() {
+    /** Create new console */
+    public Console() {
+        // TODO
     }
 
-    /** Write line in Console.
+    /** Write line in console.
      * @param line line */
-    public static void write(String line) {
+    public void write(String line) {
         // TODO
     }
 
     /** Read the next Line. Return null if not available.
      * @return next line if available, otherise null */
-    public static String read() {
+    public String read() {
         // TODO
         return null;
+    }
+
+    /** Close the console. */
+    public void exit() {
+        // TODO
     }
 
 }

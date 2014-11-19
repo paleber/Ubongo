@@ -1,6 +1,9 @@
 package de.htwg.se.ubongo.gui;
 
-import java.util.Scanner;
+import java.awt.GridLayout;
+
+import javax.swing.JButton;
+import javax.swing.JPanel;
 
 import de.htwg.se.ubongo.main.IMainController;
 import de.htwg.se.ubongo.main.MainController;
@@ -10,9 +13,29 @@ import de.htwg.se.ubongo.main.MainController;
  * @version 18.11.2014 */
 public class MainControllerGUI implements IMainController {
 
-  
+    private final GUIFrame frame = new GUIFrame();
+
+    private JPanel content = new JPanel();
+
     public MainControllerGUI() {
         MainController.register(this);
+
+        content.setLayout(new GridLayout(3, 1));
+
+        JButton bnGame = new JButton("Neues Spiel");
+        bnGame.addActionListener(ae -> MainController.showGame());
+        content.add(bnGame);
+
+        JButton bnHelp = new JButton("Hilfe");
+        bnHelp.addActionListener(ae -> MainController.showHelp());
+        content.add(bnHelp);
+
+        JButton bnExit = new JButton("Beenden");
+        bnExit.addActionListener(ae -> MainController.exit());
+        content.add(bnExit);
+
+        frame.setContent(content);
+
     }
 
     @Override
@@ -27,27 +50,12 @@ public class MainControllerGUI implements IMainController {
 
     @Override
     public void exit() {
-        System.out.println("GUI: Beende Programm");
+        frame.exit();
     }
 
     @Override
     public void start() {
-        try (Scanner in = new Scanner(System.in);) {
-            while (in.hasNext()) {
-                switch (in.next()) {
-                case "game":
-                    MainController.showGame();
-                    break;
-                case "help":
-                    MainController.showHelp();
-                    break;
-                case "exit":
-                    in.close();
-                    MainController.exit();
-                    return;
-                }
-            }
-        }
+
     }
 
 }

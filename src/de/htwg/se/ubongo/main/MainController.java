@@ -10,11 +10,8 @@ public final class MainController {
 
     private static final List<IMainController> IMC = new ArrayList<>();
 
-    
     private MainController() {
     }
-    
-
 
     public static void register(IMainController i) {
         IMC.add(i);
@@ -39,7 +36,7 @@ public final class MainController {
     }
 
     public static void start() {
-        for (IMainController i: IMC) {
+        for (IMainController i : IMC) {
             i.start();
         }
     }

@@ -32,6 +32,7 @@ public class MainControllerTUI implements IMainController {
 
     @Override
     public void start() {
+        // Eigener Thread
         try (Scanner in = new Scanner(System.in);) {
             while (in.hasNext()) {
                 switch (in.next()) {
