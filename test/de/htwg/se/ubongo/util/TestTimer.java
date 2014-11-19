@@ -31,12 +31,12 @@ public class TestTimer {
         Timer t = new Timer(pt, 1);
         t.start();
         try {
-            Thread.sleep(10);
+            Thread.sleep(100);
         } catch (InterruptedException e) {
         }
         t.stop();
         assertTrue(pt.procs > 0);
-        assertTrue(pt.procs < 10);
+        assertTrue(pt.procs < 100);
 
     }
 
