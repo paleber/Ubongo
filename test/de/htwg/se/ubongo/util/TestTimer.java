@@ -35,7 +35,6 @@ public class TestTimer {
         } catch (InterruptedException e) {
         }
         t.stop();
-        System.out.println(pt.procs);
         assertTrue(pt.procs > 0);
         assertTrue(pt.procs < 10);
 
