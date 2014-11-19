@@ -6,45 +6,40 @@ import java.util.List;
 /** TODO
  * @author Patrick Leber
  * @version 18.11.2014 */
-public final class MainController implements IMainController {
+public final class MainController {
 
-    private final List<IMainController> imc = new ArrayList<>();
+    private static final List<IMainController> IMC = new ArrayList<>();
 
-    private static final MainController INSTANCE = new MainController();
-
+    
     private MainController() {
     }
     
-    public static MainController getInstance() {
-        return INSTANCE;
+
+
+    public static void register(IMainController i) {
+        IMC.add(i);
     }
 
-    public static MainController register(IMainController i) {
-        INSTANCE.imc.add(i);
-        return INSTANCE;
-    }
-
-    public void showGame() {
-        for (IMainController i : imc) {
+    public static void showGame() {
+        for (IMainController i : IMC) {
             i.showGame();
         }
     }
 
-    public void showHelp() {
-        for (IMainController i : imc) {
+    public static void showHelp() {
+        for (IMainController i : IMC) {
             i.showHelp();
         }
     }
 
-    public void exit() {
-        for (IMainController i : imc) {
+    public static void exit() {
+        for (IMainController i : IMC) {
             i.exit();
         }
     }
 
-    @Override
-    public void start() {
-        for (IMainController i: imc) {
+    public static void start() {
+        for (IMainController i: IMC) {
             i.start();
         }
     }

@@ -5,21 +5,14 @@ import java.util.Scanner;
 import de.htwg.se.ubongo.main.IMainController;
 import de.htwg.se.ubongo.main.MainController;
 
-/** MainControllerGUI.
+/** GUI Implementaion for MainController
  * @author Patrick Leber
  * @version 18.11.2014 */
 public class MainControllerGUI implements IMainController {
 
-    private final MainController mainCtrl;
-
-    private static final MainControllerGUI INSTANCE = new MainControllerGUI();
-
-    public static MainControllerGUI getInstance() {
-        return INSTANCE;
-    }
-
-    private MainControllerGUI() {
-        mainCtrl = MainController.register(this);
+  
+    public MainControllerGUI() {
+        MainController.register(this);
     }
 
     @Override
@@ -43,14 +36,14 @@ public class MainControllerGUI implements IMainController {
             while (in.hasNext()) {
                 switch (in.next()) {
                 case "game":
-                    mainCtrl.showGame();
+                    MainController.showGame();
                     break;
                 case "help":
-                    mainCtrl.showHelp();
+                    MainController.showHelp();
                     break;
                 case "exit":
                     in.close();
-                    mainCtrl.exit();
+                    MainController.exit();
                     return;
                 }
             }

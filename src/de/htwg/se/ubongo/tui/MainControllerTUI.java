@@ -5,21 +5,14 @@ import java.util.Scanner;
 import de.htwg.se.ubongo.main.IMainController;
 import de.htwg.se.ubongo.main.MainController;
 
-/** TODO
+/** TUI Implementaion for MainController
  * @author Patrick Leber
  * @version 18.11.2014 */
 public class MainControllerTUI implements IMainController {
 
-    private final MainController mainCtrl;
-
-    private static final MainControllerTUI INSTANCE = new MainControllerTUI();
-
-    public static MainControllerTUI getInstance() {
-        return INSTANCE;
-    }
-
-    private MainControllerTUI() {
-        mainCtrl = MainController.register(this);
+  
+    public MainControllerTUI() {
+        MainController.register(this);
     }
 
     @Override
@@ -43,14 +36,14 @@ public class MainControllerTUI implements IMainController {
             while (in.hasNext()) {
                 switch (in.next()) {
                 case "game":
-                    mainCtrl.showGame();
+                    MainController.showGame();
                     break;
                 case "help":
-                    mainCtrl.showHelp();
+                    MainController.showHelp();
                     break;
                 case "exit":
                     in.close();
-                    mainCtrl.exit();
+                    MainController.exit();
                     return;
                 }
             }
