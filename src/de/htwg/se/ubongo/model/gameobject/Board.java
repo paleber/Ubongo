@@ -38,10 +38,8 @@ public final class Board extends AbstractBlock {
                 continue;
             }
             if (f.mid.distanceSquareTo(mid) < DELTA) {
-                System.out.println(mid + " == " + f.mid);
                 return f;
             }
-            System.out.println(mid + " ist nicht " + f.mid);
         }
         return null;
     }
