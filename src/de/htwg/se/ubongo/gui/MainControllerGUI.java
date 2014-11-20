@@ -7,11 +7,10 @@ import java.awt.event.ActionListener;
 import javax.swing.JButton;
 import javax.swing.JPanel;
 
-import de.htwg.se.ubongo.ctrl.main.IMainController;
 import de.htwg.se.ubongo.ctrl.main.MainController;
 
 /** GUI Implementaion for MainController. */
-public class MainControllerGUI implements IMainController {
+public class MainControllerGUI implements MainController.Subject {
 
     private final MainController mc = MainController.getInstance();
 

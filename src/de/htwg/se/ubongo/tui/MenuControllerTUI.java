@@ -1,10 +1,9 @@
 package de.htwg.se.ubongo.tui;
 
-import de.htwg.se.ubongo.ctrl.menu.IMenuController;
 import de.htwg.se.ubongo.ctrl.menu.MenuController;
 
 /** TODO */
-public class MenuControllerTUI implements IMenuController {
+public class MenuControllerTUI implements MenuController.Subject {
 
     private final MenuController mc = MenuController.getInstance();
 

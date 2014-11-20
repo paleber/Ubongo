@@ -1,15 +1,14 @@
 package de.htwg.se.ubongo.tui;
 
-import de.htwg.se.ubongo.ctrl.main.IMainController;
 import de.htwg.se.ubongo.ctrl.main.MainController;
 
 /** TUI Implementaion for MainController
  * @author Patrick Leber
  * @version 18.11.2014 */
-public class MainControllerTUI implements IMainController {
+public class MainControllerTUI implements MainController.Subject {
 
     private final MainController mc = MainController.getInstance();
-  
+ 
     public MainControllerTUI() {
         mc.register(this);
     }

@@ -7,11 +7,11 @@ import org.junit.Test;
 /** Tests for Timer. */
 public class TestTimer {
 
-    private static class PseudoTrigger implements Trigger {
+    private static class PseudoTrigger implements Timer.Trigger {
         int procs = 0;
 
         @Override
-        public void proc() {
+        public void timerTrigger() {
             procs++;
         }
     }

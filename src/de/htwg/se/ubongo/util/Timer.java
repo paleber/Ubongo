@@ -5,6 +5,12 @@ package de.htwg.se.ubongo.util;
  * @version 19.11.2014 */
 public final class Timer {
 
+    public interface Trigger {
+        
+        void timerTrigger();
+        
+    }
+    
     private final Trigger trigger;
     private final int period;
 
@@ -31,7 +37,7 @@ public final class Timer {
             while (running) {
                 if (System.currentTimeMillis() > last + period) {
                     last = System.currentTimeMillis();
-                    trigger.proc();
+                    trigger.timerTrigger();
                 }
 
                 try {

@@ -1,20 +1,22 @@
 package de.htwg.se.ubongo.ctrl.help;
 
-import de.htwg.se.ubongo.ctrl.main.IController;
+import de.htwg.se.ubongo.util.Controller;
 
 /** Help Controller. */
-public class HelpController implements IController {
+public class HelpController implements Controller {
 
+    public interface Subject {
+        // TODO
+    }
+    
     @Override
-    public void start() {
+    public void startController() {
         // TODO Auto-generated method stub
-
     }
 
     @Override
-    public void stop() {
+    public void stopController() {
         // TODO Auto-generated method stub
-
     }
 
 }
