@@ -1,4 +1,4 @@
-package de.htwg.se.ubongo.ctrl.game;
+package de.htwg.se.ubongo.ctrl;
 
 import de.htwg.se.ubongo.util.Controller;
 

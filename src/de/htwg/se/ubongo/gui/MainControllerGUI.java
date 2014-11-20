@@ -7,7 +7,7 @@ import java.awt.event.ActionListener;
 import javax.swing.JButton;
 import javax.swing.JPanel;
 
-import de.htwg.se.ubongo.ctrl.main.MainController;
+import de.htwg.se.ubongo.ctrl.MainController;
 
 /** GUI Implementaion for MainController. */
 public class MainControllerGUI implements MainController.Subject {

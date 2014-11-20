@@ -1,30 +1,24 @@
-package de.htwg.se.ubongo.ctrl.main;
+package de.htwg.se.ubongo.ctrl;
 
 import java.util.ArrayList;
 import java.util.List;
 
-import de.htwg.se.ubongo.ctrl.game.GameController;
-import de.htwg.se.ubongo.ctrl.help.HelpController;
-import de.htwg.se.ubongo.ctrl.menu.MenuController;
 import de.htwg.se.ubongo.util.Controller;
 
-/** Singleton: Main Controller. */
+/** Singleton: MainController manages SubController. */
 public final class MainController {
 
     /** Interface for Observed Objects. */
-    public interface Subject {
+    public interface Subject extends Controller {
 
-        /** Start menu. */
-        void startMenu();
+        /** Stop current Controller and start MenuController. */
+        void switchToMenu();
 
-        /** Start game. */
-        void startGame();
+        /** Stop current Controller and start GameController. */
+        void switchToGame();
 
-        /** Start help. */
-        void startHelp();
-
-        /** Exit the application. */
-        void exit();
+        /** Stop current Controller and start HelpController. */
+        void switchToHelp();
 
     }
 
@@ -50,19 +44,28 @@ public final class MainController {
         subjects.add(s);
     }
 
-    public void startMenu() {
-        start(menu);
+    public void switchToMenu() {
+        switchTo(menu);
+        for(Subject s: subjects) {
+            s.switchToMenu();
+        }
     }
 
-    public void startGame() {
-        start(game);
+    public void switchToGame() {
+        switchTo(game);
+        for(Subject s: subjects) {
+            s.switchToGame();
+        }
     }
 
-    public void startHelp() {
-        start(help);
+    public void switchToHelp() {
+        switchTo(help);
+        for(Subject s: subjects) {
+            s.switchToHelp();
+        }
     }
 
-    private void start(Controller ctrl) {
+    private void switchTo(Controller ctrl) {
         if (active != null) {
             active.stopController();
         }
@@ -70,8 +73,11 @@ public final class MainController {
         ctrl.startController();
     }
 
-    public void exit() {
+    public void shutdown() {
         active.stopController();
+        for(Subject s: subjects) {
+            s.stopController();
+        }
     }
 
 }

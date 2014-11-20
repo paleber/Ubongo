@@ -1,11 +1,11 @@
 package de.htwg.se.ubongo.tui;
 
-import de.htwg.se.ubongo.ctrl.main.MainController;
+import de.htwg.se.ubongo.ctrl.MainController;
 
 /** TUI Implementaion for MainController
  * @author Patrick Leber
  * @version 18.11.2014 */
-public class MainControllerTUI implements MainController.Subject {
+public class MainControllerTUI implements  MainController.Subject {
 
     private final MainController mc = MainController.getInstance();
  
@@ -32,6 +32,9 @@ public class MainControllerTUI implements MainController.Subject {
     public void exit() {
         System.out.println("TUI: Exit");
     }
+
+    
+
 
     /* @Override
     public void showGame() {
