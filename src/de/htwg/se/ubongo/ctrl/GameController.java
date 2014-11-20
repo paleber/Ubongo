@@ -6,7 +6,7 @@ import java.util.List;
 import de.htwg.se.ubongo.util.Controller;
 
 /** Game Controller. */
-public class GameController implements Controller {
+public final class GameController implements Controller {
 
     public interface Subject extends Controller {}
 

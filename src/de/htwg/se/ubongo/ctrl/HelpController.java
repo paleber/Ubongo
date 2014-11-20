@@ -6,7 +6,7 @@ import java.util.List;
 import de.htwg.se.ubongo.util.Controller;
 
 /** Help Controller. */
-public class HelpController implements Controller {
+public final class HelpController implements Controller {
 
     public interface Subject extends Controller {}
 

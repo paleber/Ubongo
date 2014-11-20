@@ -18,10 +18,6 @@ public final class Ubongo {
         //new MainControllerGUI();
         MainController.getInstance().switchToMenu();
         
-        PrintStream stream = System.out;
-        stream.print("aha");
-        
-        
     }
 
 }
