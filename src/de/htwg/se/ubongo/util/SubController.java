@@ -1,7 +1,7 @@
 package de.htwg.se.ubongo.util;
 
 /** Interface for Controller Classes. */
-public interface Controller {
+public interface SubController {
 
     /** Start the Controller. */
     void startController();

@@ -76,32 +76,9 @@ public class MainControllerGUI implements MainController.Subject {
 
    
 
-    @Override
-    public void startController() {
-        // TODO Auto-generated method stub
-        
-    }
 
     @Override
-    public void stopController() {
-        // TODO Auto-generated method stub
-        
-    }
-
-    @Override
-    public void switchToMenu() {
-        // TODO Auto-generated method stub
-        
-    }
-
-    @Override
-    public void switchToGame() {
-        // TODO Auto-generated method stub
-        
-    }
-
-    @Override
-    public void switchToHelp() {
+    public void shutdown() {
         // TODO Auto-generated method stub
         
     }

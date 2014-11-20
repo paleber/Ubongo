@@ -1,7 +1,5 @@
 package de.htwg.se.ubongo;
 
-import java.io.PrintStream;
-
 import de.htwg.se.ubongo.ctrl.MainController;
 import de.htwg.se.ubongo.tui.MainControllerTUI;
 

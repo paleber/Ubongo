@@ -3,12 +3,12 @@ package de.htwg.se.ubongo.ctrl;
 import java.util.ArrayList;
 import java.util.List;
 
-import de.htwg.se.ubongo.util.Controller;
+import de.htwg.se.ubongo.util.SubController;
 
 /** Help Controller. */
-public final class HelpController implements Controller {
+public final class HelpController implements SubController {
 
-    public interface Subject extends Controller {}
+    public interface Subject extends SubController {}
 
     private static final HelpController INSTANCE = new HelpController();
 
@@ -27,14 +27,14 @@ public final class HelpController implements Controller {
 
     @Override
     public void startController() {
-        for (Subject s : subjects) {
+        for(Subject s: subjects) {
             s.startController();
         }
     }
 
     @Override
     public void stopController() {
-        for (Subject s : subjects) {
+        for(Subject s: subjects) {
             s.stopController();
         }
     }

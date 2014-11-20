@@ -1,44 +1,57 @@
 package de.htwg.se.ubongo.tui;
 
-import java.util.Scanner;
-
 import de.htwg.se.ubongo.ctrl.MenuController;
-import de.htwg.se.ubongo.util.Controller;
 import de.htwg.se.ubongo.util.Timer;
 
-/** TODO */
-public class MenuControllerTUI implements Controller, MenuController.Subject,
-        Timer.Trigger {
+/** TextBased Implementation of Menu. */
+public class MenuControllerTUI implements MenuController.Subject, Timer.Trigger {
 
-    private final MenuController mc = MenuController.getInstance();
+    private final MenuController observer = MenuController.getInstance();
+    private final MainControllerTUI main;
 
-    public MenuControllerTUI() {
-
-    }
-
-    
     private final Timer timer = new Timer(this, 10);
 
-    private Scanner s;
+    public MenuControllerTUI(MainControllerTUI main) {
+        this.main = main;
+        observer.register(this);
+    }
 
     @Override
     public void startController() {
-        s = new Scanner(System.in);
         timer.start();
+        main.writeLine("--- Menu opened ---");
+        main.writeLine("cmd: game, help, exit");
     }
 
     @Override
     public void stopController() {
-        s.close();
         timer.stop();
+        main.writeLine("--- Menu closed ---");
     }
 
     @Override
     public void timerTrigger() {
-        // TODO Auto-generated method stub
-        
-    }
 
-    
+        String line = main.readLine();
+
+        if (line == null) {
+            return;
+        }
+
+        switch (line) {
+        case "game":
+            observer.switchToGame();
+            break;
+        case "help":
+            observer.switchToHelp();
+            break;
+        case "exit":
+            observer.shutdown();
+            break;
+        default:
+            main.writeLine("Unknown command");
+            break;
+        }
+    }
 
 }

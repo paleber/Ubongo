@@ -3,13 +3,13 @@ package de.htwg.se.ubongo.ctrl;
 import java.util.ArrayList;
 import java.util.List;
 
-import de.htwg.se.ubongo.util.Controller;
+import de.htwg.se.ubongo.util.SubController;
 
 /** Menu Controller. */
-public final class MenuController implements Controller {
+public final class MenuController implements SubController {
 
     /** MenuController Interface. */
-    public interface Subject extends Controller {}
+    public interface Subject extends SubController {}
 
     private static final MenuController INSTANCE = new MenuController();
 
@@ -22,14 +22,13 @@ public final class MenuController implements Controller {
     private final List<Subject> subjects = new ArrayList<>();
 
     private MenuController() {}
-    
+
     public void register(Subject s) {
         subjects.add(s);
     }
 
     @Override
     public void startController() {
-        System.out.println("MenuCtrl: Starte");
         for (Subject s : subjects) {
             s.startController();
         }
@@ -37,7 +36,6 @@ public final class MenuController implements Controller {
 
     @Override
     public void stopController() {
-        System.out.println("MenuCtrl: Stop");
         for (Subject s : subjects) {
             s.stopController();
         }

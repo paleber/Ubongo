@@ -1,49 +1,40 @@
 package de.htwg.se.ubongo.tui;
 
+import java.io.PrintStream;
+import java.util.NoSuchElementException;
+import java.util.Scanner;
+
 import de.htwg.se.ubongo.ctrl.MainController;
 
-/** TUI Implementaion for MainController
- * @author Patrick Leber
- * @version 18.11.2014 */
-public class MainControllerTUI implements  MainController.Subject {
+public final class MainControllerTUI implements MainController.Subject {
 
-    private final MainController mc = MainController.getInstance();
- 
+    private final Scanner scanner = new Scanner(System.in);
+    private final PrintStream printer = new PrintStream(System.out);
+
     public MainControllerTUI() {
-        mc.register(this);
+        MainController.getInstance().register(this);
+        new MenuControllerTUI(this);
+        new GameControllerTUI(this);
+        new HelpControllerTUI(this);
+    }
+
+    public void writeLine(final String line) {
+        printer.println(line);
+    }
+
+    public String readLine() {
+        try {
+            return scanner.nextLine();
+        } catch (NoSuchElementException | IllegalStateException e) {
+            return null;
+        }
     }
 
     @Override
-    public void startController() {
-        // TODO Auto-generated method stub
-        
+    public void shutdown() {
+        writeLine("--- Shutdown application ---");
+        printer.close();
+        scanner.close();
     }
-
-    @Override
-    public void stopController() {
-        // TODO Auto-generated method stub
-        
-    }
-
-    @Override
-    public void switchToMenu() {
-        // TODO Auto-generated method stub
-        
-    }
-
-    @Override
-    public void switchToGame() {
-        // TODO Auto-generated method stub
-        
-    }
-
-    @Override
-    public void switchToHelp() {
-        // TODO Auto-generated method stub
-        
-    }
-
- 
-
 
 }

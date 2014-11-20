@@ -3,12 +3,12 @@ package de.htwg.se.ubongo.ctrl;
 import java.util.ArrayList;
 import java.util.List;
 
-import de.htwg.se.ubongo.util.Controller;
+import de.htwg.se.ubongo.util.SubController;
 
 /** Game Controller. */
-public final class GameController implements Controller {
+public final class GameController implements SubController {
 
-    public interface Subject extends Controller {}
+    public interface Subject extends SubController {}
 
     private static final GameController INSTANCE = new GameController();
 
@@ -36,6 +36,10 @@ public final class GameController implements Controller {
         for (Subject s : subjects) {
             s.stopController();
         }
+    }
+    
+    public void switchToMenu() {
+        MainController.getInstance().switchToMenu();
     }
 
 }
