@@ -74,24 +74,36 @@ public class MainControllerGUI implements MainController.Subject {
 
     } */
 
+   
+
     @Override
-    public void startMenu() {
-        System.out.println("GUI: Start Menu");
+    public void startController() {
+        // TODO Auto-generated method stub
+        
     }
 
     @Override
-    public void startGame() {
-        System.out.println("GUI: Start Game");   
+    public void stopController() {
+        // TODO Auto-generated method stub
+        
     }
 
     @Override
-    public void startHelp() {
-        System.out.println("GUI: Start Help");
+    public void switchToMenu() {
+        // TODO Auto-generated method stub
+        
     }
 
     @Override
-    public void exit() {
-        System.out.println("GUI: Exit");
+    public void switchToGame() {
+        // TODO Auto-generated method stub
+        
+    }
+
+    @Override
+    public void switchToHelp() {
+        // TODO Auto-generated method stub
+        
     }
 
 }

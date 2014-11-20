@@ -21,6 +21,8 @@ public final class MenuController implements Controller {
 
     private final List<Subject> subjects = new ArrayList<>();
 
+    private MenuController() {}
+    
     public void register(Subject s) {
         subjects.add(s);
     }
@@ -41,18 +43,15 @@ public final class MenuController implements Controller {
         }
     }
 
-    public void startGame() {
-        System.out.println("StartMenu");
+    public void switchToGame() {
         main.switchToGame();
     }
 
-    public void startHelp() {
-        System.out.println("StartHelp");
+    public void switchToHelp() {
         main.switchToHelp();
     }
 
     public void shutdown() {
-        System.out.println("StartHelp");
         main.shutdown();
     }
 

@@ -14,7 +14,7 @@ public final class Ubongo {
     public static void main(final String[] args) {
         new MainControllerTUI();
         //new MainControllerGUI();
-        MainController.getInstance().startMenu();
+        MainController.getInstance().switchToMenu();
     }
 
 }

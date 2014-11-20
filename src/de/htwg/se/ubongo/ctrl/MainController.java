@@ -8,7 +8,7 @@ import de.htwg.se.ubongo.util.Controller;
 /** Singleton: MainController manages SubController. */
 public final class MainController {
 
-    /** Interface for Observed Objects. */
+    /** Interface for Observed Subject. */
     public interface Subject extends Controller {
 
         /** Stop current Controller and start MenuController. */
@@ -27,10 +27,6 @@ public final class MainController {
     private final List<Subject> subjects = new ArrayList<>();
     private Controller active;
 
-    private final Controller menu = new MenuController();
-    private final Controller game = new GameController();
-    private final Controller help = new HelpController();
-
     /* Hidden-Contructor. */
     private MainController() {}
 
@@ -45,22 +41,22 @@ public final class MainController {
     }
 
     public void switchToMenu() {
-        switchTo(menu);
-        for(Subject s: subjects) {
+        switchTo(MenuController.getInstance());
+        for (Subject s : subjects) {
             s.switchToMenu();
         }
     }
 
     public void switchToGame() {
-        switchTo(game);
-        for(Subject s: subjects) {
+        switchTo(GameController.getInstance());
+        for (Subject s : subjects) {
             s.switchToGame();
         }
     }
 
     public void switchToHelp() {
-        switchTo(help);
-        for(Subject s: subjects) {
+        switchTo(HelpController.getInstance());
+        for (Subject s : subjects) {
             s.switchToHelp();
         }
     }
@@ -75,7 +71,7 @@ public final class MainController {
 
     public void shutdown() {
         active.stopController();
-        for(Subject s: subjects) {
+        for (Subject s : subjects) {
             s.stopController();
         }
     }

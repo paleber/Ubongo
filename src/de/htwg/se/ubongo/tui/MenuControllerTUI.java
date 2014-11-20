@@ -16,21 +16,7 @@ public class MenuControllerTUI implements Controller, MenuController.Subject,
 
     }
 
-    @Override
-    public void startGame() {
-        System.out.println("MenuTui: Start Game");
-    }
-
-    @Override
-    public void startHelp() {
-        System.out.println("MenuTui: Start Help");
-    }
-
-    @Override
-    public void exit() {
-        System.out.println("MenuTui: Exit");
-    }
-
+    
     private final Timer timer = new Timer(this, 10);
 
     private Scanner s;
@@ -49,27 +35,10 @@ public class MenuControllerTUI implements Controller, MenuController.Subject,
 
     @Override
     public void timerTrigger() {
-        
-        try {
-            
-            if (s.hasNext()) {
-                switch (s.nextLine()) {
-                case "game":
-                    mc.startGame();
-                    break;
-                case "help":
-                    mc.startHelp();
-                    break;
-                case "exit":
-                    mc.exit();
-                    break;
-                }
-            }
-            
-        } catch (IllegalStateException e) {
-            return;
-        }
+        // TODO Auto-generated method stub
         
     }
+
+    
 
 }

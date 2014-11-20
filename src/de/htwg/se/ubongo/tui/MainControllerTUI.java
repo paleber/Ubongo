@@ -14,63 +14,36 @@ public class MainControllerTUI implements  MainController.Subject {
     }
 
     @Override
-    public void startMenu() {
-        System.out.println("TUI: Start Menu");
+    public void startController() {
+        // TODO Auto-generated method stub
+        
     }
 
     @Override
-    public void startGame() {
-        System.out.println("TUI: Start Game");   
+    public void stopController() {
+        // TODO Auto-generated method stub
+        
     }
 
     @Override
-    public void startHelp() {
-        System.out.println("TUI: Start Help");
+    public void switchToMenu() {
+        // TODO Auto-generated method stub
+        
     }
 
     @Override
-    public void exit() {
-        System.out.println("TUI: Exit");
+    public void switchToGame() {
+        // TODO Auto-generated method stub
+        
     }
 
-    
+    @Override
+    public void switchToHelp() {
+        // TODO Auto-generated method stub
+        
+    }
 
+ 
 
-    /* @Override
-    public void showGame() {
-        System.out.println("Not implemented: Show Game");
-    } */
-
-    /*@Override
-    public void showHelp() {
-        System.out.println("Not implemented: Show Help");
-    } */
-
-    /*@Override
-    public void stop() {
-        System.out.println("Beende Programm");
-    } */
-
-    /* @Override
-    public void start() {
-        System.out.println("War hier");
-        // Eigener Thread
-        try (Scanner in = new Scanner(System.in);) {
-            while (in.hasNext()) {
-                switch (in.next()) {
-                case "game":
-                    mc.showGame();
-                    break;
-                case "help":
-                    mc.showHelp();
-                    break;
-                case "exit":
-                    in.close();
-                    mc.stop();
-                    return;
-                }
-            }
-        }
-    } */
 
 }
