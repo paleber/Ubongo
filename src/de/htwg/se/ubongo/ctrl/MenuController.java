@@ -11,7 +11,7 @@ public final class MenuController implements Controller {
     /** MenuController Interface. */
     public interface Subject extends Controller {}
 
-    private static MenuController INSTANCE = new MenuController();
+    private static final MenuController INSTANCE = new MenuController();
 
     public static MenuController getInstance() {
         return INSTANCE;

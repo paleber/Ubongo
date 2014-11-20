@@ -1,5 +1,7 @@
 package de.htwg.se.ubongo;
 
+import java.io.PrintStream;
+
 import de.htwg.se.ubongo.ctrl.MainController;
 import de.htwg.se.ubongo.tui.MainControllerTUI;
 
@@ -15,6 +17,11 @@ public final class Ubongo {
         new MainControllerTUI();
         //new MainControllerGUI();
         MainController.getInstance().switchToMenu();
+        
+        PrintStream stream = System.out;
+        stream.print("aha");
+        
+        
     }
 
 }
