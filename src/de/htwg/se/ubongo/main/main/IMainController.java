@@ -1,16 +1,18 @@
 package de.htwg.se.ubongo.main.main;
 
-/** Oberservable Interface for MainController.
- * @author Patrick Leber
- * @version 18.11.2014 */
+/** Interface for MainController. */
 public interface IMainController {
 
-    void showGame();
+    /** Start menu. */
+    void startMenu();
 
-    void showHelp();
+    /** Start game. */
+    void startGame();
 
-    void start();
+    /** Start help. */
+    void startHelp();
 
-    void stop();
+    /** Exit the application. */
+    void exit();
 
 }

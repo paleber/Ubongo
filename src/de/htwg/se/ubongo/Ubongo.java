@@ -11,11 +11,11 @@ public final class Ubongo {
     private Ubongo() {}
 
     /** Main.
-     * @param args not used */
+     * @param args unused */
     public static void main(final String[] args) {
         new MainControllerTUI();
         new MainControllerGUI();
-        MainController.getInstance().start();
+        MainController.getInstance().startMenu();
     }
 
 }

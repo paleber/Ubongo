@@ -1,7 +1,5 @@
 package de.htwg.se.ubongo.tui;
 
-import java.util.Scanner;
-
 import de.htwg.se.ubongo.main.main.IMainController;
 import de.htwg.se.ubongo.main.main.MainController;
 
@@ -17,21 +15,41 @@ public class MainControllerTUI implements IMainController {
     }
 
     @Override
+    public void startMenu() {
+        System.out.println("TUI: Start Menu");
+    }
+
+    @Override
+    public void startGame() {
+        System.out.println("TUI: Start Game");   
+    }
+
+    @Override
+    public void startHelp() {
+        System.out.println("TUI: Start Help");
+    }
+
+    @Override
+    public void exit() {
+        System.out.println("TUI: Exit");
+    }
+
+    /* @Override
     public void showGame() {
         System.out.println("Not implemented: Show Game");
-    }
+    } */
 
-    @Override
+    /*@Override
     public void showHelp() {
         System.out.println("Not implemented: Show Help");
-    }
+    } */
 
-    @Override
+    /*@Override
     public void stop() {
         System.out.println("Beende Programm");
-    }
+    } */
 
-    @Override
+    /* @Override
     public void start() {
         System.out.println("War hier");
         // Eigener Thread
@@ -51,6 +69,6 @@ public class MainControllerTUI implements IMainController {
                 }
             }
         }
-    }
+    } */
 
 }

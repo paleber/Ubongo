@@ -28,7 +28,7 @@ public class MainControllerGUI implements IMainController {
         bnGame.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent ae) {
-                mc.showGame();
+               // mc.showGame();
             }
         });
         content.add(bnGame);
@@ -37,7 +37,7 @@ public class MainControllerGUI implements IMainController {
         bnHelp.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent arg0) {
-                mc.showHelp();
+               // mc.showHelp();
             }
         });
         content.add(bnHelp);
@@ -46,7 +46,7 @@ public class MainControllerGUI implements IMainController {
         bnExit.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent arg0) {
-                mc.stop();
+                //mc.stop();
             }
         });
         content.add(bnExit);
@@ -55,24 +55,48 @@ public class MainControllerGUI implements IMainController {
 
     }
 
-    @Override
+   /* @Override
     public void showGame() {
         System.out.println("GUI: Not implemented: Show Game");
-    }
+    } */
 
-    @Override
+    /* @Override
     public void showHelp() {
         System.out.println("GUI: Not implemented: Show Help");
     }
 
-    @Override
+   /* @Override
     public void stop() {
         frame.exit();
+    } */
+
+   /* @Override
+    public void start() {
+
+    } */
+
+    @Override
+    public void startMenu() {
+        // TODO Auto-generated method stub
+        
     }
 
     @Override
-    public void start() {
+    public void startGame() {
+        // TODO Auto-generated method stub
+        
+    }
 
+    @Override
+    public void startHelp() {
+        // TODO Auto-generated method stub
+        
+    }
+
+    @Override
+    public void exit() {
+        // TODO Auto-generated method stub
+        
     }
 
 }

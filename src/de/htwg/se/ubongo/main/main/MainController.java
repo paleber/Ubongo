@@ -3,44 +3,61 @@ package de.htwg.se.ubongo.main.main;
 import java.util.ArrayList;
 import java.util.List;
 
-/** Main Controller. */
-public final class MainController implements IMainController {
+import de.htwg.se.ubongo.main.game.GameController;
+import de.htwg.se.ubongo.main.help.HelpController;
+import de.htwg.se.ubongo.main.menu.MenuController;
 
-    private final List<IMainController> imc = new ArrayList<>();
+/** Singleton: Main Controller. */
+public final class MainController {
 
     private static final MainController INSTANCE = new MainController();
 
-    private MainController() {}
-
+    /** Get Instance.
+     * @return Instance */
     public static MainController getInstance() {
         return INSTANCE;
     }
+
+    private final List<IMainController> imc = new ArrayList<>();
+
+    private IController cur;
+
+    private final MenuController menu = new MenuController();
+    private final GameController game = new GameController();
+    private final HelpController help = new HelpController();
+
+    /* Hidden-Contructor. */
+    private MainController() {}
 
     public void register(IMainController i) {
         imc.add(i);
     }
 
-    public void showGame() {
-        for (IMainController i : imc) {
-            i.showGame();
-        }
+    public void startMenu() {
+        stopCurrent();
+        cur = menu;
+        cur.start();
     }
 
-    public void showHelp() {
-        for (IMainController i : imc) {
-            i.showHelp();
-        }
+    public void startGame() {
+        stopCurrent();
+        cur = game;
+        cur.start();
     }
 
-    public void stop() {
-        for (IMainController i : imc) {
-            i.stop();
-        }
+    public void startHelp() {
+        stopCurrent();
+        cur = help;
+        cur.start();
     }
 
-    public void start() {
-        for (IMainController i : imc) {
-            i.start();
+    public void exit() {
+        stopCurrent();
+    }
+
+    private void stopCurrent() {
+        if (cur != null) {
+            cur.stop();
         }
     }
 
