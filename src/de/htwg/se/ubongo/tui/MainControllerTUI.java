@@ -1,7 +1,7 @@
 package de.htwg.se.ubongo.tui;
 
-import de.htwg.se.ubongo.main.main.IMainController;
-import de.htwg.se.ubongo.main.main.MainController;
+import de.htwg.se.ubongo.ctrl.main.IMainController;
+import de.htwg.se.ubongo.ctrl.main.MainController;
 
 /** TUI Implementaion for MainController
  * @author Patrick Leber

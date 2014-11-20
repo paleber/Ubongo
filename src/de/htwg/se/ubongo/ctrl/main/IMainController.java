@@ -1,4 +1,4 @@
-package de.htwg.se.ubongo.main.main;
+package de.htwg.se.ubongo.ctrl.main;
 
 /** Interface for MainController. */
 public interface IMainController {

@@ -7,15 +7,15 @@ import java.awt.event.ActionListener;
 import javax.swing.JButton;
 import javax.swing.JPanel;
 
-import de.htwg.se.ubongo.main.main.IMainController;
-import de.htwg.se.ubongo.main.main.MainController;
+import de.htwg.se.ubongo.ctrl.main.IMainController;
+import de.htwg.se.ubongo.ctrl.main.MainController;
 
 /** GUI Implementaion for MainController. */
 public class MainControllerGUI implements IMainController {
 
     private final MainController mc = MainController.getInstance();
 
-    private final GUIFrame frame = new GUIFrame();
+   // private final GUIFrame frame = new GUIFrame();
 
     private JPanel content = new JPanel();
 
@@ -51,7 +51,7 @@ public class MainControllerGUI implements IMainController {
         });
         content.add(bnExit);
 
-        frame.setContent(content);
+        //frame.setContent(content);
 
     }
 
@@ -77,26 +77,22 @@ public class MainControllerGUI implements IMainController {
 
     @Override
     public void startMenu() {
-        // TODO Auto-generated method stub
-        
+        System.out.println("GUI: Start Menu");
     }
 
     @Override
     public void startGame() {
-        // TODO Auto-generated method stub
-        
+        System.out.println("GUI: Start Game");   
     }
 
     @Override
     public void startHelp() {
-        // TODO Auto-generated method stub
-        
+        System.out.println("GUI: Start Help");
     }
 
     @Override
     public void exit() {
-        // TODO Auto-generated method stub
-        
+        System.out.println("GUI: Exit");
     }
 
 }

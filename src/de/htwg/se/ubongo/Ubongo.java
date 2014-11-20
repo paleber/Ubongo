@@ -1,7 +1,6 @@
 package de.htwg.se.ubongo;
 
-import de.htwg.se.ubongo.gui.MainControllerGUI;
-import de.htwg.se.ubongo.main.main.MainController;
+import de.htwg.se.ubongo.ctrl.main.MainController;
 import de.htwg.se.ubongo.tui.MainControllerTUI;
 
 /** Ubongo. */
@@ -14,7 +13,7 @@ public final class Ubongo {
      * @param args unused */
     public static void main(final String[] args) {
         new MainControllerTUI();
-        new MainControllerGUI();
+        //new MainControllerGUI();
         MainController.getInstance().startMenu();
     }
 

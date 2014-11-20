@@ -1,18 +1,18 @@
-package de.htwg.se.ubongo.main.main;
+package de.htwg.se.ubongo.ctrl.main;
 
 import java.util.ArrayList;
 import java.util.List;
 
-import de.htwg.se.ubongo.main.game.GameController;
-import de.htwg.se.ubongo.main.help.HelpController;
-import de.htwg.se.ubongo.main.menu.MenuController;
+import de.htwg.se.ubongo.ctrl.game.GameController;
+import de.htwg.se.ubongo.ctrl.help.HelpController;
+import de.htwg.se.ubongo.ctrl.menu.MenuController;
 
 /** Singleton: Main Controller. */
 public final class MainController {
 
     private static final MainController INSTANCE = new MainController();
 
-    /** Get Instance.
+    /** Get instance.
      * @return Instance */
     public static MainController getInstance() {
         return INSTANCE;

@@ -1,9 +1,9 @@
-package de.htwg.se.ubongo.main.game;
+package de.htwg.se.ubongo.ctrl.help;
 
-import de.htwg.se.ubongo.main.main.IController;
+import de.htwg.se.ubongo.ctrl.main.IController;
 
-/** Game Controller. */
-public class GameController implements IController {
+/** Help Controller. */
+public class HelpController implements IController {
 
     @Override
     public void start() {
