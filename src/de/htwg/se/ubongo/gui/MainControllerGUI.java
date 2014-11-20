@@ -13,12 +13,14 @@ import de.htwg.se.ubongo.main.MainController;
  * @version 18.11.2014 */
 public class MainControllerGUI implements IMainController {
 
+    private final MainController mc = MainController.getInstance();
+    
     private final GUIFrame frame = new GUIFrame();
 
     private JPanel content = new JPanel();
 
     public MainControllerGUI() {
-        MainController.register(this);
+        mc.register(this);
 
         content.setLayout(new GridLayout(3, 1));
 
@@ -36,7 +38,7 @@ public class MainControllerGUI implements IMainController {
 
         frame.setContent(content);
 
-    }
+    } 
 
     @Override
     public void showGame() {
@@ -49,7 +51,7 @@ public class MainControllerGUI implements IMainController {
     }
 
     @Override
-    public void exit() {
+    public void stop() {
         frame.exit();
     }
 

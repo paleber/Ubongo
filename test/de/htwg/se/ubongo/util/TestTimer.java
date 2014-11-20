@@ -1,12 +1,10 @@
 package de.htwg.se.ubongo.util;
 
-import static org.junit.Assert.assertTrue;
+import static org.junit.Assert.fail;
 
 import org.junit.Test;
 
-/** Tests for Timer.
- * @author Patrick Leber
- * @version 19.11.2014 */
+/** Tests for Timer. */
 public class TestTimer {
 
     private static class PseudoTrigger implements Trigger {
@@ -22,7 +20,7 @@ public class TestTimer {
     public void testConstructorIllegalArgument() {
         new Timer(null, 0);
     }
-    
+
     @Test
     public void testStartStop() {
 
@@ -30,13 +28,20 @@ public class TestTimer {
 
         Timer t = new Timer(pt, 1);
         t.start();
-        try {
-            Thread.sleep(100);
-        } catch (InterruptedException e) {
+        for (int i = 0; i < 100; i++) {
+            try {
+                Thread.sleep(1);
+            } catch (InterruptedException e) {
+            }
+            if (pt.procs >= 2) {
+                t.stop();
+                return;
+            }
+
         }
+
         t.stop();
-        assertTrue(pt.procs > 0);
-        assertTrue(pt.procs < 100);
+        fail();
 
     }
 

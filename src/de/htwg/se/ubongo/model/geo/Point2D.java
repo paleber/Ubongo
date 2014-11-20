@@ -52,7 +52,7 @@ public final class Point2D {
 
     /** Move along a Vector2D.
      * @param v movement */
-    public void move(Vector2D v) {
+    public void move(final Vector2D v) {
         x += v.getX();
         y += v.getY();
     }
@@ -77,27 +77,27 @@ public final class Point2D {
 
     /** Mirror x-Value at y-Axis.
      * @param yAxis y-Axis */
-    public void mirrorX(int yAxis) {
+    public void mirrorX(final int yAxis) {
         x += (yAxis - x) * FACTOR_DOUBLE;
     }
 
     /** Mirror y-Value at x-Axis.
      * @param xAxis x-Axis */
-    public void mirrorY(int xAxis) {
+    public void mirrorY(final int xAxis) {
         y += (xAxis - y) * FACTOR_DOUBLE;
     }
 
     /** Distance to other point.
      * @param other other point
      * @return distance */
-    public double distanceTo(Point2D other) {
+    public double distanceTo(final Point2D other) {
         return Math.sqrt(distanceSquareTo(other));
     }
 
     /** Squared distance to other point.
      * @param other other point
      * @return squared distance */
-    public double distanceSquareTo(Point2D other) {
+    public double distanceSquareTo(final Point2D other) {
         return (x - other.x) * (x - other.x) + (y - other.y) * (y - other.y);
     }
 

@@ -13,7 +13,7 @@ public final class Polygon2D {
     /** Add a Point.
      * @param x x-value of the point
      * @param y y-value of the point */
-    public void addPoint(double x, double y) {
+    public void addPoint(final double x, final double y) {
         list.add(new Point2D(x, y));
     }
 
@@ -41,9 +41,9 @@ public final class Polygon2D {
     }
 
     /** Get a point by index.
-     * @param index
+     * @param index index
      * @return point by index */
-    public Point2D getPoint(int index) {
+    public Point2D getPoint(final int index) {
         return list.get(index);
     }
 
@@ -61,7 +61,7 @@ public final class Polygon2D {
 
     /** Mirror x-values at y-Axis.
      * @param yAxis y-Axis */
-    public void mirrorX(int yAxis) {
+    public void mirrorX(final int yAxis) {
         for (Point2D p : list) {
             p.mirrorX(yAxis);
         }
@@ -69,7 +69,7 @@ public final class Polygon2D {
 
     /** Mirror y-values at x-Axis.
      * @param xAxis x-Axis */
-    public void mirrorY(int xAxis) {
+    public void mirrorY(final int xAxis) {
         for (Point2D p : list) {
             p.mirrorY(xAxis);
         }

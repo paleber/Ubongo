@@ -1,6 +1,6 @@
 package de.htwg.se.ubongo.util;
 
-/** Timer repeatly calling trigger() from ITimer roughly each period.
+/** Timer repeatly calling trigger() from ITimer rough each period.
  * @author Patrick Leber
  * @version 19.11.2014 */
 public final class Timer {
@@ -10,7 +10,7 @@ public final class Timer {
 
     private Runner runner;
 
-    private class Runner implements Runnable {
+    private final class Runner implements Runnable {
 
         private boolean running = true;
         private long last = System.currentTimeMillis();
@@ -44,10 +44,10 @@ public final class Timer {
     }
 
     public Timer(Trigger trigger, int period) {
-        if(period <= 0) {
+        if (period <= 0) {
             throw new IllegalArgumentException("period <= 0");
         }
-        
+
         this.trigger = trigger;
         this.period = period;
     }

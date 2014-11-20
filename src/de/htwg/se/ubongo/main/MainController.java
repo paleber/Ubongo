@@ -3,40 +3,43 @@ package de.htwg.se.ubongo.main;
 import java.util.ArrayList;
 import java.util.List;
 
-/** TODO
- * @author Patrick Leber
- * @version 18.11.2014 */
-public final class MainController {
+/** Main Controller. */
+public final class MainController implements IMainController {
 
-    private static final List<IMainController> IMC = new ArrayList<>();
+    private final List<IMainController> imc = new ArrayList<>();
 
-    private MainController() {
+    private static final MainController INSTANCE = new MainController();
+
+    private MainController() {}
+
+    public static MainController getInstance() {
+        return INSTANCE;
     }
 
-    public static void register(IMainController i) {
-        IMC.add(i);
+    public void register(IMainController i) {
+        imc.add(i);
     }
 
-    public static void showGame() {
-        for (IMainController i : IMC) {
+    public void showGame() {
+        for (IMainController i : imc) {
             i.showGame();
         }
     }
 
-    public static void showHelp() {
-        for (IMainController i : IMC) {
+    public void showHelp() {
+        for (IMainController i : imc) {
             i.showHelp();
         }
     }
 
-    public static void exit() {
-        for (IMainController i : IMC) {
-            i.exit();
+    public void stop() {
+        for (IMainController i : imc) {
+            i.stop();
         }
     }
 
-    public static void start() {
-        for (IMainController i : IMC) {
+    public void start() {
+        for (IMainController i : imc) {
             i.start();
         }
     }

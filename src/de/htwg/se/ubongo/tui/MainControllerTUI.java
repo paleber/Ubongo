@@ -10,9 +10,10 @@ import de.htwg.se.ubongo.main.MainController;
  * @version 18.11.2014 */
 public class MainControllerTUI implements IMainController {
 
+    private final MainController mc = MainController.getInstance();
   
     public MainControllerTUI() {
-        MainController.register(this);
+        mc.register(this);
     }
 
     @Override
@@ -26,25 +27,26 @@ public class MainControllerTUI implements IMainController {
     }
 
     @Override
-    public void exit() {
+    public void stop() {
         System.out.println("Beende Programm");
     }
 
     @Override
     public void start() {
+        System.out.println("War hier");
         // Eigener Thread
         try (Scanner in = new Scanner(System.in);) {
             while (in.hasNext()) {
                 switch (in.next()) {
                 case "game":
-                    MainController.showGame();
+                    mc.showGame();
                     break;
                 case "help":
-                    MainController.showHelp();
+                    mc.showHelp();
                     break;
                 case "exit":
                     in.close();
-                    MainController.exit();
+                    mc.stop();
                     return;
                 }
             }

@@ -11,6 +11,6 @@ public interface IMainController {
 
     void start();
 
-    void exit();
+    void stop();
 
 }

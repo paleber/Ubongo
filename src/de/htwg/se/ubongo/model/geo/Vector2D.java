@@ -16,8 +16,8 @@ public final class Vector2D {
     }
 
     /** Value-Constructor.
-     * @param x-Value
-     * @param y-Value */
+     * @param x x-Value
+     * @param y y-Value */
     public Vector2D(final double x, final double y) {
         set(x, y);
     }
