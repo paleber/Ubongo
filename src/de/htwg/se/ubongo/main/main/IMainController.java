@@ -1,4 +1,4 @@
-package de.htwg.se.ubongo.main;
+package de.htwg.se.ubongo.main.main;
 
 /** Oberservable Interface for MainController.
  * @author Patrick Leber

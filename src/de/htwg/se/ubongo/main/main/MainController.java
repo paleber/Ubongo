@@ -1,4 +1,4 @@
-package de.htwg.se.ubongo.main;
+package de.htwg.se.ubongo.main.main;
 
 import java.util.ArrayList;
 import java.util.List;

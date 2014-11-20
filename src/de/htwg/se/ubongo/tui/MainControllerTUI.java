@@ -2,8 +2,8 @@ package de.htwg.se.ubongo.tui;
 
 import java.util.Scanner;
 
-import de.htwg.se.ubongo.main.IMainController;
-import de.htwg.se.ubongo.main.MainController;
+import de.htwg.se.ubongo.main.main.IMainController;
+import de.htwg.se.ubongo.main.main.MainController;
 
 /** TUI Implementaion for MainController
  * @author Patrick Leber

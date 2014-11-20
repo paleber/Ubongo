@@ -1,7 +1,7 @@
 package de.htwg.se.ubongo;
 
 import de.htwg.se.ubongo.gui.MainControllerGUI;
-import de.htwg.se.ubongo.main.MainController;
+import de.htwg.se.ubongo.main.main.MainController;
 import de.htwg.se.ubongo.tui.MainControllerTUI;
 
 /** Ubongo. */
