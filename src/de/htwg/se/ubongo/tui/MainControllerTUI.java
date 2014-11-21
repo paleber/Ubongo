@@ -15,6 +15,8 @@ public final class MainControllerTUI implements MainController.Subject {
         MainController.getInstance().register(this);
         new MenuControllerTUI(this);
         new GameControllerTUI(this);
+        
+        new HelpControllerTUI(this);
         new HelpControllerTUI(this);
     }
 

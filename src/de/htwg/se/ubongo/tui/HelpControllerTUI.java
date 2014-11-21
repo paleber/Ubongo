@@ -14,12 +14,20 @@ public class HelpControllerTUI implements HelpController.Subject, Timer.Trigger 
     private int testCounter;
 
     private static final int MAX_COUNTS = 10;
+    
+    private static boolean first = true;
+    private boolean isFirst = false;
+    
 
     /** TODO
      * @param mainControllerTUI */
     public HelpControllerTUI(MainControllerTUI main) {
         this.main = main;
         HelpController.getInstance().register(this);
+        if(first) {
+            first = false;
+            isFirst = true;
+        }
     }
 
     @Override
@@ -37,8 +45,12 @@ public class HelpControllerTUI implements HelpController.Subject, Timer.Trigger 
     public void timerTrigger() {
         testCounter++;
 
-        if (testCounter > MAX_COUNTS) {
+        if (isFirst && testCounter > MAX_COUNTS) {
             observer.switchToMenu();
+            return;
+        } 
+        
+        if(testCounter > MAX_COUNTS) {
             return;
         }
 

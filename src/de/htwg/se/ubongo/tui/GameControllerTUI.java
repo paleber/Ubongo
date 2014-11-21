@@ -1,12 +1,12 @@
 package de.htwg.se.ubongo.tui;
+
 import de.htwg.se.ubongo.ctrl.GameController;
+
 import de.htwg.se.ubongo.util.Timer;
 
-/** TODO
- *  */
+/** TODO */
 public class GameControllerTUI implements GameController.Subject, Timer.Trigger {
 
-    
     private final GameController observer = GameController.getInstance();
     private final MainControllerTUI main;
 
@@ -44,9 +44,8 @@ public class GameControllerTUI implements GameController.Subject, Timer.Trigger 
             return;
         }
 
-        main.writeLine("Play Round ( " + testCounter + "|"
-                + MAX_COUNTS + ")");
+        main.writeLine("Play Round ( " + testCounter + "|" + MAX_COUNTS + ")");
 
     }
-    
+
 }
