@@ -1,45 +1,18 @@
 package de.htwg.se.ubongo.ctrl;
 
-import java.util.ArrayList;
-import java.util.List;
-
-import de.htwg.se.ubongo.util.SubController;
+import de.htwg.se.ubongo.util.ctrl.SubController;
 
 /** Game Controller. */
-public final class GameController implements SubController {
+public final class GameController extends SubController {
 
-    public interface Subject extends SubController {}
+    public interface Subject extends SubSubject {}
 
     private static final GameController INSTANCE = new GameController();
-
-    private final List<Subject> subjects = new ArrayList<>();
 
     private GameController() {}
 
     public static GameController getInstance() {
         return INSTANCE;
-    }
-
-    public void register(Subject s) {
-        subjects.add(s);
-    }
-
-    @Override
-    public void startController() {
-        for (Subject s : subjects) {
-            s.startController();
-        }
-    }
-
-    @Override
-    public void stopController() {
-        for (Subject s : subjects) {
-            s.stopController();
-        }
-    }
-    
-    public void switchToMenu() {
-        MainController.getInstance().switchToMenu();
     }
 
 }

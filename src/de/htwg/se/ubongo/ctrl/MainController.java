@@ -3,10 +3,11 @@ package de.htwg.se.ubongo.ctrl;
 import java.util.ArrayList;
 import java.util.List;
 
-import de.htwg.se.ubongo.util.SubController;
+import de.htwg.se.ubongo.util.ctrl.SubController;
+import de.htwg.se.ubongo.util.ctrl.SuperController;
 
 /** Singleton: MainController manages SubController. */
-public final class MainController {
+public final class MainController extends SuperController  {
 
     /** Interface for Observed Subject. */
     public interface Subject {
@@ -55,13 +56,6 @@ public final class MainController {
     private void stopActiveController() {
         if (active != null) {
             active.stopController();
-        }
-    }
-
-    public void shutdown() {
-        stopActiveController();
-        for (Subject s : subjects) {
-            s.shutdown();
         }
     }
 

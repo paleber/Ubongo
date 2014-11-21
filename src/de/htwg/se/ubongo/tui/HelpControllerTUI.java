@@ -1,12 +1,12 @@
 package de.htwg.se.ubongo.tui;
 
 import de.htwg.se.ubongo.ctrl.HelpController;
+import de.htwg.se.ubongo.ctrl.MainController;
 import de.htwg.se.ubongo.util.Timer;
 
 /** TODO */
 public class HelpControllerTUI implements HelpController.Subject, Timer.Trigger {
 
-    private final HelpController observer = HelpController.getInstance();
     private final MainControllerTUI main;
 
     private final Timer timer = new Timer(this, 200);
@@ -14,30 +14,29 @@ public class HelpControllerTUI implements HelpController.Subject, Timer.Trigger 
     private int testCounter;
 
     private static final int MAX_COUNTS = 10;
-    
+
     private static boolean first = true;
     private boolean isFirst = false;
-    
 
     /** TODO
      * @param mainControllerTUI */
     public HelpControllerTUI(MainControllerTUI main) {
         this.main = main;
         HelpController.getInstance().register(this);
-        if(first) {
+        if (first) {
             first = false;
             isFirst = true;
         }
     }
 
     @Override
-    public void startController() {
+    public void startSubController() {
         testCounter = 0;
         timer.start();
     }
 
     @Override
-    public void stopController() {
+    public void stopSubController() {
         timer.stop();
     }
 
@@ -46,11 +45,11 @@ public class HelpControllerTUI implements HelpController.Subject, Timer.Trigger 
         testCounter++;
 
         if (isFirst && testCounter > MAX_COUNTS) {
-            observer.switchToMenu();
+            MainController.getInstance().switchToMenu();
             return;
-        } 
-        
-        if(testCounter > MAX_COUNTS) {
+        }
+
+        if (testCounter > MAX_COUNTS) {
             return;
         }
 
