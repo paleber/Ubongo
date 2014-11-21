@@ -3,9 +3,7 @@ package de.htwg.se.ubongo.ctrl;
 import de.htwg.se.ubongo.util.ctrl.SubController;
 
 /** Help Controller. */
-public final class HelpController extends SubController {
-
-    public interface Subject extends SubSubject {}
+public final class HelpController extends SubController<HelpSubject> {
 
     private static final HelpController INSTANCE = new HelpController();
 
@@ -15,5 +13,7 @@ public final class HelpController extends SubController {
     public static HelpController getInstance() {
         return INSTANCE;
     }
+    
+    
 
 }

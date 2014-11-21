@@ -1,11 +1,10 @@
 package de.htwg.se.ubongo.tui;
 
-import de.htwg.se.ubongo.ctrl.GameController;
-import de.htwg.se.ubongo.ctrl.MainController;
+import de.htwg.se.ubongo.ctrl.*;
 import de.htwg.se.ubongo.util.Timer;
 
 /** TODO */
-public class GameControllerTUI implements GameController.Subject, Timer.Trigger {
+public class GameControllerTUI implements GameSubject, Timer.Trigger {
 
     private final MainController mainObserver = MainController.getInstance();
     private final MainControllerTUI main;

@@ -3,10 +3,7 @@ package de.htwg.se.ubongo.ctrl;
 import de.htwg.se.ubongo.util.ctrl.SubController;
 
 /** Menu Controller. */
-public final class MenuController extends SubController {
-
-    /** MenuController Interface. */
-    public interface MenuSubject extends SubSubject {}
+public final class MenuController extends SubController<MenuSubject> {
 
     private static final MenuController INSTANCE = new MenuController();
 
@@ -15,5 +12,5 @@ public final class MenuController extends SubController {
     public static MenuController getInstance() {
         return INSTANCE;
     }
-    
+
 }

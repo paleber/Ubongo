@@ -8,9 +8,10 @@ import javax.swing.JButton;
 import javax.swing.JPanel;
 
 import de.htwg.se.ubongo.ctrl.MainController;
+import de.htwg.se.ubongo.ctrl.MainSubject;
 
 /** GUI Implementaion for MainController. */
-public class MainControllerGUI implements MainController.Subject {
+public class MainControllerGUI implements MainSubject {
 
     private final MainController mc = MainController.getInstance();
 

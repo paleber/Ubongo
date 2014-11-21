@@ -3,9 +3,7 @@ package de.htwg.se.ubongo.ctrl;
 import de.htwg.se.ubongo.util.ctrl.SubController;
 
 /** Game Controller. */
-public final class GameController extends SubController {
-
-    public interface Subject extends SubSubject {}
+public final class GameController extends SubController<GameSubject> {
 
     private static final GameController INSTANCE = new GameController();
 

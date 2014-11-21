@@ -1,18 +1,12 @@
 package de.htwg.se.ubongo.util.ctrl;
 
 /** Super Class for Super-Controller. */
-public abstract class SuperController extends AbstractController {
-
-    protected interface SuperSubject extends AbstractSubject {
-
-        void shutdown();
-
-    }
+public abstract class SuperController<T extends SuperSubject> extends
+        AbstractController<T> {
 
     public final void shutdown() {
-        for (AbstractSubject s : getSubjects()) {
-            SuperSubject a = (SuperSubject) s;
-            a.shutdown();
+        for (SuperSubject s : getSubjects()) {
+            s.shutdown();
         }
     }
 

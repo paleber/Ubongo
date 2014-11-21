@@ -4,18 +4,15 @@ import java.util.ArrayList;
 import java.util.List;
 
 /** Superclass for SuperController and SubController. */
-abstract class AbstractController {
+abstract class AbstractController<T extends AbstractSubject> {
 
-    /** Subject Interface to extend in Subclasses. */
-    interface AbstractSubject {}
+    private final List<T> subjects = new ArrayList<>();
 
-    private final List<AbstractSubject> subjects = new ArrayList<>();
-
-    public final List<AbstractSubject> getSubjects() {
+    public final List<T> getSubjects() {
         return subjects;
     }
 
-    public final void register(AbstractSubject s) {
+    public final void register(T s) {
         subjects.add(s);
     }
 

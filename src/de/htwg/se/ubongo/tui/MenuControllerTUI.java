@@ -1,11 +1,10 @@
 package de.htwg.se.ubongo.tui;
 
-import de.htwg.se.ubongo.ctrl.MainController;
-import de.htwg.se.ubongo.ctrl.MenuController;
+import de.htwg.se.ubongo.ctrl.*;
 import de.htwg.se.ubongo.util.Timer;
 
 /** TextBased Implementation of Menu. */
-public class MenuControllerTUI implements MenuController.MenuSubject, Timer.Trigger {
+public class MenuControllerTUI implements MenuSubject, Timer.Trigger {
 
     private final MenuController observer = MenuController.getInstance();
     private final MainController mainObserver = MainController.getInstance();

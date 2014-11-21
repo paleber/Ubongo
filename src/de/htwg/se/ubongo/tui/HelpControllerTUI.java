@@ -1,11 +1,10 @@
 package de.htwg.se.ubongo.tui;
 
-import de.htwg.se.ubongo.ctrl.HelpController;
-import de.htwg.se.ubongo.ctrl.MainController;
+import de.htwg.se.ubongo.ctrl.*;
 import de.htwg.se.ubongo.util.Timer;
 
 /** TODO */
-public class HelpControllerTUI implements HelpController.Subject, Timer.Trigger {
+public class HelpControllerTUI implements HelpSubject, Timer.Trigger {
 
     private final MainControllerTUI main;
 

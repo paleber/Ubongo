@@ -1,26 +1,14 @@
 package de.htwg.se.ubongo.ctrl;
 
-import java.util.ArrayList;
-import java.util.List;
-
 import de.htwg.se.ubongo.util.ctrl.SubController;
 import de.htwg.se.ubongo.util.ctrl.SuperController;
 
 /** Singleton: MainController manages SubController. */
-public final class MainController extends SuperController  {
-
-    /** Interface for Observed Subject. */
-    public interface Subject {
-
-        /** Stop current Controller and exit Application. */
-        void shutdown();
-
-    }
+public final class MainController extends SuperController<MainSubject>  {
 
     private static final MainController INSTANCE = new MainController();
 
-    private final List<Subject> subjects = new ArrayList<>();
-    private SubController active;
+    private SubController<?> active;
 
     /* Hidden-Contructor. */
     private MainController() {}
@@ -29,10 +17,6 @@ public final class MainController extends SuperController  {
      * @return instance */
     public static MainController getInstance() {
         return INSTANCE;
-    }
-
-    public void register(Subject s) {
-        subjects.add(s);
     }
 
     public void switchToMenu() {
@@ -47,7 +31,7 @@ public final class MainController extends SuperController  {
         switchTo(HelpController.getInstance());
     }
 
-    private void switchTo(SubController ctrl) {
+    private void switchTo(SubController<?> ctrl) {
         stopActiveController();
         active = ctrl;
         ctrl.startController();

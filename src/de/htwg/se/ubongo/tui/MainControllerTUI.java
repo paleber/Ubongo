@@ -5,8 +5,9 @@ import java.util.NoSuchElementException;
 import java.util.Scanner;
 
 import de.htwg.se.ubongo.ctrl.MainController;
+import de.htwg.se.ubongo.ctrl.MainSubject;
 
-public final class MainControllerTUI implements MainController.Subject {
+public final class MainControllerTUI implements MainSubject {
 
     private final Scanner scanner = new Scanner(System.in);
     private final PrintStream printer = new PrintStream(System.out);
