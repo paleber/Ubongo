@@ -35,7 +35,7 @@ public final class Timer {
                     Thread.sleep(1);
                 }
             } catch (InterruptedException e) {
-                throw new RuntimeException("Timer interrupted");
+                throw new IllegalStateException("Timer interrupted");
             }
         }
         
