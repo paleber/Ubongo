@@ -31,8 +31,7 @@ public class TestTimer {
         for (int i = 0; i < 100; i++) {
             try {
                 Thread.sleep(1);
-            } catch (InterruptedException e) {
-            }
+            } catch (InterruptedException e) {}
             if (pt.procs >= 2) {
                 t.stop();
                 return;

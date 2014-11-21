@@ -13,7 +13,5 @@ public final class HelpController extends SubController<HelpSubject> {
     public static HelpController getInstance() {
         return INSTANCE;
     }
-    
-    
 
 }

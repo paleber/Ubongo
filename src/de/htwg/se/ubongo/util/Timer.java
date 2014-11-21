@@ -1,16 +1,14 @@
 package de.htwg.se.ubongo.util;
 
-/** Timer repeatly calling trigger() from ITimer rough each period.
- * @author Patrick Leber
- * @version 19.11.2014 */
+/** Timer repeatly calling trigger() from ITimer rough each period. */
 public final class Timer {
 
     public interface Trigger {
-        
+
         void timerTrigger();
-        
+
     }
-    
+
     private final Trigger trigger;
     private final int period;
 
@@ -27,26 +25,20 @@ public final class Timer {
 
         @Override
         public void run() {
-
             try {
                 Thread.sleep(period);
-            } catch (InterruptedException e1) {
-                throw new IllegalStateException("Timer interrupted (1)");
-            }
-
-            while (running) {
-                if (System.currentTimeMillis() > last + period) {
-                    last = System.currentTimeMillis();
-                    trigger.timerTrigger();
-                }
-
-                try {
+                while (running) {
+                    if (System.currentTimeMillis() > last + period) {
+                        last = System.currentTimeMillis();
+                        trigger.timerTrigger();
+                    }
                     Thread.sleep(1);
-                } catch (InterruptedException e) {
-                    throw new IllegalStateException("Timer interrupted (2)");
                 }
+            } catch (InterruptedException e) {
+                throw new RuntimeException("Timer interrupted");
             }
         }
+        
     }
 
     public Timer(Trigger trigger, int period) {
