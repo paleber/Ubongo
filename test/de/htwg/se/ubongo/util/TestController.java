@@ -16,19 +16,11 @@ public class TestController {
         @Override
         protected void shutdownSuperController() {
             shutdowned = true;
-
         }
-    }
-    
-    private class PseudoSubController extends SubController<SubSubject> {
-
-        private boolean shutdowned = false;
-
-     
     }
 
     private class PseudoSuperSubject implements SuperSubject {
-
+        
         private boolean shutdowned = false;
 
         @Override
@@ -37,7 +29,9 @@ public class TestController {
         }
 
     }
-    
+
+    private class PseudoSubController extends SubController<SubSubject> {}
+
     private class PseudoSubSubject implements SubSubject {
 
         private boolean started = false;
@@ -45,18 +39,13 @@ public class TestController {
 
         @Override
         public void startSubController() {
-           started = true;
-            
+            started = true;
         }
 
-        
         @Override
         public void stopSubController() {
             stopped = true;
-            
         }
-
-       
 
     }
 
@@ -71,29 +60,30 @@ public class TestController {
 
     @Test
     public void testSuperController() {
-        SuperController<SuperSubject> ctrl = new PseudoSuperController();
+        PseudoSuperController ctrl = new PseudoSuperController();
         PseudoSuperSubject subject = new PseudoSuperSubject();
         ctrl.register(subject);
+        assertFalse(ctrl.shutdowned);
         assertFalse(subject.shutdowned);
         ctrl.shutdown();
+        assertTrue(ctrl.shutdowned);
         assertTrue(subject.shutdowned);
     }
-    
-    @Test 
+
+    @Test
     public void testSubController() {
         SubController<SubSubject> ctrl = new PseudoSubController();
         PseudoSubSubject subject = new PseudoSubSubject();
         ctrl.register(subject);
-        
+
         assertFalse(subject.started);
         ctrl.startController();
         assertTrue(subject.started);
-        
+
         assertFalse(subject.stopped);
         ctrl.stopController();
         assertTrue(subject.stopped);
-        
-        
+
     }
-    
+
 }
