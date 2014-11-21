@@ -43,4 +43,9 @@ public final class MainController extends SuperController<MainSubject>  {
         }
     }
 
+    @Override
+    protected void shutdownSuperController() {
+        stopActiveController();
+    }
+
 }

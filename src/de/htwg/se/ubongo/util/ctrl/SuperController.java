@@ -8,6 +8,9 @@ public abstract class SuperController<T extends SuperSubject> extends
         for (SuperSubject s : getSubjects()) {
             s.shutdown();
         }
+        shutdownSuperController();
     }
+    
+    protected abstract void shutdownSuperController();
 
 }
