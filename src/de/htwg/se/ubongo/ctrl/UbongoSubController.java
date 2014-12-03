@@ -3,8 +3,8 @@ package de.htwg.se.ubongo.ctrl;
 import de.htwg.se.ubongo.util.ctrl.SubController;
 import de.htwg.se.ubongo.util.ctrl.SubSubject;
 
-/** SuperClass for SubController of Ubongo. Provide methdos to switch between
- * Subcontrollers.
+/** Super-Class for SubController of Ubongo. Provide methods to switch between
+ * the specific SubControllers.
  * @param <T> SubSubject of the SubController */
 public abstract class UbongoSubController<T extends SubSubject> extends
         SubController<T> {

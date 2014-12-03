@@ -3,15 +3,16 @@ package de.htwg.se.ubongo;
 import de.htwg.se.ubongo.ctrl.MainController;
 import de.htwg.se.ubongo.tui.MainControllerTUI;
 
-/** Ubongo. */
+/** Start-Class of the Application. */
 public final class Ubongo {
-
-    /* Hidden-Constructor. */
-    private Ubongo() {}
 
     /** Main.
      * @param args unused */
     public static void main(final String[] args) {
+        new Ubongo();
+    }
+
+    private Ubongo() {
         MainController main = new MainController();
         new MainControllerTUI(main);
         main.switchToMenu();
