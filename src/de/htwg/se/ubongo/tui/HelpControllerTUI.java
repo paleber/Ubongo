@@ -4,11 +4,11 @@ import de.htwg.se.ubongo.ctrl.*;
 import de.htwg.se.ubongo.util.Timer;
 
 /** TODO */
-public class HelpControllerTUI implements HelpSubject, Timer.Trigger {
+public final class HelpControllerTUI implements HelpSubject, Timer.Trigger {
 
-    private final MainControllerTUI main;
+    private final MainControllerTUI tui;
     private final HelpController observer;
-    
+
     private final Timer timer = new Timer(this, 200);
 
     private int testCounter;
@@ -18,12 +18,11 @@ public class HelpControllerTUI implements HelpSubject, Timer.Trigger {
     private static boolean first = true;
     private boolean isFirst = false;
 
-    /** TODO
-     * @param helpController 
-     * @param mainControllerTUI */
-    public HelpControllerTUI(MainControllerTUI main, HelpController observer) {
-        this.main = main;
+    public HelpControllerTUI(final MainControllerTUI tui,
+            final HelpController observer) {
+        this.tui = tui;
         this.observer = observer;
+        observer.register(this);
         if (first) {
             first = false;
             isFirst = true;
@@ -32,6 +31,7 @@ public class HelpControllerTUI implements HelpSubject, Timer.Trigger {
 
     @Override
     public void startSubController() {
+        tui.writeLine("--- Help opened ---");
         testCounter = 0;
         timer.start();
     }
@@ -39,6 +39,7 @@ public class HelpControllerTUI implements HelpSubject, Timer.Trigger {
     @Override
     public void stopSubController() {
         timer.stop();
+        tui.writeLine("--- Help closed ---");
     }
 
     @Override
@@ -54,7 +55,7 @@ public class HelpControllerTUI implements HelpSubject, Timer.Trigger {
             return;
         }
 
-        main.writeLine("Print an Example Line ( " + testCounter + "|"
+        tui.writeLine("Print an Example Line ( " + testCounter + "|"
                 + MAX_COUNTS + ")");
 
     }

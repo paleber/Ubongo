@@ -7,7 +7,7 @@ import de.htwg.se.ubongo.util.Timer;
 public class GameControllerTUI implements GameSubject, Timer.Trigger {
 
     private final GameController observer;
-    private final MainControllerTUI main;
+    private final MainControllerTUI tui;
 
     private final Timer timer = new Timer(this, 150);
 
@@ -18,14 +18,15 @@ public class GameControllerTUI implements GameSubject, Timer.Trigger {
     /** TODO
      * @param gameController 
      * @param mainControllerTUI */
-    public GameControllerTUI(MainControllerTUI main, GameController observer) {
-        this.main = main;
+    public GameControllerTUI(MainControllerTUI tui, GameController observer) {
+        this.tui = tui;
         this.observer = observer;
         observer.register(this);
     }
 
     @Override
     public void startSubController() {
+        tui.writeLine("--- game started ---");
         testCounter = 0;
         timer.start();
     }
@@ -33,6 +34,7 @@ public class GameControllerTUI implements GameSubject, Timer.Trigger {
     @Override
     public void stopSubController() {
         timer.stop();
+        tui.writeLine("--- game stopped ---");
     }
 
     @Override
@@ -40,12 +42,12 @@ public class GameControllerTUI implements GameSubject, Timer.Trigger {
         testCounter++;
 
         if (testCounter > MAX_COUNTS) {
-            main.writeLine("You won the game!");
+            tui.writeLine("You won the game!");
             observer.switchToMenu();
             return;
         }
 
-        main.writeLine("Play Round ( " + testCounter + "|" + MAX_COUNTS + ")");
+        tui.writeLine("Play Round ( " + testCounter + "|" + MAX_COUNTS + ")");
 
     }
 
