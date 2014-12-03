@@ -1,16 +1,18 @@
 package de.htwg.se.ubongo.util;
 
-/** Timer repeatly calling trigger() from ITimer rough each period. */
+/** Timer repeatly calling Trigger Event from Inner-Interface. */
 public final class Timer {
 
+    /** Interface for TimerTrigger. */
     public interface Trigger {
 
+        /** Event for TimerTrigger. */
         void timerTrigger();
 
     }
 
     private final Trigger trigger;
-    private final int period;
+    private final int interval;
 
     private Runner runner;
 
@@ -26,9 +28,9 @@ public final class Timer {
         @Override
         public void run() {
             try {
-                Thread.sleep(period);
+                Thread.sleep(interval);
                 while (running) {
-                    if (System.currentTimeMillis() > last + period) {
+                    if (System.currentTimeMillis() > last + interval) {
                         last = System.currentTimeMillis();
                         trigger.timerTrigger();
                     }
@@ -38,19 +40,21 @@ public final class Timer {
                 throw new IllegalStateException("Timer interrupted");
             }
         }
-        
     }
 
-    public Timer(Trigger trigger, int period) {
-        if (period <= 0) {
+    /** Constructor.
+     * @param trigger Trigger-Interface.
+     * @param interval interval to trigger */
+    public Timer(final Trigger trigger, final int interval) {
+        if (interval <= 0) {
             throw new IllegalArgumentException("period <= 0");
         }
-        assert(period > 0);
 
         this.trigger = trigger;
-        this.period = period;
+        this.interval = interval;
     }
 
+    /** Start the Timer. */
     public void start() {
         if (runner != null) {
             throw new IllegalStateException("Timer already running");
@@ -58,6 +62,7 @@ public final class Timer {
         runner = new Runner();
     }
 
+    /** Stop the Timer. */
     public void stop() {
         if (runner == null) {
             throw new IllegalStateException("Timer not running");

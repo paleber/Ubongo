@@ -1,12 +1,12 @@
 package de.htwg.se.ubongo.util.ctrl;
 
-/** TODO */
+/** Interface for Subject of SubController. */
 public interface SubSubject extends AbstractSubject {
 
-    /** TODO */
+    /** Start the SubController. */
     void startSubController();
 
-    /** TODO */
+    /** Stop the SubController. */
     void stopSubController();
 
 }

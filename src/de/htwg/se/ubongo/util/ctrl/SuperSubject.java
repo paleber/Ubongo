@@ -1,9 +1,9 @@
 package de.htwg.se.ubongo.util.ctrl;
 
-/** TODO */
+/** Interface on SuperSubject. */
 public interface SuperSubject extends AbstractSubject {
 
-    /** TODO */
+    /** Shutdown the SuperController. */
     void shutdown();
 
 }

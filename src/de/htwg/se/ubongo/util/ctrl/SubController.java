@@ -1,18 +1,20 @@
 package de.htwg.se.ubongo.util.ctrl;
 
-public abstract class SubController<T extends SubSubject> extends
-        AbstractController<T> {
+/** Super-Class for SubController.
+ * @param <S> SubSubject */
+public abstract class SubController<S extends SubSubject> extends
+        AbstractController<S> {
 
-    /** Start the SubController. Should only be called from SuperController. */
+    /** Start the SubController. Called from SuperController. */
     public final void startController() {
-        for (T s : getSubjects()) {
+        for (S s : getSubjects()) {
             s.startSubController();
         }
     }
 
-    /** Stop the SubController. Should only be called from SuperController. */
+    /** Stop the SubController. Called from SuperController. */
     public final void stopController() {
-        for (T s : getSubjects()) {
+        for (S s : getSubjects()) {
             s.stopSubController();
         }
     }

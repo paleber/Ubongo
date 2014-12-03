@@ -3,16 +3,21 @@ package de.htwg.se.ubongo.util.ctrl;
 import java.util.ArrayList;
 import java.util.List;
 
-/** Superclass for SuperController and SubController. */
-abstract class AbstractController<T extends AbstractSubject> {
+/** Super-Class for SuperController and SubController.
+ * @param <S> Subject-Interface of SubClass. */
+abstract class AbstractController<S extends AbstractSubject> {
 
-    private final List<T> subjects = new ArrayList<>();
+    private final List<S> subjects = new ArrayList<>();
 
-    public final List<T> getSubjects() {
+    /** Get a list of all registered subjects.
+     * @return list of Subjects*/
+    public final List<S> getSubjects() {
         return subjects;
     }
 
-    public final void register(T s) {
+    /** Register a Subjuct.
+     * @param s Subject to register*/
+    public final void register(final S s) {
         subjects.add(s);
     }
 

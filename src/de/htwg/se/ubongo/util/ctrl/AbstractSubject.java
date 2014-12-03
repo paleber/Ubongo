@@ -1,4 +1,4 @@
 package de.htwg.se.ubongo.util.ctrl;
 
-/** TODO */
+/** Super-Interface for SuperSubject and SubSubject. */
 interface AbstractSubject {}

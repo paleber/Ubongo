@@ -1,9 +1,12 @@
 package de.htwg.se.ubongo.util.ctrl;
 
-/** Super Class for Super-Controller. */
-public abstract class SuperController<T extends SuperSubject> extends
-        AbstractController<T> {
+/** SuperClass for SuperController.
+ * @param <S> SuperSubject */
+public abstract class SuperController<S extends SuperSubject> extends
+        AbstractController<S> {
 
+    /** Shutdown the Application by shutdown the SuperController and current
+     * SubController. */
     public final void shutdown() {
         shutdownSuperController();
         for (SuperSubject s : getSubjects()) {
@@ -11,6 +14,7 @@ public abstract class SuperController<T extends SuperSubject> extends
         }
     }
 
+    /** Shutdown the SuperController. */
     protected abstract void shutdownSuperController();
 
 }
