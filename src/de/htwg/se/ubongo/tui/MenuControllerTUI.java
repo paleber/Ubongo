@@ -6,14 +6,17 @@ import de.htwg.se.ubongo.util.Timer;
 /** TextBased Implementation of Menu. */
 public class MenuControllerTUI implements MenuSubject, Timer.Trigger {
 
-    private final MenuController observer = MenuController.getInstance();
-    private final MainController mainObserver = MainController.getInstance();
+    
+        
+    private final MenuController observer;
+
     private final MainControllerTUI main;
 
     private final Timer timer = new Timer(this, 10);
 
-    public MenuControllerTUI(MainControllerTUI main) {
+    public MenuControllerTUI(MainControllerTUI main, MenuController observer) {
         this.main = main;
+        this.observer = observer;
         observer.register(this);
     }
 
@@ -41,13 +44,13 @@ public class MenuControllerTUI implements MenuSubject, Timer.Trigger {
 
         switch (line) {
         case "game":
-            mainObserver.switchToGame();
+            observer.switchToGame();
             break;
         case "help":
-            mainObserver.switchToHelp();
+            observer.switchToHelp();
             break;
         case "exit":
-            mainObserver.shutdown();
+            observer.shutdown();
             break;
         default:
             main.writeLine("Unknown command");

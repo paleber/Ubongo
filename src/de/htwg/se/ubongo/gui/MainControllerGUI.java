@@ -7,20 +7,19 @@ import java.awt.event.ActionListener;
 import javax.swing.JButton;
 import javax.swing.JPanel;
 
-import de.htwg.se.ubongo.ctrl.MainController;
 import de.htwg.se.ubongo.ctrl.MainSubject;
 
 /** GUI Implementaion for MainController. */
 public class MainControllerGUI implements MainSubject {
 
-    private final MainController mc = MainController.getInstance();
+    //private final MainController mc = MainController.getInstance();
 
    // private final GUIFrame frame = new GUIFrame();
 
     private JPanel content = new JPanel();
 
     public MainControllerGUI() {
-        mc.register(this);
+        //mc.register(this);
 
         content.setLayout(new GridLayout(3, 1));
 

@@ -1,16 +1,12 @@
 package de.htwg.se.ubongo.ctrl;
 
-import de.htwg.se.ubongo.util.ctrl.SubController;
-
 /** Menu Controller. */
-public final class MenuController extends SubController<MenuSubject> {
+public final class MenuController extends UbongoSubController<MenuSubject> {
 
-    private static final MenuController INSTANCE = new MenuController();
-
-    private MenuController() {}
-
-    public static MenuController getInstance() {
-        return INSTANCE;
+    /** TODO
+     * @param main */
+    public MenuController(MainController main) {
+        super(main);
     }
 
 }

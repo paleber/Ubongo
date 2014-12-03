@@ -45,6 +45,7 @@ public final class Timer {
         if (period <= 0) {
             throw new IllegalArgumentException("period <= 0");
         }
+        assert(period > 0);
 
         this.trigger = trigger;
         this.period = period;

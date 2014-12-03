@@ -4,31 +4,36 @@ import de.htwg.se.ubongo.util.ctrl.SubController;
 import de.htwg.se.ubongo.util.ctrl.SuperController;
 
 /** Singleton: MainController manages SubController. */
-public final class MainController extends SuperController<MainSubject>  {
+public final class MainController extends SuperController<MainSubject> {
 
-    private static final MainController INSTANCE = new MainController();
+    private final MenuController menu = new MenuController(this);
+    private final GameController game = new GameController(this);
+    private final HelpController help = new HelpController(this);
 
     private SubController<?> active;
 
-    /* Hidden-Contructor. */
-    private MainController() {}
-
-    /** Get instance.
-     * @return instance */
-    public static MainController getInstance() {
-        return INSTANCE;
-    }
-
     public void switchToMenu() {
-        switchTo(MenuController.getInstance());
+        switchTo(menu);
     }
 
     public void switchToGame() {
-        switchTo(GameController.getInstance());
+        switchTo(game);
     }
 
     public void switchToHelp() {
-        switchTo(HelpController.getInstance());
+        switchTo(help);
+    }
+
+    public MenuController getMenuController() {
+        return menu;
+    }
+
+    public GameController getGameController() {
+        return game;
+    }
+
+    public HelpController getHelpController() {
+        return help;
     }
 
     private void switchTo(SubController<?> ctrl) {

@@ -6,7 +6,7 @@ import de.htwg.se.ubongo.util.Timer;
 /** TODO */
 public class GameControllerTUI implements GameSubject, Timer.Trigger {
 
-    private final MainController mainObserver = MainController.getInstance();
+    private final GameController observer;
     private final MainControllerTUI main;
 
     private final Timer timer = new Timer(this, 150);
@@ -16,10 +16,12 @@ public class GameControllerTUI implements GameSubject, Timer.Trigger {
     private static final int MAX_COUNTS = 15;
 
     /** TODO
+     * @param gameController 
      * @param mainControllerTUI */
-    public GameControllerTUI(MainControllerTUI main) {
+    public GameControllerTUI(MainControllerTUI main, GameController observer) {
         this.main = main;
-        GameController.getInstance().register(this);
+        this.observer = observer;
+        observer.register(this);
     }
 
     @Override
@@ -39,7 +41,7 @@ public class GameControllerTUI implements GameSubject, Timer.Trigger {
 
         if (testCounter > MAX_COUNTS) {
             main.writeLine("You won the game!");
-            mainObserver.switchToMenu();
+            observer.switchToMenu();
             return;
         }
 

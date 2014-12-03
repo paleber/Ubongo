@@ -12,10 +12,9 @@ public final class Ubongo {
     /** Main.
      * @param args unused */
     public static void main(final String[] args) {
-        new MainControllerTUI();
-        //new MainControllerGUI();
-        MainController.getInstance().switchToMenu();
-        
+        MainController main = new MainController();
+        new MainControllerTUI(main);
+        main.switchToMenu();
     }
 
 }

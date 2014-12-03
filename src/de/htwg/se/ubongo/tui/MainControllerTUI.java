@@ -12,11 +12,14 @@ public final class MainControllerTUI implements MainSubject {
     private final Scanner scanner = new Scanner(System.in);
     private final PrintStream printer = new PrintStream(System.out);
 
-    public MainControllerTUI() {
-        MainController.getInstance().register(this);
-        new MenuControllerTUI(this);
-        new GameControllerTUI(this);
-        new HelpControllerTUI(this);
+    private final MainController main;
+    
+    public MainControllerTUI(final MainController main) {
+        this.main = main;
+        new MenuControllerTUI(this, main.getMenuController());
+        new GameControllerTUI(this, main.getGameController());
+        new HelpControllerTUI(this, main.getHelpController());
+        main.register(this);
     }
 
     public void writeLine(final String line) {

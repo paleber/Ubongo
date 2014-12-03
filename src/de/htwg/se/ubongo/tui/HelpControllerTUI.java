@@ -7,7 +7,8 @@ import de.htwg.se.ubongo.util.Timer;
 public class HelpControllerTUI implements HelpSubject, Timer.Trigger {
 
     private final MainControllerTUI main;
-
+    private final HelpController observer;
+    
     private final Timer timer = new Timer(this, 200);
 
     private int testCounter;
@@ -18,10 +19,11 @@ public class HelpControllerTUI implements HelpSubject, Timer.Trigger {
     private boolean isFirst = false;
 
     /** TODO
+     * @param helpController 
      * @param mainControllerTUI */
-    public HelpControllerTUI(MainControllerTUI main) {
+    public HelpControllerTUI(MainControllerTUI main, HelpController observer) {
         this.main = main;
-        HelpController.getInstance().register(this);
+        this.observer = observer;
         if (first) {
             first = false;
             isFirst = true;
@@ -44,7 +46,7 @@ public class HelpControllerTUI implements HelpSubject, Timer.Trigger {
         testCounter++;
 
         if (isFirst && testCounter > MAX_COUNTS) {
-            MainController.getInstance().switchToMenu();
+            observer.switchToMenu();
             return;
         }
 
