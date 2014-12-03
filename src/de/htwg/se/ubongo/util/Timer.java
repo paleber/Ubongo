@@ -3,14 +3,6 @@ package de.htwg.se.ubongo.util;
 /** Timer repeatly calling Trigger Event from Inner-Interface. */
 public final class Timer {
 
-    /** Interface for TimerTrigger. */
-    public interface Trigger {
-
-        /** Event for TimerTrigger. */
-        void timerTrigger();
-
-    }
-
     private final Trigger trigger;
     private final int interval;
 
@@ -32,7 +24,7 @@ public final class Timer {
                 while (running) {
                     if (System.currentTimeMillis() > last + interval) {
                         last = System.currentTimeMillis();
-                        trigger.timerTrigger();
+                        trigger.onTrigger();
                     }
                     Thread.sleep(1);
                 }

@@ -2,9 +2,10 @@ package de.htwg.se.ubongo.tui;
 
 import de.htwg.se.ubongo.ctrl.*;
 import de.htwg.se.ubongo.util.Timer;
+import de.htwg.se.ubongo.util.Trigger;
 
 /** TODO */
-public class GameControllerTUI implements GameSubject, Timer.Trigger {
+public class GameControllerTUI implements GameSubject, Trigger {
 
     private final GameController observer;
     private final MainControllerTUI tui;
@@ -38,7 +39,7 @@ public class GameControllerTUI implements GameSubject, Timer.Trigger {
     }
 
     @Override
-    public void timerTrigger() {
+    public void onTrigger() {
         testCounter++;
 
         if (testCounter > MAX_COUNTS) {

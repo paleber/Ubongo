@@ -14,13 +14,13 @@ public class TestController {
         private boolean shutdowned = false;
 
         @Override
-        protected void shutdownSuperController() {
+        protected void onShutdown() {
             shutdowned = true;
         }
     }
 
     private class PseudoSuperSubject implements SuperSubject {
-        
+
         private boolean shutdowned = false;
 
         @Override
@@ -30,7 +30,14 @@ public class TestController {
 
     }
 
-    private class PseudoSubController extends SubController<SubSubject> {}
+    private class PseudoSubController extends SubController<SubSubject> {
+
+        @Override
+        protected void onStart() {}
+
+        @Override
+        protected void onStop() {}
+    }
 
     private class PseudoSubSubject implements SubSubject {
 

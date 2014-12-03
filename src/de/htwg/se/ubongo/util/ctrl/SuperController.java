@@ -8,13 +8,13 @@ public abstract class SuperController<S extends SuperSubject> extends
     /** Shutdown the Application by shutdown the SuperController and current
      * SubController. */
     public final void shutdown() {
-        shutdownSuperController();
+        onShutdown();
         for (SuperSubject s : getSubjects()) {
             s.shutdown();
         }
     }
 
     /** Shutdown the SuperController. */
-    protected abstract void shutdownSuperController();
+    protected abstract void onShutdown();
 
 }

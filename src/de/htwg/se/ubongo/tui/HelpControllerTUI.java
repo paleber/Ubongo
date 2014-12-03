@@ -1,10 +1,12 @@
 package de.htwg.se.ubongo.tui;
 
-import de.htwg.se.ubongo.ctrl.*;
+import de.htwg.se.ubongo.ctrl.HelpController;
+import de.htwg.se.ubongo.ctrl.HelpSubject;
 import de.htwg.se.ubongo.util.Timer;
+import de.htwg.se.ubongo.util.Trigger;
 
 /** TODO */
-public final class HelpControllerTUI implements HelpSubject, Timer.Trigger {
+public final class HelpControllerTUI implements HelpSubject, Trigger {
 
     private final MainControllerTUI tui;
     private final HelpController observer;
@@ -43,7 +45,7 @@ public final class HelpControllerTUI implements HelpSubject, Timer.Trigger {
     }
 
     @Override
-    public void timerTrigger() {
+    public void onTrigger() {
         testCounter++;
 
         if (isFirst && testCounter > MAX_COUNTS) {

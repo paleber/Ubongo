@@ -9,4 +9,10 @@ public final class MenuController extends UbongoSubController<MenuSubject> {
         super(main);
     }
 
+    @Override
+    protected void onStart() {}
+
+    @Override
+    protected void onStop() {}
+
 }

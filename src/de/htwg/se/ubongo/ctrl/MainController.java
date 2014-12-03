@@ -49,7 +49,7 @@ public final class MainController extends SuperController<MainSubject> {
     }
 
     @Override
-    protected void shutdownSuperController() {
+    protected void onShutdown() {
         stopActiveController();
     }
 
