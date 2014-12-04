@@ -65,19 +65,19 @@ public class GameControllerTUI implements GameSubject, Trigger {
             super(0);
         }
 
+        private final String[] text = { "help: print help",
+                "menu: back to menu", "exit: shutdown the application",
+                "select INDEX: select block at index",
+                "drop: drop the selected block",
+                "move X Y: move the selected block", "left: rotate left",
+                "right: rotate right", "horizontal: mirror horizontal",
+                "vertical: mirror vertical", "grid: print the grid" };
+
         @Override
         protected boolean onExecute(String[] args) {
-            tui.writeLine("help: print help");
-            tui.writeLine("menu: back to menu");
-            tui.writeLine("exit: shutdown the application");
-            tui.writeLine("select INDEX: select block at index");
-            tui.writeLine("drop: drop the selected block");
-            tui.writeLine("move X Y: move the selected block");
-            tui.writeLine("left: rotate left");
-            tui.writeLine("right: rotate right");
-            tui.writeLine("horizontal: mirror horizontal");
-            tui.writeLine("vertical: mirror vertical");
-            tui.writeLine("grid: print the grid");
+            for (String line : text) {
+                tui.writeLine(line);
+            }
             return true;
         }
 
