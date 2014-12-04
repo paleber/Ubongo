@@ -21,9 +21,7 @@ public class GameControllerTUI implements GameSubject, Trigger {
 
     private char[][] grid;
 
-    /** TODO
-     * @param gameController
-     * @param mainControllerTUI */
+
     public GameControllerTUI(MainControllerTUI tui, GameController observer) {
         this.tui = tui;
         this.observer = observer;

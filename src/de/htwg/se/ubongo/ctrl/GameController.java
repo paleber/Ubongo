@@ -5,6 +5,7 @@ import java.util.List;
 
 import de.htwg.se.ubongo.model.gameobject.Block;
 import de.htwg.se.ubongo.model.gameobject.Board;
+import de.htwg.se.ubongo.model.geo.Point2D;
 import de.htwg.se.ubongo.model.geo.Vector2D;
 
 /** Game Controller. */
@@ -62,10 +63,6 @@ public final class GameController extends UbongoSubController<GameSubject> {
         block[1].move(new Vector2D(12, 0));
         block[2].move(new Vector2D(16, 0));
         
-        for (Block b : block) {
-            System.out.println(b);
-        }
-        
         width = 20;
         height = 3;
         for(GameSubject s: getSubjects()) {
@@ -77,6 +74,8 @@ public final class GameController extends UbongoSubController<GameSubject> {
     }
     
     private Block selectedBlock;
+    private Point2D lastMid = new Point2D();
+    private double lastRotation;
     
     
     public void selectBlock(int index) {
@@ -85,23 +84,42 @@ public final class GameController extends UbongoSubController<GameSubject> {
         }
         
         try {
-            selectedBlock = block[index];   
+            selectedBlock = block[index];  
         } catch(ArrayIndexOutOfBoundsException e) {
             return;
         }
         
+        lastMid.set(selectedBlock.getMid());
+        lastRotation = selectedBlock.getRotation();
         for(GameSubject s: getSubjects()) {
             s.onSelectBlock(index);
         }
     }
     
-    public void moveSelectedBlock(double d, double e) {
+    public void moveSelectedBlock(double x, double y) {
+        if(selectedBlock == null) {
+            return;
+        }
+        Vector2D dir = new Vector2D(x, y);
+        
+        selectedBlock.move(dir);
+        
+        double xPos = selectedBlock.getMid().getX();
+        double yPos = selectedBlock.getMid().getY();
+        
+        if(xPos < 0 || xPos > width || yPos < 0 || yPos > height) {
+            dir.swap();
+            selectedBlock.move(dir);
+            return;
+        }
+        
         for(GameSubject s: getSubjects()) {
             s.onUpdate();
         }
     }
     
     public void dropBlock() {
+        
         selectedBlock = null;
         for(GameSubject s: getSubjects()) {
             s.onDropBlock();

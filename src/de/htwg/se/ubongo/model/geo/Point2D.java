@@ -37,6 +37,14 @@ public final class Point2D {
         this.x = x;
         this.y = y;
     }
+    
+    /** Copy x- and y-value from other Point.
+     * @param x x-Value
+     * @param y y-Value */
+    public void set(Point2D other) {
+        this.x = other.x;
+        this.y = other.y;
+    }
 
     /** Get the x-value.
      * @return x-value */
@@ -106,5 +114,7 @@ public final class Point2D {
     public String toString() {
         return String.format(Locale.ENGLISH, "(%.3f|%.3f)", x, y);
     }
+
+  
 
 }

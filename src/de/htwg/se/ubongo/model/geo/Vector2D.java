@@ -62,4 +62,11 @@ public final class Vector2D {
         return String.format(Locale.ENGLISH, "<%.3f|%.3f>", x, y);
     }
 
+    /** Swap the direction of the Vector. */
+    public void swap() {
+        x = -x;
+        y = -y;
+
+    }
+
 }

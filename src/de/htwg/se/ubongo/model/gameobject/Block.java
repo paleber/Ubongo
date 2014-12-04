@@ -17,6 +17,8 @@ public final class Block extends AbstractBlock {
 
 	private static final double ROTATE_STEP = 90;
 	private static final double FACTOR_HALF = 0.5d;
+	
+	private double rotation = 0; // TODO
 
 	public Block(List<Integer> coords) {
 		super(coords);
@@ -66,4 +68,8 @@ public final class Block extends AbstractBlock {
 		}
 		return list;
 	}
+
+    public double getRotation() {
+        return rotation;
+    }
 }
