@@ -7,12 +7,16 @@ import de.htwg.se.ubongo.util.ctrl.SubSubject;
 /** TODO */
 public interface GameSubject extends SubSubject {
 
-    void setGridSize(int width, int height);
+    void onSetGridSize(int width, int height);
 
-    void setBoard(Board board);
+    void onSetGameObjects(Board board, Block[] block);
 
-    void setBlocks(Block[] block);
+    void onStartGame();
 
-    void startGame();
+    void onSelectBlock(int index);
+
+    void onDropBlock();
+
+    void onUpdate();
 
 }

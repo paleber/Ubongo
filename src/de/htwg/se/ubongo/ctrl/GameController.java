@@ -50,8 +50,6 @@ public final class GameController extends UbongoSubController<GameSubject> {
     
     @Override
     protected void onStart() {
-        System.out.println("Aufruf");
-
         board = new Board(BOARD_LIST);
         System.out.println(board);
 
@@ -69,14 +67,46 @@ public final class GameController extends UbongoSubController<GameSubject> {
         }
         
         width = 20;
-        height = 7;
+        height = 3;
         for(GameSubject s: getSubjects()) {
-            s.setGridSize(width, height);
-            s.setBoard(board);
-            s.setBlocks(block);
-            s.startGame();
+            s.onSetGridSize(width, height);
+            s.onSetGameObjects(board, block);
+            s.onStartGame();
         }
 
+    }
+    
+    private Block selectedBlock;
+    
+    
+    public void selectBlock(int index) {
+        if(selectedBlock != null) {
+            return;
+        }
+        
+        try {
+            selectedBlock = block[index];   
+        } catch(ArrayIndexOutOfBoundsException e) {
+            return;
+        }
+        
+        for(GameSubject s: getSubjects()) {
+            s.onSelectBlock(index);
+        }
+    }
+    
+    public void moveSelectedBlock(double d, double e) {
+        for(GameSubject s: getSubjects()) {
+            s.onUpdate();
+        }
+    }
+    
+    public void dropBlock() {
+        selectedBlock = null;
+        for(GameSubject s: getSubjects()) {
+            s.onDropBlock();
+        }
+        
     }
 
     @Override

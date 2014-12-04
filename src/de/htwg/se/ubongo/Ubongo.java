@@ -15,7 +15,7 @@ public final class Ubongo {
     private Ubongo() {
         MainController main = new MainController();
         new MainControllerTUI(main);
-        main.switchToMenu();
+        main.switchToGame();
     }
 
 }

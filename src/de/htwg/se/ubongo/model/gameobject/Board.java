@@ -83,4 +83,8 @@ public final class Board extends AbstractBlock {
         return true;
     }
 
+    
+    public int numBlocks() {
+        return blocks.size();
+    }
 }
