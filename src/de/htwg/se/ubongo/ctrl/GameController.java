@@ -1,15 +1,42 @@
 package de.htwg.se.ubongo.ctrl;
 
+import java.util.ArrayList;
+import java.util.List;
+
 import de.htwg.se.ubongo.model.gameobject.Block;
 import de.htwg.se.ubongo.model.gameobject.Board;
-import de.htwg.se.ubongo.model.loader.BlockLoader;
-import de.htwg.se.ubongo.model.loader.BoardLoader;
+import de.htwg.se.ubongo.model.geo.Vector2D;
 
 /** Game Controller. */
 public final class GameController extends UbongoSubController<GameSubject> {
 
-    private static final int BOARD_INDEX = 1;
-    private static final int[] BLOCK_INDEX = { 9, 5, 3 };
+    private static final List<Integer> BOARD_LIST = new ArrayList<>();
+    private static final List<Integer> BLOCK_LIST1 = new ArrayList<>();
+    private static final List<Integer> BLOCK_LIST2 = new ArrayList<>();
+    private static final List<Integer> BLOCK_LIST3 = new ArrayList<>();
+
+    static {
+        int[] list = { 2, 0, 3, 0, 4, 0, 5, 0, 2, 1, 3, 1, 4, 1, 5, 1, 0, 2, 1,
+                2, 2, 2, 3, 2, 4, 2 };
+        for (int i = 0; i < list.length; i++) {
+            BOARD_LIST.add(list[i]);
+        }
+
+        int[] list1 = { 0, 0, 0, 1, 1, 1, 2, 1, 3, 1};
+        for (int i = 0; i < list1.length; i++) {
+            BLOCK_LIST1.add(list1[i]);
+        }
+
+        int[] list2 = { 2, 0, 0, 1, 1, 1, 2, 1 };
+        for (int i = 0; i < list2.length; i++) {
+            BLOCK_LIST2.add(list2[i]);
+        }
+
+        int[] list3 = { 0, 0, 1, 0, 2, 0, 3, 0 };
+        for (int i = 0; i < list3.length; i++) {
+            BLOCK_LIST3.add(list3[i]);
+        }
+    }
 
     private Board board;
     private Block[] block;
@@ -18,23 +45,37 @@ public final class GameController extends UbongoSubController<GameSubject> {
         super(main);
     }
 
+    int width;
+    int height;
+    
     @Override
     protected void onStart() {
         System.out.println("Aufruf");
 
-        
-        board = BoardLoader.getBoard(BOARD_INDEX);
+        board = new Board(BOARD_LIST);
         System.out.println(board);
-            
-      
-        block = new Block[BLOCK_INDEX.length];
-        for(int i = 0; i < block.length; i++) {
-            block[i] = BlockLoader.getBlock(BLOCK_INDEX[i]);
-            System.out.println(block[i]);
-        }
 
-
+        block = new Block[3];
+        block[0] = new Block(BLOCK_LIST1);
+        block[1] = new Block(BLOCK_LIST2);
+        block[2] = new Block(BLOCK_LIST3);
         
+        block[0].move(new Vector2D(7, 0));
+        block[1].move(new Vector2D(12, 0));
+        block[2].move(new Vector2D(16, 0));
+        
+        for (Block b : block) {
+            System.out.println(b);
+        }
+        
+        width = 20;
+        height = 7;
+        for(GameSubject s: getSubjects()) {
+            s.setGridSize(width, height);
+            s.setBoard(board);
+            s.setBlocks(block);
+            s.startGame();
+        }
 
     }
 
