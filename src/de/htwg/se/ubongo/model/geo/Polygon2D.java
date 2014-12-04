@@ -10,6 +10,17 @@ public final class Polygon2D {
 
     private final List<Point2D> list = new ArrayList<>();
 
+    /** Default-Constructor. */
+    public Polygon2D() {}
+
+    /** Copy-Construtor.
+     * @param poly other Polygon */
+    public Polygon2D(Polygon2D poly) {
+        for (Point2D p : poly.list) {
+            list.add(new Point2D(p));
+        }
+    }
+
     /** Add a Point.
      * @param x x-value of the point
      * @param y y-value of the point */
@@ -60,18 +71,18 @@ public final class Polygon2D {
     }
 
     /** Mirror x-values at y-Axis.
-     * @param yAxis y-Axis */
-    public void mirrorX(final int yAxis) {
+     * @param d y-Axis */
+    public void mirrorX(final double d) {
         for (Point2D p : list) {
-            p.mirrorX(yAxis);
+            p.mirrorX(d);
         }
     }
 
     /** Mirror y-values at x-Axis.
-     * @param xAxis x-Axis */
-    public void mirrorY(final int xAxis) {
+     * @param d x-Axis */
+    public void mirrorY(final double d) {
         for (Point2D p : list) {
-            p.mirrorY(xAxis);
+            p.mirrorY(d);
         }
     }
 
@@ -86,5 +97,14 @@ public final class Polygon2D {
         builder.append(']');
         builder.append(getMid());
         return builder.toString();
+    }
+
+    public void set(Polygon2D other) {
+        if(list.size() != other.list.size()) {
+            throw new IllegalArgumentException();
+        }
+        for(int i = 0; i < list.size(); i++) {
+            list.get(i).set(other.getPoint(i));
+        }
     }
 }

@@ -5,7 +5,6 @@ import java.util.List;
 
 import de.htwg.se.ubongo.model.gameobject.Block;
 import de.htwg.se.ubongo.model.gameobject.Board;
-import de.htwg.se.ubongo.model.geo.Point2D;
 import de.htwg.se.ubongo.model.geo.Vector2D;
 
 /** Game Controller. */
@@ -46,13 +45,14 @@ public final class GameController extends UbongoSubController<GameSubject> {
         super(main);
     }
 
-    int width;
-    int height;
+    private int width;
+    private int height;
     
+    private Block selected;
+
     @Override
     protected void onStart() {
         board = new Board(BOARD_LIST);
-        System.out.println(board);
 
         block = new Block[3];
         block[0] = new Block(BLOCK_LIST1);
@@ -73,43 +73,40 @@ public final class GameController extends UbongoSubController<GameSubject> {
 
     }
     
-    private Block selectedBlock;
-    private Point2D lastMid = new Point2D();
-    private double lastRotation;
-    
-    
-    public void selectBlock(int index) {
-        if(selectedBlock != null) {
+    @Override
+    protected void onStop() {}
+
+    public void select(int index) {
+        if(selected != null) {
             return;
         }
         
         try {
-            selectedBlock = block[index];  
+            selected = block[index];  
         } catch(ArrayIndexOutOfBoundsException e) {
             return;
         }
         
-        lastMid.set(selectedBlock.getMid());
-        lastRotation = selectedBlock.getRotation();
+        selected.save();
         for(GameSubject s: getSubjects()) {
             s.onSelectBlock(index);
         }
     }
     
-    public void moveSelectedBlock(double x, double y) {
-        if(selectedBlock == null) {
+    public void move(double x, double y) {
+        if(selected == null) {
             return;
         }
         Vector2D dir = new Vector2D(x, y);
         
-        selectedBlock.move(dir);
+        selected.move(dir);
         
-        double xPos = selectedBlock.getMid().getX();
-        double yPos = selectedBlock.getMid().getY();
+        double xPos = selected.getMid().getX();
+        double yPos = selected.getMid().getY();
         
         if(xPos < 0 || xPos > width || yPos < 0 || yPos > height) {
             dir.swap();
-            selectedBlock.move(dir);
+            selected.move(dir);
             return;
         }
         
@@ -118,16 +115,41 @@ public final class GameController extends UbongoSubController<GameSubject> {
         }
     }
     
-    public void dropBlock() {
+    public void drop() {
+        if(!board.addBlock(selected)) {
+            selected.load();
+        }
         
-        selectedBlock = null;
+        selected = null;
         for(GameSubject s: getSubjects()) {
             s.onDropBlock();
         }
-        
     }
 
-    @Override
-    protected void onStop() {}
+    public void rotateRight() {
+        selected.rotateRight();
+        updateSubjects();
+    }
+    
+    public void rotateLeft() {
+        selected.rotateLeft();
+        updateSubjects();
+    }
+    
+    public void mirrorHorizontal() {
+        selected.mirrorX();
+        updateSubjects();       
+    }
+    
+    public void mirrorVertical() {
+        selected.mirrorY();
+        updateSubjects();
+    }
+    
+    private void updateSubjects() {
+        for(GameSubject s: getSubjects()) {
+            s.onUpdate();
+        }
+    }
 
 }

@@ -24,16 +24,31 @@ public final class Block extends AbstractBlock {
 		super(coords);
 	}
 
-	public void mirrorX(final int y) {
+	public void mirrorX() {
 		for (Polygon2D poly : getPolys()) {
-			poly.mirrorX(y);
+			poly.mirrorX(getMid().getY());
 		}
 	}
 
-	public void mirrorY(final int x) {
+	public void mirrorY() {
 		for (Polygon2D poly : getPolys()) {
-			poly.mirrorY(x);
+			poly.mirrorY(getMid().getX());
 		}
+	}
+	
+	private final List<Polygon2D> savedPolys = new LinkedList<>();
+	
+	public void save() {
+	    savedPolys.clear();
+	    for(Polygon2D poly: getPolys()) {
+	        savedPolys.add(new Polygon2D(poly));
+	    }
+	}
+	
+	public void load() {
+	    for(int i = 0; i < savedPolys.size(); i++) {
+	        getPoly(i).set(savedPolys.get(i));
+	    }
 	}
 
 	public void rotateLeft() {
