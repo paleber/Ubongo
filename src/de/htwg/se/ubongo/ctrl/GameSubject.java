@@ -19,4 +19,6 @@ public interface GameSubject extends SubSubject {
 
     void onUpdate();
 
+    void onWin();
+
 }

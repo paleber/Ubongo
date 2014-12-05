@@ -22,7 +22,7 @@ public final class GameController extends UbongoSubController<GameSubject> {
             BOARD_LIST.add(list[i]);
         }
 
-        int[] list1 = { 0, 0, 0, 1, 1, 1, 2, 1, 3, 1};
+        int[] list1 = { 0, 0, 0, 1, 1, 1, 2, 1, 3, 1 };
         for (int i = 0; i < list1.length; i++) {
             BLOCK_LIST1.add(list1[i]);
         }
@@ -47,7 +47,7 @@ public final class GameController extends UbongoSubController<GameSubject> {
 
     private int width;
     private int height;
-    
+
     private Block selected;
 
     @Override
@@ -58,71 +58,84 @@ public final class GameController extends UbongoSubController<GameSubject> {
         block[0] = new Block(BLOCK_LIST1);
         block[1] = new Block(BLOCK_LIST2);
         block[2] = new Block(BLOCK_LIST3);
-        
+
         block[0].move(new Vector2D(7, 0));
         block[1].move(new Vector2D(12, 0));
         block[2].move(new Vector2D(16, 0));
-        
+
+        for (Block b : block) {
+            b.save();
+        }
+
         width = 20;
         height = 3;
-        for(GameSubject s: getSubjects()) {
+        for (GameSubject s : getSubjects()) {
             s.onSetGridSize(width, height);
             s.onSetGameObjects(board, block);
             s.onStartGame();
         }
 
     }
-    
+
     @Override
     protected void onStop() {}
 
     public void select(int index) {
-        if(selected != null) {
+        if (selected != null) {
             return;
         }
-        
+
         try {
-            selected = block[index];  
-        } catch(ArrayIndexOutOfBoundsException e) {
+            selected = block[index];
+        } catch (ArrayIndexOutOfBoundsException e) {
             return;
         }
-        
-        selected.save();
-        for(GameSubject s: getSubjects()) {
+
+        board.removeBlock(selected);
+
+        for (GameSubject s : getSubjects()) {
             s.onSelectBlock(index);
         }
     }
-    
+
     public void move(double x, double y) {
-        if(selected == null) {
+        if (selected == null) {
             return;
         }
         Vector2D dir = new Vector2D(x, y);
-        
+
         selected.move(dir);
-        
+
         double xPos = selected.getMid().getX();
         double yPos = selected.getMid().getY();
-        
-        if(xPos < 0 || xPos > width || yPos < 0 || yPos > height) {
+
+        if (xPos < 0 || xPos > width || yPos < 0 || yPos > height) {
             dir.swap();
             selected.move(dir);
             return;
         }
-        
-        for(GameSubject s: getSubjects()) {
+
+        for (GameSubject s : getSubjects()) {
             s.onUpdate();
         }
     }
-    
+
     public void drop() {
-        if(!board.addBlock(selected)) {
+        if (!board.addBlock(selected)) {
+            System.out.println("sdfdfsfdsff");
             selected.load();
         }
-        
+
         selected = null;
-        for(GameSubject s: getSubjects()) {
+        for (GameSubject s : getSubjects()) {
             s.onDropBlock();
+        }
+
+        if (board.numBlocks() == block.length) {
+            for (GameSubject s : getSubjects()) {
+                s.onWin();
+            }
+            this.switchToMenu();
         }
     }
 
@@ -130,24 +143,24 @@ public final class GameController extends UbongoSubController<GameSubject> {
         selected.rotateRight();
         updateSubjects();
     }
-    
+
     public void rotateLeft() {
         selected.rotateLeft();
         updateSubjects();
     }
-    
+
     public void mirrorHorizontal() {
         selected.mirrorX();
-        updateSubjects();       
+        updateSubjects();
     }
-    
+
     public void mirrorVertical() {
         selected.mirrorY();
         updateSubjects();
     }
-    
+
     private void updateSubjects() {
-        for(GameSubject s: getSubjects()) {
+        for (GameSubject s : getSubjects()) {
             s.onUpdate();
         }
     }

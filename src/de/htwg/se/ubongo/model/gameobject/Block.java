@@ -17,22 +17,22 @@ public final class Block extends AbstractBlock {
 
 	private static final double ROTATE_STEP = 90;
 	private static final double FACTOR_HALF = 0.5d;
-	
-	private double rotation = 0; // TODO
 
 	public Block(List<Integer> coords) {
 		super(coords);
 	}
 
 	public void mirrorX() {
+	    double xAxis = getMid().getX();
 		for (Polygon2D poly : getPolys()) {
-			poly.mirrorX(getMid().getY());
+			poly.mirrorX(xAxis);
 		}
 	}
 
 	public void mirrorY() {
+	    double yAxis = getMid().getY();
 		for (Polygon2D poly : getPolys()) {
-			poly.mirrorY(getMid().getX());
+			poly.mirrorY(yAxis);
 		}
 	}
 	
@@ -84,7 +84,5 @@ public final class Block extends AbstractBlock {
 		return list;
 	}
 
-    public double getRotation() {
-        return rotation;
-    }
+   
 }

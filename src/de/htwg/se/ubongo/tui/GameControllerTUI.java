@@ -347,4 +347,9 @@ public class GameControllerTUI implements GameSubject, Trigger {
         }
     }
 
+    @Override
+    public void onWin() {
+        tui.writeLine("you win!");
+    }
+
 }
