@@ -85,14 +85,14 @@ public final class Point2D {
 
     /** Mirror x-Value at y-Axis.
      * @param d y-Axis */
-    public void mirrorX(final double d) {
-        x += (d - x) * FACTOR_DOUBLE;
+    public void mirrorVertical(final double yAxis) {
+        x += (yAxis - x) * FACTOR_DOUBLE;
     }
 
     /** Mirror y-Value at x-Axis.
      * @param d x-Axis */
-    public void mirrorY(final double d) {
-        y += (d - y) * FACTOR_DOUBLE;
+    public void mirrorHorizontal(final double xAxis) {
+        y += (xAxis - y) * FACTOR_DOUBLE;
     }
 
     /** Distance to other point.

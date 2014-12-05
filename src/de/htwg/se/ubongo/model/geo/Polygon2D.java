@@ -72,17 +72,17 @@ public final class Polygon2D {
 
     /** Mirror x-values at y-Axis.
      * @param d y-Axis */
-    public void mirrorX(final double d) {
+    public void mirrorVertical(final double yAxis) {
         for (Point2D p : list) {
-            p.mirrorX(d);
+            p.mirrorVertical(yAxis);
         }
     }
 
     /** Mirror y-values at x-Axis.
      * @param d x-Axis */
-    public void mirrorY(final double d) {
+    public void mirrorHorizontal(final double xAxis) {
         for (Point2D p : list) {
-            p.mirrorY(d);
+            p.mirrorHorizontal(xAxis);
         }
     }
 

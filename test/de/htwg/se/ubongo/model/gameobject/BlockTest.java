@@ -36,16 +36,15 @@ public final class BlockTest {
     }
 
     @Test
-    public void testMirrorX() {
-        tBlock.mirrorX();
-        System.out.println(tBlock);
+    public void testMirrorVertical() {
+        tBlock.mirrorVertical();
         assertTrue(tBlock.getPoly(0).getMid()
                 .distanceSquareTo(new Point2D(2.5, 0.5)) < delta); 
     }
 
     @Test
-    public void testMirrorY() {
-        tBlock.mirrorY();
+    public void testMirrorHorizontal() {
+        tBlock.mirrorHorizontal();
         assertTrue(tBlock.getPoly(0).getMid()
                 .distanceSquareTo(new Point2D(0.5, 1.5)) < delta);
     }

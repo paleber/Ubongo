@@ -122,7 +122,6 @@ public final class GameController extends UbongoSubController<GameSubject> {
 
     public void drop() {
         if (!board.addBlock(selected)) {
-            System.out.println("sdfdfsfdsff");
             selected.load();
         }
 
@@ -150,12 +149,12 @@ public final class GameController extends UbongoSubController<GameSubject> {
     }
 
     public void mirrorHorizontal() {
-        selected.mirrorX();
+        selected.mirrorHorizontal();
         updateSubjects();
     }
 
     public void mirrorVertical() {
-        selected.mirrorY();
+        selected.mirrorVertical();
         updateSubjects();
     }
 

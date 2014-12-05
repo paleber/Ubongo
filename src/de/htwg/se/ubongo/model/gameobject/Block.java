@@ -22,17 +22,17 @@ public final class Block extends AbstractBlock {
 		super(coords);
 	}
 
-	public void mirrorX() {
+	public void mirrorVertical() {
 	    double xAxis = getMid().getX();
 		for (Polygon2D poly : getPolys()) {
-			poly.mirrorX(xAxis);
+			poly.mirrorVertical(xAxis);
 		}
 	}
 
-	public void mirrorY() {
+	public void mirrorHorizontal() {
 	    double yAxis = getMid().getY();
 		for (Polygon2D poly : getPolys()) {
-			poly.mirrorY(yAxis);
+			poly.mirrorHorizontal(yAxis);
 		}
 	}
 	

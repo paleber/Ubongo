@@ -67,18 +67,18 @@ public class Polygon2DTest {
     }
 
     @Test
-    public void testMirrorX() {
+    public void testMirrorVertical() {
         Polygon2D poly = new Polygon2D();
         poly.addPoint(4, 5);
-        poly.mirrorX(1);
+        poly.mirrorVertical(1);
         assertEquals(-2, poly.getPoint(0).getX(), delta);
     }
 
     @Test
-    public void testMirrorY() {
+    public void testMirrorHorizontal() {
         Polygon2D poly = new Polygon2D();
         poly.addPoint(4, 5);
-        poly.mirrorY(1);
+        poly.mirrorHorizontal(1);
         assertEquals(-3, poly.getPoint(0).getY(), delta);
     }
 }

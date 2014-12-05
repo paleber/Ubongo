@@ -100,16 +100,16 @@ public class Point2DTest {
 
 	
 	@Test
-	public void testMirrorX() {
+	public void testMirrorVertical() {
 	    Point2D p = new Point2D(1, 0);
-	    p.mirrorX(-1);
+	    p.mirrorVertical(-1);
 	    assertEquals(-3, p.getX(), delta);
 	}
 	
 	@Test
-    public void testMirrorY() {
+    public void testMirrorHorizontal() {
         Point2D p = new Point2D(0, 1);
-        p.mirrorY(3);
+        p.mirrorHorizontal(3);
         assertEquals(5, p.getY(), delta);
     } 
 	
