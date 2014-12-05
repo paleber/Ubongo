@@ -8,7 +8,7 @@ public abstract class SubController<S extends SubSubject> extends
     /** Start the SubController. Called from SuperController. */
     public final void startController() {
         for (S s : getSubjects()) {
-            s.startSubController();
+            s.onStartSubController();
         }
         onStart();
     }
@@ -18,7 +18,7 @@ public abstract class SubController<S extends SubSubject> extends
     /** Stop the SubController. Called from SuperController. */
     public final void stopController() {
         for (S s : getSubjects()) {
-            s.stopSubController();
+            s.onStopSubController();
         }
         onStop();
     }

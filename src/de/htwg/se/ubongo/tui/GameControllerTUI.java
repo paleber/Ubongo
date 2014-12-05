@@ -47,14 +47,14 @@ public class GameControllerTUI implements GameSubject, Trigger {
     }
 
     @Override
-    public void startSubController() {
+    public void onStartSubController() {
         tui.writeLine("--- game started ---");
         tui.writeLine("\"help\" for list of command");
         timer.start();
     }
 
     @Override
-    public void stopSubController() {
+    public void onStopSubController() {
         timer.stop();
         tui.writeLine("--- game stopped ---");
     }

@@ -23,14 +23,14 @@ public class MenuControllerTUI implements MenuSubject, Trigger {
     }
 
     @Override
-    public void startSubController() {
+    public void onStartSubController() {
         timer.start();
         main.writeLine("--- Menu opened ---");
         main.writeLine("cmd: game, help, exit");
     }
 
     @Override
-    public void stopSubController() {
+    public void onStopSubController() {
         timer.stop();
         main.writeLine("--- Menu closed ---");
     }

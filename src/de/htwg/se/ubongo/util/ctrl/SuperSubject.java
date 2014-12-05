@@ -4,6 +4,6 @@ package de.htwg.se.ubongo.util.ctrl;
 public interface SuperSubject extends AbstractSubject {
 
     /** Shutdown the SuperController. */
-    void shutdown();
+    void onShutdown();
 
 }

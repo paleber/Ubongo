@@ -10,7 +10,7 @@ public abstract class SuperController<S extends SuperSubject> extends
     public final void shutdown() {
         onShutdown();
         for (SuperSubject s : getSubjects()) {
-            s.shutdown();
+            s.onShutdown();
         }
     }
 

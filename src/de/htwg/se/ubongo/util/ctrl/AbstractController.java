@@ -10,13 +10,13 @@ abstract class AbstractController<S extends AbstractSubject> {
     private final List<S> subjects = new ArrayList<>();
 
     /** Get a list of all registered subjects.
-     * @return list of Subjects*/
+     * @return list of Subjects */
     public final List<S> getSubjects() {
         return subjects;
     }
 
-    /** Register a Subjuct.
-     * @param s Subject to register*/
+    /** Register a Subject.
+     * @param s Subject to register */
     public final void register(final S s) {
         subjects.add(s);
     }

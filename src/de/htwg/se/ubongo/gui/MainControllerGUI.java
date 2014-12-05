@@ -12,14 +12,10 @@ import de.htwg.se.ubongo.ctrl.MainSubject;
 /** GUI Implementaion for MainController. */
 public class MainControllerGUI implements MainSubject {
 
-    //private final MainController mc = MainController.getInstance();
-
-   // private final GUIFrame frame = new GUIFrame();
-
     private JPanel content = new JPanel();
 
     public MainControllerGUI() {
-        //mc.register(this);
+        // mc.register(this);
 
         content.setLayout(new GridLayout(3, 1));
 
@@ -27,7 +23,7 @@ public class MainControllerGUI implements MainSubject {
         bnGame.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent ae) {
-               // mc.showGame();
+                // mc.showGame();
             }
         });
         content.add(bnGame);
@@ -36,7 +32,7 @@ public class MainControllerGUI implements MainSubject {
         bnHelp.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent arg0) {
-               // mc.showHelp();
+                // mc.showHelp();
             }
         });
         content.add(bnHelp);
@@ -45,42 +41,16 @@ public class MainControllerGUI implements MainSubject {
         bnExit.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent arg0) {
-                //mc.stop();
+                // mc.stop();
             }
         });
         content.add(bnExit);
 
-        //frame.setContent(content);
+        // frame.setContent(content);
 
     }
-
-   /* @Override
-    public void showGame() {
-        System.out.println("GUI: Not implemented: Show Game");
-    } */
-
-    /* @Override
-    public void showHelp() {
-        System.out.println("GUI: Not implemented: Show Help");
-    }
-
-   /* @Override
-    public void stop() {
-        frame.exit();
-    } */
-
-   /* @Override
-    public void start() {
-
-    } */
-
-   
-
 
     @Override
-    public void shutdown() {
-        // TODO Auto-generated method stub
-        
-    }
+    public void onShutdown() {}
 
 }

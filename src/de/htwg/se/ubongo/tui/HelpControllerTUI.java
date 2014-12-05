@@ -32,14 +32,14 @@ public final class HelpControllerTUI implements HelpSubject, Trigger {
     }
 
     @Override
-    public void startSubController() {
+    public void onStartSubController() {
         tui.writeLine("--- Help opened ---");
         testCounter = 0;
         timer.start();
     }
 
     @Override
-    public void stopSubController() {
+    public void onStopSubController() {
         timer.stop();
         tui.writeLine("--- Help closed ---");
     }

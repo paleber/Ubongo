@@ -24,7 +24,7 @@ public class TestController {
         private boolean shutdowned = false;
 
         @Override
-        public void shutdown() {
+        public void onShutdown() {
             shutdowned = true;
         }
 
@@ -45,12 +45,12 @@ public class TestController {
         private boolean stopped = false;
 
         @Override
-        public void startSubController() {
+        public void onStartSubController() {
             started = true;
         }
 
         @Override
-        public void stopSubController() {
+        public void onStopSubController() {
             stopped = true;
         }
 

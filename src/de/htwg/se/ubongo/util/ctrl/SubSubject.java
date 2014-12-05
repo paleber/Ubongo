@@ -4,9 +4,9 @@ package de.htwg.se.ubongo.util.ctrl;
 public interface SubSubject extends AbstractSubject {
 
     /** Start the SubController. */
-    void startSubController();
+    void onStartSubController();
 
     /** Stop the SubController. */
-    void stopSubController();
+    void onStopSubController();
 
 }

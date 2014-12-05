@@ -35,8 +35,8 @@ public final class MainControllerTUI implements MainSubject {
     }
 
     @Override
-    public void shutdown() {
-        writeLine("--- Shutdown application ---");
+    public void onShutdown() {
+        writeLine("--- shutdown application ---");
         printer.close();
         scanner.close();
     }
