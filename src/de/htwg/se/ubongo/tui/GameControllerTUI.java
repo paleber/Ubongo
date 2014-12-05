@@ -55,6 +55,8 @@ public class GameControllerTUI implements GameSubject, Trigger {
 
     @Override
     public void onStopSubController() {
+        board = null;
+        block = null;
         timer.stop();
         tui.writeLine("--- game stopped ---");
     }

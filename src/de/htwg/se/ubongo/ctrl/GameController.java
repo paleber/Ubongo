@@ -78,7 +78,10 @@ public final class GameController extends UbongoSubController<GameSubject> {
     }
 
     @Override
-    protected void onStop() {}
+    protected void onStop() {
+        board = null;
+        block = null;
+    }
 
     public void select(int index) {
         if (selected != null) {
