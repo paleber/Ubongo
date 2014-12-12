@@ -1,20 +1,18 @@
-package de.htwg.se.ubongo.model.gameobject;
+package de.htwg.se.ubongo.model.gameobject.imp;
 
 import java.util.List;
 
-import de.htwg.se.ubongo.model.geo.Point2D;
-import de.htwg.se.ubongo.model.geo.Polygon2D;
-import de.htwg.se.ubongo.model.geo.Vector2D;
+import de.htwg.se.ubongo.model.geo.imp.*;
 
 /** Superclass for Block and Board.
  * @author Patrick Leber
  * @version 07.11.2014 */
-abstract class AbstractBlock {
+abstract class AbstractGameObject {
 
     private static final double FACTOR_HALF = 0.5d;
     private final Polygon2D[] poly;
 
-    protected AbstractBlock(List<Integer> coords) {
+    protected AbstractGameObject(List<Integer> coords) {
         if (coords.size() % 2 == 1) {
             throw new IllegalArgumentException();
         }

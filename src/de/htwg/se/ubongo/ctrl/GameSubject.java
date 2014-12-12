@@ -1,7 +1,7 @@
 package de.htwg.se.ubongo.ctrl;
 
-import de.htwg.se.ubongo.model.gameobject.Block;
-import de.htwg.se.ubongo.model.gameobject.Board;
+import de.htwg.se.ubongo.model.gameobject.imp.Block;
+import de.htwg.se.ubongo.model.gameobject.imp.Board;
 import de.htwg.se.ubongo.util.ctrl.SubSubject;
 
 /** TODO */

@@ -5,10 +5,10 @@ import java.util.Map;
 
 import de.htwg.se.ubongo.ctrl.GameController;
 import de.htwg.se.ubongo.ctrl.GameSubject;
-import de.htwg.se.ubongo.model.gameobject.Block;
-import de.htwg.se.ubongo.model.gameobject.Board;
-import de.htwg.se.ubongo.model.geo.Point2D;
-import de.htwg.se.ubongo.model.geo.Polygon2D;
+import de.htwg.se.ubongo.model.gameobject.imp.Block;
+import de.htwg.se.ubongo.model.gameobject.imp.Board;
+import de.htwg.se.ubongo.model.geo.imp.Point2D;
+import de.htwg.se.ubongo.model.geo.imp.Polygon2D;
 import de.htwg.se.ubongo.util.*;
 
 /** TODO */

@@ -8,10 +8,10 @@ import java.util.List;
 
 import org.junit.Test;
 
-import de.htwg.se.ubongo.model.gameobject.Block;
-import de.htwg.se.ubongo.model.gameobject.Board;
-import de.htwg.se.ubongo.model.geo.Point2D;
-import de.htwg.se.ubongo.model.geo.Vector2D;
+import de.htwg.se.ubongo.model.gameobject.imp.Block;
+import de.htwg.se.ubongo.model.gameobject.imp.Board;
+import de.htwg.se.ubongo.model.geo.imp.Point2D;
+import de.htwg.se.ubongo.model.geo.imp.Vector2D;
 
 /** Tests for Board.
  * @author Patrick Leber

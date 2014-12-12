@@ -3,9 +3,9 @@ package de.htwg.se.ubongo.ctrl;
 import java.util.ArrayList;
 import java.util.List;
 
-import de.htwg.se.ubongo.model.gameobject.Block;
-import de.htwg.se.ubongo.model.gameobject.Board;
-import de.htwg.se.ubongo.model.geo.Vector2D;
+import de.htwg.se.ubongo.model.gameobject.imp.Block;
+import de.htwg.se.ubongo.model.gameobject.imp.Board;
+import de.htwg.se.ubongo.model.geo.imp.Vector2D;
 
 /** Game Controller. */
 public final class GameController extends UbongoSubController<GameSubject> {

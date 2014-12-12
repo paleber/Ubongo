@@ -7,9 +7,9 @@ import java.util.ArrayList;
 import java.util.LinkedList;
 import java.util.List;
 
-import de.htwg.se.ubongo.model.gameobject.AbstractBlock;
-import de.htwg.se.ubongo.model.gameobject.Block;
-import de.htwg.se.ubongo.model.geo.Point2D;
+import de.htwg.se.ubongo.model.gameobject.imp.AbstractGameObject;
+import de.htwg.se.ubongo.model.gameobject.imp.Block;
+import de.htwg.se.ubongo.model.geo.imp.Point2D;
 
 import org.junit.Test;
 
@@ -27,17 +27,17 @@ public class AbstractBlockTest {
             LIST_T_BLOCK.add(i);
         }
     }
-    private static final AbstractBlock T_BLOCK = new Block(LIST_T_BLOCK);
+    private static final AbstractGameObject T_BLOCK = new Block(LIST_T_BLOCK);
 
     @Test
     public void testGetList() {
-        AbstractBlock block = new Block(LIST_T_BLOCK);
+        AbstractGameObject block = new Block(LIST_T_BLOCK);
         assertEquals(4, block.numPolys());
     }
     
     @Test
     public void testConstructor() {
-    	AbstractBlock block = new Block(LIST_T_BLOCK);
+    	AbstractGameObject block = new Block(LIST_T_BLOCK);
         assertTrue(block.getPoly(1).getMid().distanceTo(new Point2D(1.5, 0.5)) < DELTA);
     }
 
@@ -50,7 +50,7 @@ public class AbstractBlockTest {
 
     @Test
     public void testGetMid() {
-    	AbstractBlock block = new Block(new LinkedList<Integer>());
+    	AbstractGameObject block = new Block(new LinkedList<Integer>());
         assertTrue(block.getMid().distanceSquareTo(new Point2D(0, 0)) < DELTA);
         assertTrue(T_BLOCK.getMid().distanceSquareTo(new Point2D(1.5, 1)) < DELTA);
     }

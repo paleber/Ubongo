@@ -1,11 +1,10 @@
-package de.htwg.se.ubongo.model.gameobject;
+package de.htwg.se.ubongo.model.gameobject.imp;
 
 import java.util.LinkedList;
 import java.util.List;
 
-import de.htwg.se.ubongo.model.geo.Point2D;
-import de.htwg.se.ubongo.model.geo.Polygon2D;
-import de.htwg.se.ubongo.model.geo.Vector2D;
+import de.htwg.se.ubongo.model.gameobject.IBlock;
+import de.htwg.se.ubongo.model.geo.imp.*;
 
 /**
  * Block.
@@ -13,7 +12,7 @@ import de.htwg.se.ubongo.model.geo.Vector2D;
  * @author Patrick Leber
  * @version 01.11.2014
  */
-public final class Block extends AbstractBlock {
+public final class Block extends AbstractGameObject implements IBlock {
 
 	private static final double ROTATE_STEP = 90;
 	private static final double FACTOR_HALF = 0.5d;
@@ -22,7 +21,13 @@ public final class Block extends AbstractBlock {
 		super(coords);
 	}
 
-	public void mirrorVertical() {
+	/** TODO
+     *  */
+    public Block() {
+        // TODO Auto-generated constructor stub
+    }
+
+    public void mirrorVertical() {
 	    double xAxis = getMid().getX();
 		for (Polygon2D poly : getPolys()) {
 			poly.mirrorVertical(xAxis);

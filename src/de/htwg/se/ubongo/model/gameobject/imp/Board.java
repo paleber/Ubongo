@@ -1,14 +1,15 @@
-package de.htwg.se.ubongo.model.gameobject;
+package de.htwg.se.ubongo.model.gameobject.imp;
 
 import java.util.LinkedList;
 import java.util.List;
 
-import de.htwg.se.ubongo.model.geo.Point2D;
+import de.htwg.se.ubongo.model.gameobject.IBoard;
+import de.htwg.se.ubongo.model.geo.imp.Point2D;
 
 /** Board.
  * @author Patrick Leber
  * @version 01.11.2014 */
-public final class Board extends AbstractBlock {
+public final class Board extends AbstractGameObject implements IBoard {
 
     private static final double DELTA = 1e-9;
 
@@ -30,6 +31,12 @@ public final class Board extends AbstractBlock {
         for (int i = 0; i < field.length; i++) {
             field[i] = new Field(getPoly(i).getMid());
         }
+    }
+
+    /** TODO
+     *  */
+    public Board() {
+        // TODO Auto-generated constructor stub
     }
 
     private Field getField(Point2D mid, boolean isFull) {

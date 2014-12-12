@@ -1,6 +1,6 @@
 package de.htwg.se.ubongo.model.loader;
 
-import de.htwg.se.ubongo.model.gameobject.Board;
+import de.htwg.se.ubongo.model.gameobject.imp.Board;
 
 import java.io.BufferedReader;
 import java.io.FileReader;

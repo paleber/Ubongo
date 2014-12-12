@@ -1,9 +1,7 @@
 package de.htwg.se.ubongo.model.geo;
 
 import static org.junit.Assert.*;
-import de.htwg.se.ubongo.model.geo.Point2D;
-import de.htwg.se.ubongo.model.geo.Polygon2D;
-import de.htwg.se.ubongo.model.geo.Vector2D;
+import de.htwg.se.ubongo.model.geo.imp.*;
 
 import org.junit.Test;
 
