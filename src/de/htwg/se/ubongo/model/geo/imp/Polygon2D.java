@@ -1,5 +1,7 @@
 package de.htwg.se.ubongo.model.geo.imp;
 
+import java.util.Iterator;
+
 import de.htwg.se.ubongo.model.geo.GeoFactory;
 import de.htwg.se.ubongo.model.geo.IPoint;
 import de.htwg.se.ubongo.model.geo.IPolygon;
@@ -25,7 +27,7 @@ public final class Polygon2D implements IPolygon {
     }
 
     @Override
-    public void rotateAround(final double angleDeg, final Point2D pivot) {
+    public void rotateAround(final double angleDeg, final IPoint pivot) {
         for (IPoint p : point) {
             p.rotateAround(angleDeg, pivot);
         }
@@ -73,6 +75,23 @@ public final class Polygon2D implements IPolygon {
         for (IPoint p : point) {
             p.mirrorHorizontal(xAxis);
         }
+    }
+
+    @Override
+    public Iterator<IPoint> iterator() {
+        return new Iterator<IPoint>() {
+            private int index = 0;
+
+            @Override
+            public boolean hasNext() {
+                return index < point.length;
+            }
+
+            @Override
+            public IPoint next() {
+                return point[index++];
+            }
+        };
     }
 
     @Override

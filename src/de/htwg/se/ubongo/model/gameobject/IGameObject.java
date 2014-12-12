@@ -4,28 +4,22 @@ import de.htwg.se.ubongo.model.geo.IPoint;
 import de.htwg.se.ubongo.model.geo.IPolygon;
 
 /** Interface for GameObjects. */
-public interface IGameObject {
+public interface IGameObject extends Iterable<IPolygon> {
 
+    void setPolygons(IPolygon[] polygons);
 
-    
-    void setPolygon(IPolygon[] poly);
-    
-    
-    IPolygon getPolygon();
-    
-    double calcWidth();
-    double calcHeight();
-    
-    
     IPolygon getPolygon(int index);
-    
-    public int getNumberPolygons();
 
-    public IPoint calcArithmeticMid();
+    int getNumberPolygons();
 
-    public void setMid(IPoint mid);
+    double calcWidth();
 
-    public String toString();
-    
-    
+    double calcHeight();
+
+    IPoint calcMid();
+
+    void setMid(IPoint mid);
+        
+    String toString();
+
 }

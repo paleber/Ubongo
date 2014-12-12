@@ -1,9 +1,7 @@
 package de.htwg.se.ubongo.model.geo;
 
-import de.htwg.se.ubongo.model.geo.imp.Point2D;
-
 /** Interface for Polygon. */
-public interface IPolygon {
+public interface IPolygon extends Iterable<IPoint> {
 
     /** Copy the values of other a Polygon.
      * @param other other Polygon */
@@ -16,7 +14,7 @@ public interface IPolygon {
     /** Rotate around a Point.
      * @param angleDeg angle in degree.
      * @param pivot pivot-Point */
-    void rotateAround(final double angleDeg, final Point2D pivot);
+    void rotateAround(final double angleDeg, final IPoint pivot);
 
     /** Move along a Vector.
      * @param v movement */

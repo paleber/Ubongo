@@ -1,6 +1,6 @@
 package de.htwg.se.ubongo.model.loader;
 
-import de.htwg.se.ubongo.model.loader.BlockLoader;
+import de.htwg.se.ubongo.model.loader.imp.BlockLoader;
 
 import org.junit.Test;
 

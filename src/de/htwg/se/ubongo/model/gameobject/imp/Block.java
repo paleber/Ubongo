@@ -1,93 +1,84 @@
 package de.htwg.se.ubongo.model.gameobject.imp;
 
-import java.util.LinkedList;
-import java.util.List;
-
 import de.htwg.se.ubongo.model.gameobject.IBlock;
-import de.htwg.se.ubongo.model.geo.imp.*;
+import de.htwg.se.ubongo.model.geo.GeoFactory;
+import de.htwg.se.ubongo.model.geo.IPoint;
+import de.htwg.se.ubongo.model.geo.IPolygon;
+import de.htwg.se.ubongo.model.geo.IVector;
 
-/**
- * Block.
- * 
- * @author Patrick Leber
- * @version 01.11.2014
- */
+/** Implementation of IBlock. */
 public final class Block extends AbstractGameObject implements IBlock {
 
-	private static final double ROTATE_STEP = 90;
-	private static final double FACTOR_HALF = 0.5d;
+    private static final double ROTATE_STEP = 90;
+    private static final double FACTOR_HALF = 0.5d;
 
-	public Block(List<Integer> coords) {
-		super(coords);
-	}
+    private IPolygon[] savedPolys;
 
-	/** TODO
-     *  */
-    public Block() {
-        // TODO Auto-generated constructor stub
+    @Override
+    public void mirrorVertical() {
+        double xAxis = calcMid().getX();
+        for (IPolygon poly : this) {
+            poly.mirrorVertical(xAxis);
+        }
     }
 
-    public void mirrorVertical() {
-	    double xAxis = getMid().getX();
-		for (Polygon2D poly : getPolys()) {
-			poly.mirrorVertical(xAxis);
-		}
-	}
+    @Override
+    public void mirrorHorizontal() {
+        double yAxis = calcMid().getY();
+        for (IPolygon poly : this) {
+            poly.mirrorHorizontal(yAxis);
+        }
+    }
 
-	public void mirrorHorizontal() {
-	    double yAxis = getMid().getY();
-		for (Polygon2D poly : getPolys()) {
-			poly.mirrorHorizontal(yAxis);
-		}
-	}
-	
-	private final List<Polygon2D> savedPolys = new LinkedList<>();
-	
-	public void save() {
-	    savedPolys.clear();
-	    for(Polygon2D poly: getPolys()) {
-	        savedPolys.add(new Polygon2D(poly));
-	    }
-	}
-	
-	public void load() {
-	    for(int i = 0; i < savedPolys.size(); i++) {
-	        getPoly(i).set(savedPolys.get(i));
-	    }
-	}
+    @Override
+    public void rotateLeft() {
+        rotate(-ROTATE_STEP);
+    }
 
-	public void rotateLeft() {
-		rotate(-ROTATE_STEP);
-	}
+    @Override
+    public void rotateRight() {
+        rotate(ROTATE_STEP);
+    }
 
-	public void rotateRight() {
-		rotate(ROTATE_STEP);
-	}
+    private void rotate(final double angleDeg) {
+        IPoint pivot = calcMid();
+        for (IPolygon poly : this) {
+            poly.rotateAround(angleDeg, pivot);
+        }
+    }
 
-	private void rotate(final double deg) {
-		Point2D mid = getMid();
-		for (Polygon2D poly : getPolys()) {
-			poly.rotateAround(deg, mid);
-		}
-	}
+    @Override
+    public void move(final IVector v) {
+        for (IPolygon poly : this) {
+            poly.move(v);
+        }
+    }
 
-	public void move(Vector2D v) {
-		for (Polygon2D poly : getPolys()) {
-			poly.move(v);
-		}
-	}
+    @Override
+    public IPoint[] calcAnchoredMids() {
+        IPoint[] aMid = new IPoint[getNumberPolygons()];
+        for (int i = 0; i < getNumberPolygons(); i++) {
+            aMid[i] = GeoFactory.createPoint();
+            IPoint mid = getPolygon(i).getMid();
+            double x = (int) mid.getX() + FACTOR_HALF;
+            double y = (int) mid.getY() + FACTOR_HALF;
+            aMid[i].set(x, y);
+        }
+        return aMid;
+    }
 
-	public List<Point2D> getAnchoredMids() {
-		List<Point2D> list = new LinkedList<>();
-		for (Polygon2D poly : getPolys()) {
-			Point2D p = poly.getMid();
-			double x = (int) p.getX() + FACTOR_HALF;
-			double y = (int) p.getY() + FACTOR_HALF;
-			p.set(x, y);
-			list.add(p);
-		}
-		return list;
-	}
+    @Override
+    public void saveState() {
+        savedPolys = new IPolygon[getNumberPolygons()];
+        for (int i = 0; i < getNumberPolygons(); i++) {
+            savedPolys[i] = GeoFactory.createPolygon();
+            savedPolys[i].copy(getPolygon(i));
+        }
+    }
 
-   
+    @Override
+    public void loadState() {
+        setPolygons(savedPolys);
+    }
+
 }

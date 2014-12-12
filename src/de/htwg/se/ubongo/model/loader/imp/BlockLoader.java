@@ -1,4 +1,4 @@
-package de.htwg.se.ubongo.model.loader;
+package de.htwg.se.ubongo.model.loader.imp;
 
 import de.htwg.se.ubongo.model.gameobject.imp.Block;
 
@@ -10,6 +10,7 @@ import java.util.List;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
+@Deprecated // FIXME Implement in BufferedResourceLoader
 /** Created by Konstantin on 06.11.2014. laden und Instanz behalten. */
 public final class BlockLoader {
 
@@ -60,7 +61,7 @@ public final class BlockLoader {
                 y++;
             }
 
-            block = new Block(data);
+            // block = new Block(data);
             reader.close();
         } catch (IOException e) {
             Logger.getLogger(BlockLoader.class.getName()).log(Level.SEVERE,
@@ -68,6 +69,6 @@ public final class BlockLoader {
             return null;
         }
 
-        return block;
+        return null; //return block;
     }
 }

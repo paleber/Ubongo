@@ -3,44 +3,40 @@ package de.htwg.se.ubongo.model.gameobject.imp;
 import java.util.LinkedList;
 import java.util.List;
 
+import de.htwg.se.ubongo.model.gameobject.IBlock;
 import de.htwg.se.ubongo.model.gameobject.IBoard;
-import de.htwg.se.ubongo.model.geo.imp.Point2D;
+import de.htwg.se.ubongo.model.geo.IPoint;
 
-/** Board.
- * @author Patrick Leber
- * @version 01.11.2014 */
+/** Implementation of IBoard. */
 public final class Board extends AbstractGameObject implements IBoard {
 
     private static final double DELTA = 1e-9;
 
-    private final List<Block> blocks = new LinkedList<>();
-    private final Field[] field;
+    private final List<IBlock> blocks = new LinkedList<>();
+    private Field[] fields;
 
     private static final class Field {
-        private final Point2D mid;
+        private final IPoint mid;
         private boolean full = false;
 
-        private Field(final Point2D mid) {
+        private Field(final IPoint mid) {
             this.mid = mid;
         }
     }
 
-    public Board(final List<Integer> coords) {
-        super(coords);
-        field = new Field[numPolys()];
-        for (int i = 0; i < field.length; i++) {
-            field[i] = new Field(getPoly(i).getMid());
+    private void tryInit() {
+        if (fields != null) {
+            return;
+        }
+
+        fields = new Field[getNumberPolygons()];
+        for (int i = 0; i < fields.length; i++) {
+            fields[i] = new Field(getPolygon(i).getMid());
         }
     }
 
-    /** TODO
-     *  */
-    public Board() {
-        // TODO Auto-generated constructor stub
-    }
-
-    private Field getField(Point2D mid, boolean isFull) {
-        for (Field f : field) {
+    private Field getField(final IPoint mid, final boolean isFull) {
+        for (Field f : fields) {
             if (f.full != isFull) {
                 continue;
             }
@@ -51,10 +47,12 @@ public final class Board extends AbstractGameObject implements IBoard {
         return null;
     }
 
-    public boolean addBlock(final Block block) {
+    @Override
+    public boolean addBlock(final IBlock block) {
+        tryInit();
         List<Field> list = new LinkedList<>();
 
-        for (Point2D mid : block.getAnchoredMids()) {
+        for (IPoint mid : block.calcAnchoredMids()) {
             Field f = getField(mid, false);
             if (f == null) {
                 break;
@@ -63,7 +61,7 @@ public final class Board extends AbstractGameObject implements IBoard {
             list.add(f);
         }
 
-        if (block.numPolys() != list.size()) {
+        if (block.getNumberPolygons() != list.size()) {
             for (Field f : list) {
                 f.full = false;
             }
@@ -74,12 +72,13 @@ public final class Board extends AbstractGameObject implements IBoard {
         return true;
     }
 
-    public boolean removeBlock(final Block block) {
+    @Override
+    public boolean removeBlock(final IBlock block) {
         if (!blocks.contains(block)) {
             return false;
         }
         blocks.remove(block);
-        for (Point2D mid : block.getAnchoredMids()) {
+        for (IPoint mid : block.calcAnchoredMids()) {
             Field f = getField(mid, true);
             if (f == null) {
                 throw new IllegalStateException(
@@ -90,8 +89,13 @@ public final class Board extends AbstractGameObject implements IBoard {
         return true;
     }
 
-    
-    public int numBlocks() {
-        return blocks.size();
+    @Override
+    public boolean checkAllPolygonsTaken() {
+        for (Field f : fields) {
+            if (!f.full) {
+                return false;
+            }
+        }
+        return true;
     }
 }

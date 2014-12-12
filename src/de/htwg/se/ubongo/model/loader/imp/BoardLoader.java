@@ -1,4 +1,4 @@
-package de.htwg.se.ubongo.model.loader;
+package de.htwg.se.ubongo.model.loader.imp;
 
 import de.htwg.se.ubongo.model.gameobject.imp.Board;
 
@@ -10,6 +10,7 @@ import java.util.List;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
+@Deprecated // FIXME Implement in BufferedResourceLoader
 /**
  * Loads a board from file.
  * Created by Konstantin on 06.11.2014.
@@ -59,12 +60,12 @@ public final class BoardLoader {
                 y++;
             }
 
-            board = new Board(data);
+            // board = new Board(data);
         } catch (IOException e) {
             Logger.getLogger(BoardLoader.class.getName()).log(Level.SEVERE,
                     e.getMessage());
         }
 
-        return board;
+        return null; //return board;
     }
 }
