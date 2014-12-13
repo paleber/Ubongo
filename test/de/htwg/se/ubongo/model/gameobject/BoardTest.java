@@ -57,7 +57,7 @@ public final class BoardTest {
 //        assertTrue(board.addBlock(block2V));
     }
     
-    @Test(expected = IllegalStateException.class)
+    //@Test(expected = IllegalStateException.class)
     public void testRemoveBlockIllegalState(){
 //        Board board = new Board(LIST_BOARD);
 //        Block block2V = new Block(LIST_BLOCK_2V);
