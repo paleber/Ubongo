@@ -3,13 +3,13 @@ package de.htwg.se.ubongo.model.geo;
 /** Interface for Points. */
 public interface IPoint {
 
-    /** Set the x value.
-     * @param x x-value */
-    // public void setX(final double x);
+    /** Get the x-value.
+     * @return x-value */
+    double getX();
 
-    /** Set the y value.
-     * @param y y-value */
-    // public void setY(final double y);
+    /** Get the y-value.
+     * @return y-value */
+    double getY();
 
     /** Set the x- and y-value y.
      * @param x x-value
@@ -19,14 +19,6 @@ public interface IPoint {
     /** Copy x- and y-value from other Point.
      * @param other other point */
     void copy(IPoint other);
-
-    /** Get the x-value.
-     * @return x-value */
-    double getX();
-
-    /** Get the y-value.
-     * @return y-value */
-    double getY();
 
     /** Move along a Vector2D.
      * @param v movement */
