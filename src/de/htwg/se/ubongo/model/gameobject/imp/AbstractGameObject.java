@@ -94,6 +94,11 @@ abstract class AbstractGameObject implements IGameObject {
             public IPolygon next() {
                 return polys[index++];
             }
+            
+            @Override
+            public void remove() {
+                throw new UnsupportedOperationException();
+            }
         };
     }
 

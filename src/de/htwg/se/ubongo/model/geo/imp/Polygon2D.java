@@ -101,6 +101,11 @@ public final class Polygon2D implements IPolygon {
             public IPoint next() {
                 return point[index++];
             }
+            
+            @Override
+            public void remove() {
+                throw new UnsupportedOperationException();
+            }
         };
     }
 
