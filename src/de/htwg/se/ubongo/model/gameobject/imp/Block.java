@@ -59,7 +59,7 @@ public final class Block extends AbstractGameObject implements IBlock {
         IPoint[] aMid = new IPoint[getNumberPolygons()];
         for (int i = 0; i < getNumberPolygons(); i++) {
             aMid[i] = GeoFactory.createPoint();
-            IPoint mid = getPolygon(i).getMid();
+            IPoint mid = getPolygon(i).calcMid();
             double x = (int) mid.getX() + FACTOR_HALF;
             double y = (int) mid.getY() + FACTOR_HALF;
             aMid[i].set(x, y);

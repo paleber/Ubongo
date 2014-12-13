@@ -31,7 +31,7 @@ public final class Board extends AbstractGameObject implements IBoard {
 
         fields = new Field[getNumberPolygons()];
         for (int i = 0; i < fields.length; i++) {
-            fields[i] = new Field(getPolygon(i).getMid());
+            fields[i] = new Field(getPolygon(i).calcMid());
         }
     }
 

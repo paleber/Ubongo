@@ -1,10 +1,6 @@
 package de.htwg.se.ubongo.model.geo;
 
 import static org.junit.Assert.assertEquals;
-import static org.junit.Assert.assertFalse;
-import static org.junit.Assert.assertTrue;
-import de.htwg.se.ubongo.model.geo.imp.Point2D;
-import de.htwg.se.ubongo.model.geo.imp.Vector2D;
 
 import org.junit.Before;
 import org.junit.Test;

@@ -10,6 +10,7 @@ import de.htwg.se.ubongo.model.geo.IVector;
 /** Implementation of IPolygon. */
 public final class Polygon2D implements IPolygon {
 
+    private static final double FACTOR_HALF = 0.5;
     private IPoint[] point;
 
     @Override
@@ -51,15 +52,24 @@ public final class Polygon2D implements IPolygon {
     }
 
     @Override
-    public IPoint getMid() {
-        double x = 0;
-        double y = 0;
+    public IPoint calcMid() {
+        double xMin = Double.POSITIVE_INFINITY;
+        double xMax = Double.NEGATIVE_INFINITY;
+        double yMin = Double.POSITIVE_INFINITY;
+        double yMax = Double.NEGATIVE_INFINITY;
+
         for (IPoint p : point) {
-            x += p.getX();
-            y += p.getY();
+            xMin = Math.min(xMin, p.getX());
+            xMax = Math.max(xMax, p.getX());
+            yMin = Math.min(yMin, p.getY());
+            yMax = Math.max(yMax, p.getY());
         }
+        
+        double x = (xMin + xMax) * FACTOR_HALF;
+        double y = (yMin + yMax) * FACTOR_HALF;
+        
         IPoint mid = GeoFactory.createPoint();
-        mid.set(x / point.length, y / point.length);
+        mid.set(x, y);
         return mid;
     }
 
@@ -102,7 +112,7 @@ public final class Polygon2D implements IPolygon {
             builder.append(p);
         }
         builder.append(']');
-        builder.append(getMid());
+        builder.append(calcMid());
         return builder.toString();
     }
 

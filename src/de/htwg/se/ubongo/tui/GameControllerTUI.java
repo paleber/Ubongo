@@ -311,7 +311,7 @@ public class GameControllerTUI implements GameSubject, Trigger {
     private void paintBoard() {
         for (IPolygon poly : board) {
 
-            IPoint p = poly.getMid();
+            IPoint p = poly.calcMid();
             grid[(int) (p.getX() * 2)][(int) (p.getY() * 2)] = 'X';
         }
     }
@@ -333,7 +333,7 @@ public class GameControllerTUI implements GameSubject, Trigger {
         int index = 0;
         for (IBlock b : block) {
             for (IPolygon poly : b) {
-                IPoint p = poly.getMid();
+                IPoint p = poly.calcMid();
                 try {
                     grid[(int) (p.getX() * 2 + 0.01)][(int) (p.getY() * 2 + 0.01)] = Integer
                             .toString(index).charAt(0);
@@ -349,7 +349,7 @@ public class GameControllerTUI implements GameSubject, Trigger {
 
         if (selectedBlock != null) {
             for (IPolygon poly : selectedBlock) {
-                IPoint p = poly.getMid();
+                IPoint p = poly.calcMid();
                 try {
                     grid[(int) (p.getX() * 2 + 0.01)][(int) (p.getY() * 2 + 0.01)] = 'S';
                 } catch (ArrayIndexOutOfBoundsException e) {

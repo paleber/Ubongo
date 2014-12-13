@@ -3,23 +3,6 @@ package de.htwg.se.ubongo.model.geo;
 /** Interface for Polygon. */
 public interface IPolygon extends Iterable<IPoint> {
 
-    /** Copy the values of other a Polygon.
-     * @param other other Polygon */
-    void copy(IPolygon other);
-
-    /** Set the points of the Polygon.
-     * @param point points as Point-Array */
-    void setPoints(IPoint[] point);
-
-    /** Rotate around a Point.
-     * @param angleDeg angle in degree.
-     * @param pivot pivot-Point */
-    void rotateAround(final double angleDeg, final IPoint pivot);
-
-    /** Move along a Vector.
-     * @param v movement */
-    void move(IVector v);
-
     /** Get the number of Points.
      * @return number of Points */
     int getNumberPoints();
@@ -29,9 +12,26 @@ public interface IPolygon extends Iterable<IPoint> {
      * @return point by index */
     IPoint getPoint(int index);
 
-    /** Get the arithmetical mid.
+    /** Set the points of the Polygon.
+     * @param point points as Point-Array */
+    void setPoints(IPoint[] point);
+
+    /** Copy the values of other a Polygon.
+     * @param other other Polygon */
+    void copy(IPolygon other);
+
+    /** Calulate the arithmetical mid.
      * @return mid */
-    IPoint getMid();
+    IPoint calcMid();
+
+    /** Move along a Vector.
+     * @param v movement */
+    void move(IVector v);
+
+    /** Rotate around a Point.
+     * @param angleDeg angle in degree.
+     * @param pivot pivot-Point */
+    void rotateAround(final double angleDeg, final IPoint pivot);
 
     /** Mirror vertical at y-axis.
      * @param yAxis y-axis */
@@ -44,5 +44,5 @@ public interface IPolygon extends Iterable<IPoint> {
     /** Get the Polygon as String.
      * @return polygon as String */
     String toString();
-
+    
 }

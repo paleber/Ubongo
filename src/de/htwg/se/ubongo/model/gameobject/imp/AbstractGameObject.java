@@ -102,7 +102,7 @@ abstract class AbstractGameObject implements IGameObject {
         StringBuilder builder = new StringBuilder();
         builder.append('{');
         for (IPolygon poly : polys) {
-            builder.append(poly.getMid());
+            builder.append(poly.calcMid());
         }
         builder.append('}');
         return builder.toString();
