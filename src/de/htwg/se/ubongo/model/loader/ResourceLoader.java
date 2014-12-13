@@ -3,7 +3,6 @@ package de.htwg.se.ubongo.model.loader;
 import de.htwg.se.ubongo.model.gameobject.IBlock;
 import de.htwg.se.ubongo.model.gameobject.IBoard;
 import de.htwg.se.ubongo.model.loader.imp.BufferedResourceLoader;
-import de.htwg.se.ubongo.model.loader.imp.IResourceLoader;
 
 /** Resource Loader. */
 public final class ResourceLoader implements IResourceLoader {

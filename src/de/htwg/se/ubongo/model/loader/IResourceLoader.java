@@ -1,4 +1,4 @@
-package de.htwg.se.ubongo.model.loader.imp;
+package de.htwg.se.ubongo.model.loader;
 
 import de.htwg.se.ubongo.model.gameobject.IBlock;
 import de.htwg.se.ubongo.model.gameobject.IBoard;

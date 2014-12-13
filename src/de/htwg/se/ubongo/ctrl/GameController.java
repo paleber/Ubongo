@@ -3,9 +3,15 @@ package de.htwg.se.ubongo.ctrl;
 import java.util.ArrayList;
 import java.util.List;
 
+import de.htwg.se.ubongo.model.gameobject.IBlock;
+import de.htwg.se.ubongo.model.gameobject.IBoard;
 import de.htwg.se.ubongo.model.gameobject.imp.Block;
 import de.htwg.se.ubongo.model.gameobject.imp.Board;
+import de.htwg.se.ubongo.model.geo.GeoFactory;
+import de.htwg.se.ubongo.model.geo.IVector;
 import de.htwg.se.ubongo.model.geo.imp.Vector2D;
+import de.htwg.se.ubongo.model.loader.IResourceLoader;
+import de.htwg.se.ubongo.model.loader.ResourceLoader;
 
 /** Game Controller. */
 public final class GameController extends UbongoSubController<GameSubject> {
@@ -38,8 +44,8 @@ public final class GameController extends UbongoSubController<GameSubject> {
         }
     }
 
-    private Board board;
-    private Block[] block;
+    private IBoard board;
+    private IBlock[] block;
 
     public GameController(MainController main) {
         super(main);
@@ -48,23 +54,28 @@ public final class GameController extends UbongoSubController<GameSubject> {
     private int width;
     private int height;
 
-    private Block selected;
+    private IBlock selected;
 
     @Override
     protected void onStart() {
-        board = new Board(BOARD_LIST);
+        IResourceLoader loader = ResourceLoader.getInstance();
+       
+        board = loader.createBoard(0);
 
-        block = new Block[3];
-        block[0] = new Block(BLOCK_LIST1);
-        block[1] = new Block(BLOCK_LIST2);
-        block[2] = new Block(BLOCK_LIST3);
+        block = loader.createBlocksOfBoard(0, 0);
+ 
+        IVector v = GeoFactory.createVector();
+        v.set(5, 0);
+        block[0].move(v);
+        
+        v.set(8, 0);
+        block[1].move(v);
+        
+        v.set(11, 0);
+        block[2].move(v);
 
-        block[0].move(new Vector2D(7, 0));
-        block[1].move(new Vector2D(12, 0));
-        block[2].move(new Vector2D(16, 0));
-
-        for (Block b : block) {
-            b.save();
+        for (IBlock b : block) {
+            b.saveState();
         }
 
         width = 20;
@@ -105,12 +116,14 @@ public final class GameController extends UbongoSubController<GameSubject> {
         if (selected == null) {
             return;
         }
-        Vector2D dir = new Vector2D(x, y);
+        
+        IVector dir = GeoFactory.createVector();
+        dir.set(x, y);
 
         selected.move(dir);
 
-        double xPos = selected.getMid().getX();
-        double yPos = selected.getMid().getY();
+        double xPos = selected.calcMid().getX();
+        double yPos = selected.calcMid().getY();
 
         if (xPos < 0 || xPos > width || yPos < 0 || yPos > height) {
             dir.swap();
@@ -125,7 +138,7 @@ public final class GameController extends UbongoSubController<GameSubject> {
 
     public void drop() {
         if (!board.addBlock(selected)) {
-            selected.load();
+            selected.loadState();
         }
 
         selected = null;
@@ -133,7 +146,7 @@ public final class GameController extends UbongoSubController<GameSubject> {
             s.onDropBlock();
         }
 
-        if (board.numBlocks() == block.length) {
+        if (board.checkAllPolygonsTaken()) {
             for (GameSubject s : getSubjects()) {
                 s.onWin();
             }

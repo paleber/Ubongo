@@ -5,8 +5,12 @@ import java.util.Map;
 
 import de.htwg.se.ubongo.ctrl.GameController;
 import de.htwg.se.ubongo.ctrl.GameSubject;
+import de.htwg.se.ubongo.model.gameobject.IBlock;
+import de.htwg.se.ubongo.model.gameobject.IBoard;
 import de.htwg.se.ubongo.model.gameobject.imp.Block;
 import de.htwg.se.ubongo.model.gameobject.imp.Board;
+import de.htwg.se.ubongo.model.geo.IPoint;
+import de.htwg.se.ubongo.model.geo.IPolygon;
 import de.htwg.se.ubongo.model.geo.imp.Point2D;
 import de.htwg.se.ubongo.model.geo.imp.Polygon2D;
 import de.htwg.se.ubongo.util.*;
@@ -19,14 +23,14 @@ public class GameControllerTUI implements GameSubject, Trigger {
 
     private final Timer timer = new Timer(this, 150);
 
-    private Board board;
-    private Block[] block;
+    private IBoard board;
+    private IBlock[] block;
 
     private char[][] grid;
 
     private final Map<String, TextCommand> cmdMap = new HashMap<>();
 
-    private Block selectedBlock;
+    private IBlock selectedBlock;
 
     public GameControllerTUI(MainControllerTUI tui, GameController observer) {
         this.tui = tui;
@@ -260,7 +264,7 @@ public class GameControllerTUI implements GameSubject, Trigger {
     }
 
     @Override
-    public void onSetGameObjects(Board board, Block[] block) {
+    public void onSetGameObjects(IBoard board, IBlock[] block) {
         this.board = board;
         this.block = block;
     }
@@ -305,9 +309,9 @@ public class GameControllerTUI implements GameSubject, Trigger {
     }
 
     private void paintBoard() {
-        for (int i = 0; i < board.numPolys(); i++) {
-            Polygon2D poly = board.getPoly(i);
-            Point2D p = poly.getMid();
+        for (IPolygon poly : board) {
+
+            IPoint p = poly.getMid();
             grid[(int) (p.getX() * 2)][(int) (p.getY() * 2)] = 'X';
         }
     }
@@ -325,27 +329,34 @@ public class GameControllerTUI implements GameSubject, Trigger {
     }
 
     private void paintBlocks() {
-        for (int i = 0; i < block.length; i++) {
-            for (int j = 0; j < block[i].numPolys(); j++) {
-                Point2D p = block[i].getPoly(j).getMid();
+
+        int index = 0;
+        for (IBlock b : block) {
+            for (IPolygon poly : b) {
+                IPoint p = poly.getMid();
                 try {
                     grid[(int) (p.getX() * 2 + 0.01)][(int) (p.getY() * 2 + 0.01)] = Integer
-                            .toString(i).charAt(0);
+                            .toString(index).charAt(0);
                 } catch (ArrayIndexOutOfBoundsException e) {
                     continue;
                 }
+
             }
+
+            index++;
+
         }
 
         if (selectedBlock != null) {
-            for (int j = 0; j < selectedBlock.numPolys(); j++) {
-                Point2D p = selectedBlock.getPoly(j).getMid();
+            for (IPolygon poly : selectedBlock) {
+                IPoint p = poly.getMid();
                 try {
                     grid[(int) (p.getX() * 2 + 0.01)][(int) (p.getY() * 2 + 0.01)] = 'S';
                 } catch (ArrayIndexOutOfBoundsException e) {
                     continue;
                 }
             }
+
         }
     }
 
