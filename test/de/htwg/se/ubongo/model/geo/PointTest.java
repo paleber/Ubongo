@@ -5,6 +5,8 @@ import static org.junit.Assert.assertEquals;
 import org.junit.Before;
 import org.junit.Test;
 
+import de.htwg.se.ubongo.GeoModule;
+
 /** Tests for IPoint and Iplementation. */
 public final class PointTest {
 

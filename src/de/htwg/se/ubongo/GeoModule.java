@@ -1,9 +1,12 @@
-package de.htwg.se.ubongo.model.geo;
+package de.htwg.se.ubongo;
 
 import com.google.inject.AbstractModule;
 import com.google.inject.Guice;
 import com.google.inject.Injector;
 
+import de.htwg.se.ubongo.model.geo.IPoint;
+import de.htwg.se.ubongo.model.geo.IPolygon;
+import de.htwg.se.ubongo.model.geo.IVector;
 import de.htwg.se.ubongo.model.geo.imp.Point2D;
 import de.htwg.se.ubongo.model.geo.imp.Polygon2D;
 import de.htwg.se.ubongo.model.geo.imp.Vector2D;

@@ -3,10 +3,10 @@ package de.htwg.se.ubongo.model.loader.imp;
 import com.google.inject.Guice;
 import com.google.inject.Injector;
 
+import de.htwg.se.ubongo.GeoModule;
 import de.htwg.se.ubongo.model.gameobject.GameObjectFactory;
 import de.htwg.se.ubongo.model.gameobject.IBlock;
 import de.htwg.se.ubongo.model.gameobject.IBoard;
-import de.htwg.se.ubongo.model.geo.GeoModule;
 import de.htwg.se.ubongo.model.geo.IPoint;
 import de.htwg.se.ubongo.model.geo.IPolygon;
 import de.htwg.se.ubongo.model.loader.IResourceLoader;
