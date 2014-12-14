@@ -10,8 +10,8 @@ public class VectorTest {
 
     private static final double DELTA = 1e-9;
 
-    private IVector v = GeoFactory.createVector();
-    private IVector u = GeoFactory.createVector();
+    private IVector v = GeoModule.createVector();
+    private IVector u = GeoModule.createVector();
 
     @Before
     public void setup() {
@@ -35,8 +35,8 @@ public class VectorTest {
 
     @Test
     public void testStretchBetween() {
-        IPoint p = GeoFactory.createPoint();
-        IPoint q = GeoFactory.createPoint();
+        IPoint p = GeoModule.createPoint();
+        IPoint q = GeoModule.createPoint();
         p.set(1, 1);
         q.set(2, 3);
         v.stretchBetween(p, q);

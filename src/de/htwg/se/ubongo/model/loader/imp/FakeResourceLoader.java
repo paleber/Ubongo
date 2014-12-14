@@ -1,9 +1,12 @@
 package de.htwg.se.ubongo.model.loader.imp;
 
+import com.google.inject.Guice;
+import com.google.inject.Injector;
+
 import de.htwg.se.ubongo.model.gameobject.GameObjectFactory;
 import de.htwg.se.ubongo.model.gameobject.IBlock;
 import de.htwg.se.ubongo.model.gameobject.IBoard;
-import de.htwg.se.ubongo.model.geo.GeoFactory;
+import de.htwg.se.ubongo.model.geo.GeoModule;
 import de.htwg.se.ubongo.model.geo.IPoint;
 import de.htwg.se.ubongo.model.geo.IPolygon;
 import de.htwg.se.ubongo.model.loader.IResourceLoader;
@@ -45,7 +48,7 @@ public final class FakeResourceLoader implements IResourceLoader {
 
             IPoint[] points = new IPoint[NUM_POINTS];
             for (int k = 0; k < points.length; k++) {
-                points[k] = GeoFactory.createPoint();
+                points[k] = GeoModule.createPoint();
             }
 
             points[TOP_LEFT].set(x, y);
@@ -53,7 +56,7 @@ public final class FakeResourceLoader implements IResourceLoader {
             points[BOT_RIGHT].set(x + 1, y + 1);
             points[BOT_LEFT].set(x, y + 1);
 
-            polys[j] = GeoFactory.createPolygon();
+            polys[j] = GeoModule.createPolygon();
             polys[j].setPoints(points);
         }
 
@@ -88,7 +91,7 @@ public final class FakeResourceLoader implements IResourceLoader {
 
                 IPoint[] points = new IPoint[NUM_POINTS];
                 for (int k = 0; k < points.length; k++) {
-                    points[k] = GeoFactory.createPoint();
+                    points[k] = GeoModule.createPoint();
                 }
 
                 points[TOP_LEFT].set(x, y);
@@ -96,7 +99,7 @@ public final class FakeResourceLoader implements IResourceLoader {
                 points[BOT_RIGHT].set(x + 1, y + 1);
                 points[BOT_LEFT].set(x, y + 1);
 
-                polys[j] = GeoFactory.createPolygon();
+                polys[j] = GeoModule.createPolygon();
                 polys[j].setPoints(points);
             }
 
@@ -105,14 +108,6 @@ public final class FakeResourceLoader implements IResourceLoader {
         }
 
         return blocks;
-    }
-    
-    public static void main(String[] args) {
-        IResourceLoader loader = new FakeResourceLoader();
-        System.out.println(loader.createBoard(0));
-        for(IBlock b: loader.createBlocksOfBoard(0, 0)) {
-            System.out.println(b);
-        }
     }
 
 }

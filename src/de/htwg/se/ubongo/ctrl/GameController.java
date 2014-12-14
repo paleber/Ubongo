@@ -5,11 +5,8 @@ import java.util.List;
 
 import de.htwg.se.ubongo.model.gameobject.IBlock;
 import de.htwg.se.ubongo.model.gameobject.IBoard;
-import de.htwg.se.ubongo.model.gameobject.imp.Block;
-import de.htwg.se.ubongo.model.gameobject.imp.Board;
-import de.htwg.se.ubongo.model.geo.GeoFactory;
+import de.htwg.se.ubongo.model.geo.GeoModule;
 import de.htwg.se.ubongo.model.geo.IVector;
-import de.htwg.se.ubongo.model.geo.imp.Vector2D;
 import de.htwg.se.ubongo.model.loader.IResourceLoader;
 import de.htwg.se.ubongo.model.loader.ResourceLoader;
 
@@ -64,7 +61,7 @@ public final class GameController extends UbongoSubController<GameSubject> {
 
         block = loader.createBlocksOfBoard(0, 0);
  
-        IVector v = GeoFactory.createVector();
+        IVector v = GeoModule.createVector();
         v.set(5, 0);
         block[0].move(v);
         
@@ -117,7 +114,7 @@ public final class GameController extends UbongoSubController<GameSubject> {
             return;
         }
         
-        IVector dir = GeoFactory.createVector();
+        IVector dir = GeoModule.createVector();
         dir.set(x, y);
 
         selected.move(dir);

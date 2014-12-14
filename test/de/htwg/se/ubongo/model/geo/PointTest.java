@@ -10,8 +10,8 @@ public final class PointTest {
 
     private static final double DELTA = 1e-9;
 
-    private IPoint p = GeoFactory.createPoint();
-    private IPoint q = GeoFactory.createPoint();
+    private IPoint p = GeoModule.createPoint();
+    private IPoint q = GeoModule.createPoint();
 
     @Before
     public void setup() {
@@ -34,7 +34,7 @@ public final class PointTest {
 
     @Test
     public void testMove() {
-        IVector v = GeoFactory.createVector();
+        IVector v = GeoModule.createVector();
         v.set(4, 5);
         q.move(v);
         p.set(6, 8);

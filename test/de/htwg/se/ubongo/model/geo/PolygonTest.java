@@ -9,12 +9,12 @@ public class PolygonTest {
 
     private static final double DELTA = 1e-9;
 
-    IPolygon poly = GeoFactory.createPolygon();
+    IPolygon poly = GeoModule.createPolygon();
 
     public PolygonTest() {
         IPoint[] p = new IPoint[3];
         for (int i = 0; i < p.length; i++) {
-            p[i] = GeoFactory.createPoint();
+            p[i] = GeoModule.createPoint();
         }
         poly.setPoints(p);
     }
@@ -33,7 +33,7 @@ public class PolygonTest {
 
     @Test
     public void testGetPoint() {
-        IPoint p = GeoFactory.createPoint();
+        IPoint p = GeoModule.createPoint();
         p.set(1, 1);
         PointTest.testNearlyEquals(p, poly.getPoint(1));
     }
@@ -41,7 +41,7 @@ public class PolygonTest {
     @Test
     public void testSetPoints() {
         IPoint[] p = new IPoint[1];
-        p[0] = GeoFactory.createPoint();
+        p[0] = GeoModule.createPoint();
         p[0].set(3, 5);
         poly.setPoints(p);
         PointTest.testNearlyEquals(p[0], poly.getPoint(0));
@@ -50,9 +50,9 @@ public class PolygonTest {
     @Test
     public void testCopy() {
         IPoint[] p = new IPoint[1];
-        p[0] = GeoFactory.createPoint();
+        p[0] = GeoModule.createPoint();
         p[0].set(3, 5);
-        IPolygon poly2 = GeoFactory.createPolygon();
+        IPolygon poly2 = GeoModule.createPolygon();
         poly2.setPoints(p);
         poly.copy(poly2);
         PointTest.testNearlyEquals(p[0], poly.getPoint(0));
@@ -60,25 +60,25 @@ public class PolygonTest {
 
     @Test
     public void testCalcMid() {
-        IPoint p = GeoFactory.createPoint();
+        IPoint p = GeoModule.createPoint();
         p.set(0.5, 0.5);
         PointTest.testNearlyEquals(p, poly.calcMid());
     }
 
     @Test
     public void testMove() {
-        IVector v = GeoFactory.createVector();
+        IVector v = GeoModule.createVector();
         v.set(2, 1);
         poly.move(v);
 
-        IPoint p = GeoFactory.createPoint();
+        IPoint p = GeoModule.createPoint();
         p.set(2, 2);
         PointTest.testNearlyEquals(p, poly.getPoint(2));
     }
 
     @Test
     public void testRotateAround() {
-        IPoint p = GeoFactory.createPoint();
+        IPoint p = GeoModule.createPoint();
         p.set(0, 0);
         poly.rotateAround(90, p);
         p.set(-1, 1);
@@ -104,7 +104,7 @@ public class PolygonTest {
     @Test
     public void testMirrorVertical() {
         poly.mirrorVertical(1);
-        IPoint p = GeoFactory.createPoint();
+        IPoint p = GeoModule.createPoint();
         p.set(2, 0);
         PointTest.testNearlyEquals(p, poly.getPoint(0));
     }
@@ -112,7 +112,7 @@ public class PolygonTest {
     @Test
     public void testMirrorHorizontal() {
         poly.mirrorHorizontal(1);
-        IPoint p = GeoFactory.createPoint();
+        IPoint p = GeoModule.createPoint();
         p.set(0, 2);
         PointTest.testNearlyEquals(p, poly.getPoint(0));
     }

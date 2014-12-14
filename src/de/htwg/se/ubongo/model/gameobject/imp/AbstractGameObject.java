@@ -3,7 +3,7 @@ package de.htwg.se.ubongo.model.gameobject.imp;
 import java.util.Iterator;
 
 import de.htwg.se.ubongo.model.gameobject.IGameObject;
-import de.htwg.se.ubongo.model.geo.GeoFactory;
+import de.htwg.se.ubongo.model.geo.GeoModule;
 import de.htwg.se.ubongo.model.geo.IPoint;
 import de.htwg.se.ubongo.model.geo.IPolygon;
 import de.htwg.se.ubongo.model.geo.IVector;
@@ -31,7 +31,7 @@ abstract class AbstractGameObject implements IGameObject {
 
     @Override
     public final void setMid(final IPoint p) {
-        IVector v = GeoFactory.createVector();
+        IVector v = GeoModule.createVector();
         v.stretchBetween(p, calcMid());
         for (IPolygon poly : polys) {
             poly.move(v);
@@ -41,7 +41,7 @@ abstract class AbstractGameObject implements IGameObject {
     @Override
     public final IPoint calcMid() {
         Bounds b = calcBounds();
-        IPoint mid = GeoFactory.createPoint();
+        IPoint mid = GeoModule.createPoint();
         double x = (b.xMin + b.xMax) * FACTOR_HALF;
         double y = (b.yMin + b.yMax) * FACTOR_HALF;
         mid.set(x, y);
@@ -94,7 +94,7 @@ abstract class AbstractGameObject implements IGameObject {
             public IPolygon next() {
                 return polys[index++];
             }
-            
+
             @Override
             public void remove() {
                 throw new UnsupportedOperationException();
