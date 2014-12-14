@@ -26,5 +26,5 @@ public final class GeoFactory {
     public static IPolygon createPolygon() {
         return new Polygon2D();
     }
-
+    
 }

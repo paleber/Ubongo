@@ -1,13 +1,19 @@
 package de.htwg.se.ubongo.model.gameobject.imp;
 
+import com.google.inject.Guice;
+import com.google.inject.Injector;
+
 import de.htwg.se.ubongo.model.gameobject.IBlock;
-import de.htwg.se.ubongo.model.geo.GeoFactory;
+import de.htwg.se.ubongo.model.geo.GeoModule;
 import de.htwg.se.ubongo.model.geo.IPoint;
 import de.htwg.se.ubongo.model.geo.IPolygon;
 import de.htwg.se.ubongo.model.geo.IVector;
 
 /** Implementation of IBlock. */
 public final class Block extends AbstractGameObject implements IBlock {
+
+    private static final Injector GEO_INJECTOR = Guice
+            .createInjector(new GeoModule());
 
     private static final double ROTATE_STEP = 90;
     private static final double FACTOR_HALF = 0.5d;
@@ -58,7 +64,7 @@ public final class Block extends AbstractGameObject implements IBlock {
     public IPoint[] calcAnchoredMids() {
         IPoint[] aMid = new IPoint[getNumberPolygons()];
         for (int i = 0; i < getNumberPolygons(); i++) {
-            aMid[i] = GeoFactory.createPoint();
+            aMid[i] = GEO_INJECTOR.getInstance(IPoint.class);
             IPoint mid = getPolygon(i).calcMid();
             double x = (int) mid.getX() + FACTOR_HALF;
             double y = (int) mid.getY() + FACTOR_HALF;
@@ -71,7 +77,7 @@ public final class Block extends AbstractGameObject implements IBlock {
     public void saveState() {
         savedPolys = new IPolygon[getNumberPolygons()];
         for (int i = 0; i < getNumberPolygons(); i++) {
-            savedPolys[i] = GeoFactory.createPolygon();
+            savedPolys[i] = GEO_INJECTOR.getInstance(IPolygon.class);
             savedPolys[i].copy(getPolygon(i));
         }
     }

@@ -2,12 +2,14 @@ package de.htwg.se.ubongo.model.geo.imp;
 
 import java.util.Locale;
 
+
 import de.htwg.se.ubongo.model.geo.IPoint;
 import de.htwg.se.ubongo.model.geo.IVector;
 
 /** Implementation of IPoint. */
 public final class Point2D implements IPoint {
 
+    
     private static final double FACTOR_DOUBLE = 2;
 
     private double x = 0;
