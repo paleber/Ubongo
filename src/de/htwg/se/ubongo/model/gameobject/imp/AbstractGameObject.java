@@ -32,7 +32,7 @@ abstract class AbstractGameObject implements IGameObject {
     @Override
     public final void setMid(final IPoint p) {
         IVector v = GeoModule.createVector();
-        v.stretchBetween(p, calcMid());
+        v.stretchBetween(calcMid(), p);
         for (IPolygon poly : polys) {
             poly.move(v);
         }
@@ -87,7 +87,7 @@ abstract class AbstractGameObject implements IGameObject {
 
             @Override
             public boolean hasNext() {
-                return index <= polys.length;
+                return index < polys.length;
             }
 
             @Override

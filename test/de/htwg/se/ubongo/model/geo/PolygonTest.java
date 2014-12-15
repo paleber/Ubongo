@@ -1,13 +1,13 @@
 package de.htwg.se.ubongo.model.geo;
 
-import static org.junit.Assert.*;
+import static org.junit.Assert.assertEquals;
 
 import org.junit.Before;
 import org.junit.Test;
 
 import de.htwg.se.ubongo.model.geo.module.GeoModule;
 
-public class PolygonTest {
+public final class PolygonTest {
 
     private static final double DELTA = 1e-9;
 
@@ -95,6 +95,11 @@ public class PolygonTest {
             index++;
         }
         assertEquals(poly.getNumberPoints(), index);
+    }
+    
+    @Test(expected = UnsupportedOperationException.class)
+    public void testIteratorUnsupportedOperationException() {
+        poly.iterator().remove();
     }
 
     @Test
