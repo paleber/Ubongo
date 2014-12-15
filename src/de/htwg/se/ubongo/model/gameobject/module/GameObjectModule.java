@@ -1,4 +1,4 @@
-package de.htwg.se.ubongo;
+package de.htwg.se.ubongo.model.gameobject.module;
 
 import com.google.inject.AbstractModule;
 import com.google.inject.Guice;

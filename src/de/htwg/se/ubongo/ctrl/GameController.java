@@ -8,7 +8,7 @@ import de.htwg.se.ubongo.model.gameobject.IBoard;
 import de.htwg.se.ubongo.model.geo.IVector;
 import de.htwg.se.ubongo.model.geo.module.GeoModule;
 import de.htwg.se.ubongo.model.loader.IResourceLoader;
-import de.htwg.se.ubongo.model.loader.ResourceLoader;
+import de.htwg.se.ubongo.model.loader.module.LoaderModule;
 
 /** Game Controller. */
 public final class GameController extends UbongoSubController<GameSubject> {
@@ -55,7 +55,7 @@ public final class GameController extends UbongoSubController<GameSubject> {
 
     @Override
     protected void onStart() {
-        IResourceLoader loader = ResourceLoader.getInstance();
+        IResourceLoader loader = LoaderModule.getResourceLoaderInstance();
        
         board = loader.createBoard(0);
 
