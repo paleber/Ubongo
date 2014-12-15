@@ -2,10 +2,6 @@ package de.htwg.se.ubongo.model.geo.imp;
 
 import java.util.Iterator;
 
-import com.google.inject.Guice;
-import com.google.inject.Injector;
-
-import de.htwg.se.ubongo.GeoModule;
 import de.htwg.se.ubongo.model.geo.IPoint;
 import de.htwg.se.ubongo.model.geo.IPolygon;
 import de.htwg.se.ubongo.model.geo.IVector;
@@ -18,14 +14,14 @@ public final class Polygon2D implements IPolygon {
 
     @Override
     public void setPoints(final IPoint[] point) {
-        this.point = point;
+        this.point = point.clone();
     }
 
     @Override
     public void copy(final IPolygon other) {
         point = new IPoint[other.getNumberPoints()];
         for (int i = 0; i < point.length; i++) {
-            point[i] = GeoModule.createPoint();
+            point[i] = new Point2D();
             point[i].copy(other.getPoint(i));
         }
     }
@@ -71,7 +67,7 @@ public final class Polygon2D implements IPolygon {
         double x = (xMin + xMax) * FACTOR_HALF;
         double y = (yMin + yMax) * FACTOR_HALF;
 
-        IPoint mid = GeoModule.createPoint();
+        IPoint mid = new Point2D();
         mid.set(x, y);
         return mid;
     }
