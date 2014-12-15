@@ -16,7 +16,7 @@ abstract class AbstractGameObject implements IGameObject {
 
     @Override
     public final void setPolygons(final IPolygon[] polys) {
-        this.polys = polys;
+        this.polys = polys.clone();
     }
 
     @Override

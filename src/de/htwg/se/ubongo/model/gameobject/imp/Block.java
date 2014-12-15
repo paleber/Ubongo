@@ -1,8 +1,5 @@
 package de.htwg.se.ubongo.model.gameobject.imp;
 
-import com.google.inject.Guice;
-import com.google.inject.Injector;
-
 import de.htwg.se.ubongo.GeoModule;
 import de.htwg.se.ubongo.model.gameobject.IBlock;
 import de.htwg.se.ubongo.model.geo.IPoint;

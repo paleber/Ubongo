@@ -6,20 +6,20 @@ import de.htwg.se.ubongo.model.geo.IVector;
 /** Interface for Blocks. */
 public interface IBlock extends IGameObject {
 
-    public void move(IVector v);
+    void move(IVector v);
 
-    public void rotateLeft();
+    void rotateLeft();
 
-    public void rotateRight();
+    void rotateRight();
 
     void mirrorVertical();
 
     void mirrorHorizontal();
 
-    public IPoint[] calcAnchoredMids();
+    IPoint[] calcAnchoredMids();
 
-    public void saveState();
+    void saveState();
 
-    public void loadState();
+    void loadState();
 
 }
