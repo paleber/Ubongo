@@ -1,4 +1,4 @@
-package de.htwg.se.ubongo;
+package de.htwg.se.ubongo.model.geo.module;
 
 import com.google.inject.AbstractModule;
 import com.google.inject.Guice;

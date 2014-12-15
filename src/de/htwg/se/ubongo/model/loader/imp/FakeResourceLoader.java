@@ -1,11 +1,11 @@
 package de.htwg.se.ubongo.model.loader.imp;
 
 import de.htwg.se.ubongo.GameObjectModule;
-import de.htwg.se.ubongo.GeoModule;
 import de.htwg.se.ubongo.model.gameobject.IBlock;
 import de.htwg.se.ubongo.model.gameobject.IBoard;
 import de.htwg.se.ubongo.model.geo.IPoint;
 import de.htwg.se.ubongo.model.geo.IPolygon;
+import de.htwg.se.ubongo.model.geo.module.GeoModule;
 import de.htwg.se.ubongo.model.loader.IResourceLoader;
 
 /** Fake resource loader. */

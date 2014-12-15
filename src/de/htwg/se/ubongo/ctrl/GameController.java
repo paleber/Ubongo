@@ -3,10 +3,10 @@ package de.htwg.se.ubongo.ctrl;
 import java.util.ArrayList;
 import java.util.List;
 
-import de.htwg.se.ubongo.GeoModule;
 import de.htwg.se.ubongo.model.gameobject.IBlock;
 import de.htwg.se.ubongo.model.gameobject.IBoard;
 import de.htwg.se.ubongo.model.geo.IVector;
+import de.htwg.se.ubongo.model.geo.module.GeoModule;
 import de.htwg.se.ubongo.model.loader.IResourceLoader;
 import de.htwg.se.ubongo.model.loader.ResourceLoader;
 

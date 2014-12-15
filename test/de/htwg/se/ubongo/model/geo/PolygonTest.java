@@ -5,7 +5,7 @@ import static org.junit.Assert.*;
 import org.junit.Before;
 import org.junit.Test;
 
-import de.htwg.se.ubongo.GeoModule;
+import de.htwg.se.ubongo.model.geo.module.GeoModule;
 
 public class PolygonTest {
 

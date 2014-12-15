@@ -1,10 +1,10 @@
 package de.htwg.se.ubongo.model.gameobject.imp;
 
-import de.htwg.se.ubongo.GeoModule;
 import de.htwg.se.ubongo.model.gameobject.IBlock;
 import de.htwg.se.ubongo.model.geo.IPoint;
 import de.htwg.se.ubongo.model.geo.IPolygon;
 import de.htwg.se.ubongo.model.geo.IVector;
+import de.htwg.se.ubongo.model.geo.module.GeoModule;
 
 /** Implementation of IBlock. */
 public final class Block extends AbstractGameObject implements IBlock {
