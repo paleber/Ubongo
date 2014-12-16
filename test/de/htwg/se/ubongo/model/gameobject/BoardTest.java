@@ -5,11 +5,40 @@ import java.util.List;
 
 import org.junit.Test;
 
-/** Tests for Board.
- * @author Patrick Leber
- * @version 17.11.2014 */
+import de.htwg.se.ubongo.model.gameobject.module.GameObjectModule;
+import de.htwg.se.ubongo.model.geo.IPoint;
+import de.htwg.se.ubongo.model.geo.IPolygon;
+import de.htwg.se.ubongo.model.geo.module.GeoModule;
+
+
 public final class BoardTest {
 
+    private IBlock block2H = GameObjectModule.createBlock();
+    
+    public BoardTest() {
+        
+        // Create block2H
+        IPolygon[] polys = new IPolygon[2];
+        
+        IPoint[] p = new IPoint[1];
+        p[0] = GeoModule.createPoint();
+        p[0].set(0, 0);
+        polys[0] = GeoModule.createPolygon();
+        polys[0].setPoints(p);
+        
+        p = new IPoint[1];
+        p[0] = GeoModule.createPoint();
+        p[0].set(1, 0);
+        polys[1] = GeoModule.createPolygon();
+        polys[1].setPoints(p);
+        
+        block2H.setPolygons(polys);
+       
+        
+        
+        
+    }
+    
     private static final List<Integer> LIST_BLOCK_2H = new ArrayList<>();
     static {
         int[] coords = { 0, 0, 1, 0 };

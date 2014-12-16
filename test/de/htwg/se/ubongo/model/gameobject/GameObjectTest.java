@@ -3,10 +3,6 @@ package de.htwg.se.ubongo.model.gameobject;
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertTrue;
 
-import java.util.ArrayList;
-import java.util.LinkedList;
-import java.util.List;
-
 import org.junit.Before;
 import org.junit.Test;
 
@@ -18,19 +14,7 @@ import de.htwg.se.ubongo.model.geo.module.GeoModule;
 
 public class GameObjectTest {
 
-    private static final double DELTA = 1e-9;
-
-    private static final List<Integer> LIST_T_BLOCK = new ArrayList<>();
-    static {
-        int[] coords = { 0, 0, 1, 0, 2, 0, 1, 1 };
-        for (Integer i : coords) {
-            LIST_T_BLOCK.add(i);
-        }
-    }
-    // private static final AbstractGameObject T_BLOCK = new
-    // Block(LIST_T_BLOCK);
-
-    IGameObject go = GameObjectModule.createBlock();
+    private final IGameObject go = GameObjectModule.createBlock();
 
     public GameObjectTest() {
         IPoint[] p = new IPoint[3];

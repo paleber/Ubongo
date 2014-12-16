@@ -143,7 +143,7 @@ public final class GameController extends UbongoSubController<GameSubject> {
             s.onDropBlock();
         }
 
-        if (board.checkAllPolygonsTaken()) {
+        if (board.checkFull()) {
             for (GameSubject s : getSubjects()) {
                 s.onWin();
             }

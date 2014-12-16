@@ -90,7 +90,7 @@ public final class Board extends AbstractGameObject implements IBoard {
     }
 
     @Override
-    public boolean checkAllPolygonsTaken() {
+    public boolean checkFull() {
         for (Field f : fields) {
             if (!f.full) {
                 return false;

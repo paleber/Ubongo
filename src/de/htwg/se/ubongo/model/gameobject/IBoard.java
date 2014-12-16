@@ -8,6 +8,6 @@ public interface IBoard extends IGameObject {
 
     boolean removeBlock(final IBlock block);
 
-    boolean checkAllPolygonsTaken();
+    boolean checkFull();
     
 }
