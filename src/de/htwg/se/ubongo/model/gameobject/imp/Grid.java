@@ -20,17 +20,13 @@ public final class Grid implements IGrid {
 
     private static final double DELTA = 1e-3;
 
-    
-    
-    private Map<IBlock, Anchors> map = new TreeMap<>();
-    
-    private List<IBlock> list = new LinkedList<>();
-    
     private final List<IPoint> freeAnchors = new LinkedList<>();
-    private final List<IPoint> boardAnchors = new LinkedList<>();
-    private final List<IPoint> boardBlockedAnchors = new LinkedList<>();
 
-    private static final class Anchors {
+    private IBlock board;
+    private BlockAnchors boardAnchors = new BlockAnchors();
+    private Map<IBlock, BlockAnchors> blockMap = new TreeMap<>();
+
+    private static final class BlockAnchors {
         private final List<IPoint> used = new LinkedList<IPoint>();
         private final List<IPoint> blocked = new LinkedList<IPoint>();
     }
@@ -63,14 +59,21 @@ public final class Grid implements IGrid {
     }
 
     private void reset() {
-        for(Anchors a: map.values()) {
+        freeAnchors.addAll(boardAnchors.used);
+        boardAnchors.used.clear();
+        freeAnchors.addAll(boardAnchors.blocked);
+        boardAnchors.blocked.clear();
+
+        for (BlockAnchors a : blockMap.values()) {
             freeAnchors.addAll(a.used);
+            // a.used.clear();
             freeAnchors.addAll(a.blocked);
+            // a.blocked.clear();
         }
-        map.clear();
+        blockMap.clear();
     }
 
-    private void initBoard(IBlock board) {
+    private void initBoard(final IBlock board) {
         IPoint mid = GeoModule.createPoint();
         mid.set(WIDTH * FACTOR_HALF, HEIGHT * FACTOR_HALF);
         board.setMid(mid);
