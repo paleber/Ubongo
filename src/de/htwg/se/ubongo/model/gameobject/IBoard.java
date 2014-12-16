@@ -1,8 +1,7 @@
 package de.htwg.se.ubongo.model.gameobject;
 
-/** Interface for Board.
- *  */
-public interface IBoard extends IGameObject {  
+@Deprecated // use IGrid
+public interface IBoard extends IGameObject {
 
     boolean addBlock(final IBlock block);
 
