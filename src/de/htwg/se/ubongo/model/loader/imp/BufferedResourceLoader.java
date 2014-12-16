@@ -1,7 +1,6 @@
 package de.htwg.se.ubongo.model.loader.imp;
 
 import de.htwg.se.ubongo.model.gameobject.IBlock;
-import de.htwg.se.ubongo.model.gameobject.IBoard;
 import de.htwg.se.ubongo.model.loader.IResourceLoader;
 
 // TODO hier den Code aus BlockLoader und BoardLoader reinmachen
@@ -15,7 +14,7 @@ public final class BufferedResourceLoader implements IResourceLoader {
     }
 
     @Override
-    public IBoard createBoard(int index) {
+    public IBlock createBoard(int index) {
         // TODO Auto-generated method stub
         return null;
     }

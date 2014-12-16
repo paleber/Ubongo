@@ -1,7 +1,5 @@
 package de.htwg.se.ubongo.model.loader.imp;
 
-import de.htwg.se.ubongo.model.gameobject.imp.Board;
-
 import java.io.BufferedReader;
 import java.io.FileReader;
 import java.io.IOException;
@@ -9,6 +7,8 @@ import java.util.LinkedList;
 import java.util.List;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+
+import de.htwg.se.ubongo.model.gameobject.imp.Block;
 
 @Deprecated // FIXME Implement in BufferedResourceLoader
 /**
@@ -24,9 +24,9 @@ public final class BoardLoader {
     private BoardLoader() {
     }
 
-    private static final Board[] BOARDSTORE = new Board[NUM_BOARDS];
+    private static final Block[] BOARDSTORE = new Block[NUM_BOARDS];
 
-    public static Board getBoard(int boardnum) {
+    public static Block getBoard(int boardnum) {
         if (boardnum >= NUM_BOARDS) {
             throw new IllegalArgumentException("board out of range");
         }
@@ -38,8 +38,8 @@ public final class BoardLoader {
         return BOARDSTORE[boardnum];
     }
 
-    private static Board loadBoard(int boardnum) {
-        Board board = null;
+    private static Block loadBoard(int boardnum) {
+        Block board = null;
 
         try (BufferedReader reader = new BufferedReader(new FileReader(
                 "res/boards/" + boardnum))) {

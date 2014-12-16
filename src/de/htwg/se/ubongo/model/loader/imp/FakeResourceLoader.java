@@ -1,7 +1,6 @@
 package de.htwg.se.ubongo.model.loader.imp;
 
 import de.htwg.se.ubongo.model.gameobject.IBlock;
-import de.htwg.se.ubongo.model.gameobject.IBoard;
 import de.htwg.se.ubongo.model.gameobject.module.GameObjectModule;
 import de.htwg.se.ubongo.model.geo.IPoint;
 import de.htwg.se.ubongo.model.geo.IPolygon;
@@ -30,12 +29,12 @@ public final class FakeResourceLoader implements IResourceLoader {
     }
 
     @Override
-    public IBoard createBoard(final int index) {
+    public IBlock createBoard(final int index) {
         if (index != 0) {
             throw new IllegalArgumentException();
         }
 
-        IBoard board = GameObjectModule.createBoard();
+        IBlock board = GameObjectModule.createBlock();
 
         IPolygon[] polys = new IPolygon[BOARD_LIST.length];
         for (int j = 0; j < polys.length / 2; j++) {

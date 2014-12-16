@@ -4,7 +4,6 @@ import java.util.ArrayList;
 import java.util.List;
 
 import de.htwg.se.ubongo.model.gameobject.IBlock;
-import de.htwg.se.ubongo.model.gameobject.IBoard;
 import de.htwg.se.ubongo.model.geo.IVector;
 import de.htwg.se.ubongo.model.geo.module.GeoModule;
 import de.htwg.se.ubongo.model.loader.IResourceLoader;
@@ -41,7 +40,7 @@ public final class GameController extends UbongoSubController<GameSubject> {
         }
     }
 
-    private IBoard board;
+    private IBlock board;
     private IBlock[] block;
 
     public GameController(MainController main) {
@@ -102,7 +101,7 @@ public final class GameController extends UbongoSubController<GameSubject> {
             return;
         }
 
-        board.removeBlock(selected);
+        //board.removeBlock(selected);
 
         for (GameSubject s : getSubjects()) {
             s.onSelectBlock(index);
@@ -134,21 +133,21 @@ public final class GameController extends UbongoSubController<GameSubject> {
     }
 
     public void drop() {
-        if (!board.addBlock(selected)) {
-            selected.loadState();
-        }
+      //  if (!board.addBlock(selected)) {
+         //   selected.loadState();
+     //   }
 
         selected = null;
         for (GameSubject s : getSubjects()) {
             s.onDropBlock();
         }
 
-        if (board.checkFull()) {
-            for (GameSubject s : getSubjects()) {
-                s.onWin();
-            }
-            this.switchToMenu();
-        }
+       // if (board.checkFull()) {
+      //      for (GameSubject s : getSubjects()) {
+//                s.onWin();
+//            }
+//            this.switchToMenu();
+//        }
     }
 
     public void rotateRight() {
