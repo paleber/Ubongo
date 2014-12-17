@@ -5,6 +5,7 @@ import static org.junit.Assert.assertEquals;
 import org.junit.Before;
 import org.junit.Test;
 
+import de.htwg.se.ubongo.model.geo.imp.Vector2D;
 import de.htwg.se.ubongo.model.geo.module.GeoModule;
 
 /** Tests for IVector with Implementations. */
@@ -61,5 +62,25 @@ public class VectorTest {
     public static void testNearlyEquals(IVector v, IVector u) {
         assertEquals(v.getX(), u.getX(), DELTA);
         assertEquals(v.getY(), u.getY(), DELTA);
+    }
+    
+    @Test
+    public void testSetAngle() {
+        Vector2D v = new Vector2D();
+        v.setAngle(0);
+        u.set(1, 0);
+        testNearlyEquals(u, v);
+        v.setAngle(90);
+        u.set(0, 1);
+        testNearlyEquals(u, v);
+    }
+    
+    @Test
+    public void testSetLength() {
+        Vector2D v = new Vector2D();
+        v.setAngle(0);
+        v.setLength(2.5);
+        u.set(2.5, 0);
+        testNearlyEquals(u, v);
     }
 }
