@@ -20,20 +20,10 @@ public final class Grid implements IGrid {
 
     private static final double DELTA = 1e-3;
 
-    
-    
-    private Map<IBlock, Anchors> map = new TreeMap<>();
-    
-    private List<IBlock> list = new LinkedList<>();
-    
     private final List<IPoint> freeAnchors = new LinkedList<>();
     private final List<IPoint> boardAnchors = new LinkedList<>();
-    private final List<IPoint> boardBlockedAnchors = new LinkedList<>();
-
-    private static final class Anchors {
-        private final List<IPoint> used = new LinkedList<IPoint>();
-        private final List<IPoint> blocked = new LinkedList<IPoint>();
-    }
+    private final List<IPoint> blockedAnchors = new LinkedList<>();
+    private Map<IBlock, List<IPoint>> map = new TreeMap<>();
 
     public Grid() {
         for (double x = 0; x < WIDTH + DELTA; x += FACTOR_HALF) {
@@ -63,9 +53,14 @@ public final class Grid implements IGrid {
     }
 
     private void reset() {
-        for(Anchors a: map.values()) {
-            freeAnchors.addAll(a.used);
-            freeAnchors.addAll(a.blocked);
+        freeAnchors.addAll(boardAnchors);
+        boardAnchors.clear();
+
+        freeAnchors.addAll(blockedAnchors);
+        blockedAnchors.clear();
+
+        for (List<IPoint> l : map.values()) {
+            freeAnchors.addAll(l);
         }
         map.clear();
     }
@@ -74,6 +69,22 @@ public final class Grid implements IGrid {
         IPoint mid = GeoModule.createPoint();
         mid.set(WIDTH * FACTOR_HALF, HEIGHT * FACTOR_HALF);
         board.setMid(mid);
+
+        // search anchor points
+        IPoint[] points = board.calcAnchoredMids();
+        for (IPoint point : points) {
+            boardAnchors.add(getFreeAnchor(point));
+        }
+    }
+
+    private IPoint getFreeAnchor(IPoint point) {
+        for (IPoint p : freeAnchors) {
+            if (point.distanceSquareTo(p) < DELTA) {
+                freeAnchors.remove(p);
+                return p;
+            }
+        }
+        throw new IllegalArgumentException("free anchor not found");
     }
 
     private void initBlocks(IBlock[] blocks) {

@@ -6,7 +6,7 @@ import com.google.inject.Injector;
 import com.google.inject.Singleton;
 
 import de.htwg.se.ubongo.model.loader.IResourceLoader;
-import de.htwg.se.ubongo.model.loader.imp.FakeResourceLoader;
+import de.htwg.se.ubongo.model.loader.fake.FakeResourceLoader;
 
 /** Module for Loader. */
 public class LoaderModule extends AbstractModule {
