@@ -59,7 +59,6 @@ public final class PointTest {
 
     @Test
     public void testRotateAround() {
-
         q.set(0, 3);
         q.rotateAround(90, p);
         p.set(-3, 0);
@@ -86,6 +85,7 @@ public final class PointTest {
     
     @Test
     public void testDiffsToLessThan() {
+        assertFalse(p.diffsToLessThan(q, 2));
         assertFalse(p.diffsToLessThan(q, 3));
         assertTrue(p.diffsToLessThan(q, 3.01));
     }

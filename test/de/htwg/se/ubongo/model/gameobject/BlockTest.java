@@ -1,5 +1,6 @@
 package de.htwg.se.ubongo.model.gameobject;
 
+import static org.junit.Assert.assertFalse;
 import static org.junit.Assert.assertTrue;
 
 import org.junit.Before;
@@ -9,7 +10,6 @@ import de.htwg.se.ubongo.model.gameobject.module.GameObjectModule;
 import de.htwg.se.ubongo.model.geo.IPoint;
 import de.htwg.se.ubongo.model.geo.IPolygon;
 import de.htwg.se.ubongo.model.geo.IVector;
-import de.htwg.se.ubongo.model.geo.PointTest;
 import de.htwg.se.ubongo.model.geo.module.GeoModule;
 
 public final class BlockTest {
@@ -85,9 +85,17 @@ public final class BlockTest {
         IPoint p = GeoModule.createPoint();
         p.set(0.5, 0.5);
         assertTrue(p.diffsToLessThan(go.calcAnchoredMids()[0], DELTA));
+        
         v.set(0.48, 0.48);
         go.move(v);
+        System.out.println(go.getPolygon(0).calcMid());
+        System.out.println("Test:" + go.calcAnchoredMids()[0]);
+        
         assertTrue(p.diffsToLessThan(go.calcAnchoredMids()[0], DELTA));
+        
+        v.set(0.03, 0.03);
+        go.move(v);
+        assertFalse(p.diffsToLessThan(go.calcAnchoredMids()[0], DELTA));
     }
 
     @Test

@@ -10,7 +10,7 @@ import de.htwg.se.ubongo.model.geo.module.GeoModule;
 public final class Block extends AbstractGameObject implements IBlock {
 
     private static final double ROTATE_STEP = 90;
-    private static final double FACTOR_HALF = 0.5d;
+    private static final double FACTOR_HALF = 0.5;
 
     private IPolygon[] savedPolys;
 
@@ -60,8 +60,8 @@ public final class Block extends AbstractGameObject implements IBlock {
         for (int i = 0; i < getNumberPolygons(); i++) {
             aMid[i] = GeoModule.createPoint();
             IPoint mid = getPolygon(i).calcMid();
-            double x = (int) mid.getX() + FACTOR_HALF;
-            double y = (int) mid.getY() + FACTOR_HALF;
+            double x = (int) (mid.getX() * 2 + FACTOR_HALF) * FACTOR_HALF  ;
+            double y = (int) (mid.getY() * 2 + FACTOR_HALF) * FACTOR_HALF ;
             aMid[i].set(x, y);
         }
         return aMid;

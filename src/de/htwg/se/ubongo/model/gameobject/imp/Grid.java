@@ -8,13 +8,16 @@ import java.util.TreeMap;
 import de.htwg.se.ubongo.model.gameobject.IBlock;
 import de.htwg.se.ubongo.model.gameobject.IGrid;
 import de.htwg.se.ubongo.model.geo.IPoint;
+import de.htwg.se.ubongo.model.geo.IPolygon;
 import de.htwg.se.ubongo.model.geo.module.GeoModule;
 
 /** Implementation of IGrid. */
 public final class Grid implements IGrid {
 
-    private static final double WIDTH = 12;
-    private static final double HEIGHT = 12;
+    private static final double BOARD_FRAME_SIZE = 1.1;
+
+    private static final double WIDTH = 7;
+    private static final double HEIGHT = 7;
 
     private static final double FACTOR_HALF = 0.5;
 
@@ -27,13 +30,14 @@ public final class Grid implements IGrid {
     private final Map<IBlock, List<IPoint>> mapBoard = new TreeMap<>();
 
     public Grid() {
-        for (double x = 0; x < WIDTH + DELTA; x += FACTOR_HALF) {
-            for (double y = 0; y < HEIGHT + DELTA; y += FACTOR_HALF) {
+        for (double x = FACTOR_HALF; x < WIDTH - DELTA; x += FACTOR_HALF) {
+            for (double y = FACTOR_HALF; y < HEIGHT - DELTA; y += FACTOR_HALF) {
                 IPoint p = GeoModule.createPoint();
                 p.set(x, y);
                 freeAnchors.add(p);
             }
         }
+        System.out.println("Init: Free: " + freeAnchors.size());
     }
 
     @Override
@@ -51,6 +55,7 @@ public final class Grid implements IGrid {
         reset();
         initBoard(board);
         initBlocks(blocks);
+        printGrid();
     }
 
     private void reset() {
@@ -76,18 +81,43 @@ public final class Grid implements IGrid {
         mid.set(WIDTH / 2, HEIGHT / 2);
         board.setMid(mid);
 
+        for(IPolygon poly: board) {
+            System.out.println("her: " + poly.calcMid());
+        }
+        
         // search anchor points
         IPoint[] points = board.calcAnchoredMids();
         for (IPoint point : points) {
+            System.out.println("Cale: " + point);
             boardAnchors.add(getFreeAnchor(point));
         }
         
+        
+
+        System.out.println("BoardAnchors: " + boardAnchors.size());
+
         // block anchor around board
+        for (IPoint free : freeAnchors) {
+            for (IPoint b : boardAnchors) {
+                if (free.diffsToLessThan(b, BOARD_FRAME_SIZE)) {
+                    blockedAnchors.add(free);
+                    break;
+                }
+            }
+        }
+        freeAnchors.removeAll(blockedAnchors);
+        System.out.println("BlockedAnchors: " + blockedAnchors.size());
+
+        System.out.println("Free: " + freeAnchors.size());
+
     }
 
     private IPoint getFreeAnchor(IPoint point) {
         for (IPoint p : freeAnchors) {
-            if (point.distanceSquareTo(p) < DELTA) {
+            if (point.diffsToLessThan(p, DELTA)) {
+                //System.out.println(point + " == " + p);
+                
+                
                 freeAnchors.remove(p);
                 return p;
             }
@@ -117,4 +147,35 @@ public final class Grid implements IGrid {
 
     }
 
+    private void printGrid() {
+        char[][] a = new char[(int) (WIDTH * 2 + DELTA) + 1][(int) (HEIGHT * 2 + DELTA) + 1];
+
+        for (int x = 0; x < a.length; x++) {
+            for (int y = 0; y < a[x].length; y++) {
+                a[x][y] = ' ';
+            }
+        }
+
+        for (IPoint p : freeAnchors) {
+            //System.out.println(p);
+            int x = (int) (p.getX() * 2 + DELTA);
+            int y = (int) (p.getY() * 2 + DELTA);
+            a[x][y] = 'F';
+        }
+        
+        for (IPoint p : boardAnchors) {
+            System.out.println(p);
+            int x = (int) (p.getX() * 2 + DELTA);
+            int y = (int) (p.getY() * 2 + DELTA);
+            a[x][y] = 'B';
+        }
+
+        for (int y = 0; y < a[0].length; y++) {
+            StringBuilder b = new StringBuilder();
+            for (int x = 0; x < a.length; x++) {
+                b.append(a[x][y]).append(' ');
+            }
+            System.out.println(b);
+        }
+    }
 }
