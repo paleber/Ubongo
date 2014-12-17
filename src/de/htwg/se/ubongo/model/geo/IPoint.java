@@ -1,6 +1,8 @@
 package de.htwg.se.ubongo.model.geo;
 
 /** Interface for Points. */
+/** TODO
+ *  */
 public interface IPoint {
 
     /** Get the x-value.
@@ -57,4 +59,6 @@ public interface IPoint {
      * @return point as string */
     String toString();
 
+    
+    
 }

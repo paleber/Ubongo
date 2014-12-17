@@ -25,8 +25,8 @@ public class GridTest {
     
     @Test
     public void testGetWidthAndHeight() {
-        assertEquals(12, grid.getWidth(), 0);
-        assertEquals(6, grid.getHeight(), 0);
+        assertEquals(10, grid.getWidth(), 0);
+        assertEquals(7, grid.getHeight(), 0);
     }
     
     @Test
