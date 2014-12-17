@@ -1,6 +1,8 @@
 package de.htwg.se.ubongo.model.geo;
 
 import static org.junit.Assert.assertEquals;
+import static org.junit.Assert.assertFalse;
+import static org.junit.Assert.assertTrue;
 
 import org.junit.Before;
 import org.junit.Test;
@@ -31,7 +33,7 @@ public final class PointTest {
     @Test
     public void testCopy() {
         p.copy(q);
-        testNearlyEquals(p, q);
+        p.diffsToLessThan(q, DELTA);
     }
 
     @Test
@@ -40,7 +42,7 @@ public final class PointTest {
         v.set(4, 5);
         q.move(v);
         p.set(6, 8);
-        testNearlyEquals(p, q);
+        p.diffsToLessThan(q, DELTA);
     }
 
     @Test
@@ -61,7 +63,7 @@ public final class PointTest {
         q.set(0, 3);
         q.rotateAround(90, p);
         p.set(-3, 0);
-        testNearlyEquals(p, q);
+        p.diffsToLessThan(q, DELTA);
 
     }
 
@@ -81,9 +83,12 @@ public final class PointTest {
     public void testToString() {
         assertEquals("(2.000|3.000)", q.toString());
     }
-
-    public static void testNearlyEquals(IPoint p, IPoint q) {
-        assertEquals(p.getX(), q.getX(), DELTA);
-        assertEquals(p.getY(), q.getY(), DELTA);
+    
+    @Test
+    public void testDiffsToLessThan() {
+        assertFalse(p.diffsToLessThan(q, 3));
+        assertTrue(p.diffsToLessThan(q, 3.01));
     }
+
+   
 }

@@ -2,6 +2,7 @@ package de.htwg.se.ubongo.model.loader;
 
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertFalse;
+import static org.junit.Assert.assertTrue;
 import static org.junit.Assert.fail;
 
 import org.junit.Test;
@@ -15,6 +16,7 @@ import de.htwg.se.ubongo.model.loader.fake.FakeResourceLoader;
 public class FakeLoaderTest {
 
     private static final IResourceLoader loader = new FakeResourceLoader();
+    private static final double DELTA = 1e-9;
 
     @Test
     public void testGetNumberBoards() {
@@ -32,13 +34,13 @@ public class FakeLoaderTest {
         }
         IPoint p = GeoModule.createPoint();
         p.set(0,0);
-        PointTest.testNearlyEquals(p, board.getPolygon(0).getPoint(0));
+        assertTrue(p.diffsToLessThan(board.getPolygon(0).getPoint(0), DELTA));
         p.set(1,0);
-        PointTest.testNearlyEquals(p, board.getPolygon(0).getPoint(1));
+        assertTrue(p.diffsToLessThan(board.getPolygon(0).getPoint(1), DELTA));
         p.set(1,1);
-        PointTest.testNearlyEquals(p, board.getPolygon(0).getPoint(2));
+        assertTrue(p.diffsToLessThan(board.getPolygon(0).getPoint(2), DELTA));
         p.set(0,1);
-        PointTest.testNearlyEquals(p, board.getPolygon(0).getPoint(3));
+        assertTrue(p.diffsToLessThan(board.getPolygon(0).getPoint(3), DELTA));
     }
 
     @Test(expected = IllegalArgumentException.class)
@@ -66,14 +68,14 @@ public class FakeLoaderTest {
         }
         
         IPoint p = GeoModule.createPoint();
-        p.set(0, 0);
-        PointTest.testNearlyEquals(p, blocks[0].getPolygon(0).getPoint(0));
-        p.set(1, 0);
-        PointTest.testNearlyEquals(p, blocks[0].getPolygon(0).getPoint(1));
-        p.set(1, 1);
-        PointTest.testNearlyEquals(p, blocks[0].getPolygon(0).getPoint(2));
-        p.set(0, 1);
-        PointTest.testNearlyEquals(p, blocks[0].getPolygon(0).getPoint(3));
+        p.set(0,0);
+        assertTrue(p.diffsToLessThan(blocks[0].getPolygon(0).getPoint(0), DELTA));
+        p.set(1,0);
+        assertTrue(p.diffsToLessThan(blocks[0].getPolygon(0).getPoint(1), DELTA));
+        p.set(1,1);
+        assertTrue(p.diffsToLessThan(blocks[0].getPolygon(0).getPoint(2), DELTA));
+        p.set(0,1);
+        assertTrue(p.diffsToLessThan(blocks[0].getPolygon(0).getPoint(3), DELTA));
     }
 
     @Test

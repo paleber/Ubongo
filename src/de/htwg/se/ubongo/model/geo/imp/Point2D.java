@@ -2,14 +2,12 @@ package de.htwg.se.ubongo.model.geo.imp;
 
 import java.util.Locale;
 
-
 import de.htwg.se.ubongo.model.geo.IPoint;
 import de.htwg.se.ubongo.model.geo.IVector;
 
 /** Implementation of IPoint. */
 public final class Point2D implements IPoint {
 
-    
     private static final double FACTOR_DOUBLE = 2;
 
     private double x = 0;
@@ -83,6 +81,19 @@ public final class Point2D implements IPoint {
     @Override
     public String toString() {
         return String.format(Locale.ENGLISH, "(%.3f|%.3f)", x, y);
+    }
+
+    @Override
+    public boolean diffsToLessThan(IPoint other, double tolerance) {
+        if (Math.abs(x - other.getX()) >= tolerance) {
+            return false;
+        }
+
+        if (Math.abs(y - other.getY()) >= tolerance) {
+            return false;
+        }
+
+        return true;
     }
 
 }

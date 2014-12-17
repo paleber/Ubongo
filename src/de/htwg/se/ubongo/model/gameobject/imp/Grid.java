@@ -23,7 +23,8 @@ public final class Grid implements IGrid {
     private final List<IPoint> freeAnchors = new LinkedList<>();
     private final List<IPoint> boardAnchors = new LinkedList<>();
     private final List<IPoint> blockedAnchors = new LinkedList<>();
-    private Map<IBlock, List<IPoint>> map = new TreeMap<>();
+    private final Map<IBlock, List<IPoint>> mapFree = new TreeMap<>();
+    private final Map<IBlock, List<IPoint>> mapBoard = new TreeMap<>();
 
     public Grid() {
         for (double x = 0; x < WIDTH + DELTA; x += FACTOR_HALF) {
@@ -59,15 +60,20 @@ public final class Grid implements IGrid {
         freeAnchors.addAll(blockedAnchors);
         blockedAnchors.clear();
 
-        for (List<IPoint> l : map.values()) {
+        for (List<IPoint> l : mapFree.values()) {
             freeAnchors.addAll(l);
         }
-        map.clear();
+        mapFree.clear();
+
+        for (List<IPoint> l : mapBoard.values()) {
+            freeAnchors.addAll(l);
+        }
+        mapBoard.clear();
     }
 
     private void initBoard(IBlock board) {
         IPoint mid = GeoModule.createPoint();
-        mid.set(WIDTH * FACTOR_HALF, HEIGHT * FACTOR_HALF);
+        mid.set(WIDTH / 2, HEIGHT / 2);
         board.setMid(mid);
 
         // search anchor points
@@ -75,6 +81,8 @@ public final class Grid implements IGrid {
         for (IPoint point : points) {
             boardAnchors.add(getFreeAnchor(point));
         }
+        
+        // block anchor around board
     }
 
     private IPoint getFreeAnchor(IPoint point) {

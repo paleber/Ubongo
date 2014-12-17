@@ -29,7 +29,7 @@ public final class GameObjectModule extends AbstractModule {
 
     /** Create a new Grid.
      * @return new Grid */
-    public static IGrid createBoard() {
+    public static IGrid createGrid() {
         return INJECTOR.getInstance(IGrid.class);
     }
 
