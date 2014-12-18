@@ -102,7 +102,6 @@ public final class Line2D {
         v.convertToNormal();
         Line2D n = new Line2D();
         n.setStartAngleLength(p, v.getAngleDegree(), 1);
-        System.out.println(n);
         return n;
     }
 

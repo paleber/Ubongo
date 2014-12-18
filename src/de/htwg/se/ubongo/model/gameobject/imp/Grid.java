@@ -4,7 +4,6 @@ import java.util.HashMap;
 import java.util.LinkedList;
 import java.util.List;
 import java.util.Map;
-import java.util.Map.Entry;
 
 import de.htwg.se.ubongo.model.gameobject.IBlock;
 import de.htwg.se.ubongo.model.gameobject.IGrid;
@@ -30,23 +29,22 @@ public final class Grid implements IGrid {
     private final List<IPoint> freeAnchors = new LinkedList<>();
     private final List<IPoint> boardAnchors = new LinkedList<>();
     private final List<IPoint> blockedAnchors = new LinkedList<>();
-   // private final Map<IBlock, List<IPoint>> mapFree = new HashMap<>();
-   // private final Map<IBlock, List<IPoint>> mapBoard = new HashMap<>();
-    
-    private final LinkedList<BlockAnchors> blockAnchors = new LinkedList<>();
+
+    private final List<BlockAnchors> blockAnchors = new LinkedList<>();
+
+    private BlockAnchors selected;
 
     private static final class BlockAnchors {
         private final IBlock block;
         private List<IPoint> source = null;
         private List<IPoint> used = new LinkedList<>();
         private List<IPoint> blocked = new LinkedList<>();
-        
-        private BlockAnchors(IBlock block) {
+
+        private BlockAnchors(final IBlock block) {
             this.block = block;
         }
     }
-    
-    
+
     public Grid() {
         for (double x = GRID_FRAME_SIZE; x < WIDTH - GRID_FRAME_SIZE + DELTA; x += FACTOR_HALF) {
             for (double y = GRID_FRAME_SIZE; y < HEIGHT - GRID_FRAME_SIZE
@@ -83,8 +81,8 @@ public final class Grid implements IGrid {
 
         freeAnchors.addAll(blockedAnchors);
         blockedAnchors.clear();
-        
-        for(BlockAnchors ba: blockAnchors) {
+
+        for (BlockAnchors ba : blockAnchors) {
             freeAnchors.addAll(ba.used);
             freeAnchors.addAll(ba.blocked);
         }
@@ -108,10 +106,8 @@ public final class Grid implements IGrid {
             boardAnchors.add(p);
         }
 
-        System.out.println("Blocked: " + blockedAnchors.size());
         blockedAnchors.addAll(pullFreeAnchorsBlockedBy(boardAnchors,
                 BOARD_FRAME_SIZE));
-        System.out.println("Blocked: " + blockedAnchors.size());
     }
 
     private List<IPoint> pullFreeAnchorsBlockedBy(List<IPoint> anchors,
@@ -132,7 +128,7 @@ public final class Grid implements IGrid {
         return blocked;
     }
 
-    private IPoint getAnchor(List<IPoint> anchorList, IPoint point) {
+    private IPoint getAnchor(final List<IPoint> anchorList, final IPoint point) {
         for (IPoint p : anchorList) {
             if (point.diffsToLessThan(p, DELTA)) {
                 return p;
@@ -141,58 +137,37 @@ public final class Grid implements IGrid {
         return null;
     }
 
-    private void initBlocks(IBlock[] blocks) {
+    private void initBlocks(final IBlock[] blocks) {
         IPoint mid = GeoModule.createPoint();
         mid.set(WIDTH / 2, HEIGHT / 2);
 
         for (IBlock b : blocks) {
-            
+
             BlockAnchors ba = new BlockAnchors(b);
-            //b.setMid(mid);
-            
+            // b.setMid(mid);
+
             sortAnchorsByDistanceTo(freeAnchors, mid);
-            
-            for(IPoint p: freeAnchors) {
-                tryAnchoring(anchor, anchorList, map)
-            }
-            
-            mapFree.put(b, new LinkedList<IPoint>());
-            for (IPoint free : freeAnchors) {
-                List<IPoint> anchors = moveBlockToAnchor(b, free);
-                if (anchors != null) {
-                    mapFree.get(b).addAll(anchors);
+
+            for (IPoint target : freeAnchors) {
+                if (tryAnchoring(ba, target, freeAnchors)) {
+                    System.out.println(freeAnchors.size());
+                    blockAnchors.add(ba);
+                    System.out.println("Used: " + ba.used.size());
+                    System.out.println("Blocked: " + ba.blocked.size());
                     break;
                 }
 
             }
-
-            if (mapFree.get(b).isEmpty()) {
-                throw new IllegalStateException();
-            }
-            freeAnchors.removeAll(mapFree.get(b));
-
-            mapFree.get(b)
-                    .addAll(pullFreeAnchorsBlockedBy(mapFree.get(b),
-                            BLOCK_FRAME_SIZE));
+            //System.out.println(blockAnchors.size() + "--");
+            
 
         }
-    }
-
-    private List<IPoint> moveBlockToAnchor(IBlock block, IPoint anchor) {
-        IVector v = GeoModule.createVector();
-        v.stretchBetween(block.calcMid(), anchor);
-        block.move(v);
-
-        List<IPoint> anchors = new LinkedList<>();
-        for (IPoint mid : block.calcAnchoredMids()) {
-            IPoint p = getAnchor(freeAnchors, mid);
-            if (p != null) {
-                anchors.add(p);
-            } else {
-                return null;
-            }
+        
+        if(blockAnchors.size() != blocks.length) {
+            throw new IllegalStateException();
         }
-        return anchors;
+        
+        
     }
 
     private void sortAnchorsByDistanceTo(List<IPoint> anchors, IPoint pivot) {
@@ -220,44 +195,42 @@ public final class Grid implements IGrid {
         return boardAnchors.size() == 0;
     }
 
-    private IBlock selectedBlock;
-
     @Override
     public IBlock selectBlock(final IPoint p) {
-        if (selectedBlock != null) {
+        if (selected != null) {
             throw new IllegalStateException();
         }
 
-        selectedBlock = getBlockAt(p);
-        if (selectedBlock == null) {
+        selected = getBlockAt(p);
+        if (selected == null) {
             return null;
         }
 
-        if (mapFree.containsKey(selectedBlock)) {
-            freeAnchors.addAll(mapFree.get(selectedBlock));
-            mapFree.remove(selectedBlock);
-        } else if (mapBoard.containsKey(selectedBlock)) {
-            freeAnchors.addAll(mapBoard.get(selectedBlock));
-            mapBoard.remove(selectedBlock);
-        } else {
-            throw new IllegalArgumentException();
+        BlockAnchors ba = getBlockAt(p);
+        if (ba == null) {
+            return null;
         }
-        return selectedBlock;
 
-        // TODO recalc blocked anchors
-       // for(IBlock)
+        freeAnchors.addAll(ba.used);
+        ba.used.clear();
+        freeAnchors.addAll(ba.blocked);
+        ba.blocked.clear();
+        ba.source = null;
 
-    }
-
-    private IBlock getBlockAt(IPoint p) {
-        for (IBlock b : mapFree.keySet()) {
-            if (b.contains(p)) {
-                return b;
+        for (BlockAnchors other : blockAnchors) {
+            if (other.source == freeAnchors) {
+                other.blocked.addAll(pullFreeAnchorsBlockedBy(other.used,
+                        BLOCK_FRAME_SIZE));
             }
         }
-        for (IBlock b : mapBoard.keySet()) {
-            if (b.contains(p)) {
-                return b;
+
+        return ba.block;
+    }
+
+    private BlockAnchors getBlockAt(IPoint p) {
+        for (BlockAnchors ba : blockAnchors) {
+            if (ba.block.contains(p)) {
+                return ba;
             }
         }
         return null;
@@ -265,24 +238,24 @@ public final class Grid implements IGrid {
 
     @Override
     public void dropBlock() {
-        if (selectedBlock == null) {
+        if (selected == null) {
             throw new IllegalArgumentException();
         }
 
-        IPoint blockFirstPolyMid = selectedBlock.getPolygon(0).calcMid();
+        IPoint blockFirstPolyMid = selected.block.getPolygon(0).calcMid();
         sortAnchorsByDistanceTo(boardAnchors, blockFirstPolyMid);
         for (IPoint anchor : boardAnchors) {
             if (anchor.distanceTo(blockFirstPolyMid) > BOARD_FRAME_SIZE / 2) {
                 break;
             }
-            if (tryAnchoring(anchor, boardAnchors, mapBoard)) {
+            if (tryAnchoring(selected, anchor, boardAnchors)) {
                 return;
             }
         }
 
         sortAnchorsByDistanceTo(freeAnchors, blockFirstPolyMid);
         for (IPoint anchor : boardAnchors) {
-            if (tryAnchoring(anchor, freeAnchors, mapFree)) {
+            if (tryAnchoring(selected, anchor, freeAnchors)) {
                 return;
             }
         }
@@ -291,23 +264,31 @@ public final class Grid implements IGrid {
 
     }
 
-    private boolean tryAnchoring(IPoint anchor, List<IPoint> anchorList,
-            Map<IBlock, List<IPoint>> map) {
+    private boolean tryAnchoring(final BlockAnchors ba, final IPoint anchor,
+            final List<IPoint> anchorList) {
+        // move block over testing postion
         IVector v = GeoModule.createVector();
-        v.stretchBetween(selectedBlock.getPolygon(0).calcMid(), anchor);
-        selectedBlock.move(v);
+        v.stretchBetween(ba.block.calcMid(), anchor);
+        ba.block.move(v);
 
+        // find all related anchors
         List<IPoint> used = new LinkedList<>();
-        for (IPolygon poly : selectedBlock) {
+        for (IPolygon poly : ba.block) {
             IPoint p = getAnchor(anchorList, poly.calcMid());
             if (p == null) {
                 return false;
             }
+            used.add(p);
         }
 
-        freeAnchors.removeAll(used);
-        used.addAll(pullFreeAnchorsBlockedBy(used, BLOCK_FRAME_SIZE));
-        map.put(selectedBlock, used);
+        // move anchors to correct list
+        anchorList.removeAll(used);
+
+        ba.used.addAll(used);
+        //used.addAll(pullFreeAnchorsBlockedBy(used, BLOCK_FRAME_SIZE));
+        ba.source = anchorList;
+        ba.blocked.addAll(pullFreeAnchorsBlockedBy(ba.used, BLOCK_FRAME_SIZE));
+
         return true;
     }
 
@@ -338,31 +319,29 @@ public final class Grid implements IGrid {
             a[x][y] = '.';
         }
 
-        for (List<IPoint> list : mapFree.values()) {
-            for (IPoint p : list) {
-                int x = (int) (p.getX() * 2 + DELTA);
-                int y = (int) (p.getY() * 2 + DELTA);
-                a[x][y] = '*';
-            }
-        }
-
         char c = '1';
-        for (IBlock block : mapFree.keySet()) {
-            for (IPoint p : block.calcAnchoredMids()) {
+        for (BlockAnchors ba : blockAnchors) {
+            for (IPoint p : ba.used) {
                 int x = (int) (p.getX() * 2 + DELTA);
                 int y = (int) (p.getY() * 2 + DELTA);
                 a[x][y] = c;
             }
+            for (IPoint p : ba.blocked) {
+                int x = (int) (p.getX() * 2 + DELTA);
+                int y = (int) (p.getY() * 2 + DELTA);
+                a[x][y] = '*';
+            }
+
             c++;
         }
 
-        for (IPoint p : selectedBlock.calcAnchoredMids()) {
-            int x = (int) (p.getX() * 2 + DELTA);
-            int y = (int) (p.getY() * 2 + DELTA);
-            a[x][y] = 'S';
+        if (selected != null) {
+            for (IPoint p : selected.block.calcAnchoredMids()) {
+                int x = (int) (p.getX() * 2 + DELTA);
+                int y = (int) (p.getY() * 2 + DELTA);
+                a[x][y] = 'S';
+            }
         }
-        c++;
-
         StringBuilder b = new StringBuilder();
         for (int y = 0; y < a[0].length; y++) {
 
