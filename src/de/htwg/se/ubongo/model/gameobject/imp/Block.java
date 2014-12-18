@@ -81,4 +81,15 @@ public final class Block extends AbstractGameObject implements IBlock {
         setPolygons(savedPolys);
     }
 
+    @Override
+    public boolean contains(IPoint p) {
+        // TODO, boundingBox abfrage
+        for(IPolygon poly: this) {
+            if(poly.contains(p)) {
+                return true;
+            }
+        }
+        return false;
+    }
+
 }

@@ -22,4 +22,6 @@ public interface IBlock extends IGameObject {
 
     void loadState();
 
+    boolean contains(IPoint p);
+
 }

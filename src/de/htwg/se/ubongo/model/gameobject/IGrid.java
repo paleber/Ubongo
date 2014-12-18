@@ -1,5 +1,7 @@
 package de.htwg.se.ubongo.model.gameobject;
 
+import de.htwg.se.ubongo.model.geo.IPoint;
+
 /** Grid containig a Board, Bocks and anchor Points. */
 public interface IGrid {
 
@@ -9,7 +11,7 @@ public interface IGrid {
 
     void init(IBlock board, IBlock[] blocks);
     
-    void selectBlock(IBlock block);
+    IBlock selectBlock(IPoint p);
     
     void dropBlock();
 
