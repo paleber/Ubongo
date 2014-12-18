@@ -11,10 +11,12 @@ public final class Polygon2D implements IPolygon {
 
     private static final double FACTOR_HALF = 0.5;
     private IPoint[] point;
+    private Line2D[] edges;
 
     @Override
     public void setPoints(final IPoint[] point) {
         this.point = point.clone();
+        edges = null;
     }
 
     @Override
@@ -24,6 +26,7 @@ public final class Polygon2D implements IPolygon {
             point[i] = new Point2D();
             point[i].copy(other.getPoint(i));
         }
+        edges = null;
     }
 
     @Override
@@ -118,6 +121,29 @@ public final class Polygon2D implements IPolygon {
         builder.append(']');
         builder.append(calcMid());
         return builder.toString();
+    }
+
+    @Override
+    public boolean contains(IPoint p) {
+        if (edges == null) {
+            initEdges();
+        }
+        for(Line2D edge: edges) {
+            edge.updateBoundingBox();
+        }
+        
+        
+        
+        // TODO Auto-generated method stub
+        return false;
+    }
+
+    private void initEdges() {
+        edges = new Line2D[point.length];
+        for (int i = 0; i < edges.length; i++) {
+            edges[i] = new Line2D();
+            edges[i].setStartEnd(point[i], point[(i + 1) % edges.length]);
+        }
     }
 
 }

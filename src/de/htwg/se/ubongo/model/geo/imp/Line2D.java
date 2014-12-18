@@ -8,6 +8,8 @@ public final class Line2D {
 
     private IPoint start;
     private IPoint end;
+    
+    private BoundingBox2D bb = new BoundingBox2D();
 
     public IPoint getStart() {
         return start;
@@ -106,6 +108,10 @@ public final class Line2D {
 
     public String toString() {
         return "<Line" + start + end + ">";
+    }
+
+    public void updateBoundingBox() {
+        bb.update(start, end);
     }
 
 }

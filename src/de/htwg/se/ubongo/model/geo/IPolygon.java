@@ -40,6 +40,11 @@ public interface IPolygon extends Iterable<IPoint> {
     /** Mirror horizontal at x-axis.
      * @param xAxis x-axis */
     void mirrorHorizontal(double xAxis);
+    
+    /** Check if a Polygon contains a Point.
+     * @param p Point
+     * @return true when Point is inside the Polygon */
+    boolean contains(IPoint p);
 
     /** Get the Polygon as String.
      * @return polygon as String */

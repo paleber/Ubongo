@@ -2,7 +2,7 @@ package de.htwg.se.ubongo.model.geo.imp;
 
 import de.htwg.se.ubongo.model.geo.IPoint;
 
-final class BoundingBox2D {
+public final class BoundingBox2D {
 
     private double xMin, xMax, yMin, yMax;
 
