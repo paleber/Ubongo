@@ -27,7 +27,6 @@ public final class BoundingBoxTest {
         c1.set(0, 0);
         c2.set(1, 1);
         cc.update(c1, c2);
-
         assertTrue(bb.overlapWith(cc));
 
         c2.set(1, -1);

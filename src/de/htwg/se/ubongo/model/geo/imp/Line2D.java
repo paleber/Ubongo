@@ -8,7 +8,7 @@ public final class Line2D {
 
     private IPoint start;
     private IPoint end;
-    
+
     private BoundingBox2D bb = new BoundingBox2D();
 
     public IPoint getStart() {

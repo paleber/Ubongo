@@ -1,6 +1,7 @@
 package de.htwg.se.ubongo.model.geo;
 
 import static org.junit.Assert.assertEquals;
+import static org.junit.Assert.assertFalse;
 import static org.junit.Assert.assertTrue;
 
 import org.junit.Before;
@@ -123,5 +124,17 @@ public final class PolygonTest {
         IPoint p = GeoModule.createPoint();
         p.set(0, 2);
         assertTrue(p.diffsToLessThan(poly.getPoint(0), DELTA));
+    }
+    
+    @Test
+    public void testContains() {
+        IPoint p = GeoModule.createPoint();
+        p.set(0, 0);
+        assertTrue(poly.contains(p));
+        p.set(1, 0);
+        assertFalse(poly.contains(p));
+        p.set(0.1, 0.9);
+        assertTrue(poly.contains(p));
+        
     }
 }

@@ -10,6 +10,7 @@ import de.htwg.se.ubongo.model.geo.IVector;
 public final class Polygon2D implements IPolygon {
 
     private static final double FACTOR_HALF = 0.5;
+    private static final double DELTA = 1e-9;
     private IPoint[] point;
     private Line2D[] edges;
 
@@ -123,19 +124,39 @@ public final class Polygon2D implements IPolygon {
         return builder.toString();
     }
 
+    private static final double[] TEST_ANGLES = { 0, 120, 240 };
+
     @Override
     public boolean contains(IPoint p) {
         if (edges == null) {
             initEdges();
         }
-        for(Line2D edge: edges) {
+        for (Line2D edge : edges) {
             edge.updateBoundingBox();
+            if (edge.distanceTo(p) < DELTA) {
+                return true;
+            }
         }
-        
-        
-        
-        // TODO Auto-generated method stub
-        return false;
+
+        double min = Double.POSITIVE_INFINITY;
+
+        Line2D[] testLines = new Line2D[TEST_ANGLES.length];
+        for (int i = 0; i < testLines.length; i++) {
+            testLines[i] = new Line2D();
+            testLines[i].setStartAngleLength(p, TEST_ANGLES[i], 1e9);
+        }
+
+        for (Line2D testLine : testLines) {
+            int overlaps = 0;
+            for (Line2D egde : edges) {
+                if (testLine.overlap(egde)) {
+                    overlaps++;
+                }
+            }
+            min = Math.min(min, overlaps);
+        }
+
+        return min % 2 == 1;
     }
 
     private void initEdges() {
