@@ -9,10 +9,12 @@ public interface IGrid {
 
     void init(IBlock board, IBlock[] blocks);
     
-    boolean selectBlock(IBlock block);
+    void selectBlock(IBlock block);
     
     void dropBlock();
 
     boolean checkBoardFull();
 
+    String toString();
+    
 }

@@ -6,14 +6,11 @@ import java.util.Map;
 import de.htwg.se.ubongo.ctrl.GameController;
 import de.htwg.se.ubongo.ctrl.GameSubject;
 import de.htwg.se.ubongo.model.gameobject.IBlock;
-import de.htwg.se.ubongo.model.gameobject.IBoard;
-import de.htwg.se.ubongo.model.gameobject.imp.Block;
-import de.htwg.se.ubongo.model.gameobject.imp.Board;
 import de.htwg.se.ubongo.model.geo.IPoint;
 import de.htwg.se.ubongo.model.geo.IPolygon;
-import de.htwg.se.ubongo.model.geo.imp.Point2D;
-import de.htwg.se.ubongo.model.geo.imp.Polygon2D;
-import de.htwg.se.ubongo.util.*;
+import de.htwg.se.ubongo.util.TextCommand;
+import de.htwg.se.ubongo.util.Timer;
+import de.htwg.se.ubongo.util.Trigger;
 
 /** TODO */
 public class GameControllerTUI implements GameSubject, Trigger {
@@ -23,7 +20,7 @@ public class GameControllerTUI implements GameSubject, Trigger {
 
     private final Timer timer = new Timer(this, 150);
 
-    private IBoard board;
+    private IBlock board;
     private IBlock[] block;
 
     private char[][] grid;
@@ -264,7 +261,7 @@ public class GameControllerTUI implements GameSubject, Trigger {
     }
 
     @Override
-    public void onSetGameObjects(IBoard board, IBlock[] block) {
+    public void onSetGameObjects(IBlock board, IBlock[] block) {
         this.board = board;
         this.block = block;
     }

@@ -9,11 +9,11 @@ import org.junit.Test;
 import de.htwg.se.ubongo.model.gameobject.module.GameObjectModule;
 import de.htwg.se.ubongo.model.geo.IPoint;
 import de.htwg.se.ubongo.model.geo.IPolygon;
-import de.htwg.se.ubongo.model.geo.PointTest;
 import de.htwg.se.ubongo.model.geo.module.GeoModule;
 
 public class GameObjectTest {
 
+    private static final double DELTA = 1e-9;
     private final IGameObject go = GameObjectModule.createBlock();
 
     public GameObjectTest() {
@@ -43,7 +43,7 @@ public class GameObjectTest {
         poly[0] = GeoModule.createPolygon();
         poly[0].setPoints(p);
         go.setPolygons(poly);
-        PointTest.testNearlyEquals(p[0], go.getPolygon(0).getPoint(0));
+        assertTrue(p[0].diffsToLessThan(go.getPolygon(0).getPoint(0), DELTA));
     }
 
     @Test
@@ -65,7 +65,7 @@ public class GameObjectTest {
     public void testCalcMid() {
         IPoint p = GeoModule.createPoint();
         p.set(0.5, 0.5);
-        PointTest.testNearlyEquals(p, go.calcMid());
+        assertTrue(p.diffsToLessThan(go.calcMid(), DELTA));
     }
 
     @Test
@@ -73,7 +73,7 @@ public class GameObjectTest {
         IPoint p = GeoModule.createPoint();
         p.set(3, 5);
         go.setMid(p);
-        PointTest.testNearlyEquals(go.calcMid(), p);
+        assertTrue(p.diffsToLessThan(go.calcMid(), DELTA));
     }
 
     @Test

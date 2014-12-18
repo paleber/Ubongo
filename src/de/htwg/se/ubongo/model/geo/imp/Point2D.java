@@ -2,14 +2,12 @@ package de.htwg.se.ubongo.model.geo.imp;
 
 import java.util.Locale;
 
-
 import de.htwg.se.ubongo.model.geo.IPoint;
 import de.htwg.se.ubongo.model.geo.IVector;
 
 /** Implementation of IPoint. */
 public final class Point2D implements IPoint {
 
-    
     private static final double FACTOR_DOUBLE = 2;
 
     private double x = 0;
@@ -84,5 +82,53 @@ public final class Point2D implements IPoint {
     public String toString() {
         return String.format(Locale.ENGLISH, "(%.3f|%.3f)", x, y);
     }
+
+    @Override
+    public boolean diffsToLessThan(IPoint other, double tolerance) {
+        if (Math.abs(x - other.getX()) >= tolerance) {
+            return false;
+        }
+
+        if (Math.abs(y - other.getY()) >= tolerance) {
+            return false;
+        }
+
+        return true;
+    }
+
+    @Override
+    public int hashCode() {
+        final int prime = 31;
+        int result = 1;
+        long temp;
+        temp = Double.doubleToLongBits(x);
+        result = prime * result + (int) (temp ^ (temp >>> 32));
+        temp = Double.doubleToLongBits(y);
+        result = prime * result + (int) (temp ^ (temp >>> 32));
+        return result;
+    }
+
+    @Override
+    public boolean equals(Object obj) {
+        if (this == obj) {
+            return true;
+        }
+        if (obj == null) {
+            return false;
+        }
+        if (getClass() != obj.getClass()) {
+            return false;
+        }
+        Point2D other = (Point2D) obj;
+        if (Double.doubleToLongBits(x) != Double.doubleToLongBits(other.x)) {
+            return false;
+        }
+        if (Double.doubleToLongBits(y) != Double.doubleToLongBits(other.y)) {
+            return false;
+        }
+        return true;
+    }
+
+   
 
 }

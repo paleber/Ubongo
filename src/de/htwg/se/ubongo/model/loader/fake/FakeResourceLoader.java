@@ -1,7 +1,6 @@
-package de.htwg.se.ubongo.model.loader.imp;
+package de.htwg.se.ubongo.model.loader.fake;
 
 import de.htwg.se.ubongo.model.gameobject.IBlock;
-import de.htwg.se.ubongo.model.gameobject.IBoard;
 import de.htwg.se.ubongo.model.gameobject.module.GameObjectModule;
 import de.htwg.se.ubongo.model.geo.IPoint;
 import de.htwg.se.ubongo.model.geo.IPolygon;
@@ -30,15 +29,15 @@ public final class FakeResourceLoader implements IResourceLoader {
     }
 
     @Override
-    public IBoard createBoard(final int index) {
+    public IBlock createBoard(final int index) {
         if (index != 0) {
             throw new IllegalArgumentException();
         }
 
-        IBoard board = GameObjectModule.createBoard();
+        IBlock board = GameObjectModule.createBlock();
 
-        IPolygon[] polys = new IPolygon[BOARD_LIST.length];
-        for (int j = 0; j < polys.length / 2; j++) {
+        IPolygon[] polys = new IPolygon[BOARD_LIST.length / 2];
+        for (int j = 0; j < polys.length; j++) {
 
             int x = BOARD_LIST[j * 2];
             int y = BOARD_LIST[j * 2 + 1];
@@ -80,8 +79,8 @@ public final class FakeResourceLoader implements IResourceLoader {
         IBlock[] blocks = new IBlock[BLOCK_LIST.length];
         for (int i = 0; i < blocks.length; i++) {
 
-            IPolygon[] polys = new IPolygon[BLOCK_LIST[i].length];
-            for (int j = 0; j < polys.length / 2; j++) {
+            IPolygon[] polys = new IPolygon[BLOCK_LIST[i].length / 2];
+            for (int j = 0; j < polys.length; j++) {
 
                 int x = BLOCK_LIST[i][j * 2];
                 int y = BLOCK_LIST[i][j * 2 + 1];

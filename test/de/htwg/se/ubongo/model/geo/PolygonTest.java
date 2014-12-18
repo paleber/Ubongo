@@ -1,6 +1,7 @@
 package de.htwg.se.ubongo.model.geo;
 
 import static org.junit.Assert.assertEquals;
+import static org.junit.Assert.assertTrue;
 
 import org.junit.Before;
 import org.junit.Test;
@@ -10,7 +11,7 @@ import de.htwg.se.ubongo.model.geo.module.GeoModule;
 public final class PolygonTest {
 
     private static final double DELTA = 1e-9;
-
+    
     IPolygon poly = GeoModule.createPolygon();
 
     public PolygonTest() {
@@ -37,7 +38,7 @@ public final class PolygonTest {
     public void testGetPoint() {
         IPoint p = GeoModule.createPoint();
         p.set(1, 1);
-        PointTest.testNearlyEquals(p, poly.getPoint(1));
+        assertTrue(p.diffsToLessThan(poly.getPoint(1), DELTA));
     }
 
     @Test
@@ -46,7 +47,7 @@ public final class PolygonTest {
         p[0] = GeoModule.createPoint();
         p[0].set(3, 5);
         poly.setPoints(p);
-        PointTest.testNearlyEquals(p[0], poly.getPoint(0));
+        assertTrue(p[0].diffsToLessThan(poly.getPoint(0), DELTA));
     }
 
     @Test
@@ -57,14 +58,14 @@ public final class PolygonTest {
         IPolygon poly2 = GeoModule.createPolygon();
         poly2.setPoints(p);
         poly.copy(poly2);
-        PointTest.testNearlyEquals(p[0], poly.getPoint(0));
+        assertTrue(p[0].diffsToLessThan(poly.getPoint(0), DELTA));
     }
 
     @Test
     public void testCalcMid() {
         IPoint p = GeoModule.createPoint();
         p.set(0.5, 0.5);
-        PointTest.testNearlyEquals(p, poly.calcMid());
+        assertTrue(p.diffsToLessThan(poly.calcMid(), DELTA));
     }
 
     @Test
@@ -75,7 +76,7 @@ public final class PolygonTest {
 
         IPoint p = GeoModule.createPoint();
         p.set(2, 2);
-        PointTest.testNearlyEquals(p, poly.getPoint(2));
+        assertTrue(p.diffsToLessThan(poly.getPoint(2), DELTA));
     }
 
     @Test
@@ -84,14 +85,14 @@ public final class PolygonTest {
         p.set(0, 0);
         poly.rotateAround(90, p);
         p.set(-1, 1);
-        PointTest.testNearlyEquals(p, poly.getPoint(1));
+        assertTrue(p.diffsToLessThan(poly.getPoint(1), DELTA));
     }
 
     @Test
     public void testIterator() {
         int index = 0;
         for (IPoint p : poly) {
-            PointTest.testNearlyEquals(p, poly.getPoint(index));
+            assertTrue(p.diffsToLessThan(poly.getPoint(index), DELTA));
             index++;
         }
         assertEquals(poly.getNumberPoints(), index);
@@ -113,7 +114,7 @@ public final class PolygonTest {
         poly.mirrorVertical(1);
         IPoint p = GeoModule.createPoint();
         p.set(2, 0);
-        PointTest.testNearlyEquals(p, poly.getPoint(0));
+        assertTrue(p.diffsToLessThan(poly.getPoint(0), DELTA));
     }
 
     @Test
@@ -121,6 +122,6 @@ public final class PolygonTest {
         poly.mirrorHorizontal(1);
         IPoint p = GeoModule.createPoint();
         p.set(0, 2);
-        PointTest.testNearlyEquals(p, poly.getPoint(0));
+        assertTrue(p.diffsToLessThan(poly.getPoint(0), DELTA));
     }
 }

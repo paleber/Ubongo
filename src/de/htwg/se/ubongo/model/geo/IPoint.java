@@ -1,6 +1,8 @@
 package de.htwg.se.ubongo.model.geo;
 
 /** Interface for Points. */
+/** TODO
+ *  */
 public interface IPoint {
 
     /** Get the x-value.
@@ -46,9 +48,17 @@ public interface IPoint {
      * @param other other point
      * @return squared distance */
     double distanceSquareTo(IPoint other);
+    
+    /** Check x and y difference to other point are less than tolerance.
+     * @param other other point
+     * @param tolerance tolerance
+     * @return difference less than tolerance*/
+    boolean diffsToLessThan(IPoint other, double tolerance);
 
     /** Get Point as String with format: (%.3f|%.3f).
      * @return point as string */
     String toString();
 
+    
+    
 }

@@ -10,7 +10,7 @@ import de.htwg.se.ubongo.model.geo.IPoint;
 import de.htwg.se.ubongo.model.geo.IPolygon;
 import de.htwg.se.ubongo.model.geo.module.GeoModule;
 
-
+@Deprecated
 public final class BoardTest {
 
     private IBlock block2H = GameObjectModule.createBlock();

@@ -5,9 +5,9 @@ import com.google.inject.Guice;
 import com.google.inject.Injector;
 
 import de.htwg.se.ubongo.model.gameobject.IBlock;
-import de.htwg.se.ubongo.model.gameobject.IBoard;
+import de.htwg.se.ubongo.model.gameobject.IGrid;
 import de.htwg.se.ubongo.model.gameobject.imp.Block;
-import de.htwg.se.ubongo.model.gameobject.imp.Board;
+import de.htwg.se.ubongo.model.gameobject.imp.Grid;
 
 /** GameObject module for dependency-injection with guice. */
 public final class GameObjectModule extends AbstractModule {
@@ -18,7 +18,7 @@ public final class GameObjectModule extends AbstractModule {
     @Override
     protected void configure() {
         bind(IBlock.class).to(Block.class);
-        bind(IBoard.class).to(Board.class);
+        bind(IGrid.class).to(Grid.class);
     }
 
     /** Create a new Block.
@@ -27,10 +27,10 @@ public final class GameObjectModule extends AbstractModule {
         return INJECTOR.getInstance(IBlock.class);
     }
 
-    /** Create a new Board.
-     * @return new Board */
-    public static IBoard createBoard() {
-        return INJECTOR.getInstance(IBoard.class);
+    /** Create a new Grid.
+     * @return new Grid */
+    public static IGrid createGrid() {
+        return INJECTOR.getInstance(IGrid.class);
     }
 
 }
