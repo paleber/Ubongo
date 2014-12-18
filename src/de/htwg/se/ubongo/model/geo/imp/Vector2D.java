@@ -49,16 +49,28 @@ public final class Vector2D implements IVector {
         return String.format(Locale.ENGLISH, "<%.3f|%.3f>", x, y);
     }
 
-    public void setAngle(final double degree) {
+    public void setAngleDegree(final double degree) {
         double radian = Math.toRadians(degree);
         x = Math.cos(radian);
         y = Math.sin(radian);
+    }
+    
+    public double getAngleDegree() {
+        double angle = Math.toDegrees(Math.atan2(-y, x));
+        if(angle < 0) {
+            angle += 360;
+        }
+        return angle;
     }
 
     public void setLength(double length) {
         double cur = Math.sqrt(x * x + y * y);
         x = (x / cur) * length;
         y = (y / cur) * length;
+    }
+    
+    public void convertToNormal() {
+        set(-y, x);
     }
 
 }

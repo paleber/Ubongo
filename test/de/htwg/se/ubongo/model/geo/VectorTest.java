@@ -67,18 +67,42 @@ public class VectorTest {
     @Test
     public void testSetAngle() {
         Vector2D v = new Vector2D();
-        v.setAngle(0);
+        v.setAngleDegree(0);
         u.set(1, 0);
         testNearlyEquals(u, v);
-        v.setAngle(90);
+        v.setAngleDegree(90);
         u.set(0, 1);
+        testNearlyEquals(u, v);
+    }
+    
+    @Test
+    public void testGetAngle() {
+        Vector2D v = new Vector2D();
+        v.set(1, 0);
+        assertEquals(0, v.getAngleDegree(), DELTA);
+        v.set(1, -1);
+        assertEquals(45, v.getAngleDegree(), DELTA);
+        v.set(0, 1);
+        assertEquals(270, v.getAngleDegree(), DELTA);
+    }
+    
+    @Test
+    public void testConvertToNormal() {
+        Vector2D v = new Vector2D();
+        v.set(1, 1);
+        v.convertToNormal();
+        u.set(-1, 1);
+        testNearlyEquals(u, v);
+        for(int i = 0; i < 4; i++) {
+            v.convertToNormal();
+        }
         testNearlyEquals(u, v);
     }
     
     @Test
     public void testSetLength() {
         Vector2D v = new Vector2D();
-        v.setAngle(0);
+        v.setAngleDegree(0);
         v.setLength(2.5);
         u.set(2.5, 0);
         testNearlyEquals(u, v);
