@@ -88,8 +88,6 @@ public final class BlockTest {
         
         v.set(0.48, 0.48);
         go.move(v);
-        System.out.println(go.getPolygon(0).calcMid());
-        System.out.println("Test:" + go.calcAnchoredMids()[0]);
         
         assertTrue(p.diffsToLessThan(go.calcAnchoredMids()[0], DELTA));
         

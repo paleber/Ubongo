@@ -71,7 +71,6 @@ public final class Grid implements IGrid {
         reset();
         initBoard(board);
         initBlocks(blocks);
-        System.out.println(this);
     }
 
     private void reset() {
@@ -92,7 +91,8 @@ public final class Grid implements IGrid {
 
     private void initBoard(final IBlock board) {
         IPoint mid = GeoModule.createPoint();
-        mid.set(WIDTH / 2, HEIGHT / 2);
+        mid.set(WIDTH / 2, board.calcHeight() + GRID_FRAME_SIZE);
+
         board.setMid(mid);
 
         // search anchor points
@@ -142,32 +142,21 @@ public final class Grid implements IGrid {
         mid.set(WIDTH / 2, HEIGHT / 2);
 
         for (IBlock b : blocks) {
-
             BlockAnchors ba = new BlockAnchors(b);
-            // b.setMid(mid);
-
             sortAnchorsByDistanceTo(freeAnchors, mid);
 
             for (IPoint target : freeAnchors) {
                 if (tryAnchoring(ba, target, freeAnchors)) {
-                    System.out.println(freeAnchors.size());
                     blockAnchors.add(ba);
-                    System.out.println("Used: " + ba.used.size());
-                    System.out.println("Blocked: " + ba.blocked.size());
                     break;
                 }
-
             }
-            //System.out.println(blockAnchors.size() + "--");
-            
-
         }
-        
-        if(blockAnchors.size() != blocks.length) {
+
+        if (blockAnchors.size() != blocks.length) {
             throw new IllegalStateException();
         }
-        
-        
+
     }
 
     private void sortAnchorsByDistanceTo(List<IPoint> anchors, IPoint pivot) {
@@ -285,7 +274,7 @@ public final class Grid implements IGrid {
         anchorList.removeAll(used);
 
         ba.used.addAll(used);
-        //used.addAll(pullFreeAnchorsBlockedBy(used, BLOCK_FRAME_SIZE));
+        // used.addAll(pullFreeAnchorsBlockedBy(used, BLOCK_FRAME_SIZE));
         ba.source = anchorList;
         ba.blocked.addAll(pullFreeAnchorsBlockedBy(ba.used, BLOCK_FRAME_SIZE));
 
@@ -301,37 +290,14 @@ public final class Grid implements IGrid {
             }
         }
 
-        for (IPoint p : freeAnchors) {
-            int x = (int) (p.getX() * 2 + DELTA);
-            int y = (int) (p.getY() * 2 + DELTA);
-            a[x][y] = 'F';
-        }
-
-        for (IPoint p : boardAnchors) {
-            int x = (int) (p.getX() * 2 + DELTA);
-            int y = (int) (p.getY() * 2 + DELTA);
-            a[x][y] = 'B';
-        }
-
-        for (IPoint p : blockedAnchors) {
-            int x = (int) (p.getX() * 2 + DELTA);
-            int y = (int) (p.getY() * 2 + DELTA);
-            a[x][y] = '.';
-        }
+        printInArray(a, freeAnchors, 'F');
+        printInArray(a, boardAnchors, 'B');
+        printInArray(a, blockedAnchors, '.');
 
         char c = '1';
         for (BlockAnchors ba : blockAnchors) {
-            for (IPoint p : ba.used) {
-                int x = (int) (p.getX() * 2 + DELTA);
-                int y = (int) (p.getY() * 2 + DELTA);
-                a[x][y] = c;
-            }
-            for (IPoint p : ba.blocked) {
-                int x = (int) (p.getX() * 2 + DELTA);
-                int y = (int) (p.getY() * 2 + DELTA);
-                a[x][y] = '*';
-            }
-
+            printInArray(a, ba.used, c);
+            printInArray(a, ba.blocked, '*');
             c++;
         }
 
@@ -351,6 +317,14 @@ public final class Grid implements IGrid {
             b.append(System.lineSeparator());
         }
         return b.toString();
+    }
+
+    private void printInArray(char[][] a, Iterable<IPoint> anchors, char c) {
+        for (IPoint p : anchors) {
+            int x = (int) (p.getX() * 2 + DELTA);
+            int y = (int) (p.getY() * 2 + DELTA);
+            a[x][y] = c;
+        }
     }
 
 }
