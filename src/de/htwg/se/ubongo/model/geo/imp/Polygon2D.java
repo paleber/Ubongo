@@ -11,6 +11,7 @@ public final class Polygon2D implements IPolygon {
 
     private static final double FACTOR_HALF = 0.5;
     private static final double DELTA = 1e-9;
+    private static final double TEST_LINE_LENGTH = 1e9;
     private IPoint[] point;
     private Line2D[] edges;
 
@@ -143,7 +144,7 @@ public final class Polygon2D implements IPolygon {
         Line2D[] testLines = new Line2D[TEST_ANGLES.length];
         for (int i = 0; i < testLines.length; i++) {
             testLines[i] = new Line2D();
-            testLines[i].setStartAngleLength(p, TEST_ANGLES[i], 1e9);
+            testLines[i].setStartAngleLength(p, TEST_ANGLES[i], TEST_LINE_LENGTH);
         }
 
         for (Line2D testLine : testLines) {

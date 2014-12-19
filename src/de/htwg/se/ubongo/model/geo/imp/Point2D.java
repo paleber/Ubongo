@@ -98,13 +98,14 @@ public final class Point2D implements IPoint {
 
     @Override
     public int hashCode() {
+        final int shift = 32;
         final int prime = 31;
         int result = 1;
         long temp;
         temp = Double.doubleToLongBits(x);
-        result = prime * result + (int) (temp ^ (temp >>> 32));
+        result = prime * result + (int) (temp ^ (temp >>> shift));
         temp = Double.doubleToLongBits(y);
-        result = prime * result + (int) (temp ^ (temp >>> 32));
+        result = prime * result + (int) (temp ^ (temp >>> shift));
         return result;
     }
 
@@ -128,7 +129,5 @@ public final class Point2D implements IPoint {
         }
         return true;
     }
-
-   
 
 }

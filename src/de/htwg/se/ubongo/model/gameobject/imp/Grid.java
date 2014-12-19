@@ -228,10 +228,9 @@ public final class Grid implements IGrid {
 
         IPoint blockFirstPolyMid = selected.block.getPolygon(0).calcMid();
         sortAnchorsByDistanceTo(boardAnchors, blockFirstPolyMid);
-        
+
         for (IPoint anchor : boardAnchors) {
             if (anchor.distanceTo(blockFirstPolyMid) > BOARD_FRAME_SIZE / 2) {
-                System.out.println("break");
                 continue;
             }
             if (tryAnchoringFirstPolygon(selected, anchor, boardAnchors)) {
@@ -252,23 +251,23 @@ public final class Grid implements IGrid {
 
     }
 
-    private boolean tryAnchoringFirstPolygon(final BlockAnchors ba, final IPoint anchor,
-            final List<IPoint> anchorList) {
+    private boolean tryAnchoringFirstPolygon(final BlockAnchors ba,
+            final IPoint anchor, final List<IPoint> anchorList) {
         IVector v = GeoModule.createVector();
         v.stretchBetween(ba.block.getPolygon(0).calcMid(), anchor);
         ba.block.move(v);
-       return tryAnchoring(ba, anchor, anchorList);
+        return tryAnchoring(ba, anchorList);
     }
-    
-    private boolean tryAnchoringMid(final BlockAnchors ba, final IPoint anchor,
-            final List<IPoint> anchorList) {
+
+    private boolean tryAnchoringMid(final BlockAnchors ba,
+            final IPoint anchor, final List<IPoint> anchorList) {
         IVector v = GeoModule.createVector();
         v.stretchBetween(ba.block.calcMid(), anchor);
         ba.block.move(v);
-        return tryAnchoring(ba, anchor, anchorList);
+        return tryAnchoring(ba, anchorList);
     }
-    
-    private boolean tryAnchoring(final BlockAnchors ba, final IPoint anchor,
+
+    private boolean tryAnchoring(final BlockAnchors ba,
             final List<IPoint> anchorList) {
 
         // find all related anchors
@@ -283,18 +282,14 @@ public final class Grid implements IGrid {
 
         // move anchors to correct list
         anchorList.removeAll(used);
-
         ba.used.addAll(used);
-        // used.addAll(pullFreeAnchorsBlockedBy(used, BLOCK_FRAME_SIZE));
         ba.source = anchorList;
         ba.blocked.addAll(pullFreeAnchorsBlockedBy(ba.used, BLOCK_FRAME_SIZE));
-
         return true;
     }
 
     public String toString() {
         char[][] a = new char[(int) (WIDTH * 2 + DELTA) + 1][(int) (HEIGHT * 2 + DELTA) + 1];
-
         for (int x = 0; x < a.length; x++) {
             for (int y = 0; y < a[x].length; y++) {
                 a[x][y] = '~';

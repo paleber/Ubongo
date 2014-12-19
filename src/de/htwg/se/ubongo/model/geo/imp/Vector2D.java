@@ -8,6 +8,7 @@ import de.htwg.se.ubongo.model.geo.IVector;
 /** Implementation of IVector. */
 public final class Vector2D implements IVector {
 
+    private static final double FULL_ROTATION = 360;
     private double x = 0;
     private double y = 0;
 
@@ -58,7 +59,7 @@ public final class Vector2D implements IVector {
     public double getAngleDegree() {
         double angle = Math.toDegrees(Math.atan2(-y, x));
         if(angle < 0) {
-            angle += 360;
+            angle += FULL_ROTATION;
         }
         return angle;
     }
