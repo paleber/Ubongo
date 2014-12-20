@@ -16,7 +16,7 @@ public abstract class AbstractMainController<S extends AbstractMainSubject>
         onShutdown();
     }
 
-    /** Called on shutdown application. */
+    /** Called on shutdown application, after subjects are shutdowned. */
     protected abstract void onShutdown();
 
 }

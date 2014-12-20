@@ -15,7 +15,7 @@ public abstract class AbstractSubController<S extends AbstractSubSubject>
         }
     }
 
-    /** Called on start. */
+    /** Called on start, before Subjects are started. */
     protected abstract void onControllerStart();
 
     /** Stop the SubController by stopping all SubSubjects and than stopping the SubController.*/
@@ -26,7 +26,7 @@ public abstract class AbstractSubController<S extends AbstractSubSubject>
         onControllerStop();
     }
 
-    /** Called on controller stop. */
+    /** Called on controller stop, after Subjects are stopped. */
     protected abstract void onControllerStop();
 
 }
