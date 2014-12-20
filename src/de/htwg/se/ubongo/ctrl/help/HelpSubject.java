@@ -1,6 +1,6 @@
 package de.htwg.se.ubongo.ctrl.help;
 
-import de.htwg.se.ubongo.util.ctrl.SubSubject;
+import de.htwg.se.ubongo.util.ctrl.AbstractSubSubject;
 
 /** TODO */
-public interface HelpSubject extends SubSubject {}
+public interface HelpSubject extends AbstractSubSubject {}

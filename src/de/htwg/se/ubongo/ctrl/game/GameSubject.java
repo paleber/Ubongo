@@ -1,10 +1,10 @@
 package de.htwg.se.ubongo.ctrl.game;
 
 import de.htwg.se.ubongo.model.gameobject.IBlock;
-import de.htwg.se.ubongo.util.ctrl.SubSubject;
+import de.htwg.se.ubongo.util.ctrl.AbstractSubSubject;
 
 /** TODO */
-public interface GameSubject extends SubSubject {
+public interface GameSubject extends AbstractSubSubject {
 
     void onSetGridSize(int width, int height);
 

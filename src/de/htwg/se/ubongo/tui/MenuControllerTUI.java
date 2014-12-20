@@ -46,7 +46,7 @@ public class MenuControllerTUI implements MenuSubject, Trigger {
 
         switch (line) {
         case "game":
-            observer.switchToGame();
+            observer.switchToLevel();
             break;
         case "help":
             observer.switchToHelp();

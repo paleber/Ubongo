@@ -1,11 +1,11 @@
-package de.htwg.se.ubongo.util.ctrl;
+package de.htwg.se.ubongo.util.ctrl.imp;
 
 import java.util.ArrayList;
 import java.util.List;
 
 /** Super-Class for SuperController and SubController.
  * @param <S> Subject-Interface of SubClass. */
-abstract class AbstractController<S extends AbstractSubject> {
+public abstract class AbstractController<S extends AbstractSubject> {
 
     private final List<S> subjects = new ArrayList<>();
 

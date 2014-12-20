@@ -9,7 +9,8 @@ import de.htwg.se.ubongo.util.ctrl.*;
 /** Tests for controller. */
 public class TestController {
 
-    private class PseudoSuperController extends MainController<MainSubject> {
+    private class PseudoSuperController extends
+            AbstractMainController<AbstractMainSubject> {
 
         private boolean shutdowned = false;
 
@@ -19,7 +20,7 @@ public class TestController {
         }
     }
 
-    private class PseudoSuperSubject implements MainSubject {
+    private class PseudoSuperSubject implements AbstractMainSubject {
 
         private boolean shutdowned = false;
 
@@ -30,16 +31,17 @@ public class TestController {
 
     }
 
-    private class PseudoSubController extends SubController<SubSubject> {
+    private class PseudoSubController extends
+            AbstractSubController<AbstractSubSubject> {
 
         @Override
-        protected void onStart() {}
+        protected void onControllerStart() {}
 
         @Override
-        protected void onStop() {}
+        protected void onControllerStop() {}
     }
 
-    private class PseudoSubSubject implements SubSubject {
+    private class PseudoSubSubject implements AbstractSubSubject {
 
         private boolean started = false;
         private boolean stopped = false;
@@ -58,8 +60,8 @@ public class TestController {
 
     @Test
     public void testAbstractController() {
-        MainController<MainSubject> ctrl = new PseudoSuperController();
-        MainSubject subject = new PseudoSuperSubject();
+        AbstractMainController<AbstractMainSubject> ctrl = new PseudoSuperController();
+        AbstractMainSubject subject = new PseudoSuperSubject();
         ctrl.register(subject);
         assertEquals(1, ctrl.getSubjects().size());
         assertEquals(subject, ctrl.getSubjects().get(0));
@@ -79,7 +81,7 @@ public class TestController {
 
     @Test
     public void testSubController() {
-        SubController<SubSubject> ctrl = new PseudoSubController();
+        AbstractSubController<AbstractSubSubject> ctrl = new PseudoSubController();
         PseudoSubSubject subject = new PseudoSubSubject();
         ctrl.register(subject);
 

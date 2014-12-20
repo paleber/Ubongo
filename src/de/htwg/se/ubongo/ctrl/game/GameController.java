@@ -3,8 +3,8 @@ package de.htwg.se.ubongo.ctrl.game;
 import java.util.ArrayList;
 import java.util.List;
 
-import de.htwg.se.ubongo.ctrl.UbongoSubController;
-import de.htwg.se.ubongo.ctrl.main.UbongoMainController;
+import de.htwg.se.ubongo.ctrl.SubController;
+import de.htwg.se.ubongo.ctrl.main.MainController;
 import de.htwg.se.ubongo.model.gameobject.IBlock;
 import de.htwg.se.ubongo.model.geo.IVector;
 import de.htwg.se.ubongo.model.geo.module.GeoModule;
@@ -12,16 +12,21 @@ import de.htwg.se.ubongo.model.loader.IResourceLoader;
 import de.htwg.se.ubongo.model.loader.module.LoaderModule;
 
 /** Game Controller. */
-public final class GameController extends UbongoSubController<GameSubject> {
+public final class GameController extends SubController<GameSubject> {
 
     private static final List<Integer> BOARD_LIST = new ArrayList<>();
     private static final List<Integer> BLOCK_LIST1 = new ArrayList<>();
     private static final List<Integer> BLOCK_LIST2 = new ArrayList<>();
     private static final List<Integer> BLOCK_LIST3 = new ArrayList<>();
 
+    public void init(int index, int variant) {
+        // TODO Auto-generated method stub
+
+    }
+
     static {
-        int[] list = { 2, 0, 3, 0, 4, 0, 5, 0, 2, 1, 3, 1, 4, 1, 5, 1, 0, 2, 1,
-                2, 2, 2, 3, 2, 4, 2 };
+        int[] list = { 2, 0, 3, 0, 4, 0, 5, 0, 2, 1, 3, 1, 4, 1, 5, 1, 0, 2,
+                1, 2, 2, 2, 3, 2, 4, 2 };
         for (int i = 0; i < list.length; i++) {
             BOARD_LIST.add(list[i]);
         }
@@ -45,7 +50,7 @@ public final class GameController extends UbongoSubController<GameSubject> {
     private IBlock board;
     private IBlock[] block;
 
-    public GameController(UbongoMainController main) {
+    public GameController(MainController main) {
         super(main);
     }
 
@@ -55,20 +60,20 @@ public final class GameController extends UbongoSubController<GameSubject> {
     private IBlock selected;
 
     @Override
-    protected void onStart() {
+    protected void onControllerStart() {
         IResourceLoader loader = LoaderModule.getResourceLoaderInstance();
-       
+
         board = loader.createBoard(0);
 
         block = loader.createBlocksOfBoard(0, 0);
- 
+
         IVector v = GeoModule.createVector();
         v.set(5, 0);
         block[0].move(v);
-        
+
         v.set(8, 0);
         block[1].move(v);
-        
+
         v.set(11, 0);
         block[2].move(v);
 
@@ -87,7 +92,7 @@ public final class GameController extends UbongoSubController<GameSubject> {
     }
 
     @Override
-    protected void onStop() {
+    protected void onControllerStop() {
         board = null;
         block = null;
     }
@@ -103,7 +108,7 @@ public final class GameController extends UbongoSubController<GameSubject> {
             return;
         }
 
-        //board.removeBlock(selected);
+        // board.removeBlock(selected);
 
         for (GameSubject s : getSubjects()) {
             s.onSelectBlock(index);
@@ -114,7 +119,7 @@ public final class GameController extends UbongoSubController<GameSubject> {
         if (selected == null) {
             return;
         }
-        
+
         IVector dir = GeoModule.createVector();
         dir.set(x, y);
 
@@ -135,21 +140,21 @@ public final class GameController extends UbongoSubController<GameSubject> {
     }
 
     public void drop() {
-      //  if (!board.addBlock(selected)) {
-         //   selected.loadState();
-     //   }
+        // if (!board.addBlock(selected)) {
+        // selected.loadState();
+        // }
 
         selected = null;
         for (GameSubject s : getSubjects()) {
             s.onDropBlock();
         }
 
-       // if (board.checkFull()) {
-      //      for (GameSubject s : getSubjects()) {
-//                s.onWin();
-//            }
-//            this.switchToMenu();
-//        }
+        // if (board.checkFull()) {
+        // for (GameSubject s : getSubjects()) {
+        // s.onWin();
+        // }
+        // this.switchToMenu();
+        // }
     }
 
     public void rotateRight() {
