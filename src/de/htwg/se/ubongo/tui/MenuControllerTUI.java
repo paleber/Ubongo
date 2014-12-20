@@ -1,7 +1,7 @@
 package de.htwg.se.ubongo.tui;
 
-import de.htwg.se.ubongo.ctrl.MenuController;
-import de.htwg.se.ubongo.ctrl.MenuSubject;
+import de.htwg.se.ubongo.ctrl.menu.MenuController;
+import de.htwg.se.ubongo.ctrl.menu.MenuSubject;
 import de.htwg.se.ubongo.util.Timer;
 import de.htwg.se.ubongo.util.Trigger;
 

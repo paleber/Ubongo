@@ -1,7 +1,7 @@
 package de.htwg.se.ubongo.tui;
 
-import de.htwg.se.ubongo.ctrl.HelpController;
-import de.htwg.se.ubongo.ctrl.HelpSubject;
+import de.htwg.se.ubongo.ctrl.help.HelpController;
+import de.htwg.se.ubongo.ctrl.help.HelpSubject;
 import de.htwg.se.ubongo.util.Timer;
 import de.htwg.se.ubongo.util.Trigger;
 

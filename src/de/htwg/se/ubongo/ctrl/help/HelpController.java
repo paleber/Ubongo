@@ -1,9 +1,12 @@
-package de.htwg.se.ubongo.ctrl;
+package de.htwg.se.ubongo.ctrl.help;
+
+import de.htwg.se.ubongo.ctrl.UbongoSubController;
+import de.htwg.se.ubongo.ctrl.main.UbongoMainController;
 
 /** Help Controller. */
 public final class HelpController extends UbongoSubController<HelpSubject> {
 
-    public HelpController(MainController main) {
+    public HelpController(UbongoMainController main) {
         super(main);
     }
 

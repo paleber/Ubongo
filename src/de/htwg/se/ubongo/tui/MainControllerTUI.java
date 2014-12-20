@@ -4,17 +4,17 @@ import java.io.PrintStream;
 import java.util.NoSuchElementException;
 import java.util.Scanner;
 
-import de.htwg.se.ubongo.ctrl.MainController;
-import de.htwg.se.ubongo.ctrl.MainSubject;
+import de.htwg.se.ubongo.ctrl.main.UbongoMainController;
+import de.htwg.se.ubongo.ctrl.main.UbongoMainSubject;
 
-public final class MainControllerTUI implements MainSubject {
+public final class MainControllerTUI implements UbongoMainSubject {
 
     private final Scanner scanner = new Scanner(System.in);
     private final PrintStream printer = new PrintStream(System.out);
 
-    private final MainController main;
+    private final UbongoMainController main;
     
-    public MainControllerTUI(final MainController main) {
+    public MainControllerTUI(final UbongoMainController main) {
         this.main = main;
         new MenuControllerTUI(this, main.getMenuController());
         new GameControllerTUI(this, main.getGameController());

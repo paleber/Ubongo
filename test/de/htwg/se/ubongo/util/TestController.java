@@ -9,7 +9,7 @@ import de.htwg.se.ubongo.util.ctrl.*;
 /** Tests for controller. */
 public class TestController {
 
-    private class PseudoSuperController extends SuperController<SuperSubject> {
+    private class PseudoSuperController extends MainController<MainSubject> {
 
         private boolean shutdowned = false;
 
@@ -19,7 +19,7 @@ public class TestController {
         }
     }
 
-    private class PseudoSuperSubject implements SuperSubject {
+    private class PseudoSuperSubject implements MainSubject {
 
         private boolean shutdowned = false;
 
@@ -58,8 +58,8 @@ public class TestController {
 
     @Test
     public void testAbstractController() {
-        SuperController<SuperSubject> ctrl = new PseudoSuperController();
-        SuperSubject subject = new PseudoSuperSubject();
+        MainController<MainSubject> ctrl = new PseudoSuperController();
+        MainSubject subject = new PseudoSuperSubject();
         ctrl.register(subject);
         assertEquals(1, ctrl.getSubjects().size());
         assertEquals(subject, ctrl.getSubjects().get(0));

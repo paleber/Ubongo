@@ -1,8 +1,10 @@
-package de.htwg.se.ubongo.ctrl;
+package de.htwg.se.ubongo.ctrl.game;
 
 import java.util.ArrayList;
 import java.util.List;
 
+import de.htwg.se.ubongo.ctrl.UbongoSubController;
+import de.htwg.se.ubongo.ctrl.main.UbongoMainController;
 import de.htwg.se.ubongo.model.gameobject.IBlock;
 import de.htwg.se.ubongo.model.geo.IVector;
 import de.htwg.se.ubongo.model.geo.module.GeoModule;
@@ -43,7 +45,7 @@ public final class GameController extends UbongoSubController<GameSubject> {
     private IBlock board;
     private IBlock[] block;
 
-    public GameController(MainController main) {
+    public GameController(UbongoMainController main) {
         super(main);
     }
 

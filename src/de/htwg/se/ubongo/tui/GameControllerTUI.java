@@ -3,8 +3,8 @@ package de.htwg.se.ubongo.tui;
 import java.util.HashMap;
 import java.util.Map;
 
-import de.htwg.se.ubongo.ctrl.GameController;
-import de.htwg.se.ubongo.ctrl.GameSubject;
+import de.htwg.se.ubongo.ctrl.game.GameController;
+import de.htwg.se.ubongo.ctrl.game.GameSubject;
 import de.htwg.se.ubongo.model.gameobject.IBlock;
 import de.htwg.se.ubongo.model.geo.IPoint;
 import de.htwg.se.ubongo.model.geo.IPolygon;

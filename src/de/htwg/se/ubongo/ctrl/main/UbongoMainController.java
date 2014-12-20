@@ -1,10 +1,14 @@
-package de.htwg.se.ubongo.ctrl;
+package de.htwg.se.ubongo.ctrl.main;
 
+import de.htwg.se.ubongo.ctrl.game.GameController;
+import de.htwg.se.ubongo.ctrl.help.HelpController;
+import de.htwg.se.ubongo.ctrl.menu.MenuController;
+import de.htwg.se.ubongo.util.ctrl.MainController;
+import de.htwg.se.ubongo.util.ctrl.MainSubject;
 import de.htwg.se.ubongo.util.ctrl.SubController;
-import de.htwg.se.ubongo.util.ctrl.SuperController;
 
-/** Singleton: MainController manages SubController. */
-public final class MainController extends SuperController<MainSubject> {
+/** MainController manages SubController. */
+public final class UbongoMainController extends MainController<MainSubject> {
 
     private final MenuController menu = new MenuController(this);
     private final GameController game = new GameController(this);

@@ -1,4 +1,4 @@
-package de.htwg.se.ubongo.ctrl;
+package de.htwg.se.ubongo.ctrl.game;
 
 import de.htwg.se.ubongo.model.gameobject.IBlock;
 import de.htwg.se.ubongo.util.ctrl.SubSubject;

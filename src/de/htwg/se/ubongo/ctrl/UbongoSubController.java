@@ -1,5 +1,6 @@
 package de.htwg.se.ubongo.ctrl;
 
+import de.htwg.se.ubongo.ctrl.main.UbongoMainController;
 import de.htwg.se.ubongo.util.ctrl.SubController;
 import de.htwg.se.ubongo.util.ctrl.SubSubject;
 
@@ -9,11 +10,11 @@ import de.htwg.se.ubongo.util.ctrl.SubSubject;
 public abstract class UbongoSubController<T extends SubSubject> extends
         SubController<T> {
 
-    private final MainController main;
+    private final UbongoMainController main;
 
     /** Constructor.
      * @param main MainController */
-    protected UbongoSubController(final MainController main) {
+    protected UbongoSubController(final UbongoMainController main) {
         this.main = main;
     }
 
