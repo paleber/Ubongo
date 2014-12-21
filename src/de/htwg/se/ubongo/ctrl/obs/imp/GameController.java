@@ -1,10 +1,11 @@
-package de.htwg.se.ubongo.ctrl.game;
+package de.htwg.se.ubongo.ctrl.obs.imp;
 
 import java.util.ArrayList;
 import java.util.List;
 
-import de.htwg.se.ubongo.ctrl.abs.imp.SubController;
-import de.htwg.se.ubongo.ctrl.main.IMainController;
+import de.htwg.se.ubongo.ctrl.obs.IMainController;
+import de.htwg.se.ubongo.ctrl.obs.abs.SubController;
+import de.htwg.se.ubongo.ctrl.sub.GameSubject;
 import de.htwg.se.ubongo.model.gameobject.IBlock;
 import de.htwg.se.ubongo.model.geo.IVector;
 import de.htwg.se.ubongo.model.geo.module.GeoModule;

@@ -1,4 +1,4 @@
-package de.htwg.se.ubongo.ctrl.main;
+package de.htwg.se.ubongo.ctrl.sub;
 
 import de.htwg.se.ubongo.util.ctrl.IAbstractMainSubject;
 

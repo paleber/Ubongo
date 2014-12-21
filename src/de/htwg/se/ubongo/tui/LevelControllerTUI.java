@@ -1,7 +1,7 @@
 package de.htwg.se.ubongo.tui;
 
-import de.htwg.se.ubongo.ctrl.level.LevelController;
-import de.htwg.se.ubongo.ctrl.level.LevelSubSubject;
+import de.htwg.se.ubongo.ctrl.obs.imp.LevelController;
+import de.htwg.se.ubongo.ctrl.sub.LevelSubSubject;
 
 public class LevelControllerTUI implements LevelSubSubject {
 

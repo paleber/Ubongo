@@ -4,9 +4,9 @@ import java.io.PrintStream;
 import java.util.NoSuchElementException;
 import java.util.Scanner;
 
-import de.htwg.se.ubongo.ctrl.main.IMainController;
-import de.htwg.se.ubongo.ctrl.main.MainSubject;
-import de.htwg.se.ubongo.ctrl.main.imp.MainController;
+import de.htwg.se.ubongo.ctrl.obs.IMainController;
+import de.htwg.se.ubongo.ctrl.obs.imp.MainController;
+import de.htwg.se.ubongo.ctrl.sub.MainSubject;
 
 public final class MainControllerTUI implements MainSubject {
 

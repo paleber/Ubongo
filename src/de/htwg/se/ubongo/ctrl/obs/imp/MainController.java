@@ -1,12 +1,8 @@
-package de.htwg.se.ubongo.ctrl.main.imp;
+package de.htwg.se.ubongo.ctrl.obs.imp;
 
-import de.htwg.se.ubongo.ctrl.abs.imp.SubController;
-import de.htwg.se.ubongo.ctrl.game.GameController;
-import de.htwg.se.ubongo.ctrl.help.HelpController;
-import de.htwg.se.ubongo.ctrl.level.LevelController;
-import de.htwg.se.ubongo.ctrl.main.IMainController;
-import de.htwg.se.ubongo.ctrl.main.MainSubject;
-import de.htwg.se.ubongo.ctrl.menu.imp.MenuController;
+import de.htwg.se.ubongo.ctrl.obs.IMainController;
+import de.htwg.se.ubongo.ctrl.obs.abs.SubController;
+import de.htwg.se.ubongo.ctrl.sub.MainSubject;
 import de.htwg.se.ubongo.util.ctrl.imp.AbstractMainController;
 
 /** MainController manages SubController. */

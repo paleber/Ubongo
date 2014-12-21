@@ -1,6 +1,6 @@
 package de.htwg.se.ubongo;
 
-import de.htwg.se.ubongo.ctrl.main.imp.MainController;
+import de.htwg.se.ubongo.ctrl.obs.imp.MainController;
 import de.htwg.se.ubongo.tui.MainControllerTUI;
 
 /** Start-Class of the Application. */
