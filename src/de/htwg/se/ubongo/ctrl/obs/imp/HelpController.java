@@ -2,7 +2,7 @@ package de.htwg.se.ubongo.ctrl.obs.imp;
 
 import de.htwg.se.ubongo.ctrl.obs.IHelpController;
 import de.htwg.se.ubongo.ctrl.obs.IMainController;
-import de.htwg.se.ubongo.ctrl.obs.abs.SubController;
+import de.htwg.se.ubongo.ctrl.obs.abs.imp.SubController;
 import de.htwg.se.ubongo.ctrl.sub.IHelpControllerSubject;
 
 /** Help Controller. */

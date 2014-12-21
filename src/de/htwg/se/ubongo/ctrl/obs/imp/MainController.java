@@ -3,7 +3,7 @@ package de.htwg.se.ubongo.ctrl.obs.imp;
 import de.htwg.se.ubongo.ctrl.obs.IGameController;
 import de.htwg.se.ubongo.ctrl.obs.IMainController;
 import de.htwg.se.ubongo.ctrl.obs.IMenuController;
-import de.htwg.se.ubongo.ctrl.obs.abs.SubController;
+import de.htwg.se.ubongo.ctrl.obs.abs.imp.SubController;
 import de.htwg.se.ubongo.ctrl.sub.IMainControllerSubject;
 import de.htwg.se.ubongo.util.ctrl.imp.AbstractMainController;
 

@@ -1,6 +1,7 @@
-package de.htwg.se.ubongo.ctrl.obs.abs;
+package de.htwg.se.ubongo.ctrl.obs.abs.imp;
 
 import de.htwg.se.ubongo.ctrl.obs.IMainController;
+import de.htwg.se.ubongo.ctrl.obs.abs.ISubController;
 import de.htwg.se.ubongo.util.ctrl.IAbstractSubSubject;
 import de.htwg.se.ubongo.util.ctrl.imp.AbstractSubController;
 
