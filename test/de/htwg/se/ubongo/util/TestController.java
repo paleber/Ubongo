@@ -1,10 +1,13 @@
 package de.htwg.se.ubongo.util;
 
-import static org.junit.Assert.*;
+import static org.junit.Assert.assertEquals;
+import static org.junit.Assert.assertFalse;
+import static org.junit.Assert.assertTrue;
 
 import org.junit.Test;
 
-import de.htwg.se.ubongo.util.ctrl.*;
+import de.htwg.se.ubongo.util.ctrl.IAbstractMainSubject;
+import de.htwg.se.ubongo.util.ctrl.IAbstractSubSubject;
 import de.htwg.se.ubongo.util.ctrl.imp.AbstractMainController;
 import de.htwg.se.ubongo.util.ctrl.imp.AbstractSubController;
 
@@ -12,17 +15,17 @@ import de.htwg.se.ubongo.util.ctrl.imp.AbstractSubController;
 public class TestController {
 
     private class PseudoSuperController extends
-            AbstractMainController<AbstractMainSubject> {
+            AbstractMainController<IAbstractMainSubject> {
 
         private boolean shutdowned = false;
 
         @Override
-        protected void onShutdown() {
+        public void onShutdown() {
             shutdowned = true;
         }
     }
 
-    private class PseudoSuperSubject implements AbstractMainSubject {
+    private class PseudoSuperSubject implements IAbstractMainSubject {
 
         private boolean shutdowned = false;
 
@@ -34,16 +37,16 @@ public class TestController {
     }
 
     private class PseudoSubController extends
-            AbstractSubController<AbstractSubSubject> {
+            AbstractSubController<IAbstractSubSubject> {
 
         @Override
-        protected void onControllerStart() {}
+        public void onControllerStart() {}
 
         @Override
-        protected void onControllerStop() {}
+        public void onControllerStop() {}
     }
 
-    private class PseudoSubSubject implements AbstractSubSubject {
+    private class PseudoSubSubject implements IAbstractSubSubject {
 
         private boolean started = false;
         private boolean stopped = false;
@@ -62,8 +65,8 @@ public class TestController {
 
     @Test
     public void testAbstractController() {
-        AbstractMainController<AbstractMainSubject> ctrl = new PseudoSuperController();
-        AbstractMainSubject subject = new PseudoSuperSubject();
+        AbstractMainController<IAbstractMainSubject> ctrl = new PseudoSuperController();
+        IAbstractMainSubject subject = new PseudoSuperSubject();
         ctrl.register(subject);
         assertEquals(1, ctrl.getSubjects().size());
         assertEquals(subject, ctrl.getSubjects().get(0));
@@ -83,7 +86,7 @@ public class TestController {
 
     @Test
     public void testSubController() {
-        AbstractSubController<AbstractSubSubject> ctrl = new PseudoSubController();
+        AbstractSubController<IAbstractSubSubject> ctrl = new PseudoSubController();
         PseudoSubSubject subject = new PseudoSubSubject();
         ctrl.register(subject);
 

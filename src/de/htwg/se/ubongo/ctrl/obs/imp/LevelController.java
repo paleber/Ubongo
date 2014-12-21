@@ -1,11 +1,13 @@
 package de.htwg.se.ubongo.ctrl.obs.imp;
 
+import de.htwg.se.ubongo.ctrl.obs.ILevelController;
 import de.htwg.se.ubongo.ctrl.obs.IMainController;
 import de.htwg.se.ubongo.ctrl.obs.abs.SubController;
-import de.htwg.se.ubongo.ctrl.sub.LevelSubSubject;
+import de.htwg.se.ubongo.ctrl.sub.ILevelControllerSubject;
 import de.htwg.se.ubongo.model.loader.module.LoaderModule;
 
-public final class LevelController extends SubController<LevelSubSubject>{
+public final class LevelController extends
+        SubController<ILevelControllerSubject> implements ILevelController {
 
     public LevelController(final IMainController main) {
         super(main);
@@ -18,13 +20,15 @@ public final class LevelController extends SubController<LevelSubSubject>{
 
     @Override
     public void onControllerStop() {}
-    
-    public void getNumberBoards() {
-        LoaderModule.getResourceLoaderInstance().getNumberBoards();
+
+    @Override
+    public int getNumberBoards() {
+        return LoaderModule.getResourceLoaderInstance().getNumberBoards();
     }
-    
-    public void getNumberVariantsOfBoards() {
-        LoaderModule.getResourceLoaderInstance().getNumberBoards();
+
+    @Override
+    public int getNumberVariantsOfBoards() {
+        return LoaderModule.getResourceLoaderInstance().getNumberBoards();
     }
 
 }

@@ -3,9 +3,10 @@ package de.htwg.se.ubongo.ctrl.obs.imp;
 import java.util.ArrayList;
 import java.util.List;
 
+import de.htwg.se.ubongo.ctrl.obs.IGameController;
 import de.htwg.se.ubongo.ctrl.obs.IMainController;
 import de.htwg.se.ubongo.ctrl.obs.abs.SubController;
-import de.htwg.se.ubongo.ctrl.sub.GameSubject;
+import de.htwg.se.ubongo.ctrl.sub.IGameControllerSubject;
 import de.htwg.se.ubongo.model.gameobject.IBlock;
 import de.htwg.se.ubongo.model.geo.IVector;
 import de.htwg.se.ubongo.model.geo.module.GeoModule;
@@ -13,7 +14,8 @@ import de.htwg.se.ubongo.model.loader.IResourceLoader;
 import de.htwg.se.ubongo.model.loader.module.LoaderModule;
 
 /** Game Controller. */
-public final class GameController extends SubController<GameSubject> {
+public final class GameController extends
+        SubController<IGameControllerSubject> implements IGameController {
 
     private static final List<Integer> BOARD_LIST = new ArrayList<>();
     private static final List<Integer> BLOCK_LIST1 = new ArrayList<>();
@@ -26,8 +28,8 @@ public final class GameController extends SubController<GameSubject> {
     }
 
     static {
-        int[] list = { 2, 0, 3, 0, 4, 0, 5, 0, 2, 1, 3, 1, 4, 1, 5, 1, 0, 2, 1,
-                2, 2, 2, 3, 2, 4, 2 };
+        int[] list = { 2, 0, 3, 0, 4, 0, 5, 0, 2, 1, 3, 1, 4, 1, 5, 1, 0, 2,
+                1, 2, 2, 2, 3, 2, 4, 2 };
         for (int i = 0; i < list.length; i++) {
             BOARD_LIST.add(list[i]);
         }
@@ -84,7 +86,7 @@ public final class GameController extends SubController<GameSubject> {
 
         width = 20;
         height = 3;
-        for (GameSubject s : getSubjects()) {
+        for (IGameControllerSubject s : getSubjects()) {
             s.onSetGridSize(width, height);
             s.onSetGameObjects(board, block);
             s.onStartGame();
@@ -98,6 +100,7 @@ public final class GameController extends SubController<GameSubject> {
         block = null;
     }
 
+    @Override
     public void select(int index) {
         if (selected != null) {
             return;
@@ -111,11 +114,12 @@ public final class GameController extends SubController<GameSubject> {
 
         // board.removeBlock(selected);
 
-        for (GameSubject s : getSubjects()) {
+        for (IGameControllerSubject s : getSubjects()) {
             s.onSelectBlock(index);
         }
     }
 
+    @Override
     public void move(double x, double y) {
         if (selected == null) {
             return;
@@ -135,18 +139,19 @@ public final class GameController extends SubController<GameSubject> {
             return;
         }
 
-        for (GameSubject s : getSubjects()) {
+        for (IGameControllerSubject s : getSubjects()) {
             s.onUpdate();
         }
     }
 
+    @Override
     public void drop() {
         // if (!board.addBlock(selected)) {
         // selected.loadState();
         // }
 
         selected = null;
-        for (GameSubject s : getSubjects()) {
+        for (IGameControllerSubject s : getSubjects()) {
             s.onDropBlock();
         }
 
@@ -158,28 +163,32 @@ public final class GameController extends SubController<GameSubject> {
         // }
     }
 
+    @Override
     public void rotateRight() {
         selected.rotateRight();
         updateSubjects();
     }
 
+    @Override
     public void rotateLeft() {
         selected.rotateLeft();
         updateSubjects();
     }
 
+    @Override
     public void mirrorHorizontal() {
         selected.mirrorHorizontal();
         updateSubjects();
     }
 
+    @Override
     public void mirrorVertical() {
         selected.mirrorVertical();
         updateSubjects();
     }
 
     private void updateSubjects() {
-        for (GameSubject s : getSubjects()) {
+        for (IGameControllerSubject s : getSubjects()) {
             s.onUpdate();
         }
     }

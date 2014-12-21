@@ -1,15 +1,15 @@
 package de.htwg.se.ubongo.tui;
 
-import de.htwg.se.ubongo.ctrl.obs.imp.HelpController;
-import de.htwg.se.ubongo.ctrl.sub.HelpSubject;
+import de.htwg.se.ubongo.ctrl.obs.IHelpController;
+import de.htwg.se.ubongo.ctrl.sub.IHelpControllerSubject;
 import de.htwg.se.ubongo.util.Timer;
 import de.htwg.se.ubongo.util.Trigger;
 
 /** TODO */
-public final class HelpControllerTUI implements HelpSubject, Trigger {
+public final class HelpControllerTUI implements IHelpControllerSubject, Trigger {
 
     private final MainControllerTUI tui;
-    private final HelpController observer;
+    private final IHelpController observer;
 
     private final Timer timer = new Timer(this, 200);
 
@@ -21,7 +21,7 @@ public final class HelpControllerTUI implements HelpSubject, Trigger {
     private boolean isFirst = false;
 
     public HelpControllerTUI(final MainControllerTUI tui,
-            final HelpController observer) {
+            final IHelpController observer) {
         this.tui = tui;
         this.observer = observer;
         observer.register(this);

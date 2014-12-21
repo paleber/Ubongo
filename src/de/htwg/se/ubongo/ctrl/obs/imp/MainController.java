@@ -1,14 +1,18 @@
 package de.htwg.se.ubongo.ctrl.obs.imp;
 
+import de.htwg.se.ubongo.ctrl.obs.IGameController;
 import de.htwg.se.ubongo.ctrl.obs.IMainController;
+import de.htwg.se.ubongo.ctrl.obs.IMenuController;
 import de.htwg.se.ubongo.ctrl.obs.abs.SubController;
-import de.htwg.se.ubongo.ctrl.sub.MainSubject;
+import de.htwg.se.ubongo.ctrl.sub.IMainControllerSubject;
 import de.htwg.se.ubongo.util.ctrl.imp.AbstractMainController;
 
 /** MainController manages SubController. */
-public final class MainController extends AbstractMainController<MainSubject> implements IMainController {
+public final class MainController extends
+        AbstractMainController<IMainControllerSubject> implements
+        IMainController {
 
-    private final MenuController menu = new MenuController(this);
+    private final IMenuController menu = new MenuController(this);
     private final LevelController level = new LevelController(this);
     private final GameController game = new GameController(this);
     private final HelpController help = new HelpController(this);
@@ -17,12 +21,12 @@ public final class MainController extends AbstractMainController<MainSubject> im
 
     @Override
     public void switchToMenu() {
-        switchTo(menu);
+        switchTo((SubController<?>) menu);
     }
-    
+
     @Override
     public void switchToLevel() {
-       switchTo(level);
+        switchTo(level);
     }
 
     @Override
@@ -37,11 +41,11 @@ public final class MainController extends AbstractMainController<MainSubject> im
 
     @Override
     public MenuController getMenuController() {
-        return menu;
+        return (MenuController)menu;
     }
 
     @Override
-    public GameController getGameController() {
+    public IGameController getGameController() {
         return game;
     }
 

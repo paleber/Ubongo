@@ -3,8 +3,8 @@ package de.htwg.se.ubongo.tui;
 import java.util.HashMap;
 import java.util.Map;
 
-import de.htwg.se.ubongo.ctrl.obs.imp.GameController;
-import de.htwg.se.ubongo.ctrl.sub.GameSubject;
+import de.htwg.se.ubongo.ctrl.obs.IGameController;
+import de.htwg.se.ubongo.ctrl.sub.IGameControllerSubject;
 import de.htwg.se.ubongo.model.gameobject.IBlock;
 import de.htwg.se.ubongo.model.geo.IPoint;
 import de.htwg.se.ubongo.model.geo.IPolygon;
@@ -13,9 +13,9 @@ import de.htwg.se.ubongo.util.Timer;
 import de.htwg.se.ubongo.util.Trigger;
 
 /** TODO */
-public class GameControllerTUI implements GameSubject, Trigger {
+public class GameControllerTUI implements IGameControllerSubject, Trigger {
 
-    private final GameController observer;
+    private final IGameController observer;
     private final MainControllerTUI tui;
 
     private final Timer timer = new Timer(this, 150);
@@ -29,7 +29,7 @@ public class GameControllerTUI implements GameSubject, Trigger {
 
     private IBlock selectedBlock;
 
-    public GameControllerTUI(MainControllerTUI tui, GameController observer) {
+    public GameControllerTUI(MainControllerTUI tui, IGameController observer) {
         this.tui = tui;
         this.observer = observer;
         observer.register(this);
