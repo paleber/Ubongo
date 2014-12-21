@@ -1,6 +1,7 @@
 package de.htwg.se.ubongo.tui;
 
 import de.htwg.se.ubongo.ctrl.obs.IHelpController;
+import de.htwg.se.ubongo.ctrl.obs.IMainController;
 import de.htwg.se.ubongo.ctrl.sub.IHelpControllerSubject;
 import de.htwg.se.ubongo.util.Timer;
 import de.htwg.se.ubongo.util.Trigger;

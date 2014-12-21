@@ -9,37 +9,37 @@ import de.htwg.se.ubongo.util.ctrl.imp.AbstractSubController;
  * the specific SubControllers.
  * @param <S> SubSubject of the SubController */
 public abstract class SubController<S extends IAbstractSubSubject> extends
-        AbstractSubController<S> implements ISubController<S>{
+        AbstractSubController<S> implements ISubController<S> {
 
     private final IMainController main;
 
     /** Constructor.
-     * @param main2 MainController */
+     * @param main MainController */
     protected SubController(final IMainController main) {
         this.main = main;
     }
 
-    /** Stop current SubController and start MenuSubController. */
+    @Override
     public final void switchToMenu() {
         main.switchToMenu();
     }
-    
-    /** Stop current SubController and start LevelSubController. */
-    public void switchToLevel() {
+
+    @Override
+    public final void switchToLevel() {
         main.switchToLevel();
     }
 
-    /** Stop current SubController and start GameSubController. */
+    @Override
     public final void switchToGame() {
         main.switchToGame();
     }
 
-    /** Stop current SubController and start HelpSubcontroller. */
+    @Override
     public final void switchToHelp() {
         main.switchToHelp();
     }
 
-    /** Stop current SubController and shutdown the application. */
+    @Override
     public final void shutdown() {
         main.shutdown();
     }

@@ -4,6 +4,7 @@ import java.io.PrintStream;
 import java.util.NoSuchElementException;
 import java.util.Scanner;
 
+import de.htwg.se.ubongo.ctrl.obs.ILevelController;
 import de.htwg.se.ubongo.ctrl.obs.IMainController;
 import de.htwg.se.ubongo.ctrl.sub.IMainControllerSubject;
 
@@ -13,10 +14,10 @@ public final class MainControllerTUI implements IMainControllerSubject {
     private final PrintStream printer = new PrintStream(System.out);
 
     private final IMainController main;
-    
+
     public MainControllerTUI(final IMainController main) {
         this.main = main;
-       // new MenuControllerTUI(this, main.getMenuController());
+        new MenuControllerTUI(this, main.getMenuController());
         new LevelControllerTUI(this, main.getLevelController());
         new GameControllerTUI(this, main.getGameController());
         new HelpControllerTUI(this, main.getHelpController());

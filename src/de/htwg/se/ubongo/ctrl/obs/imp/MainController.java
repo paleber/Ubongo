@@ -1,9 +1,11 @@
 package de.htwg.se.ubongo.ctrl.obs.imp;
 
 import de.htwg.se.ubongo.ctrl.obs.IGameController;
+import de.htwg.se.ubongo.ctrl.obs.IHelpController;
+import de.htwg.se.ubongo.ctrl.obs.ILevelController;
 import de.htwg.se.ubongo.ctrl.obs.IMainController;
 import de.htwg.se.ubongo.ctrl.obs.IMenuController;
-import de.htwg.se.ubongo.ctrl.obs.abs.imp.SubController;
+import de.htwg.se.ubongo.ctrl.obs.abs.ISubController;
 import de.htwg.se.ubongo.ctrl.sub.IMainControllerSubject;
 import de.htwg.se.ubongo.util.ctrl.imp.AbstractMainController;
 
@@ -12,16 +14,36 @@ public final class MainController extends
         AbstractMainController<IMainControllerSubject> implements
         IMainController {
 
-    private final IMenuController menu = new MenuController(this);
-    private final LevelController level = new LevelController(this);
-    private final GameController game = new GameController(this);
-    private final HelpController help = new HelpController(this);
+    private ISubController<?> active;
 
-    private SubController<?> active;
+    private final IMenuController menu = new MenuController(this);
+    private final ILevelController level = new LevelController(this);
+    private final IGameController game = new GameController(this);
+    private final IHelpController help = new HelpController(this);
+
+    @Override
+    public IMenuController getMenuController() {
+        return menu;
+    }
+
+    @Override
+    public ILevelController getLevelController() {
+        return level;
+    }
+
+    @Override
+    public IGameController getGameController() {
+        return game;
+    }
+
+    @Override
+    public IHelpController getHelpController() {
+        return help;
+    }
 
     @Override
     public void switchToMenu() {
-        switchTo((SubController<?>) menu);
+        switchTo(menu);
     }
 
     @Override
@@ -39,25 +61,10 @@ public final class MainController extends
         switchTo(help);
     }
 
-    @Override
-    public MenuController getMenuController() {
-        return (MenuController)menu;
-    }
-
-    @Override
-    public IGameController getGameController() {
-        return game;
-    }
-
-    @Override
-    public HelpController getHelpController() {
-        return help;
-    }
-
-    private void switchTo(SubController<?> ctrl) {
+    private void switchTo(final ISubController<?> ctrl) {
         stopActiveController();
         active = ctrl;
-        ctrl.startController();
+        active.startController();
     }
 
     private void stopActiveController() {
@@ -69,11 +76,6 @@ public final class MainController extends
     @Override
     public void onShutdown() {
         stopActiveController();
-    }
-
-    @Override
-    public LevelController getLevelController() {
-        return level;
     }
 
 }

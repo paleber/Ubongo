@@ -4,6 +4,7 @@ import java.util.HashMap;
 import java.util.Map;
 
 import de.htwg.se.ubongo.ctrl.obs.IGameController;
+import de.htwg.se.ubongo.ctrl.obs.IMainController;
 import de.htwg.se.ubongo.ctrl.sub.IGameControllerSubject;
 import de.htwg.se.ubongo.model.gameobject.IBlock;
 import de.htwg.se.ubongo.model.geo.IPoint;
