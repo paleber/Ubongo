@@ -1,10 +1,10 @@
-package de.htwg.se.ubongo.model.geo.imp;
+package de.htwg.se.ubongo.util.geo.imp;
 
 import java.util.Iterator;
 
-import de.htwg.se.ubongo.model.geo.IPoint;
-import de.htwg.se.ubongo.model.geo.IPolygon;
-import de.htwg.se.ubongo.model.geo.IVector;
+import de.htwg.se.ubongo.util.geo.IPoint;
+import de.htwg.se.ubongo.util.geo.IPolygon;
+import de.htwg.se.ubongo.util.geo.IVector;
 
 /** Implementation of IPolygon. */
 public final class Polygon2D implements IPolygon {

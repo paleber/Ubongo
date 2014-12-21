@@ -1,15 +1,15 @@
-package de.htwg.se.ubongo.model.geo.module;
+package de.htwg.se.ubongo.util.geo.module;
 
 import com.google.inject.AbstractModule;
 import com.google.inject.Guice;
 import com.google.inject.Injector;
 
-import de.htwg.se.ubongo.model.geo.IPoint;
-import de.htwg.se.ubongo.model.geo.IPolygon;
-import de.htwg.se.ubongo.model.geo.IVector;
-import de.htwg.se.ubongo.model.geo.imp.Point2D;
-import de.htwg.se.ubongo.model.geo.imp.Polygon2D;
-import de.htwg.se.ubongo.model.geo.imp.Vector2D;
+import de.htwg.se.ubongo.util.geo.IPoint;
+import de.htwg.se.ubongo.util.geo.IPolygon;
+import de.htwg.se.ubongo.util.geo.IVector;
+import de.htwg.se.ubongo.util.geo.imp.Point2D;
+import de.htwg.se.ubongo.util.geo.imp.Polygon2D;
+import de.htwg.se.ubongo.util.geo.imp.Vector2D;
 
 /** Geometric module for dependency-injection with guice. */
 public final class GeoModule extends AbstractModule {

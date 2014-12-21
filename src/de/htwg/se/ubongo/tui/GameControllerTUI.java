@@ -7,11 +7,11 @@ import de.htwg.se.ubongo.ctrl.obs.IGameController;
 import de.htwg.se.ubongo.ctrl.obs.IMainController;
 import de.htwg.se.ubongo.ctrl.sub.IGameControllerSubject;
 import de.htwg.se.ubongo.model.gameobject.IBlock;
-import de.htwg.se.ubongo.model.geo.IPoint;
-import de.htwg.se.ubongo.model.geo.IPolygon;
 import de.htwg.se.ubongo.util.TextCommand;
 import de.htwg.se.ubongo.util.Timer;
 import de.htwg.se.ubongo.util.Trigger;
+import de.htwg.se.ubongo.util.geo.IPoint;
+import de.htwg.se.ubongo.util.geo.IPolygon;
 
 /** TODO */
 public class GameControllerTUI implements IGameControllerSubject, Trigger {

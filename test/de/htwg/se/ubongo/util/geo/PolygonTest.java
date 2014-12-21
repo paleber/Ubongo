@@ -1,4 +1,4 @@
-package de.htwg.se.ubongo.model.geo;
+package de.htwg.se.ubongo.util.geo;
 
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertFalse;
@@ -7,7 +7,10 @@ import static org.junit.Assert.assertTrue;
 import org.junit.Before;
 import org.junit.Test;
 
-import de.htwg.se.ubongo.model.geo.module.GeoModule;
+import de.htwg.se.ubongo.util.geo.IPoint;
+import de.htwg.se.ubongo.util.geo.IPolygon;
+import de.htwg.se.ubongo.util.geo.IVector;
+import de.htwg.se.ubongo.util.geo.module.GeoModule;
 
 public final class PolygonTest {
 

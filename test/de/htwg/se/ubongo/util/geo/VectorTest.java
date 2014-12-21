@@ -1,12 +1,14 @@
-package de.htwg.se.ubongo.model.geo;
+package de.htwg.se.ubongo.util.geo;
 
 import static org.junit.Assert.assertEquals;
 
 import org.junit.Before;
 import org.junit.Test;
 
-import de.htwg.se.ubongo.model.geo.imp.Vector2D;
-import de.htwg.se.ubongo.model.geo.module.GeoModule;
+import de.htwg.se.ubongo.util.geo.IPoint;
+import de.htwg.se.ubongo.util.geo.IVector;
+import de.htwg.se.ubongo.util.geo.imp.Vector2D;
+import de.htwg.se.ubongo.util.geo.module.GeoModule;
 
 /** Tests for IVector with Implementations. */
 public class VectorTest {

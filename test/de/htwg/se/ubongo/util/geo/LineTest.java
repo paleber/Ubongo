@@ -1,4 +1,4 @@
-package de.htwg.se.ubongo.model.geo;
+package de.htwg.se.ubongo.util.geo;
 
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertFalse;
@@ -7,8 +7,9 @@ import static org.junit.Assert.assertTrue;
 import org.junit.Before;
 import org.junit.Test;
 
-import de.htwg.se.ubongo.model.geo.imp.Line2D;
-import de.htwg.se.ubongo.model.geo.imp.Point2D;
+import de.htwg.se.ubongo.util.geo.IPoint;
+import de.htwg.se.ubongo.util.geo.imp.Line2D;
+import de.htwg.se.ubongo.util.geo.imp.Point2D;
 
 public class LineTest {
 

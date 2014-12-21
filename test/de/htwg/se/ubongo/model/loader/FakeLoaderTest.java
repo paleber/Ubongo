@@ -8,9 +8,9 @@ import static org.junit.Assert.fail;
 import org.junit.Test;
 
 import de.htwg.se.ubongo.model.gameobject.IBlock;
-import de.htwg.se.ubongo.model.geo.IPoint;
-import de.htwg.se.ubongo.model.geo.module.GeoModule;
 import de.htwg.se.ubongo.model.loader.fake.FakeResourceLoader;
+import de.htwg.se.ubongo.util.geo.IPoint;
+import de.htwg.se.ubongo.util.geo.module.GeoModule;
 
 public class FakeLoaderTest {
 

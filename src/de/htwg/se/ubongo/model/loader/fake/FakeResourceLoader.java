@@ -2,10 +2,10 @@ package de.htwg.se.ubongo.model.loader.fake;
 
 import de.htwg.se.ubongo.model.gameobject.IBlock;
 import de.htwg.se.ubongo.model.gameobject.module.GameObjectModule;
-import de.htwg.se.ubongo.model.geo.IPoint;
-import de.htwg.se.ubongo.model.geo.IPolygon;
-import de.htwg.se.ubongo.model.geo.module.GeoModule;
 import de.htwg.se.ubongo.model.loader.IResourceLoader;
+import de.htwg.se.ubongo.util.geo.IPoint;
+import de.htwg.se.ubongo.util.geo.IPolygon;
+import de.htwg.se.ubongo.util.geo.module.GeoModule;
 
 /** Fake resource loader. */
 public final class FakeResourceLoader implements IResourceLoader {

@@ -1,4 +1,4 @@
-package de.htwg.se.ubongo.model.geo;
+package de.htwg.se.ubongo.util.geo;
 
 /** Interface for Polygon. */
 public interface IPolygon extends Iterable<IPoint> {

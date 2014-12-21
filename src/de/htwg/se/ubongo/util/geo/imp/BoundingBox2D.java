@@ -1,6 +1,6 @@
-package de.htwg.se.ubongo.model.geo.imp;
+package de.htwg.se.ubongo.util.geo.imp;
 
-import de.htwg.se.ubongo.model.geo.IPoint;
+import de.htwg.se.ubongo.util.geo.IPoint;
 
 public final class BoundingBox2D {
 

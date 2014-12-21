@@ -8,10 +8,10 @@ import de.htwg.se.ubongo.ctrl.obs.IMainController;
 import de.htwg.se.ubongo.ctrl.obs.abs.imp.SubController;
 import de.htwg.se.ubongo.ctrl.sub.IGameControllerSubject;
 import de.htwg.se.ubongo.model.gameobject.IBlock;
-import de.htwg.se.ubongo.model.geo.IVector;
-import de.htwg.se.ubongo.model.geo.module.GeoModule;
 import de.htwg.se.ubongo.model.loader.IResourceLoader;
 import de.htwg.se.ubongo.model.loader.module.LoaderModule;
+import de.htwg.se.ubongo.util.geo.IVector;
+import de.htwg.se.ubongo.util.geo.module.GeoModule;
 
 /** Game Controller. */
 public final class GameController extends

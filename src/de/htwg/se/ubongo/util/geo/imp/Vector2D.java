@@ -1,9 +1,9 @@
-package de.htwg.se.ubongo.model.geo.imp;
+package de.htwg.se.ubongo.util.geo.imp;
 
 import java.util.Locale;
 
-import de.htwg.se.ubongo.model.geo.IPoint;
-import de.htwg.se.ubongo.model.geo.IVector;
+import de.htwg.se.ubongo.util.geo.IPoint;
+import de.htwg.se.ubongo.util.geo.IVector;
 
 /** Implementation of IVector. */
 public final class Vector2D implements IVector {

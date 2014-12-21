@@ -1,7 +1,7 @@
 package de.htwg.se.ubongo.model.gameobject;
 
-import de.htwg.se.ubongo.model.geo.IPoint;
-import de.htwg.se.ubongo.model.geo.IPolygon;
+import de.htwg.se.ubongo.util.geo.IPoint;
+import de.htwg.se.ubongo.util.geo.IPolygon;
 
 /** Interface for GameObjects. */
 public interface IGameObject extends Iterable<IPolygon> {
