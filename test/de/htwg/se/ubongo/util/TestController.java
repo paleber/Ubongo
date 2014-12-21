@@ -5,6 +5,8 @@ import static org.junit.Assert.*;
 import org.junit.Test;
 
 import de.htwg.se.ubongo.util.ctrl.*;
+import de.htwg.se.ubongo.util.ctrl.imp.AbstractMainController;
+import de.htwg.se.ubongo.util.ctrl.imp.AbstractSubController;
 
 /** Tests for controller. */
 public class TestController {

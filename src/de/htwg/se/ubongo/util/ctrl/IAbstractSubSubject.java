@@ -1,9 +1,10 @@
 package de.htwg.se.ubongo.util.ctrl;
 
-import de.htwg.se.ubongo.util.ctrl.imp.AbstractSubject;
+import de.htwg.se.ubongo.util.ctrl.abs.AbstractSubject;
+
 
 /** Interface for Subject of SubController. */
-public interface AbstractSubSubject extends AbstractSubject {
+public interface IAbstractSubSubject extends AbstractSubject {
 
     /** Called on controller start. */
     void onStartSubController();

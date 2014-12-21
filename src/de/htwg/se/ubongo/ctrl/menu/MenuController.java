@@ -1,21 +1,22 @@
 package de.htwg.se.ubongo.ctrl.menu;
 
+import de.htwg.se.ubongo.ctrl.IMainController;
+import de.htwg.se.ubongo.ctrl.IMenuController;
 import de.htwg.se.ubongo.ctrl.SubController;
-import de.htwg.se.ubongo.ctrl.main.MainController;
 
 /** Menu Controller. */
-public final class MenuController extends SubController<MenuSubject> {
+public final class MenuController extends SubController<MenuSubject> implements IMenuController<MenuSubject> {
 
     /** TODO
      * @param main */
-    public MenuController(MainController main) {
+    public MenuController(IMainController main) {
         super(main);
     }
     
     @Override
-    protected void onControllerStart() {}
+    public void onControllerStart() {}
 
     @Override
-    protected void onControllerStop() {}
+    public void onControllerStop() {}
 
 }

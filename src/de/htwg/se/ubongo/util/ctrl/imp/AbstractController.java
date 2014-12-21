@@ -3,9 +3,12 @@ package de.htwg.se.ubongo.util.ctrl.imp;
 import java.util.ArrayList;
 import java.util.List;
 
+import de.htwg.se.ubongo.util.ctrl.abs.AbstractSubject;
+import de.htwg.se.ubongo.util.ctrl.abs.IAbstractController;
+
 /** Super-Class for SuperController and SubController.
  * @param <S> Subject-Interface of SubClass. */
-public abstract class AbstractController<S extends AbstractSubject> {
+public  class AbstractController<S extends AbstractSubject> implements IAbstractController<S>{
 
     private final List<S> subjects = new ArrayList<>();
 
@@ -15,10 +18,20 @@ public abstract class AbstractController<S extends AbstractSubject> {
         return subjects;
     }
 
-    /** Register a Subject.
-     * @param s Subject to register */
-    public final void register(final S s) {
-        subjects.add(s);
-    }
+        /** Register a Subject.
+        * @param s Subject to register */
+        @Override
+        public final void register(S s) {
+            subjects.add(s);
+        }
 
+ 
+        
+    
+
+  
+  
+    
+    
+    
 }

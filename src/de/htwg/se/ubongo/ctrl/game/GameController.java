@@ -3,8 +3,8 @@ package de.htwg.se.ubongo.ctrl.game;
 import java.util.ArrayList;
 import java.util.List;
 
+import de.htwg.se.ubongo.ctrl.IMainController;
 import de.htwg.se.ubongo.ctrl.SubController;
-import de.htwg.se.ubongo.ctrl.main.MainController;
 import de.htwg.se.ubongo.model.gameobject.IBlock;
 import de.htwg.se.ubongo.model.geo.IVector;
 import de.htwg.se.ubongo.model.geo.module.GeoModule;
@@ -25,8 +25,8 @@ public final class GameController extends SubController<GameSubject> {
     }
 
     static {
-        int[] list = { 2, 0, 3, 0, 4, 0, 5, 0, 2, 1, 3, 1, 4, 1, 5, 1, 0, 2,
-                1, 2, 2, 2, 3, 2, 4, 2 };
+        int[] list = { 2, 0, 3, 0, 4, 0, 5, 0, 2, 1, 3, 1, 4, 1, 5, 1, 0, 2, 1,
+                2, 2, 2, 3, 2, 4, 2 };
         for (int i = 0; i < list.length; i++) {
             BOARD_LIST.add(list[i]);
         }
@@ -50,7 +50,7 @@ public final class GameController extends SubController<GameSubject> {
     private IBlock board;
     private IBlock[] block;
 
-    public GameController(MainController main) {
+    public GameController(IMainController main) {
         super(main);
     }
 
@@ -60,7 +60,7 @@ public final class GameController extends SubController<GameSubject> {
     private IBlock selected;
 
     @Override
-    protected void onControllerStart() {
+    public void onControllerStart() {
         IResourceLoader loader = LoaderModule.getResourceLoaderInstance();
 
         board = loader.createBoard(0);
@@ -92,7 +92,7 @@ public final class GameController extends SubController<GameSubject> {
     }
 
     @Override
-    protected void onControllerStop() {
+    public void onControllerStop() {
         board = null;
         block = null;
     }

@@ -4,6 +4,7 @@ import java.io.PrintStream;
 import java.util.NoSuchElementException;
 import java.util.Scanner;
 
+import de.htwg.se.ubongo.ctrl.IMainController;
 import de.htwg.se.ubongo.ctrl.main.MainController;
 import de.htwg.se.ubongo.ctrl.main.MainSubject;
 
@@ -12,7 +13,7 @@ public final class MainControllerTUI implements MainSubject {
     private final Scanner scanner = new Scanner(System.in);
     private final PrintStream printer = new PrintStream(System.out);
 
-    private final MainController main;
+    private final IMainController main;
     
     public MainControllerTUI(final MainController main) {
         this.main = main;
