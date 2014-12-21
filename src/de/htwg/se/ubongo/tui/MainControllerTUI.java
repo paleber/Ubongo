@@ -4,9 +4,9 @@ import java.io.PrintStream;
 import java.util.NoSuchElementException;
 import java.util.Scanner;
 
-import de.htwg.se.ubongo.ctrl.IMainController;
-import de.htwg.se.ubongo.ctrl.main.MainController;
+import de.htwg.se.ubongo.ctrl.main.IMainController;
 import de.htwg.se.ubongo.ctrl.main.MainSubject;
+import de.htwg.se.ubongo.ctrl.main.imp.MainController;
 
 public final class MainControllerTUI implements MainSubject {
 
@@ -17,7 +17,7 @@ public final class MainControllerTUI implements MainSubject {
     
     public MainControllerTUI(final MainController main) {
         this.main = main;
-        new MenuControllerTUI(this, main.getMenuController());
+       // new MenuControllerTUI(this, main.getMenuController());
         new LevelControllerTUI(this, main.getLevelController());
         new GameControllerTUI(this, main.getGameController());
         new HelpControllerTUI(this, main.getHelpController());

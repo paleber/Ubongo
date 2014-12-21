@@ -1,7 +1,7 @@
 package de.htwg.se.ubongo.ctrl.help;
 
-import de.htwg.se.ubongo.ctrl.IMainController;
-import de.htwg.se.ubongo.ctrl.SubController;
+import de.htwg.se.ubongo.ctrl.abs.imp.SubController;
+import de.htwg.se.ubongo.ctrl.main.IMainController;
 
 /** Help Controller. */
 public final class HelpController extends SubController<HelpSubject> {

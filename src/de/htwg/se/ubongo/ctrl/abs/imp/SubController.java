@@ -1,13 +1,15 @@
-package de.htwg.se.ubongo.ctrl;
+package de.htwg.se.ubongo.ctrl.abs.imp;
 
+import de.htwg.se.ubongo.ctrl.abs.ISubController;
+import de.htwg.se.ubongo.ctrl.main.IMainController;
 import de.htwg.se.ubongo.util.ctrl.IAbstractSubSubject;
 import de.htwg.se.ubongo.util.ctrl.imp.AbstractSubController;
 
 /** Super-Class for SubController of Ubongo. Provide methods to switch between
  * the specific SubControllers.
- * @param <T> SubSubject of the SubController */
-public abstract class SubController<T extends IAbstractSubSubject> extends
-        AbstractSubController<T> {
+ * @param <S> SubSubject of the SubController */
+public abstract class SubController<S extends IAbstractSubSubject> extends
+        AbstractSubController<S> implements ISubController<S>{
 
     private final IMainController main;
 
@@ -28,8 +30,8 @@ public abstract class SubController<T extends IAbstractSubSubject> extends
     }
 
     /** Stop current SubController and start GameSubController. */
-    public final void switchToGame(final int index, final int variant) {
-        main.switchToGame(index, variant);
+    public final void switchToGame() {
+        main.switchToGame();
     }
 
     /** Stop current SubController and start HelpSubcontroller. */

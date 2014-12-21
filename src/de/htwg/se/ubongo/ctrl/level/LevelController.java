@@ -1,7 +1,7 @@
 package de.htwg.se.ubongo.ctrl.level;
 
-import de.htwg.se.ubongo.ctrl.IMainController;
-import de.htwg.se.ubongo.ctrl.SubController;
+import de.htwg.se.ubongo.ctrl.abs.imp.SubController;
+import de.htwg.se.ubongo.ctrl.main.IMainController;
 import de.htwg.se.ubongo.model.loader.module.LoaderModule;
 
 public final class LevelController extends SubController<LevelSubSubject>{

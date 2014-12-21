@@ -1,12 +1,12 @@
-package de.htwg.se.ubongo.ctrl.main;
+package de.htwg.se.ubongo.ctrl.main.imp;
 
-import de.htwg.se.ubongo.ctrl.IMainController;
-import de.htwg.se.ubongo.ctrl.IMenuController;
-import de.htwg.se.ubongo.ctrl.SubController;
+import de.htwg.se.ubongo.ctrl.abs.imp.SubController;
 import de.htwg.se.ubongo.ctrl.game.GameController;
 import de.htwg.se.ubongo.ctrl.help.HelpController;
 import de.htwg.se.ubongo.ctrl.level.LevelController;
-import de.htwg.se.ubongo.ctrl.menu.MenuController;
+import de.htwg.se.ubongo.ctrl.main.IMainController;
+import de.htwg.se.ubongo.ctrl.main.MainSubject;
+import de.htwg.se.ubongo.ctrl.menu.imp.MenuController;
 import de.htwg.se.ubongo.util.ctrl.imp.AbstractMainController;
 
 /** MainController manages SubController. */
@@ -30,8 +30,7 @@ public final class MainController extends AbstractMainController<MainSubject> im
     }
 
     @Override
-    public void switchToGame(final int index, final int variant) {
-        game.init(index, variant);
+    public void switchToGame() {
         switchTo(game);
     }
 
@@ -41,7 +40,7 @@ public final class MainController extends AbstractMainController<MainSubject> im
     }
 
     @Override
-    public IMenuController getMenuController() {
+    public MenuController getMenuController() {
         return menu;
     }
 

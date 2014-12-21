@@ -1,8 +1,5 @@
 package de.htwg.se.ubongo.tui;
 
-import de.htwg.se.ubongo.ctrl.IMenuController;
-import de.htwg.se.ubongo.ctrl.menu.MenuController;
-import de.htwg.se.ubongo.ctrl.menu.MenuSubject;
 import de.htwg.se.ubongo.util.Timer;
 import de.htwg.se.ubongo.util.Trigger;
 
@@ -11,13 +8,13 @@ public class MenuControllerTUI implements MenuSubject, Trigger {
 
     
         
-    private final IMenuController observer;
+    private final MenuController observer;
 
     private final MainControllerTUI main;
 
     private final Timer timer = new Timer(this, 10);
 
-    public MenuControllerTUI(MainControllerTUI main, IMenuController iMenuController) {
+    public MenuControllerTUI(MainControllerTUI main, MenuController iMenuController) {
         this.main = main;
         this.observer = iMenuController;
         iMenuController.register(this);
