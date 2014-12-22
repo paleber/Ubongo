@@ -144,7 +144,7 @@ public class GameControllerTUI implements IGameControllerSubject, Trigger {
 
         @Override
         protected boolean onExecute(String[] args) {
-            observer.drop();
+            observer.dropBlock();
             return true;
         }
 
@@ -162,7 +162,7 @@ public class GameControllerTUI implements IGameControllerSubject, Trigger {
                 IVector v = GeoModule.createVector();
                 v.set(Double.parseDouble(args[1]),
                         Double.parseDouble(args[2]));
-                observer.move(v);
+                observer.moveBlock(v);
             } catch (ArrayIndexOutOfBoundsException | NumberFormatException e) {
                 return false;
             }
@@ -193,7 +193,7 @@ public class GameControllerTUI implements IGameControllerSubject, Trigger {
 
         @Override
         protected boolean onExecute(String[] args) {
-            observer.rotateLeft();
+            observer.rotateBlockLeft();
             return true;
         }
 
@@ -207,7 +207,7 @@ public class GameControllerTUI implements IGameControllerSubject, Trigger {
 
         @Override
         protected boolean onExecute(String[] args) {
-            observer.rotateRight();
+            observer.rotateBlockRight();
             return true;
         }
 
@@ -221,7 +221,7 @@ public class GameControllerTUI implements IGameControllerSubject, Trigger {
 
         @Override
         protected boolean onExecute(String[] args) {
-            observer.mirrorHorizontal();
+            observer.mirrorBlockHorizontal();
             return true;
         }
 
@@ -235,7 +235,7 @@ public class GameControllerTUI implements IGameControllerSubject, Trigger {
 
         @Override
         protected boolean onExecute(String[] args) {
-            observer.mirrorVertical();
+            observer.mirrorBlockVertical();
             return true;
         }
 

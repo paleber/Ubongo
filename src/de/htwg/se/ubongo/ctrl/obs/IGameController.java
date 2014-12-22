@@ -5,20 +5,31 @@ import de.htwg.se.ubongo.ctrl.sub.IGameControllerSubject;
 import de.htwg.se.ubongo.util.geo.IPoint;
 import de.htwg.se.ubongo.util.geo.IVector;
 
-public interface IGameController extends ISubController<IGameControllerSubject> {
+/** Interface for GameController. */
+public interface IGameController extends
+        ISubController<IGameControllerSubject> {
 
-    void select(IPoint p);
+    /** Select the block at given Point.
+     * @param p point the block is located. */
+    void selectBlock(IPoint p);
 
-    void move(IVector v);
+    /** Move the selected Block.
+     * @param v Vector. */
+    void moveBlock(IVector v);
 
-    void drop();
+    /** Drop the selected Block. */
+    void dropBlock();
 
-    void rotateRight();
+    /** Rotate the selected Block right. */
+    void rotateBlockRight();
 
-    void rotateLeft();
+    /** Rotate the selected Block left. */
+    void rotateBlockLeft();
 
-    void mirrorHorizontal();
+    /** Mirror the selected Block horizontal. */
+    void mirrorBlockHorizontal();
 
-    void mirrorVertical();
+    /** Mirror the selected Block vertical. */
+    void mirrorBlockVertical();
 
 }

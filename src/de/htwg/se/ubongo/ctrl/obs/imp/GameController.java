@@ -50,7 +50,7 @@ public final class GameController extends SubController<IGameControllerSubject>
     public void onControllerStop() {}
 
     @Override
-    public void select(IPoint p) {
+    public void selectBlock(IPoint p) {
         if (selected == null) {
             selected = grid.selectBlock(p);
             if (selected != null) {
@@ -62,7 +62,7 @@ public final class GameController extends SubController<IGameControllerSubject>
     }
 
     @Override
-    public void move(IVector dir) {
+    public void moveBlock(IVector dir) {
         if (selected != null) {
             selected.move(dir);
             for (IGameControllerSubject s : getSubjects()) {
@@ -72,7 +72,7 @@ public final class GameController extends SubController<IGameControllerSubject>
     }
 
     @Override
-    public void drop() {
+    public void dropBlock() {
         if (selected != null) {
             grid.dropBlock();
             selected = null;
@@ -83,7 +83,7 @@ public final class GameController extends SubController<IGameControllerSubject>
     }
 
     @Override
-    public void rotateRight() {
+    public void rotateBlockRight() {
         if (selected != null) {
             selected.rotateRight();
             updateSubjects();
@@ -91,7 +91,7 @@ public final class GameController extends SubController<IGameControllerSubject>
     }
 
     @Override
-    public void rotateLeft() {
+    public void rotateBlockLeft() {
         if (selected != null) {
             selected.rotateLeft();
             updateSubjects();
@@ -99,7 +99,7 @@ public final class GameController extends SubController<IGameControllerSubject>
     }
 
     @Override
-    public void mirrorHorizontal() {
+    public void mirrorBlockHorizontal() {
         if (selected != null) {
             selected.mirrorHorizontal();
             updateSubjects();
@@ -107,7 +107,7 @@ public final class GameController extends SubController<IGameControllerSubject>
     }
 
     @Override
-    public void mirrorVertical() {
+    public void mirrorBlockVertical() {
         if (selected != null) {
             selected.mirrorVertical();
             updateSubjects();

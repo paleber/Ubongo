@@ -19,13 +19,15 @@ public class LevelControllerTUI implements ILevelControllerSubject {
     }
 
     @Override
-    public void onBoardSelected() {
+    public void onBoardSelected(int index) {
         // TODO Auto-generated method stub
+        
     }
 
     @Override
-    public void onBoardVariantSelected() {
+    public void onBoardVariantSelected(int variant) {
         // TODO Auto-generated method stub
+        
     }
 
 }
