@@ -9,9 +9,9 @@ import de.htwg.se.ubongo.ctrl.sub.IMenuControllerSubject;
 public final class MenuController extends SubController<IMenuControllerSubject>
         implements IMenuController {
 
-    /** TODO
-     * @param main */
-    public MenuController(IMainController main) {
+    /** Default-Constructor.
+     * @param main Main-Controller */
+    public MenuController(final IMainController main) {
         super(main);
     }
 

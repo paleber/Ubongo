@@ -7,12 +7,17 @@ import de.htwg.se.ubongo.ctrl.sub.ILevelControllerSubject;
 import de.htwg.se.ubongo.model.data.ILevelSelection;
 import de.htwg.se.ubongo.model.loader.IResourceLoader;
 
+/** Implementation of ILevelController. */
 public final class LevelController extends
         SubController<ILevelControllerSubject> implements ILevelController {
 
     private final ILevelSelection levelSelection;
     private final IResourceLoader loader;
 
+    /** Default-Constructor.
+     * @param main MainController
+     * @param levelSelection LevelSelection
+     * @param loader ResourceLoader */
     public LevelController(final IMainController main,
             final ILevelSelection levelSelection, final IResourceLoader loader) {
         super(main);
@@ -32,17 +37,17 @@ public final class LevelController extends
     }
 
     @Override
-    public int getNumberVariantsOfBoard(int index) {
+    public int getNumberVariantsOfBoard(final int index) {
         return loader.getNumberVariantsOfBoard(index);
     }
 
     @Override
-    public void selectBoard(int index) {
+    public void selectBoard(final int index) {
         levelSelection.setBoard(index);
     }
 
     @Override
-    public void selectBoardVariant(int variant) {
+    public void selectBoardVariant(final int variant) {
         levelSelection.setVariant(variant);
     }
 

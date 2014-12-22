@@ -9,7 +9,9 @@ import de.htwg.se.ubongo.ctrl.sub.IHelpControllerSubject;
 public final class HelpController extends
         SubController<IHelpControllerSubject> implements IHelpController {
 
-    public HelpController(IMainController main) {
+    /** Default-Constructor.
+     * @param main */
+    public HelpController(final IMainController main) {
         super(main);
     }
 

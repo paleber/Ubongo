@@ -3,6 +3,8 @@ package de.htwg.se.ubongo.ctrl.obs.abs;
 import de.htwg.se.ubongo.util.ctrl.IAbstractSubController;
 import de.htwg.se.ubongo.util.ctrl.IAbstractSubSubject;
 
+/** Super-Interface for SubController.
+ * @param <S> Subject of the SubController */
 public interface ISubController<S extends IAbstractSubSubject> extends
         IAbstractSubController<S> {
 
@@ -17,8 +19,8 @@ public interface ISubController<S extends IAbstractSubSubject> extends
 
     /** Close current Sub-Controller and start Help-Controller. */
     void switchToHelp();
-    
+
     /** Stop current SubController and shutdown the application. */
-    void shutdown();    
-    
+    void shutdown();
+
 }

@@ -19,8 +19,12 @@ public final class GameController extends SubController<IGameControllerSubject>
     private final ILevelSelection levelSelection;
     private final IResourceLoader loader;
 
-    public GameController(IMainController main, ILevelSelection levelSelection,
-            IResourceLoader loader) {
+    /** Default-Constructor.
+     * @param main MainController
+     * @param levelSelection LevelSelection
+     * @param loader ResourceLoader */
+    public GameController(final IMainController main,
+            final ILevelSelection levelSelection, final IResourceLoader loader) {
         super(main);
         this.levelSelection = levelSelection;
         this.loader = loader;
@@ -31,13 +35,13 @@ public final class GameController extends SubController<IGameControllerSubject>
 
     @Override
     public void onControllerStart() {
-
-        IBlock board = loader.createBoard(levelSelection.getBoardIndex());
-        IBlock[] blocks = loader.createBlocksOfBoard(
-                levelSelection.getBoardIndex(), levelSelection.getVariant());
-
+        int index = levelSelection.getBoardIndex();
+        int variant = levelSelection.getVariant();
+        
+        IBlock board = loader.createBoard(index);
+        IBlock[] blocks = loader.createBlocksOfBoard(index, variant);
         grid.init(board, blocks);
-
+        
         for (IGameControllerSubject s : getSubjects()) {
             s.onSetGridSize(grid.getWidth(), grid.getHeight());
             s.onSetGameObjects(board, blocks);
@@ -50,7 +54,7 @@ public final class GameController extends SubController<IGameControllerSubject>
     public void onControllerStop() {}
 
     @Override
-    public void selectBlock(IPoint p) {
+    public void selectBlock(final IPoint p) {
         if (selected == null) {
             selected = grid.selectBlock(p);
             if (selected != null) {
@@ -62,7 +66,7 @@ public final class GameController extends SubController<IGameControllerSubject>
     }
 
     @Override
-    public void moveBlock(IVector dir) {
+    public void moveBlock(final IVector dir) {
         if (selected != null) {
             selected.move(dir);
             for (IGameControllerSubject s : getSubjects()) {
