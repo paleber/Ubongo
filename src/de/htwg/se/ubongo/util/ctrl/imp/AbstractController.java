@@ -8,7 +8,8 @@ import de.htwg.se.ubongo.util.ctrl.abs.IAbstractController;
 
 /** Super-Class for SuperController and SubController.
  * @param <S> Subject-Interface of SubClass. */
-public  class AbstractController<S extends AbstractSubject> implements IAbstractController<S>{
+public class AbstractController<S extends AbstractSubject> implements
+        IAbstractController<S> {
 
     private final List<S> subjects = new ArrayList<>();
 
@@ -18,20 +19,11 @@ public  class AbstractController<S extends AbstractSubject> implements IAbstract
         return subjects;
     }
 
-        /** Register a Subject.
-        * @param s Subject to register */
-        @Override
-        public final void register(S s) {
-            subjects.add(s);
-        }
+    /** Register a Subject.
+     * @param s Subject to register */
+    @Override
+    public final void register(final S s) {
+        subjects.add(s);
+    }
 
- 
-        
-    
-
-  
-  
-    
-    
-    
 }

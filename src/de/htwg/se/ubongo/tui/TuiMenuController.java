@@ -31,11 +31,12 @@ public final class TuiMenuController implements IMenuControllerSubject, Trigger 
             final TuiManager main, final ILevelData levelData) {
         observer.register(this);
         this.main = main;
-
+        
+        cmdMap.put("help", new TextCmdPrintHelp(main, cmdMap));
         cmdMap.put("level", new TextCmdShowLevelSelection(observer));
         cmdMap.put("random", new TextCmdStartRandomGame(observer, levelData));
-        cmdMap.put("help", new TextCmdPrintHelp(main, cmdMap));
         cmdMap.put("exit", new TextCmdShutdown(observer));
+        // TODO add guide to open introduction
     }
 
     @Override
