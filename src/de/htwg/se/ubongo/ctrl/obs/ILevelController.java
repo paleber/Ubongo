@@ -5,8 +5,12 @@ import de.htwg.se.ubongo.ctrl.sub.ILevelControllerSubject;
 
 public interface ILevelController extends ISubController<ILevelControllerSubject> {
     
-    int getNumberVariantsOfBoards();
+    void selectBoard(int index);
 
+    void selectBoardVariant(int variant);
+    
     int getNumberBoards();
+    
+    int getNumberVariantsOfBoard(int index);
     
 }

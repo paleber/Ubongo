@@ -35,16 +35,4 @@ public interface IMainController extends
     /** Close current Sub-Controller and start Help-Controller. */
     void switchToHelp();
 
-    /** Enum with available Sub-Controllers. */
-    enum SubControllerEnum {
-        /** Menu-Sub-Controller. */
-        MENU,
-        /** Level-Sub-Controller. */
-        LEVEL,
-        /** Game-Sub-Controller. */
-        GAME,
-        /** Help-Sub-Controller. */
-        HELP
-    }
-
 }

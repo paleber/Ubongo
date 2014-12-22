@@ -18,5 +18,5 @@ public interface IGrid {
     boolean checkBoardFull();
 
     String toString();
-    
+
 }

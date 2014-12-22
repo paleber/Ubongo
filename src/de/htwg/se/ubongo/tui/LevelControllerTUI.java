@@ -11,15 +11,21 @@ public class LevelControllerTUI implements ILevelControllerSubject {
     }
 
     @Override
-    public void onStartSubController() {
-        System.out.println("Level SubController gestartet");
-        
-    }
+    public void onStartSubController() {}
 
     @Override
     public void onStopSubController() {
         // TODO Auto-generated method stub
-        
+    }
+
+    @Override
+    public void onBoardSelected() {
+        // TODO Auto-generated method stub
+    }
+
+    @Override
+    public void onBoardVariantSelected() {
+        // TODO Auto-generated method stub
     }
 
 }

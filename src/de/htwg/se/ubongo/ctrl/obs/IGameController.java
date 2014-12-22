@@ -2,22 +2,23 @@ package de.htwg.se.ubongo.ctrl.obs;
 
 import de.htwg.se.ubongo.ctrl.obs.abs.ISubController;
 import de.htwg.se.ubongo.ctrl.sub.IGameControllerSubject;
+import de.htwg.se.ubongo.util.geo.IPoint;
+import de.htwg.se.ubongo.util.geo.IVector;
 
-public interface IGameController extends
-        ISubController<IGameControllerSubject> {
+public interface IGameController extends ISubController<IGameControllerSubject> {
 
-    public abstract void select(int index);
+    void select(IPoint p);
 
-    public abstract void move(double x, double y);
+    void move(IVector v);
 
-    public abstract void drop();
+    void drop();
 
-    public abstract void rotateRight();
+    void rotateRight();
 
-    public abstract void rotateLeft();
+    void rotateLeft();
 
-    public abstract void mirrorHorizontal();
+    void mirrorHorizontal();
 
-    public abstract void mirrorVertical();
+    void mirrorVertical();
 
 }

@@ -223,7 +223,7 @@ public final class Grid implements IGrid {
     @Override
     public void dropBlock() {
         if (selected == null) {
-            throw new IllegalStateException();
+           throw new IllegalStateException();
         }
 
         IPoint blockFirstPolyMid = selected.block.getPolygon(0).calcMid();
@@ -332,5 +332,4 @@ public final class Grid implements IGrid {
             a[x][y] = c;
         }
     }
-
 }

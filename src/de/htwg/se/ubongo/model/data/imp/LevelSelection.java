@@ -2,17 +2,11 @@ package de.htwg.se.ubongo.model.data.imp;
 
 import de.htwg.se.ubongo.model.data.ILevelSelection;
 
-/** Implementation if ILevelSelection. */
+/** Implementation of ILevelSelection. */
 public final class LevelSelection implements ILevelSelection {
 
     private int index;
     private int variant;
-
-    @Override
-    public void setData(final int index, final int variant) {
-        this.index = index;
-        this.variant = variant;
-    }
 
     @Override
     public int getBoardIndex() {
@@ -20,8 +14,18 @@ public final class LevelSelection implements ILevelSelection {
     }
 
     @Override
-    public int getVariantIndex() {
+    public int getVariant() {
         return variant;
+    }
+
+    @Override
+    public void setBoard(int index) {
+        this.index = index;
+    }
+
+    @Override
+    public void setVariant(int variant) {
+        this.variant = variant;
     }
 
 }

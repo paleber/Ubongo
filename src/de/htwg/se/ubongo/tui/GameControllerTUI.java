@@ -4,7 +4,6 @@ import java.util.HashMap;
 import java.util.Map;
 
 import de.htwg.se.ubongo.ctrl.obs.IGameController;
-import de.htwg.se.ubongo.ctrl.obs.IMainController;
 import de.htwg.se.ubongo.ctrl.sub.IGameControllerSubject;
 import de.htwg.se.ubongo.model.gameobject.IBlock;
 import de.htwg.se.ubongo.util.TextCommand;
@@ -12,6 +11,8 @@ import de.htwg.se.ubongo.util.Timer;
 import de.htwg.se.ubongo.util.Trigger;
 import de.htwg.se.ubongo.util.geo.IPoint;
 import de.htwg.se.ubongo.util.geo.IPolygon;
+import de.htwg.se.ubongo.util.geo.IVector;
+import de.htwg.se.ubongo.util.geo.module.GeoModule;
 
 /** TODO */
 public class GameControllerTUI implements IGameControllerSubject, Trigger {
@@ -124,7 +125,9 @@ public class GameControllerTUI implements IGameControllerSubject, Trigger {
         @Override
         protected boolean onExecute(String[] args) {
             try {
-                observer.select(Integer.parseInt(args[1]));
+                // TODO select Point
+                
+               // observer.select(Integer.parseInt(args[1]));
             } catch (ArrayIndexOutOfBoundsException | NumberFormatException e) {
                 return false;
             }
@@ -156,8 +159,10 @@ public class GameControllerTUI implements IGameControllerSubject, Trigger {
         @Override
         protected boolean onExecute(String[] args) {
             try {
-                observer.move(Double.parseDouble(args[1]),
+                IVector v = GeoModule.createVector();
+                v.set(Double.parseDouble(args[1]),
                         Double.parseDouble(args[2]));
+                observer.move(v);
             } catch (ArrayIndexOutOfBoundsException | NumberFormatException e) {
                 return false;
             }
@@ -257,8 +262,8 @@ public class GameControllerTUI implements IGameControllerSubject, Trigger {
     }
 
     @Override
-    public void onSetGridSize(int width, int height) {
-        grid = new char[width * 2][height * 2];
+    public void onSetGridSize(double width, double height) {
+        grid = new char[(int)width * 2][(int)height * 2];
     }
 
     @Override
@@ -273,8 +278,8 @@ public class GameControllerTUI implements IGameControllerSubject, Trigger {
     }
 
     @Override
-    public void onSelectBlock(int index) {
-        selectedBlock = block[index];
+    public void onSelectBlock(IBlock block) {
+        selectedBlock = block;
         refreshGrid();
     }
 
@@ -285,7 +290,7 @@ public class GameControllerTUI implements IGameControllerSubject, Trigger {
     }
 
     @Override
-    public void onUpdate() {
+    public void onUpdateGameObjects() {
         refreshGrid();
     }
 
