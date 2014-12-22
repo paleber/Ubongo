@@ -7,9 +7,9 @@ import de.htwg.se.ubongo.util.Timer;
 import de.htwg.se.ubongo.util.Trigger;
 
 /** TODO */
-public final class HelpControllerTUI implements IHelpControllerSubject, Trigger {
+public final class TuiHelpController implements IHelpControllerSubject, Trigger {
 
-    private final MainControllerTUI tui;
+    private final TuiManager tui;
     private final IHelpController observer;
 
     private final Timer timer = new Timer(this, 200);
@@ -21,8 +21,8 @@ public final class HelpControllerTUI implements IHelpControllerSubject, Trigger 
     private static boolean first = true;
     private boolean isFirst = false;
 
-    public HelpControllerTUI(final MainControllerTUI tui,
-            final IHelpController observer) {
+    public TuiHelpController(final IHelpController observer,
+            final TuiManager tui) {
         this.tui = tui;
         this.observer = observer;
         observer.register(this);

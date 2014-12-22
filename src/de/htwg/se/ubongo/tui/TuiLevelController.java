@@ -3,10 +3,10 @@ package de.htwg.se.ubongo.tui;
 import de.htwg.se.ubongo.ctrl.obs.ILevelController;
 import de.htwg.se.ubongo.ctrl.sub.ILevelControllerSubject;
 
-public class LevelControllerTUI implements ILevelControllerSubject {
+public class TuiLevelController implements ILevelControllerSubject {
 
-    public LevelControllerTUI(MainControllerTUI mainControllerTUI,
-            ILevelController observer) {
+    public TuiLevelController(ILevelController observer,
+            TuiManager mainControllerTUI) {
         observer.register(this);
     }
 

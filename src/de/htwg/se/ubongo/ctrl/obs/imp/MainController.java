@@ -7,8 +7,8 @@ import de.htwg.se.ubongo.ctrl.obs.IMainController;
 import de.htwg.se.ubongo.ctrl.obs.IMenuController;
 import de.htwg.se.ubongo.ctrl.obs.abs.ISubController;
 import de.htwg.se.ubongo.ctrl.sub.IMainControllerSubject;
-import de.htwg.se.ubongo.model.data.ILevelSelection;
-import de.htwg.se.ubongo.model.data.imp.LevelSelection;
+import de.htwg.se.ubongo.model.data.ILevelData;
+import de.htwg.se.ubongo.model.data.imp.LevelData;
 import de.htwg.se.ubongo.model.loader.IResourceLoader;
 import de.htwg.se.ubongo.model.loader.fake.FakeResourceLoader;
 import de.htwg.se.ubongo.util.ctrl.imp.AbstractMainController;
@@ -20,6 +20,8 @@ public final class MainController extends
 
     private ISubController<?> active;
 
+    private final LevelData levelData;
+    
     private final ILevelController level;
     private final IGameController game;
 
@@ -28,10 +30,11 @@ public final class MainController extends
 
     /** Default-Constructor. */
     public MainController() {
-        ILevelSelection ls = new LevelSelection();
+        
         IResourceLoader loader = new FakeResourceLoader();
-        level = new LevelController(this, ls, loader);
-        game = new GameController(this, ls, loader);
+        levelData = new LevelData(loader);
+        level = new LevelController(this, levelData, loader);
+        game = new GameController(this, levelData, loader);
     }
 
     @Override
@@ -89,6 +92,11 @@ public final class MainController extends
     @Override
     public void onShutdown() {
         stopActiveController();
+    }
+
+    @Override
+    public ILevelData getLevelData() {
+        return levelData;
     }
 
 }

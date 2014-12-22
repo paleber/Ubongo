@@ -1,6 +1,7 @@
 package de.htwg.se.ubongo.ctrl.obs;
 
 import de.htwg.se.ubongo.ctrl.sub.IMainControllerSubject;
+import de.htwg.se.ubongo.model.data.ILevelData;
 import de.htwg.se.ubongo.util.ctrl.IAbstractMainController;
 
 /** Interface for MainController. */
@@ -34,5 +35,9 @@ public interface IMainController extends
 
     /** Close current Sub-Controller and start Help-Controller. */
     void switchToHelp();
+
+    /** Get the LevelData.
+     * @return LevelData */
+    ILevelData getLevelData();
 
 }

@@ -4,7 +4,7 @@ import de.htwg.se.ubongo.ctrl.obs.IGameController;
 import de.htwg.se.ubongo.ctrl.obs.IMainController;
 import de.htwg.se.ubongo.ctrl.obs.abs.imp.SubController;
 import de.htwg.se.ubongo.ctrl.sub.IGameControllerSubject;
-import de.htwg.se.ubongo.model.data.ILevelSelection;
+import de.htwg.se.ubongo.model.data.ILevelData;
 import de.htwg.se.ubongo.model.gameobject.IBlock;
 import de.htwg.se.ubongo.model.gameobject.IGrid;
 import de.htwg.se.ubongo.model.gameobject.imp.Grid;
@@ -16,7 +16,7 @@ import de.htwg.se.ubongo.util.geo.IVector;
 public final class GameController extends SubController<IGameControllerSubject>
         implements IGameController {
 
-    private final ILevelSelection levelSelection;
+    private final ILevelData levelSelection;
     private final IResourceLoader loader;
 
     /** Default-Constructor.
@@ -24,7 +24,7 @@ public final class GameController extends SubController<IGameControllerSubject>
      * @param levelSelection LevelSelection
      * @param loader ResourceLoader */
     public GameController(final IMainController main,
-            final ILevelSelection levelSelection, final IResourceLoader loader) {
+            final ILevelData levelSelection, final IResourceLoader loader) {
         super(main);
         this.levelSelection = levelSelection;
         this.loader = loader;
