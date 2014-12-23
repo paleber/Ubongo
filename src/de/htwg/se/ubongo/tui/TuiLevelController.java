@@ -2,32 +2,45 @@ package de.htwg.se.ubongo.tui;
 
 import de.htwg.se.ubongo.ctrl.obs.ILevelController;
 import de.htwg.se.ubongo.ctrl.sub.ILevelControllerSubject;
+import de.htwg.se.ubongo.model.data.ILevelData;
+import de.htwg.se.ubongo.tui.abs.AbstractTuiController;
+import de.htwg.se.ubongo.tui.cmd.level.TextCmdNumberBoards;
+import de.htwg.se.ubongo.tui.cmd.level.TextCmdNumberVariants;
+import de.htwg.se.ubongo.tui.cmd.level.TextCmdSelectBoard;
+import de.htwg.se.ubongo.tui.cmd.level.TextCmdSelectVariant;
+import de.htwg.se.ubongo.tui.cmd.shared.TextCmdShowMenu;
 
-public class TuiLevelController implements ILevelControllerSubject {
+public class TuiLevelController extends AbstractTuiController implements
+        ILevelControllerSubject {
 
-    public TuiLevelController(ILevelController observer,
-            TuiManager mainControllerTUI) {
+    private final TuiManager tuiManager;
+    
+    public TuiLevelController(ILevelController observer, TuiManager tuiManager, ILevelData levelData) {
+        super(observer, tuiManager, "level");
         observer.register(this);
-    }
-
-    @Override
-    public void onStartSubController() {}
-
-    @Override
-    public void onStopSubController() {
-        // TODO Auto-generated method stub
-    }
-
-    @Override
-    public void onBoardSelected(int index) {
-        // TODO Auto-generated method stub
+        this.tuiManager = tuiManager;
         
+        addTextCmd("menu", new TextCmdShowMenu(observer));
+        addTextCmd("numBoards", new TextCmdNumberBoards(levelData));
+        addTextCmd("numVariants", new TextCmdNumberVariants(levelData));
+        addTextCmd("board", new TextCmdSelectBoard(levelData, tuiManager));
+        addTextCmd("variant", new TextCmdSelectVariant(levelData, tuiManager));
     }
 
     @Override
-    public void onBoardVariantSelected(int variant) {
-        // TODO Auto-generated method stub
-        
+    public void onBoardSelected(final int index) {
+        tuiManager.writeLine("board selected: " + index);
     }
+
+    @Override
+    public void onBoardVariantSelected(final int variant) {
+        tuiManager.writeLine("variant selected: " + variant);
+    }
+
+    @Override
+    protected void onControllerStart() {}
+
+    @Override
+    protected void onControllerStop() {}
 
 }

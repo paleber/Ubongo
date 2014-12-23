@@ -1,6 +1,6 @@
 package de.htwg.se.ubongo.tui.cmd.shared;
 
-import java.util.LinkedHashMap;
+import java.util.Map;
 
 import de.htwg.se.ubongo.tui.TuiManager;
 import de.htwg.se.ubongo.util.TextCommand;
@@ -9,13 +9,13 @@ import de.htwg.se.ubongo.util.TextCommand;
 public final class TextCmdPrintHelp extends TextCommand {
 
     private final TuiManager manager;
-    private final LinkedHashMap<String, TextCommand> cmdMap;
+    private final Map<String, TextCommand> cmdMap;
 
     /** Default-Constructor.
      * @param manager TuiManager
      * @param cmdMap */
     public TextCmdPrintHelp(final TuiManager manager,
-            final LinkedHashMap<String, TextCommand> cmdMap) {
+            final Map<String, TextCommand> cmdMap) {
         this.manager = manager;
         this.cmdMap = cmdMap;
     }

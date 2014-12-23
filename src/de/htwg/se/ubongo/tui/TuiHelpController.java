@@ -1,66 +1,36 @@
 package de.htwg.se.ubongo.tui;
 
 import de.htwg.se.ubongo.ctrl.obs.IHelpController;
-import de.htwg.se.ubongo.ctrl.obs.IMainController;
 import de.htwg.se.ubongo.ctrl.sub.IHelpControllerSubject;
-import de.htwg.se.ubongo.util.Timer;
+import de.htwg.se.ubongo.tui.abs.AbstractTuiController;
+import de.htwg.se.ubongo.tui.cmd.shared.TextCmdShowMenu;
 import de.htwg.se.ubongo.util.Trigger;
 
-/** TODO */
-public final class TuiHelpController implements IHelpControllerSubject, Trigger {
+/** Implementation of IHelpController. */
+public final class TuiHelpController extends AbstractTuiController implements
+        IHelpControllerSubject, Trigger {
 
-    private final TuiManager tui;
-    private final IHelpController observer;
+    private final TuiManager tuiManager;
 
-    private final Timer timer = new Timer(this, 200);
-
-    private int testCounter;
-
-    private static final int MAX_COUNTS = 10;
-
-    private static boolean first = true;
-    private boolean isFirst = false;
-
+    /** Default-Costructor.
+     * @param observer Observer-HelpController.
+     * @param tuiManager TuiManager */
     public TuiHelpController(final IHelpController observer,
-            final TuiManager tui) {
-        this.tui = tui;
-        this.observer = observer;
+            final TuiManager tuiManager) {
+
+        super(observer, tuiManager, "guide");
         observer.register(this);
-        if (first) {
-            first = false;
-            isFirst = true;
-        }
+
+        this.tuiManager = tuiManager;
+        addTextCmd("menu", new TextCmdShowMenu(observer));
     }
 
     @Override
-    public void onStartSubController() {
-        tui.writeLine("--- Help opened ---");
-        testCounter = 0;
-        timer.start();
+    protected void onControllerStart() {
+        tuiManager.writeLine("The Introduction of Ubongo");
     }
 
     @Override
-    public void onStopSubController() {
-        timer.stop();
-        tui.writeLine("--- Help closed ---");
-    }
-
-    @Override
-    public void onTrigger() {
-        testCounter++;
-
-        if (isFirst && testCounter > MAX_COUNTS) {
-            observer.switchToMenu();
-            return;
-        }
-
-        if (testCounter > MAX_COUNTS) {
-            return;
-        }
-
-        tui.writeLine("Print an Example Line ( " + testCounter + "|"
-                + MAX_COUNTS + ")");
-
-    }
+    protected void onControllerStop() {}
 
 }

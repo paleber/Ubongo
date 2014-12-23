@@ -18,7 +18,7 @@ public final class TuiManager implements IMainControllerSubject {
     public TuiManager(final IMainController main) {
         main.register(this);
         new TuiMenuController(main.getMenuController(), this, main.getLevelData());
-        new TuiLevelController(main.getLevelController(), this);
+        new TuiLevelController(main.getLevelController(), this, main.getLevelData());
         new TuiGameController(main.getGameController(), this);
         new TuiHelpController(main.getHelpController(), this);
         writeLine("--- start application ---");
