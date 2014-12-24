@@ -2,7 +2,7 @@ package de.htwg.se.ubongo.tui.cmd.game;
 
 import de.htwg.se.ubongo.ctrl.obs.IGameController;
 import de.htwg.se.ubongo.tui.TuiManager;
-import de.htwg.se.ubongo.util.TextCommand;
+import de.htwg.se.ubongo.util.cmd.TextCommand;
 import de.htwg.se.ubongo.util.geo.IPoint;
 import de.htwg.se.ubongo.util.geo.module.GeoModule;
 

@@ -4,6 +4,9 @@ import static org.junit.Assert.fail;
 
 import org.junit.Test;
 
+import de.htwg.se.ubongo.util.timer.Timer;
+import de.htwg.se.ubongo.util.timer.Trigger;
+
 /** Tests for Timer. */
 public class TestTimer {
 

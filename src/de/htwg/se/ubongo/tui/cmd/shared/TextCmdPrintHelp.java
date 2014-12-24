@@ -3,7 +3,7 @@ package de.htwg.se.ubongo.tui.cmd.shared;
 import java.util.Map;
 
 import de.htwg.se.ubongo.tui.TuiManager;
-import de.htwg.se.ubongo.util.TextCommand;
+import de.htwg.se.ubongo.util.cmd.TextCommand;
 
 /** TextCommand for printing help on console. */
 public final class TextCmdPrintHelp extends TextCommand {

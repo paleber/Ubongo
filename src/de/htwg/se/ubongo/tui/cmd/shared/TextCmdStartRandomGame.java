@@ -4,7 +4,7 @@ import java.util.Random;
 
 import de.htwg.se.ubongo.ctrl.obs.abs.ISubController;
 import de.htwg.se.ubongo.model.data.ILevelData;
-import de.htwg.se.ubongo.util.TextCommand;
+import de.htwg.se.ubongo.util.cmd.TextCommand;
 
 /** Text-Command for starting a random game. */
 public final class TextCmdStartRandomGame extends TextCommand {

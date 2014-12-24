@@ -1,4 +1,4 @@
-package de.htwg.se.ubongo.util;
+package de.htwg.se.ubongo.util.timer;
 
 public interface Trigger {
 

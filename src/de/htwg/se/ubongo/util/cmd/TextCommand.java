@@ -1,4 +1,4 @@
-package de.htwg.se.ubongo.util;
+package de.htwg.se.ubongo.util.cmd;
 
 /** TextCommand for putting as value into Map, with command as Key. */
 public abstract class TextCommand {

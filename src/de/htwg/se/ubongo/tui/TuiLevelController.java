@@ -10,7 +10,7 @@ import de.htwg.se.ubongo.tui.cmd.level.TextCmdSelectBoard;
 import de.htwg.se.ubongo.tui.cmd.level.TextCmdSelectVariant;
 import de.htwg.se.ubongo.tui.cmd.shared.TextCmdShowMenu;
 
-public class TuiLevelController extends AbstractTuiController implements
+public final class TuiLevelController extends AbstractTuiController implements
         ILevelControllerSubject {
 
     private final TuiManager tuiManager;

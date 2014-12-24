@@ -1,7 +1,7 @@
 package de.htwg.se.ubongo.tui.cmd.level;
 
 import de.htwg.se.ubongo.model.data.ILevelData;
-import de.htwg.se.ubongo.util.TextCommand;
+import de.htwg.se.ubongo.util.cmd.TextCommand;
 
 /** TODO
  *  */

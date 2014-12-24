@@ -1,7 +1,7 @@
 package de.htwg.se.ubongo.tui.cmd.game;
 
 import de.htwg.se.ubongo.ctrl.obs.IGameController;
-import de.htwg.se.ubongo.util.TextCommand;
+import de.htwg.se.ubongo.util.cmd.TextCommand;
 
 /** TextCommand to move the selected Block. */
 public final class TextCmdDropBlock extends TextCommand {

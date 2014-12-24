@@ -1,7 +1,7 @@
 package de.htwg.se.ubongo.tui.cmd.shared;
 
 import de.htwg.se.ubongo.ctrl.obs.abs.ISubController;
-import de.htwg.se.ubongo.util.TextCommand;
+import de.htwg.se.ubongo.util.cmd.TextCommand;
 
 /** TextCommand to shutdown the application. */
 public final class TextCmdShutdown extends TextCommand {

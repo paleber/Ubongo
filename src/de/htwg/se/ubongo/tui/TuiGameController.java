@@ -16,11 +16,11 @@ import de.htwg.se.ubongo.tui.cmd.game.TextCmdSelectBlock;
 import de.htwg.se.ubongo.tui.cmd.shared.TextCmdPrintHelp;
 import de.htwg.se.ubongo.tui.cmd.shared.TextCmdShowMenu;
 import de.htwg.se.ubongo.tui.cmd.shared.TextCmdShutdown;
-import de.htwg.se.ubongo.util.TextCommand;
-import de.htwg.se.ubongo.util.Timer;
-import de.htwg.se.ubongo.util.Trigger;
+import de.htwg.se.ubongo.util.cmd.TextCommand;
 import de.htwg.se.ubongo.util.geo.IPoint;
 import de.htwg.se.ubongo.util.geo.IPolygon;
+import de.htwg.se.ubongo.util.timer.Timer;
+import de.htwg.se.ubongo.util.timer.Trigger;
 
 /** Subject-GameController of TUI. */
 public final class TuiGameController implements IGameControllerSubject, Trigger {

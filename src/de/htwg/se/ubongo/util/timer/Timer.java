@@ -1,4 +1,4 @@
-package de.htwg.se.ubongo.util;
+package de.htwg.se.ubongo.util.timer;
 
 /** Timer repeatly calling Trigger Event from Inner-Interface. */
 public final class Timer {
