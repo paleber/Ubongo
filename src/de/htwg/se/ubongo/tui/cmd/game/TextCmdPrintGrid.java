@@ -107,7 +107,7 @@ public final class TextCmdPrintGrid implements TextCommand {
      * @param blocks blocks */
     public void setGameObjects(final IBlock board, final IBlock[] blocks) {
         this.board = board;
-        this.blocks = blocks;
+        this.blocks = blocks.clone();
     }
 
     /** Select a block.

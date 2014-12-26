@@ -2,6 +2,7 @@ package de.htwg.se.ubongo.util.geo.imp;
 
 import de.htwg.se.ubongo.util.geo.IPoint;
 
+/** Line. */
 public final class Line2D {
 
     private static final double DELTA = 1e-9;
@@ -11,19 +12,30 @@ public final class Line2D {
 
     private BoundingBox2D bb = new BoundingBox2D();
 
+    /** Get the start-point.
+     * @return start point */
     public IPoint getStart() {
         return start;
     }
 
+    /** Get the end-point.
+     * @return end point */
     public IPoint getEnd() {
         return end;
     }
 
+    /** Set start and end point.
+     * @param start start
+     * @param end end */
     public void setStartEnd(final IPoint start, final IPoint end) {
         this.start = start;
         this.end = end;
     }
 
+    /** Set the startpoint, degree and length.
+     * @param start start
+     * @param degree degree
+     * @param length length */
     public void setStartAngleLength(final IPoint start, final double degree,
             final double length) {
         this.start = start;
@@ -35,19 +47,25 @@ public final class Line2D {
         end.move(v);
     }
 
-    public boolean overlap(Line2D other) {
+    /** Check if the Line Overlap with a other line.
+     * @param other other line
+     * @return */
+    public boolean overlap(final Line2D other) {
         return calcIntersectionSegment(other) != null;
     }
 
-    public double distanceTo(IPoint p) {
-        IPoint intersection = calcIntersectionSegment(calcNormal(p));
+    /** Calculate the nearest distance to a point.
+     * @param point point
+     * @return */
+    public double distanceTo(final IPoint point) {
+        IPoint intersection = calcIntersectionSegment(calcNormal(point));
         if (intersection != null) {
-            return p.distanceTo(intersection);
+            return point.distanceTo(intersection);
         }
-        return Math.min(p.distanceTo(start), p.distanceTo(end));
+        return Math.min(point.distanceTo(start), point.distanceTo(end));
     }
 
-    private IPoint calcIntersectionStraights(Line2D other) {
+    private IPoint calcIntersectionStraights(final Line2D other) {
         double a1, b1, c1, a2, b2, c2;
 
         a1 = end.getY() - start.getY();
@@ -71,7 +89,7 @@ public final class Line2D {
         return intersection;
     }
 
-    private IPoint calcIntersectionSegment(Line2D other) {
+    private IPoint calcIntersectionSegment(final Line2D other) {
         IPoint intersection = calcIntersectionStraights(other);
         if (intersection == null) {
             return null;
@@ -96,7 +114,7 @@ public final class Line2D {
         return true;
     }
 
-    private Line2D calcNormal(IPoint p) {
+    private Line2D calcNormal(final IPoint p) {
         Vector2D v = new Vector2D();
         v.stretchBetween(start, end);
         v.convertToNormal();
@@ -105,10 +123,12 @@ public final class Line2D {
         return n;
     }
 
+    @Override
     public String toString() {
         return "<Line" + start + end + ">";
     }
 
+    /** Update the Bounding-Box. */
     public void updateBoundingBox() {
         bb.update(start, end);
     }

@@ -128,7 +128,7 @@ public final class Polygon2D implements IPolygon {
     private static final double[] TEST_ANGLES = { 0, 120, 240 };
 
     @Override
-    public boolean contains(IPoint p) {
+    public boolean contains(final IPoint p) {
         if (edges == null) {
             initEdges();
         }

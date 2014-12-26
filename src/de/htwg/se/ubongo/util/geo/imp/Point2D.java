@@ -84,50 +84,18 @@ public final class Point2D implements IPoint {
     }
 
     @Override
-    public boolean diffsToLessThan(IPoint other, double tolerance) {
-        if (Math.abs(x - other.getX()) >= tolerance) {
+    public boolean diffsToLessThan(final IPoint other, final double diff) {
+        if (Math.abs(x - other.getX()) >= diff) {
             return false;
         }
 
-        if (Math.abs(y - other.getY()) >= tolerance) {
+        if (Math.abs(y - other.getY()) >= diff) {
             return false;
         }
 
         return true;
     }
 
-    @Override
-    public int hashCode() {
-        final int shift = 32;
-        final int prime = 31;
-        int result = 1;
-        long temp;
-        temp = Double.doubleToLongBits(x);
-        result = prime * result + (int) (temp ^ (temp >>> shift));
-        temp = Double.doubleToLongBits(y);
-        result = prime * result + (int) (temp ^ (temp >>> shift));
-        return result;
-    }
-
-    @Override
-    public boolean equals(Object obj) {
-        if (this == obj) {
-            return true;
-        }
-        if (obj == null) {
-            return false;
-        }
-        if (getClass() != obj.getClass()) {
-            return false;
-        }
-        Point2D other = (Point2D) obj;
-        if (Double.doubleToLongBits(x) != Double.doubleToLongBits(other.x)) {
-            return false;
-        }
-        if (Double.doubleToLongBits(y) != Double.doubleToLongBits(other.y)) {
-            return false;
-        }
-        return true;
-    }
+  
 
 }

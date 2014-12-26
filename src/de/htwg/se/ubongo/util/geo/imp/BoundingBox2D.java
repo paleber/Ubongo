@@ -2,13 +2,14 @@ package de.htwg.se.ubongo.util.geo.imp;
 
 import de.htwg.se.ubongo.util.geo.IPoint;
 
+/** Rect-Bounding-Box for Collision-Detection. */
 public final class BoundingBox2D {
 
     private double xMin, xMax, yMin, yMax;
 
     /** Update the bounding box.
      * @param points points */
-    public void update(IPoint... points) {
+    public void update(final IPoint... points) {
         xMin = points[0].getX();
         xMax = points[0].getX();
         yMin = points[0].getY();
@@ -21,7 +22,7 @@ public final class BoundingBox2D {
         }
     }
 
-    /** Check if this BoundingBox overlap with other BoundingBox
+    /** Check if the BoundingBox overlap with other BoundingBox.
      * @param other other BoundingBox
      * @return true when overlap, otherwise false */
     public boolean overlapWith(final BoundingBox2D other) {

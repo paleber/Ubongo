@@ -2,7 +2,8 @@ package de.htwg.se.ubongo.util.ctrl;
 
 import de.htwg.se.ubongo.util.ctrl.abs.IAbstractController;
 
-/** Interface for Abstract-Sub-Controller. */
+/** Interface for Abstract-Sub-Controller.
+ * @param <S> SubSubject*/
 public interface IAbstractSubController<S extends IAbstractSubSubject> extends
         IAbstractController<S> {
 
