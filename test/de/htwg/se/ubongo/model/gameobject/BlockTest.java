@@ -85,27 +85,15 @@ public final class BlockTest {
         IPoint p = GeoModule.createPoint();
         p.set(0.5, 0.5);
         assertTrue(p.diffsToLessThan(go.calcAnchoredMids()[0], DELTA));
-        
+
         v.set(0.48, 0.48);
         go.move(v);
-        
+
         assertTrue(p.diffsToLessThan(go.calcAnchoredMids()[0], DELTA));
-        
+
         v.set(0.03, 0.03);
         go.move(v);
         assertFalse(p.diffsToLessThan(go.calcAnchoredMids()[0], DELTA));
-    }
-
-    @Test
-    public void testSaveLoadState() {
-        IPoint p = GeoModule.createPoint();
-        p.copy(go.getPolygon(0).getPoint(0));
-        go.saveState();
-        IVector v = GeoModule.createVector();
-        v.set(1, 2);
-        go.move(v);
-        go.loadState();
-        assertTrue(p.diffsToLessThan(go.getPolygon(0).getPoint(0), DELTA));
     }
 
 }

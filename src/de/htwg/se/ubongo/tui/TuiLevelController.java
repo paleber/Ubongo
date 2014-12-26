@@ -12,13 +12,18 @@ import de.htwg.se.ubongo.tui.cmd.level.TextCmdShowGame;
 import de.htwg.se.ubongo.tui.cmd.shared.TextCmdShowMenu;
 import de.htwg.se.ubongo.util.console.IConsole;
 
+/** TuiLevelController. */
 public final class TuiLevelController extends AbstractTuiController implements
         ILevelControllerSubject {
 
     private final IConsole console;
 
-    public TuiLevelController(ILevelController observer, IConsole console,
-            ILevelData levelData) {
+    /** Constructor.
+     * @param observer observer
+     * @param console console
+     * @param levelData levelData */
+    public TuiLevelController(final ILevelController observer,
+            final IConsole console, final ILevelData levelData) {
 
         super(observer, console, "level");
         observer.register(this);
@@ -33,16 +38,12 @@ public final class TuiLevelController extends AbstractTuiController implements
     }
 
     @Override
-    public void onSelect(int index, int variant) {
+    public void onSelect(final int index, final int variant) {
         console.writeLine("selected - board: " + index + " - variant: "
                 + variant);
-
     }
 
     @Override
-    protected void onControllerStart() {}
-
-    @Override
-    protected void onControllerStop() {}
+    protected void onStart() {}
 
 }

@@ -4,7 +4,7 @@ import de.htwg.se.ubongo.model.data.ILevelData;
 import de.htwg.se.ubongo.util.cmd.TextCommand;
 import de.htwg.se.ubongo.util.console.IConsole;
 
-/** TODO */
+/** TextCommand to print number board-variants. */
 public final class TextCmdNumberVariants implements TextCommand {
 
     private final ILevelData levelData;
@@ -20,7 +20,7 @@ public final class TextCmdNumberVariants implements TextCommand {
     }
 
     @Override
-    public void execute(String... args) {
+    public void execute(final String... args) {
         int index = levelData.getBoardIndex();
         int variant = levelData.getNumberVariantsOfBoard(index);
         console.writeLine("number variants of board " + index + ": " + variant);

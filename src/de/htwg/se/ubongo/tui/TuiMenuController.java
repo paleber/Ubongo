@@ -15,7 +15,7 @@ public final class TuiMenuController extends AbstractTuiController implements
 
     /** Default-Constructor.
      * @param observer Observer-MainController.
-     * @param main MainControllerTUI
+     * @param console console
      * @param levelData LevelData */
     public TuiMenuController(final IMenuController observer,
             final IConsole console, final ILevelData levelData) {
@@ -28,9 +28,6 @@ public final class TuiMenuController extends AbstractTuiController implements
     }
 
     @Override
-    protected void onControllerStart() {}
-
-    @Override
-    protected void onControllerStop() {}
-
+    protected void onStart() {}
+    
 }

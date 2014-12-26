@@ -37,17 +37,16 @@ public final class GameController extends SubController<IGameControllerSubject>
     public void onControllerStart() {
         int index = levelSelection.getBoardIndex();
         int variant = levelSelection.getVariant();
-        
+
         IBlock board = loader.createBoard(index);
         IBlock[] blocks = loader.createBlocksOfBoard(index, variant);
         grid.init(board, blocks);
-        
+
         for (IGameControllerSubject s : getSubjects()) {
             s.onSetGridSize(grid.getWidth(), grid.getHeight());
             s.onSetGameObjects(board, blocks);
             s.onStartGame();
         }
-
     }
 
     @Override
@@ -82,6 +81,9 @@ public final class GameController extends SubController<IGameControllerSubject>
             selected = null;
             for (IGameControllerSubject s : getSubjects()) {
                 s.onDropBlock();
+                if (grid.checkBoardFull()) {
+                    s.onWin();
+                }
             }
         }
     }

@@ -8,13 +8,12 @@ import de.htwg.se.ubongo.util.ctrl.IAbstractSubSubject;
 public abstract class AbstractSubController<S extends IAbstractSubSubject>
         extends AbstractController<S> implements IAbstractSubController<S> {
 
-    /** Start the SubController by starting the SubController and than starting
-     * all SubSubjects. */
+    /** Start the SubController and all Subjects. */
     public final void startController() {
-        onControllerStart();
         for (S s : getSubjects()) {
             s.onStartSubController();
         }
+        onControllerStart();
     }
 
     /** Stop the SubController by stopping all SubSubjects and than stopping the

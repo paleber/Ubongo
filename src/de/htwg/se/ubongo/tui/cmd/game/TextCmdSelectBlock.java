@@ -14,7 +14,7 @@ public final class TextCmdSelectBlock implements TextCommand {
 
     /** Default-Constructor.
      * @param observer IGameController
-     * @param tuiManager TuiManager */
+     * @param console console*/
     public TextCmdSelectBlock(final IGameController observer,
             final IConsole console) {
         this.observer = observer;

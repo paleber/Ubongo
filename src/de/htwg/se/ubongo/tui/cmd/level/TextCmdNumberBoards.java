@@ -20,7 +20,7 @@ public final class TextCmdNumberBoards implements TextCommand {
     }
 
     @Override
-    public void execute(String... args) {
+    public void execute(final String... args) {
         console.writeLine("number boards: " + levelData.getNumberBoards());
     }
 

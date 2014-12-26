@@ -14,7 +14,7 @@ public final class TextCmdMoveBlock implements TextCommand {
 
     /** Default-Constructor.
      * @param observer IGameController
-     * @param tuiManager TuiManager */
+     * @param console console*/
     public TextCmdMoveBlock(final IGameController observer,
             final IConsole console) {
         this.observer = observer;

@@ -12,8 +12,6 @@ public final class Block extends AbstractGameObject implements IBlock {
     private static final double ROTATE_STEP = 90;
     private static final double FACTOR_HALF = 0.5;
 
-    private IPolygon[] savedPolys;
-
     @Override
     public void mirrorVertical() {
         double xAxis = calcMid().getX();
@@ -60,32 +58,18 @@ public final class Block extends AbstractGameObject implements IBlock {
         for (int i = 0; i < getNumberPolygons(); i++) {
             aMid[i] = GeoModule.createPoint();
             IPoint mid = getPolygon(i).calcMid();
-            double x = (int) (mid.getX() * 2 + FACTOR_HALF) * FACTOR_HALF  ;
-            double y = (int) (mid.getY() * 2 + FACTOR_HALF) * FACTOR_HALF ;
+            double x = (int) (mid.getX() * 2 + FACTOR_HALF) * FACTOR_HALF;
+            double y = (int) (mid.getY() * 2 + FACTOR_HALF) * FACTOR_HALF;
             aMid[i].set(x, y);
         }
         return aMid;
     }
 
     @Override
-    public void saveState() {
-        savedPolys = new IPolygon[getNumberPolygons()];
-        for (int i = 0; i < getNumberPolygons(); i++) {
-            savedPolys[i] = GeoModule.createPolygon();
-            savedPolys[i].copy(getPolygon(i));
-        }
-    }
-
-    @Override
-    public void loadState() {
-        setPolygons(savedPolys);
-    }
-
-    @Override
-    public boolean contains(IPoint p) {
+    public boolean contains(final IPoint p) {
         // TODO, boundingBox abfrage
-        for(IPolygon poly: this) {
-            if(poly.contains(p)) {
+        for (IPolygon poly : this) {
+            if (poly.contains(p)) {
                 return true;
             }
         }

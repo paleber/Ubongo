@@ -16,7 +16,7 @@ public final class LevelController extends
 
     /** Default-Constructor.
      * @param main MainController
-     * @param levelSelection LevelSelection
+     * @param levelData levelData
      * @param loader ResourceLoader */
     public LevelController(final IMainController main,
             final ILevelData levelData, final IResourceLoader loader) {

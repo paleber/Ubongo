@@ -27,11 +27,8 @@ public final class TuiHelpController extends AbstractTuiController implements
     }
 
     @Override
-    protected void onControllerStart() {
+    protected void onStart() {
         console.writeLine("The Introduction of Ubongo");
     }
-
-    @Override
-    protected void onControllerStop() {}
 
 }

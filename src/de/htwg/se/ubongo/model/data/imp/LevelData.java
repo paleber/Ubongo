@@ -43,7 +43,7 @@ public final class LevelData implements ILevelData {
 
     @Override
     public void setVariant(final int variant) {
-        if(variant < 0 || variant >= numbVariants[index]) {
+        if (variant < 0 || variant >= numbVariants[index]) {
             throw new IllegalArgumentException();
         }
         this.variant = variant;

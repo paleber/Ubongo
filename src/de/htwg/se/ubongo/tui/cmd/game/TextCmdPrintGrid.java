@@ -1,27 +1,125 @@
 package de.htwg.se.ubongo.tui.cmd.game;
 
-import de.htwg.se.ubongo.tui.TuiGameController;
+import de.htwg.se.ubongo.model.gameobject.IBlock;
 import de.htwg.se.ubongo.util.cmd.TextCommand;
+import de.htwg.se.ubongo.util.console.IConsole;
+import de.htwg.se.ubongo.util.geo.IPoint;
+import de.htwg.se.ubongo.util.geo.IPolygon;
 
 /** Game-TextCommand to mirror a block vertical. */
 public final class TextCmdPrintGrid implements TextCommand {
 
-    private final TuiGameController tuiGameController;
+    private char[][] grid;
+    private static final double FACTOR_HALF = 0.5;
+    private final IConsole console;
 
-    /** Default-Constructor.
-     * @param tuiGameController TuiGameController */
-    public TextCmdPrintGrid(final TuiGameController tuiGameController) {
-        this.tuiGameController = tuiGameController;
+    private IBlock board;
+    private IBlock[] blocks;
+    private IBlock selectedBlock;
+
+    /** Constructor.
+     * @param console console */
+    public TextCmdPrintGrid(final IConsole console) {
+        this.console = console;
     }
 
     @Override
     public void execute(final String... args) {
-        tuiGameController.onUpdateGameObjects();
+        clearGrid();
+        paintBoard();
+        paintBlocks();
+        printGrid();
+    }
+
+    private void clearGrid() {
+        for (int x = 0; x < grid.length; x++) {
+            for (int y = 0; y < grid[0].length; y++) {
+                grid[x][y] = '.';
+            }
+        }
+    }
+
+    private void paintBoard() {
+        for (IPolygon poly : board) {
+            IPoint p = poly.calcMid();
+            int x = (int) (p.getX() * 2);
+            int y = (int) (p.getY() * 2);
+            grid[x][y] = 'X';
+        }
+    }
+
+    private void printGrid() {
+        console.writeLine("---------------------------------------------");
+        for (int y = 0; y < grid[0].length; y++) {
+            StringBuffer b = new StringBuffer();
+            for (int x = 0; x < grid.length; x++) {
+                b.append(grid[x][y]);
+            }
+            console.writeLine(b.toString());
+        }
+        console.writeLine("---------------------------------------------");
+    }
+
+    private void paintBlocks() {
+        int index = 0;
+        for (IBlock b : blocks) {
+            for (IPolygon poly : b) {
+                IPoint p = poly.calcMid();
+                try {
+                    int x = (int) (p.getX() * 2 + FACTOR_HALF);
+                    int y = (int) (p.getY() * 2 + FACTOR_HALF);
+                    grid[x][y] = Integer.toString(index).charAt(0);
+                } catch (ArrayIndexOutOfBoundsException e) {
+                    continue;
+                }
+            }
+            index++;
+        }
+
+        if (selectedBlock != null) {
+            for (IPolygon poly : selectedBlock) {
+                IPoint p = poly.calcMid();
+                try {
+                    int x = (int) (p.getX() * 2 + FACTOR_HALF);
+                    int y = (int) (p.getY() * 2 + FACTOR_HALF);
+                    grid[x][y] = 'S';
+                } catch (ArrayIndexOutOfBoundsException e) {
+                    continue;
+                }
+            }
+        }
     }
 
     @Override
     public String getDescription() {
         return "print the grid";
+    }
+
+    /** Set the grid size.
+     * @param width width
+     * @param height height */
+    public void setGridSize(final double width, final double height) {
+        grid = new char[(int) width * 2][(int) height * 2];
+    }
+
+    /** Set the GameObjects.
+     * @param board board
+     * @param blocks blocks */
+    public void setGameObjects(final IBlock board, final IBlock[] blocks) {
+        this.board = board;
+        this.blocks = blocks;
+    }
+
+    /** Select a block.
+     * @param block block */
+    public void selectBlock(final IBlock block) {
+        selectedBlock = block;
+        execute();
+    }
+
+    /** Drop the selected block. */
+    public void dropBlock() {
+        selectedBlock = null;
     }
 
 }

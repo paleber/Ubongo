@@ -13,13 +13,14 @@ public final class TextCmdSelectBoard implements TextCommand {
     /** Constructor.
      * @param observer LevelController-Observer
      * @param console Console */
-    public TextCmdSelectBoard(final ILevelController observer, IConsole console) {
+    public TextCmdSelectBoard(final ILevelController observer,
+            final IConsole console) {
         this.observer = observer;
         this.console = console;
     }
 
     @Override
-    public void execute(String... args) {
+    public void execute(final String... args) {
         int index;
 
         try {

@@ -45,8 +45,10 @@ public final class Grid implements IGrid {
         }
     }
 
+    /** Default-Constructor. */
     public Grid() {
-        for (double x = GRID_FRAME_SIZE; x < WIDTH - GRID_FRAME_SIZE + DELTA; x += FACTOR_HALF) {
+        for (double x = GRID_FRAME_SIZE; x < WIDTH - GRID_FRAME_SIZE + DELTA; x +=
+                FACTOR_HALF) {
             for (double y = GRID_FRAME_SIZE; y < HEIGHT - GRID_FRAME_SIZE
                     + DELTA; y += FACTOR_HALF) {
                 IPoint p = GeoModule.createPoint();
@@ -110,8 +112,8 @@ public final class Grid implements IGrid {
                 BOARD_FRAME_SIZE));
     }
 
-    private List<IPoint> pullFreeAnchorsBlockedBy(List<IPoint> anchors,
-            double frameSize) {
+    private List<IPoint> pullFreeAnchorsBlockedBy(final List<IPoint> anchors,
+            final double frameSize) {
 
         List<IPoint> blocked = new LinkedList<>();
 
@@ -128,8 +130,7 @@ public final class Grid implements IGrid {
         return blocked;
     }
 
-    private IPoint
-            getAnchor(final List<IPoint> anchorList, final IPoint point) {
+    private IPoint getAnchor(final List<IPoint> anchorList, final IPoint point) {
         for (IPoint p : anchorList) {
             if (point.diffsToLessThan(p, DELTA)) {
                 return p;
@@ -160,7 +161,8 @@ public final class Grid implements IGrid {
 
     }
 
-    private void sortAnchorsByDistanceTo(List<IPoint> anchors, IPoint pivot) {
+    private void sortAnchorsByDistanceTo(final List<IPoint> anchors,
+            final IPoint pivot) {
         Map<IPoint, Double> map = new HashMap<>();
         for (IPoint anchor : anchors) {
             map.put(anchor, pivot.distanceSquareTo(anchor));
@@ -211,7 +213,7 @@ public final class Grid implements IGrid {
         return selected.block;
     }
 
-    private BlockAnchors getBlockAt(IPoint p) {
+    private BlockAnchors getBlockAt(final IPoint p) {
         for (BlockAnchors ba : blockAnchors) {
             if (ba.block.contains(p)) {
                 return ba;
@@ -223,7 +225,7 @@ public final class Grid implements IGrid {
     @Override
     public void dropBlock() {
         if (selected == null) {
-           throw new IllegalStateException();
+            throw new IllegalStateException();
         }
 
         IPoint blockFirstPolyMid = selected.block.getPolygon(0).calcMid();
@@ -259,8 +261,8 @@ public final class Grid implements IGrid {
         return tryAnchoring(ba, anchorList);
     }
 
-    private boolean tryAnchoringMid(final BlockAnchors ba,
-            final IPoint anchor, final List<IPoint> anchorList) {
+    private boolean tryAnchoringMid(final BlockAnchors ba, final IPoint anchor,
+            final List<IPoint> anchorList) {
         IVector v = GeoModule.createVector();
         v.stretchBetween(ba.block.calcMid(), anchor);
         ba.block.move(v);
@@ -288,8 +290,10 @@ public final class Grid implements IGrid {
         return true;
     }
 
+    @Override
     public String toString() {
-        char[][] a = new char[(int) (WIDTH * 2 + DELTA) + 1][(int) (HEIGHT * 2 + DELTA) + 1];
+        char[][] a =
+                new char[(int) (WIDTH * 2 + DELTA) + 1][(int) (HEIGHT * 2 + DELTA) + 1];
         for (int x = 0; x < a.length; x++) {
             for (int y = 0; y < a[x].length; y++) {
                 a[x][y] = '~';
@@ -325,7 +329,8 @@ public final class Grid implements IGrid {
         return b.toString();
     }
 
-    private void printInArray(char[][] a, Iterable<IPoint> anchors, char c) {
+    private void printInArray(final char[][] a, final Iterable<IPoint> anchors,
+            final char c) {
         for (IPoint p : anchors) {
             int x = (int) (p.getX() * 2 + DELTA);
             int y = (int) (p.getY() * 2 + DELTA);

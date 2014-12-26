@@ -34,9 +34,5 @@ public interface IGameObject extends Iterable<IPolygon> {
     /** Set the mid.
      * @param mid mid-point */
     void setMid(IPoint mid);
-
-    /** Get the Gameobject as String.
-     * @return String */
-    String toString();
-
+    
 }

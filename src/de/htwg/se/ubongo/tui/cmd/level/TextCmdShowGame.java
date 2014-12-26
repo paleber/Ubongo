@@ -3,7 +3,7 @@ package de.htwg.se.ubongo.tui.cmd.level;
 import de.htwg.se.ubongo.ctrl.obs.abs.ISubController;
 import de.htwg.se.ubongo.util.cmd.TextCommand;
 
-/** TODO */
+/** TextCommand to show the game. */
 public final class TextCmdShowGame implements TextCommand {
 
     private final ISubController<?> observer;
@@ -15,7 +15,7 @@ public final class TextCmdShowGame implements TextCommand {
     }
 
     @Override
-    public void execute(String... args) {
+    public void execute(final String... args) {
         observer.switchToGame();
     }
 
