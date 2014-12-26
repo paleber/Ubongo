@@ -4,7 +4,7 @@ import de.htwg.se.ubongo.util.ctrl.abs.AbstractSubject;
 
 
 /** Interface on MainSubject. */
-public interface IAbstractMainSubject extends AbstractSubject {
+public interface IMainControllerSubject extends AbstractSubject {
 
     /** Called on shutdown application. */
     void onShutdown();

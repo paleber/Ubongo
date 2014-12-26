@@ -1,9 +1,9 @@
 package de.htwg.se.ubongo.tui;
 
 import de.htwg.se.ubongo.ctrl.obs.IMainController;
-import de.htwg.se.ubongo.ctrl.sub.IMainControllerSubject;
 import de.htwg.se.ubongo.util.console.IConsole;
 import de.htwg.se.ubongo.util.console.imp.SimpleConsole;
+import de.htwg.se.ubongo.util.ctrl.IMainControllerSubject;
 
 /** MainController-Subject of TUI. */
 public final class TuiManager implements IMainControllerSubject {

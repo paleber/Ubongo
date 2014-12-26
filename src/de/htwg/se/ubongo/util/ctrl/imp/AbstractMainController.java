@@ -1,17 +1,19 @@
 package de.htwg.se.ubongo.util.ctrl.imp;
 
 import de.htwg.se.ubongo.util.ctrl.IAbstractMainController;
-import de.htwg.se.ubongo.util.ctrl.IAbstractMainSubject;
+import de.htwg.se.ubongo.util.ctrl.IMainControllerSubject;
 
 /** Abstract Class for MainController.
  * @param <S> SuperSubject */
-public abstract class AbstractMainController<S extends IAbstractMainSubject>
-        extends AbstractController<S> implements IAbstractMainController<S> {
+public abstract class AbstractMainController extends
+        AbstractController<IMainControllerSubject> implements
+        IAbstractMainController {
 
-    /** Shutdown the Application by shutting down the MainController and then all Main-Subjects. */
+    /** Shutdown the Application by shutting down the MainController and then
+     * all Main-Subjects. */
     public final void shutdown() {
         onShutdown();
-        for (IAbstractMainSubject s : getSubjects()) {
+        for (IMainControllerSubject s : getSubjects()) {
             s.onShutdown();
         }
     }

@@ -6,8 +6,8 @@ import static org.junit.Assert.assertTrue;
 
 import org.junit.Test;
 
-import de.htwg.se.ubongo.util.ctrl.IAbstractMainSubject;
 import de.htwg.se.ubongo.util.ctrl.IAbstractSubSubject;
+import de.htwg.se.ubongo.util.ctrl.IMainControllerSubject;
 import de.htwg.se.ubongo.util.ctrl.imp.AbstractMainController;
 import de.htwg.se.ubongo.util.ctrl.imp.AbstractSubController;
 
@@ -15,7 +15,7 @@ import de.htwg.se.ubongo.util.ctrl.imp.AbstractSubController;
 public class TestController {
 
     private class PseudoSuperController extends
-            AbstractMainController<IAbstractMainSubject> {
+            AbstractMainController {
 
         private boolean shutdowned = false;
 
@@ -25,7 +25,7 @@ public class TestController {
         }
     }
 
-    private class PseudoSuperSubject implements IAbstractMainSubject {
+    private class PseudoSuperSubject implements IMainControllerSubject {
 
         private boolean shutdowned = false;
 
@@ -65,8 +65,8 @@ public class TestController {
 
     @Test
     public void testAbstractController() {
-        AbstractMainController<IAbstractMainSubject> ctrl = new PseudoSuperController();
-        IAbstractMainSubject subject = new PseudoSuperSubject();
+        AbstractMainController ctrl = new PseudoSuperController();
+        IMainControllerSubject subject = new PseudoSuperSubject();
         ctrl.register(subject);
         assertEquals(1, ctrl.getSubjects().size());
         assertEquals(subject, ctrl.getSubjects().get(0));
