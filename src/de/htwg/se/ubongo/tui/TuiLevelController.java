@@ -8,33 +8,35 @@ import de.htwg.se.ubongo.tui.cmd.level.TextCmdNumberBoards;
 import de.htwg.se.ubongo.tui.cmd.level.TextCmdNumberVariants;
 import de.htwg.se.ubongo.tui.cmd.level.TextCmdSelectBoard;
 import de.htwg.se.ubongo.tui.cmd.level.TextCmdSelectVariant;
+import de.htwg.se.ubongo.tui.cmd.level.TextCmdShowGame;
 import de.htwg.se.ubongo.tui.cmd.shared.TextCmdShowMenu;
+import de.htwg.se.ubongo.util.console.IConsole;
 
 public final class TuiLevelController extends AbstractTuiController implements
         ILevelControllerSubject {
 
-    private final TuiManager tuiManager;
-    
-    public TuiLevelController(ILevelController observer, TuiManager tuiManager, ILevelData levelData) {
-        super(observer, tuiManager, "level");
+    private final IConsole console;
+
+    public TuiLevelController(ILevelController observer, IConsole console,
+            ILevelData levelData) {
+
+        super(observer, console, "level");
         observer.register(this);
-        this.tuiManager = tuiManager;
-        
+        this.console = console;
+
         addTextCmd("menu", new TextCmdShowMenu(observer));
-        addTextCmd("numBoards", new TextCmdNumberBoards(levelData));
-        addTextCmd("numVariants", new TextCmdNumberVariants(levelData));
-        addTextCmd("board", new TextCmdSelectBoard(levelData, tuiManager));
-        addTextCmd("variant", new TextCmdSelectVariant(levelData, tuiManager));
+        addTextCmd("numBoards", new TextCmdNumberBoards(levelData, console));
+        addTextCmd("numVariants", new TextCmdNumberVariants(levelData, console));
+        addTextCmd("board", new TextCmdSelectBoard(observer, console));
+        addTextCmd("variant", new TextCmdSelectVariant(observer, console));
+        addTextCmd("game", new TextCmdShowGame(observer));
     }
 
     @Override
-    public void onBoardSelected(final int index) {
-        tuiManager.writeLine("board selected: " + index);
-    }
+    public void onSelect(int index, int variant) {
+        console.writeLine("selected - board: " + index + " - variant: "
+                + variant);
 
-    @Override
-    public void onBoardVariantSelected(final int variant) {
-        tuiManager.writeLine("variant selected: " + variant);
     }
 
     @Override

@@ -4,7 +4,7 @@ import de.htwg.se.ubongo.ctrl.obs.abs.ISubController;
 import de.htwg.se.ubongo.util.cmd.TextCommand;
 
 /** Text-Command to show the menu. */
-public final class TextCmdShowGuide extends TextCommand {
+public final class TextCmdShowGuide implements TextCommand {
 
     private ISubController<?> observer;
 

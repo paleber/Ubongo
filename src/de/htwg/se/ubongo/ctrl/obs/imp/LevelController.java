@@ -11,7 +11,7 @@ import de.htwg.se.ubongo.model.loader.IResourceLoader;
 public final class LevelController extends
         SubController<ILevelControllerSubject> implements ILevelController {
 
-    private final ILevelData levelSelection;
+    private final ILevelData levelData;
     private final IResourceLoader loader;
 
     /** Default-Constructor.
@@ -19,9 +19,9 @@ public final class LevelController extends
      * @param levelSelection LevelSelection
      * @param loader ResourceLoader */
     public LevelController(final IMainController main,
-            final ILevelData levelSelection, final IResourceLoader loader) {
+            final ILevelData levelData, final IResourceLoader loader) {
         super(main);
-        this.levelSelection = levelSelection;
+        this.levelData = levelData;
         this.loader = loader;
     }
 
@@ -43,12 +43,20 @@ public final class LevelController extends
 
     @Override
     public void selectBoard(final int index) {
-        levelSelection.setBoard(index);
+        levelData.setBoard(index);
+        callOnSelect();
     }
 
     @Override
     public void selectBoardVariant(final int variant) {
-        levelSelection.setVariant(variant);
+        levelData.setVariant(variant);
+        callOnSelect();
+    }
+
+    private void callOnSelect() {
+        for (ILevelControllerSubject s : getSubjects()) {
+            s.onSelect(levelData.getBoardIndex(), levelData.getVariant());
+        }
     }
 
 }

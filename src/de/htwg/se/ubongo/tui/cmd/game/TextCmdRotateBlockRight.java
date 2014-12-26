@@ -4,7 +4,7 @@ import de.htwg.se.ubongo.ctrl.obs.IGameController;
 import de.htwg.se.ubongo.util.cmd.TextCommand;
 
 /** Game-TextCommand to rotate a block right. */
-public final class TextCmdRotateBlockRight extends TextCommand {
+public final class TextCmdRotateBlockRight implements TextCommand {
 
     private final IGameController observer;
 

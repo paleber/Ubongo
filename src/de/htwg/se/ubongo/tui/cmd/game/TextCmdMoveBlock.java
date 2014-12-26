@@ -1,24 +1,24 @@
 package de.htwg.se.ubongo.tui.cmd.game;
 
 import de.htwg.se.ubongo.ctrl.obs.IGameController;
-import de.htwg.se.ubongo.tui.TuiManager;
 import de.htwg.se.ubongo.util.cmd.TextCommand;
+import de.htwg.se.ubongo.util.console.IConsole;
 import de.htwg.se.ubongo.util.geo.IVector;
 import de.htwg.se.ubongo.util.geo.module.GeoModule;
 
 /** TextCommand to move the selected Block. */
-public final class TextCmdMoveBlock extends TextCommand {
+public final class TextCmdMoveBlock implements TextCommand {
 
     private final IGameController observer;
-    private final TuiManager tuiManager;
+    private final IConsole console;
 
     /** Default-Constructor.
      * @param observer IGameController
      * @param tuiManager TuiManager */
     public TextCmdMoveBlock(final IGameController observer,
-            final TuiManager tuiManager) {
+            final IConsole console) {
         this.observer = observer;
-        this.tuiManager = tuiManager;
+        this.console = console;
     }
 
     @Override
@@ -30,7 +30,7 @@ public final class TextCmdMoveBlock extends TextCommand {
             v.set(x, y);
             observer.moveBlock(v);
         } catch (ArrayIndexOutOfBoundsException | NumberFormatException e) {
-            tuiManager.writeLine(args[0] + " require 2 double argument");
+            console.writeLine(args[0] + " require 2 double argument");
         }
     }
 

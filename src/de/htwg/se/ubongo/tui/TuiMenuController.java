@@ -7,6 +7,7 @@ import de.htwg.se.ubongo.tui.abs.AbstractTuiController;
 import de.htwg.se.ubongo.tui.cmd.shared.TextCmdShowGuide;
 import de.htwg.se.ubongo.tui.cmd.shared.TextCmdShowLevelSelection;
 import de.htwg.se.ubongo.tui.cmd.shared.TextCmdStartRandomGame;
+import de.htwg.se.ubongo.util.console.IConsole;
 
 /** TextBased Implementation of Menu. */
 public final class TuiMenuController extends AbstractTuiController implements
@@ -17,8 +18,8 @@ public final class TuiMenuController extends AbstractTuiController implements
      * @param main MainControllerTUI
      * @param levelData LevelData */
     public TuiMenuController(final IMenuController observer,
-            final TuiManager main, final ILevelData levelData) {
-        super(observer, main, "menu");
+            final IConsole console, final ILevelData levelData) {
+        super(observer, console, "menu");
         observer.register(this);
 
         addTextCmd("level", new TextCmdShowLevelSelection(observer));

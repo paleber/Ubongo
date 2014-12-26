@@ -4,7 +4,7 @@ import de.htwg.se.ubongo.tui.TuiGameController;
 import de.htwg.se.ubongo.util.cmd.TextCommand;
 
 /** Game-TextCommand to mirror a block vertical. */
-public final class TextCmdPrintGrid extends TextCommand {
+public final class TextCmdPrintGrid implements TextCommand {
 
     private final TuiGameController tuiGameController;
 

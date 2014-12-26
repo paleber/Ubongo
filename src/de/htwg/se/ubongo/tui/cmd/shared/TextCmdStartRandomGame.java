@@ -7,7 +7,7 @@ import de.htwg.se.ubongo.model.data.ILevelData;
 import de.htwg.se.ubongo.util.cmd.TextCommand;
 
 /** Text-Command for starting a random game. */
-public final class TextCmdStartRandomGame extends TextCommand {
+public final class TextCmdStartRandomGame implements TextCommand {
 
     private final ISubController<?> observer;
     private final ILevelData level;

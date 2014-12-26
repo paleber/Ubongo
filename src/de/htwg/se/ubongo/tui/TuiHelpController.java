@@ -4,30 +4,31 @@ import de.htwg.se.ubongo.ctrl.obs.IHelpController;
 import de.htwg.se.ubongo.ctrl.sub.IHelpControllerSubject;
 import de.htwg.se.ubongo.tui.abs.AbstractTuiController;
 import de.htwg.se.ubongo.tui.cmd.shared.TextCmdShowMenu;
+import de.htwg.se.ubongo.util.console.IConsole;
 import de.htwg.se.ubongo.util.timer.Trigger;
 
 /** Implementation of IHelpController. */
 public final class TuiHelpController extends AbstractTuiController implements
         IHelpControllerSubject, Trigger {
 
-    private final TuiManager tuiManager;
+    private final IConsole console;
 
     /** Default-Costructor.
      * @param observer Observer-HelpController.
-     * @param tuiManager TuiManager */
+     * @param console TuiManager */
     public TuiHelpController(final IHelpController observer,
-            final TuiManager tuiManager) {
+            final IConsole console) {
 
-        super(observer, tuiManager, "guide");
+        super(observer, console, "guide");
         observer.register(this);
 
-        this.tuiManager = tuiManager;
+        this.console = console;
         addTextCmd("menu", new TextCmdShowMenu(observer));
     }
 
     @Override
     protected void onControllerStart() {
-        tuiManager.writeLine("The Introduction of Ubongo");
+        console.writeLine("The Introduction of Ubongo");
     }
 
     @Override

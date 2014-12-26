@@ -2,27 +2,33 @@ package de.htwg.se.ubongo.tui.cmd.level;
 
 import de.htwg.se.ubongo.model.data.ILevelData;
 import de.htwg.se.ubongo.util.cmd.TextCommand;
+import de.htwg.se.ubongo.util.console.IConsole;
 
-/** TODO
- *  */
-public final class TextCmdNumberVariants extends TextCommand {
+/** TODO */
+public final class TextCmdNumberVariants implements TextCommand {
 
-    /** TODO
-     * @param levelData */
-    public TextCmdNumberVariants(ILevelData levelData) {
-        // TODO Auto-generated constructor stub
+    private final ILevelData levelData;
+    private final IConsole console;
+
+    /** Constructor.
+     * @param levelData levelData
+     * @param console console */
+    public TextCmdNumberVariants(final ILevelData levelData,
+            final IConsole console) {
+        this.levelData = levelData;
+        this.console = console;
     }
 
     @Override
     public void execute(String... args) {
-        // TODO Auto-generated method stub
-
+        int index = levelData.getBoardIndex();
+        int variant = levelData.getNumberVariantsOfBoard(index);
+        console.writeLine("number variants of board " + index + ": " + variant);
     }
 
     @Override
     public String getDescription() {
-        // TODO Auto-generated method stub
-        return null;
+        return "the number variants of a board";
     }
 
 }

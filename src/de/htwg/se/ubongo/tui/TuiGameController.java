@@ -17,6 +17,7 @@ import de.htwg.se.ubongo.tui.cmd.shared.TextCmdPrintHelp;
 import de.htwg.se.ubongo.tui.cmd.shared.TextCmdShowMenu;
 import de.htwg.se.ubongo.tui.cmd.shared.TextCmdShutdown;
 import de.htwg.se.ubongo.util.cmd.TextCommand;
+import de.htwg.se.ubongo.util.console.IConsole;
 import de.htwg.se.ubongo.util.geo.IPoint;
 import de.htwg.se.ubongo.util.geo.IPolygon;
 import de.htwg.se.ubongo.util.timer.Timer;
@@ -26,8 +27,8 @@ import de.htwg.se.ubongo.util.timer.Trigger;
 public final class TuiGameController implements IGameControllerSubject, Trigger {
 
     private final double FACTOR_HALF = 0.5;
-    
-    private final TuiManager tuiManager;
+
+    private final IConsole console;
 
     private final Timer timer = new Timer(this, 150);
 
@@ -36,25 +37,24 @@ public final class TuiGameController implements IGameControllerSubject, Trigger 
 
     private char[][] grid;
 
-    private final LinkedHashMap<String, TextCommand> cmdMap =
-            new LinkedHashMap<>();
+    private final LinkedHashMap<String, TextCommand> cmdMap = new LinkedHashMap<>();
 
     private IBlock selectedBlock;
 
     /** Default-Constructor.
      * @param observer Observer-GameController
-     * @param tuiManager TuiManager */
+     * @param console TuiManager */
     public TuiGameController(final IGameController observer,
-            final TuiManager tuiManager) {
-        this.tuiManager = tuiManager;
+            final IConsole console) {
+        this.console = console;
         observer.register(this);
 
-        cmdMap.put("help", new TextCmdPrintHelp(tuiManager, cmdMap));
+        cmdMap.put("help", new TextCmdPrintHelp(console, cmdMap));
         cmdMap.put("menu", new TextCmdShowMenu(observer));
         cmdMap.put("exit", new TextCmdShutdown(observer));
-        cmdMap.put("select", new TextCmdSelectBlock(observer, tuiManager));
+        cmdMap.put("select", new TextCmdSelectBlock(observer, console));
         cmdMap.put("drop", new TextCmdDropBlock(observer));
-        cmdMap.put("move", new TextCmdMoveBlock(observer, tuiManager));
+        cmdMap.put("move", new TextCmdMoveBlock(observer, console));
         cmdMap.put("grid", new TextCmdPrintGrid(this));
         cmdMap.put("left", new TextCmdRotateBlockLeft(observer));
         cmdMap.put("right", new TextCmdRotateBlockRight(observer));
@@ -64,28 +64,27 @@ public final class TuiGameController implements IGameControllerSubject, Trigger 
 
     @Override
     public void onStartSubController() {
-        tuiManager.writeLine("--- game started ---");
-        tuiManager.writeLine("\"help\" for list of command");
+        console.writeLine("--- game started ---");
+        console.writeLine("\"help\" for list of command");
         timer.start();
     }
 
     @Override
     public void onStopSubController() {
         timer.stop();
-        tuiManager.writeLine("--- game stopped ---");
+        console.writeLine("--- game stopped ---");
     }
 
     @Override
     public void onTrigger() {
-        String line = tuiManager.readLine();
+        String line = console.readLine();
         if (line != null) {
             TextCommand cmd = cmdMap.get(line);
             if (cmd != null) {
                 cmd.execute(line.split(" "));
             } else {
-                tuiManager
-                        .writeLine("unknown command, \"help\" to print available"
-                                + " commands");
+                console.writeLine("unknown command, \"help\" to print available"
+                        + " commands");
             }
         }
     }
@@ -149,15 +148,15 @@ public final class TuiGameController implements IGameControllerSubject, Trigger 
     }
 
     private void printGrid() {
-        tuiManager.writeLine("---------------------------------------------");
+        console.writeLine("---------------------------------------------");
         for (int y = 0; y < grid[0].length; y++) {
             StringBuffer b = new StringBuffer();
             for (int x = 0; x < grid.length; x++) {
                 b.append(grid[x][y]);
             }
-            tuiManager.writeLine(b.toString());
+            console.writeLine(b.toString());
         }
-        tuiManager.writeLine("---------------------------------------------");
+        console.writeLine("---------------------------------------------");
     }
 
     private void paintBlocks() {
@@ -167,8 +166,8 @@ public final class TuiGameController implements IGameControllerSubject, Trigger 
             for (IPolygon poly : b) {
                 IPoint p = poly.calcMid();
                 try {
-                    grid[(int) (p.getX() * 2 + FACTOR_HALF)][(int) (p.getY() * 2 + FACTOR_HALF)] =
-                            Integer.toString(index).charAt(0);
+                    grid[(int) (p.getX() * 2 + FACTOR_HALF)][(int) (p.getY() * 2 + FACTOR_HALF)] = Integer
+                            .toString(index).charAt(0);
                 } catch (ArrayIndexOutOfBoundsException e) {
                     continue;
                 }
@@ -180,8 +179,7 @@ public final class TuiGameController implements IGameControllerSubject, Trigger 
             for (IPolygon poly : selectedBlock) {
                 IPoint p = poly.calcMid();
                 try {
-                    grid[(int) (p.getX() * 2 + FACTOR_HALF)][(int) (p.getY() * 2 + FACTOR_HALF)] =
-                            'S';
+                    grid[(int) (p.getX() * 2 + FACTOR_HALF)][(int) (p.getY() * 2 + FACTOR_HALF)] = 'S';
                 } catch (ArrayIndexOutOfBoundsException e) {
                     continue;
                 }
@@ -191,7 +189,7 @@ public final class TuiGameController implements IGameControllerSubject, Trigger 
 
     @Override
     public void onWin() {
-        tuiManager.writeLine("you win!");
+        console.writeLine("you win!");
     }
 
 }

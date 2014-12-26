@@ -1,30 +1,45 @@
 package de.htwg.se.ubongo.tui.cmd.level;
 
-import de.htwg.se.ubongo.model.data.ILevelData;
-import de.htwg.se.ubongo.tui.TuiManager;
+import de.htwg.se.ubongo.ctrl.obs.ILevelController;
 import de.htwg.se.ubongo.util.cmd.TextCommand;
+import de.htwg.se.ubongo.util.console.IConsole;
 
 /** TODO
  *  */
-public final class TextCmdSelectVariant extends TextCommand {
+public final class TextCmdSelectVariant implements TextCommand {
 
-    /** TODO
-     * @param levelData
-     * @param tuiManager */
-    public TextCmdSelectVariant(ILevelData levelData, TuiManager tuiManager) {
-        // TODO Auto-generated constructor stub
+    private final ILevelController observer;
+    private final IConsole console;
+
+    /** Constructor.
+     * @param observer LevelController-Observer
+     * @param console Console */
+    public TextCmdSelectVariant(final ILevelController observer, IConsole console) {
+        this.observer = observer;
+        this.console = console;
     }
 
     @Override
     public void execute(String... args) {
-        // TODO Auto-generated method stub
+        int variant;
 
+        try {
+            variant = Integer.parseInt(args[1]);
+        } catch (ArrayIndexOutOfBoundsException | NumberFormatException e) {
+            console.writeLine(args[0] + " require 1 integer argument");
+            return;
+        }
+
+        try {
+            observer.selectBoardVariant(variant);
+        } catch (IllegalArgumentException e) {
+            console.writeLine("invalide variant number");
+        }
     }
 
     @Override
     public String getDescription() {
-        // TODO Auto-generated method stub
-        return null;
+        return "select a board-variant";
     }
 
 }

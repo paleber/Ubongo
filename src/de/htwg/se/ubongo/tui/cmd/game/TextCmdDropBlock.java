@@ -4,7 +4,7 @@ import de.htwg.se.ubongo.ctrl.obs.IGameController;
 import de.htwg.se.ubongo.util.cmd.TextCommand;
 
 /** TextCommand to move the selected Block. */
-public final class TextCmdDropBlock extends TextCommand {
+public final class TextCmdDropBlock implements TextCommand {
 
     private final IGameController observer;
 

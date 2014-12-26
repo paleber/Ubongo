@@ -2,27 +2,31 @@ package de.htwg.se.ubongo.tui.cmd.level;
 
 import de.htwg.se.ubongo.model.data.ILevelData;
 import de.htwg.se.ubongo.util.cmd.TextCommand;
+import de.htwg.se.ubongo.util.console.IConsole;
 
-/** TODO
- *  */
-public final class TextCmdNumberBoards extends TextCommand {
+/** TextCommand to print number of boards. */
+public final class TextCmdNumberBoards implements TextCommand {
 
-    /** TODO
-     * @param levelData */
-    public TextCmdNumberBoards(ILevelData levelData) {
-        // TODO Auto-generated constructor stub
+    private final ILevelData levelData;
+    private final IConsole console;
+
+    /** Constructor.
+     * @param levelData levelData
+     * @param console console */
+    public TextCmdNumberBoards(final ILevelData levelData,
+            final IConsole console) {
+        this.levelData = levelData;
+        this.console = console;
     }
 
     @Override
     public void execute(String... args) {
-        // TODO Auto-generated method stub
-
+        console.writeLine("number boards: " + levelData.getNumberBoards());
     }
 
     @Override
     public String getDescription() {
-        // TODO Auto-generated method stub
-        return null;
+        return "the number of boards";
     }
 
 }

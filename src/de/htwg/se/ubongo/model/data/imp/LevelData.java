@@ -8,8 +8,8 @@ public final class LevelData implements ILevelData {
 
     private final int[] numbVariants;
 
-    private int selectedIndex;
-    private int selectedVariant;
+    private int index;
+    private int variant;
 
     /** Default-Constructor.
      * @param loader ResourceLoader. */
@@ -22,22 +22,31 @@ public final class LevelData implements ILevelData {
 
     @Override
     public int getBoardIndex() {
-        return selectedIndex;
+        return index;
     }
 
     @Override
     public int getVariant() {
-        return selectedVariant;
+        return variant;
     }
 
     @Override
-    public void setBoard(final int selectedIndex) {
-        this.selectedIndex = selectedIndex;
+    public void setBoard(final int index) {
+        if (index < 0 || index >= numbVariants.length) {
+            throw new IllegalArgumentException();
+        }
+        this.index = index;
+        if (numbVariants[index] <= variant) {
+            variant = numbVariants[index] - 1;
+        }
     }
 
     @Override
-    public void setVariant(final int selectedVariant) {
-        this.selectedVariant = selectedVariant;
+    public void setVariant(final int variant) {
+        if(variant < 0 || variant >= numbVariants[index]) {
+            throw new IllegalArgumentException();
+        }
+        this.variant = variant;
     }
 
     @Override
