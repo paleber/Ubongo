@@ -11,7 +11,7 @@ public interface ISwitchFrame {
 
     void setContentSize(int width, int height);
 
-    void showContent(Container conent);
+    void showContent(Container content);
 
     void hideContent();
 

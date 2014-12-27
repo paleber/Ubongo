@@ -35,4 +35,10 @@ public interface ILine {
     /** Update the Bounding-Box. */
     void updateBoundingBox();
 
+    /** Check if the line nearly equals an other line.
+     * @param other other line
+     * @param tolerance tolerance
+     * @return true when nearly equals, otherwise false */
+    boolean nearlyEquals(ILine other, double tolerance);
+
 }

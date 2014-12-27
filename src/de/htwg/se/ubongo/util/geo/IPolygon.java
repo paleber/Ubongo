@@ -11,6 +11,10 @@ public interface IPolygon extends Iterable<IPoint> {
      * @param index index
      * @return point by index */
     IPoint getPoint(int index);
+    
+    /** Get the edges of the Polygon.
+     * @return */
+    ILine[] getEdges();
 
     /** Set the points of the Polygon.
      * @param point points as Point-Array */

@@ -184,11 +184,12 @@ public final class Grid implements IGrid {
 
     @Override
     public boolean checkBoardFull() {
-        return boardAnchors.size() == 0;
+        return (boardAnchors.size() == 0);
     }
 
     @Override
     public IBlock selectBlock(final IPoint p) {
+
         if (selected != null) {
             throw new IllegalStateException();
         }

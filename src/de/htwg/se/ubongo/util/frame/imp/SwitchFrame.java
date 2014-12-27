@@ -20,7 +20,7 @@ public final class SwitchFrame implements ISwitchFrame {
         
         private static final Color COLOR_BACK = new Color(135, 206, 250);
 
-        public void paint(Graphics g) {
+        public void paint(final Graphics g) {
             g.setColor(COLOR_BACK);
             g.fillRect(0, 0, getWidth(), getHeight());
         }

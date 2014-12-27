@@ -124,4 +124,13 @@ public final class Line2D implements ILine {
         return "<Line" + start + end + ">";
     }
 
+    @Override
+    public boolean nearlyEquals(final ILine other, final double tolerance) {
+        boolean ss = start.diffsToLessThan(other.getStart(), tolerance);
+        boolean ee = end.diffsToLessThan(other.getEnd(), tolerance);
+        boolean se = start.diffsToLessThan(other.getEnd(), tolerance);
+        boolean es = end.diffsToLessThan(other.getStart(), tolerance);
+        return (ss && ee) || (se && es);
+    }
+
 }

@@ -1,5 +1,6 @@
 package de.htwg.se.ubongo.model.gameobject;
 
+import de.htwg.se.ubongo.util.geo.ILine;
 import de.htwg.se.ubongo.util.geo.IPoint;
 import de.htwg.se.ubongo.util.geo.IVector;
 
@@ -30,5 +31,13 @@ public interface IBlock extends IGameObject {
      * @param point point
      * @return true when contains, otherwise false */
     boolean contains(IPoint point);
+
+    /** Get the outer Edges.
+     * @return outer edges */
+    ILine[] getEdgesOuter();
+
+    /** Get the inner Edges.
+     * @return inner edges */
+    ILine[] getEdgesInner();
 
 }

@@ -2,6 +2,7 @@ package de.htwg.se.ubongo.util.geo.imp;
 
 import java.util.Iterator;
 
+import de.htwg.se.ubongo.util.geo.ILine;
 import de.htwg.se.ubongo.util.geo.IPoint;
 import de.htwg.se.ubongo.util.geo.IPolygon;
 import de.htwg.se.ubongo.util.geo.IVector;
@@ -18,7 +19,7 @@ public final class Polygon2D implements IPolygon {
     @Override
     public void setPoints(final IPoint[] point) {
         this.point = point.clone();
-        edges = null;
+        initEdges();
     }
 
     @Override
@@ -28,7 +29,15 @@ public final class Polygon2D implements IPolygon {
             point[i] = new Point2D();
             point[i].copy(other.getPoint(i));
         }
-        edges = null;
+        initEdges();
+    }
+    
+    private void initEdges() {
+        edges = new Line2D[point.length];
+        for (int i = 0; i < edges.length; i++) {
+            edges[i] = new Line2D();
+            edges[i].setPoints(point[i], point[(i + 1) % edges.length]);
+        }
     }
 
     @Override
@@ -129,9 +138,6 @@ public final class Polygon2D implements IPolygon {
 
     @Override
     public boolean contains(final IPoint p) {
-        if (edges == null) {
-            initEdges();
-        }
         for (Line2D edge : edges) {
             edge.updateBoundingBox();
             if (edge.distanceTo(p) < DELTA) {
@@ -160,12 +166,9 @@ public final class Polygon2D implements IPolygon {
         return min % 2 == 1;
     }
 
-    private void initEdges() {
-        edges = new Line2D[point.length];
-        for (int i = 0; i < edges.length; i++) {
-            edges[i] = new Line2D();
-            edges[i].setPoints(point[i], point[(i + 1) % edges.length]);
-        }
+    @Override
+    public ILine[] getEdges() {
+        return edges;
     }
 
 }

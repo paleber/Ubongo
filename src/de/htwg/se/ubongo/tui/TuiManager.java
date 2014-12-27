@@ -11,7 +11,7 @@ public final class TuiManager implements IMainControllerSubject {
     private final IConsole console = new SimpleConsole();
 
     /** Default-Constructor.
-     * @param main MainController */
+     * @param observer MainController */
     public TuiManager(final IMainController observer) {
         observer.register(this);
         new TuiMenuController(observer.getMenuController(), console,
