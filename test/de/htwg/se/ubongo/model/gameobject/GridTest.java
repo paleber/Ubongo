@@ -125,24 +125,24 @@ public class GridTest {
         IPoint p = GeoModule.createPoint();
         IVector v = GeoModule.createVector();
 
-        // Block 3
-        p.set(1.5, 3.5);
+        // Block 1
+        p.set(5, 5);
         IBlock b = grid.selectBlock(p);
-        v.set(3, 0.3);
+        v.set(0, -2);
         b.move(v);
         grid.dropBlock();
 
         // Block 2
-        p.set(8.5, 4);
+        p.set(2, 3.5);
         b = grid.selectBlock(p);
-        v.set(-2, -0.5);
+        v.set(4, -0.5);
         b.move(v);
         grid.dropBlock();
 
-        // Block 1
-        p.set(5.5, 6);
+        // Block 3
+        p.set(8, 3.5);
         b = grid.selectBlock(p);
-        v.set(0, -2);
+        v.set(-4, 0.3);
         b.move(v);
         grid.dropBlock();
 

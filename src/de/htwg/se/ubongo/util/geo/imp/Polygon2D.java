@@ -164,7 +164,7 @@ public final class Polygon2D implements IPolygon {
         edges = new Line2D[point.length];
         for (int i = 0; i < edges.length; i++) {
             edges[i] = new Line2D();
-            edges[i].setStartEnd(point[i], point[(i + 1) % edges.length]);
+            edges[i].setPoints(point[i], point[(i + 1) % edges.length]);
         }
     }
 

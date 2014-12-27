@@ -19,8 +19,8 @@ public class LineTest {
     Line2D k = new Line2D();
 
     public LineTest() {
-        l.setStartEnd(new Point2D(), new Point2D());
-        k.setStartEnd(new Point2D(), new Point2D());
+        l.setPoints(new Point2D(), new Point2D());
+        k.setPoints(new Point2D(), new Point2D());
     }
 
     @Before
@@ -37,7 +37,7 @@ public class LineTest {
         start.set(2, 3);
         Point2D end = new Point2D();
         end.set(4, 5);
-        l.setStartEnd(start, end);
+        l.setPoints(start, end);
         assertTrue(l.getStart().diffsToLessThan(start, DELTA));
         assertTrue(l.getEnd().diffsToLessThan(end, DELTA));
     }
@@ -82,7 +82,11 @@ public class LineTest {
         assertEquals(3, l.distanceTo(p), DELTA);
         p.set(4, 0);
         assertEquals(2, l.distanceTo(p), DELTA);
-
+    }
+    
+    @Test
+    public void testToString() {
+      assertEquals("<Line(0.000|0.000)(2.000|0.000)>", l.toString());
     }
 
 }

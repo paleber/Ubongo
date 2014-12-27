@@ -1,9 +1,10 @@
 package de.htwg.se.ubongo.util.geo.imp;
 
+import de.htwg.se.ubongo.util.geo.ILine;
 import de.htwg.se.ubongo.util.geo.IPoint;
 
-/** Line. */
-public final class Line2D {
+/** Implementation of ILine. */
+public final class Line2D implements ILine {
 
     private static final double DELTA = 1e-9;
 
@@ -12,30 +13,23 @@ public final class Line2D {
 
     private BoundingBox2D bb = new BoundingBox2D();
 
-    /** Get the start-point.
-     * @return start point */
+    @Override
     public IPoint getStart() {
         return start;
     }
 
-    /** Get the end-point.
-     * @return end point */
+    @Override
     public IPoint getEnd() {
         return end;
     }
 
-    /** Set start and end point.
-     * @param start start
-     * @param end end */
-    public void setStartEnd(final IPoint start, final IPoint end) {
+    @Override
+    public void setPoints(final IPoint start, final IPoint end) {
         this.start = start;
         this.end = end;
     }
 
-    /** Set the startpoint, degree and length.
-     * @param start start
-     * @param degree degree
-     * @param length length */
+    @Override
     public void setStartAngleLength(final IPoint start, final double degree,
             final double length) {
         this.start = start;
@@ -47,16 +41,7 @@ public final class Line2D {
         end.move(v);
     }
 
-    /** Check if the Line Overlap with a other line.
-     * @param other other line
-     * @return */
-    public boolean overlap(final Line2D other) {
-        return calcIntersectionSegment(other) != null;
-    }
-
-    /** Calculate the nearest distance to a point.
-     * @param point point
-     * @return */
+    @Override
     public double distanceTo(final IPoint point) {
         IPoint intersection = calcIntersectionSegment(calcNormal(point));
         if (intersection != null) {
@@ -65,16 +50,26 @@ public final class Line2D {
         return Math.min(point.distanceTo(start), point.distanceTo(end));
     }
 
-    private IPoint calcIntersectionStraights(final Line2D other) {
+    @Override
+    public void updateBoundingBox() {
+        bb.update(start, end);
+    }
+
+    @Override
+    public boolean overlap(final ILine other) {
+        return calcIntersectionSegment(other) != null;
+    }
+
+    private IPoint calcIntersectionStraights(final ILine other) {
         double a1, b1, c1, a2, b2, c2;
 
         a1 = end.getY() - start.getY();
         b1 = start.getX() - end.getX();
         c1 = a1 * start.getX() + b1 * start.getY();
 
-        a2 = other.end.getY() - other.start.getY();
-        b2 = other.start.getX() - other.end.getX();
-        c2 = a2 * other.start.getX() + b2 * other.start.getY();
+        a2 = other.getEnd().getY() - other.getStart().getY();
+        b2 = other.getStart().getX() - other.getEnd().getX();
+        c2 = a2 * other.getStart().getX() + b2 * other.getStart().getY();
 
         double det = a1 * b2 - a2 * b1;
         if (Math.abs(det) < DELTA) {
@@ -89,26 +84,27 @@ public final class Line2D {
         return intersection;
     }
 
-    private IPoint calcIntersectionSegment(final Line2D other) {
+    private IPoint calcIntersectionSegment(final ILine other) {
         IPoint intersection = calcIntersectionStraights(other);
         if (intersection == null) {
             return null;
         }
-        if (!checkIntersectionInSegement(intersection)) {
+        if (!checkIntersectionInSegement(this, intersection)) {
             return null;
         }
-        if (!other.checkIntersectionInSegement(intersection)) {
+        if (!checkIntersectionInSegement(other, intersection)) {
             return null;
         }
         return intersection;
     }
 
-    private boolean checkIntersectionInSegement(final IPoint intersection) {
-        double lengthSq = start.distanceSquareTo(end);
-        if (lengthSq < intersection.distanceSquareTo(start)) {
+    private static boolean checkIntersectionInSegement(final ILine line,
+            final IPoint intersection) {
+        double lengthSq = line.getStart().distanceSquareTo(line.getEnd());
+        if (lengthSq < intersection.distanceSquareTo(line.getStart())) {
             return false;
         }
-        if (lengthSq < intersection.distanceSquareTo(end)) {
+        if (lengthSq < intersection.distanceSquareTo(line.getEnd())) {
             return false;
         }
         return true;
@@ -126,11 +122,6 @@ public final class Line2D {
     @Override
     public String toString() {
         return "<Line" + start + end + ">";
-    }
-
-    /** Update the Bounding-Box. */
-    public void updateBoundingBox() {
-        bb.update(start, end);
     }
 
 }
