@@ -97,7 +97,6 @@ public class TestController {
         assertFalse(subject.stopped);
         ctrl.stopController();
         assertTrue(subject.stopped);
-
     }
 
 }

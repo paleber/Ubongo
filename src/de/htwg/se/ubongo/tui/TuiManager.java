@@ -12,14 +12,14 @@ public final class TuiManager implements IMainControllerSubject {
 
     /** Default-Constructor.
      * @param main MainController */
-    public TuiManager(final IMainController main) {
-        main.register(this);
-        new TuiMenuController(main.getMenuController(), console,
-                main.getLevelData());
-        new TuiLevelController(main.getLevelController(), console,
-                main.getLevelData());
-        new TuiGameController(main.getGameController(), console);
-        new TuiHelpController(main.getHelpController(), console);
+    public TuiManager(final IMainController observer) {
+        observer.register(this);
+        new TuiMenuController(observer.getMenuController(), console,
+                observer.getLevelData());
+        new TuiLevelController(observer.getLevelController(), console,
+                observer.getLevelData());
+        new TuiGameController(observer.getGameController(), console);
+        new TuiHelpController(observer.getHelpController(), console);
         console.open();
         console.writeLine("--- start application ---");
         console.writeLine("\"help\" to print available command");
