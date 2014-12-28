@@ -10,6 +10,7 @@ import de.htwg.se.ubongo.model.gameobject.IGrid;
 import de.htwg.se.ubongo.util.geo.IPoint;
 import de.htwg.se.ubongo.util.geo.IPolygon;
 import de.htwg.se.ubongo.util.geo.IVector;
+import de.htwg.se.ubongo.util.geo.imp.Point2D;
 import de.htwg.se.ubongo.util.geo.module.GeoModule;
 
 /** Implementation of IGrid. */
@@ -51,7 +52,7 @@ public final class Grid implements IGrid {
                 FACTOR_HALF) {
             for (double y = GRID_FRAME_SIZE; y < HEIGHT - GRID_FRAME_SIZE
                     + DELTA; y += FACTOR_HALF) {
-                IPoint p = GeoModule.createPoint();
+                IPoint p = new Point2D();
                 p.set(x, y);
                 freeAnchors.add(p);
             }

@@ -9,16 +9,18 @@ import org.junit.Before;
 import org.junit.Test;
 
 import de.htwg.se.ubongo.model.gameobject.imp.Block;
-import de.htwg.se.ubongo.model.gameobject.module.GameObjectModule;
+import de.htwg.se.ubongo.model.gameobject.imp.Grid;
 import de.htwg.se.ubongo.model.loader.IResourceLoader;
 import de.htwg.se.ubongo.model.loader.fake.FakeResourceLoader;
 import de.htwg.se.ubongo.util.geo.IPoint;
 import de.htwg.se.ubongo.util.geo.IVector;
+import de.htwg.se.ubongo.util.geo.imp.Point2D;
+import de.htwg.se.ubongo.util.geo.imp.Vector2D;
 import de.htwg.se.ubongo.util.geo.module.GeoModule;
 
 public class GridTest {
 
-    private IGrid grid = GameObjectModule.createGrid();
+    private IGrid grid = new Grid();
 
     private IBlock board;
     private IBlock[] blocks;
@@ -122,30 +124,30 @@ public class GridTest {
         grid.init(board, blocks);
         assertFalse(grid.checkBoardFull());
 
-        IPoint p = GeoModule.createPoint();
-        IVector v = GeoModule.createVector();
+        IPoint p = new Point2D();
+        IVector v = new Vector2D();
 
         // Block 1
         p.set(5, 5);
         IBlock b = grid.selectBlock(p);
         v.set(0, -2);
         b.move(v);
-        grid.dropBlock();
+        grid.dropBlock(); 
 
         // Block 2
         p.set(2, 3.5);
         b = grid.selectBlock(p);
-        v.set(4, -0.5);
+        v.set(3, -0.5);
         b.move(v);
         grid.dropBlock();
+        
 
         // Block 3
         p.set(8, 3.5);
         b = grid.selectBlock(p);
-        v.set(-4, 0.3);
-        b.move(v);
+        v.set(-2, 0.3);
+        b.move(v); 
         grid.dropBlock();
-
         assertTrue(grid.checkBoardFull());
     }
 

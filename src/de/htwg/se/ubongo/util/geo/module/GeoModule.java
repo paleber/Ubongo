@@ -29,7 +29,7 @@ public final class GeoModule extends AbstractModule {
     /** Create a new Point.
      * @return new Point */
     public static IPoint createPoint() {
-        return INJECTOR.getInstance(IPoint.class);
+       return new Point2D();//return INJECTOR.getInstance(IPoint.class);
     }
 
     /** Create a new Vector.

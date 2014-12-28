@@ -4,10 +4,14 @@ import java.awt.Color;
 import java.awt.Container;
 import java.awt.Dimension;
 import java.awt.Graphics;
+import java.awt.event.WindowAdapter;
+import java.awt.event.WindowEvent;
+import java.awt.event.WindowListener;
 
 import javax.swing.JFrame;
 import javax.swing.JPanel;
 
+import de.htwg.se.ubongo.ctrl.obs.IMainController;
 import de.htwg.se.ubongo.util.frame.ISwitchFrame;
 
 /** Implementation of ISwitchFrame. */
@@ -15,6 +19,8 @@ public final class SwitchFrame implements ISwitchFrame {
 
     private final JFrame frame = new JFrame();
     private final LoadPanel loadPane = new LoadPanel();
+    
+    private final IMainController observer;
     
     private static final class LoadPanel extends JPanel {
         
@@ -26,9 +32,28 @@ public final class SwitchFrame implements ISwitchFrame {
         }
     }
 
-    public SwitchFrame() {
+    
+    public SwitchFrame(final IMainController observer) {
+        this.observer = observer;
         frame.setLayout(null);
+        frame.addWindowListener(new WindowAdapter() {
+         
+            
+            @Override
+            public void windowClosing(WindowEvent e) {
+                // TODO Auto-generated method stub
+                
+            }
+            
+            @Override
+            public void windowClosed(WindowEvent e) {
+                // TODO Auto-generated method stub
+                
+            }
+          
+        });
         hideContent();
+        
         frame.setVisible(true);
     }
 
