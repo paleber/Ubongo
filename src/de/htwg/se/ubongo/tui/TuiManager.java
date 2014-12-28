@@ -15,7 +15,7 @@ public final class TuiManager implements IMainControllerSubject {
     public TuiManager(final IMainController observer) {
         observer.register(this);
         new TuiMenuController(observer.getMenuController(), console,
-                observer.getLevelData());
+              observer.getLevelData());
         new TuiLevelController(observer.getLevelController(), console,
                 observer.getLevelData());
         new TuiGameController(observer.getGameController(), console);
@@ -28,6 +28,7 @@ public final class TuiManager implements IMainControllerSubject {
     @Override
     public void onShutdown() {
         console.writeLine("--- shutdown application ---");
+        console.close();
     }
 
 }

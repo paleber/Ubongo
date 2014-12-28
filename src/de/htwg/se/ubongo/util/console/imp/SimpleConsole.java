@@ -27,7 +27,6 @@ public final class SimpleConsole implements IConsole {
             throw new IllegalStateException("console already closed");
         }
         printer.close();
-        scanner.close();
         printer = null;
         scanner = null;
 

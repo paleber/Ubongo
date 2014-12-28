@@ -38,20 +38,12 @@ public final class SwitchFrame implements ISwitchFrame {
         frame.setLayout(null);
         frame.addWindowListener(new WindowAdapter() {
          
-            
             @Override
-            public void windowClosing(WindowEvent e) {
-                // TODO Auto-generated method stub
+            public void windowClosing(final WindowEvent e) {
+                observer.shutdown();
                 
             }
-            
-            @Override
-            public void windowClosed(WindowEvent e) {
-                // TODO Auto-generated method stub
-                
-            }
-          
-        });
+        }); 
         hideContent();
         
         frame.setVisible(true);
@@ -80,11 +72,13 @@ public final class SwitchFrame implements ISwitchFrame {
     @Override
     public void showContent(Container content) {
         frame.setContentPane(content);
+        content.revalidate();
     }
 
     @Override
     public void hideContent() {
         frame.setContentPane(loadPane);
+        loadPane.revalidate();
     }
 
     @Override
