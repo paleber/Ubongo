@@ -1,7 +1,7 @@
 package de.htwg.se.ubongo.util.geo;
 
 /** Interfac for a Line between two points. */
-public interface ILine {
+public interface ILine extends IPaintable{
 
     /** Get the start-point.
      * @return start point */

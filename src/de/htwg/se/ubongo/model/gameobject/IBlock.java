@@ -1,11 +1,12 @@
 package de.htwg.se.ubongo.model.gameobject;
 
 import de.htwg.se.ubongo.util.geo.ILine;
+import de.htwg.se.ubongo.util.geo.IPaintable;
 import de.htwg.se.ubongo.util.geo.IPoint;
 import de.htwg.se.ubongo.util.geo.IVector;
 
 /** Interface for Blocks. */
-public interface IBlock extends IGameObject {
+public interface IBlock extends IGameObject, IPaintable {
 
     /** Move the block.
      * @param v vector */

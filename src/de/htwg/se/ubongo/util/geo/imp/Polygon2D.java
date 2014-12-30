@@ -1,5 +1,6 @@
 package de.htwg.se.ubongo.util.geo.imp;
 
+import java.awt.Graphics;
 import java.util.Iterator;
 
 import de.htwg.se.ubongo.util.geo.ILine;
@@ -31,7 +32,7 @@ public final class Polygon2D implements IPolygon {
         }
         initEdges();
     }
-    
+
     private void initEdges() {
         edges = new Line2D[point.length];
         for (int i = 0; i < edges.length; i++) {
@@ -150,7 +151,8 @@ public final class Polygon2D implements IPolygon {
         Line2D[] testLines = new Line2D[TEST_ANGLES.length];
         for (int i = 0; i < testLines.length; i++) {
             testLines[i] = new Line2D();
-            testLines[i].setStartAngleLength(p, TEST_ANGLES[i], TEST_LINE_LENGTH);
+            testLines[i].setStartAngleLength(p, TEST_ANGLES[i],
+                    TEST_LINE_LENGTH);
         }
 
         for (Line2D testLine : testLines) {
@@ -169,6 +171,18 @@ public final class Polygon2D implements IPolygon {
     @Override
     public ILine[] getEdges() {
         return edges;
+    }
+
+    @Override
+    public void paint(Graphics g, double scale, double xOffset, double yOffset) {
+        int[] x = new int[getNumberPoints()];
+        int[] y = new int[getNumberPoints()];
+        for (int i = 0; i < getNumberPoints(); i++) {
+            x[i] = (int) (getPoint(i).getX() * scale + xOffset);
+            y[i] = (int) (getPoint(i).getY() * scale + yOffset);
+        }
+        g.fillPolygon(x, y, getNumberPoints());
+
     }
 
 }

@@ -1,7 +1,7 @@
 package de.htwg.se.ubongo.util.geo;
 
 /** Interface for Polygon. */
-public interface IPolygon extends Iterable<IPoint> {
+public interface IPolygon extends Iterable<IPoint>, IPaintable {
 
     /** Get the number of Points.
      * @return number of Points */
@@ -11,7 +11,7 @@ public interface IPolygon extends Iterable<IPoint> {
      * @param index index
      * @return point by index */
     IPoint getPoint(int index);
-    
+
     /** Get the edges of the Polygon.
      * @return */
     ILine[] getEdges();
@@ -44,7 +44,7 @@ public interface IPolygon extends Iterable<IPoint> {
     /** Mirror horizontal at x-axis.
      * @param xAxis x-axis */
     void mirrorHorizontal(double xAxis);
-    
+
     /** Check if a Polygon contains a Point.
      * @param p Point
      * @return true when Point is inside the Polygon */
@@ -53,5 +53,5 @@ public interface IPolygon extends Iterable<IPoint> {
     /** Get the Polygon as String.
      * @return polygon as String */
     String toString();
-    
+
 }

@@ -17,7 +17,7 @@ import de.htwg.se.ubongo.util.geo.module.GeoModule;
 public final class Grid implements IGrid {
 
     private static final double GRID_FRAME_SIZE = 1;
-    private static final double BOARD_FRAME_SIZE = 1.6;
+    private static final double BOARD_FRAME_SIZE = 1.1;
     private static final double BLOCK_FRAME_SIZE = 1.1;
 
     private static final double WIDTH = 10;
@@ -200,10 +200,16 @@ public final class Grid implements IGrid {
             return null;
         }
 
-        freeAnchors.addAll(selected.used);
+        
+        if(selected.source == boardAnchors) {
+            boardAnchors.addAll(selected.used);
+        } else {
+            freeAnchors.addAll(selected.used);
+            freeAnchors.addAll(selected.blocked);
+        }
         selected.used.clear();
-        freeAnchors.addAll(selected.blocked);
         selected.blocked.clear();
+        
         selected.source = null;
 
         for (BlockAnchors other : blockAnchors) {

@@ -8,8 +8,8 @@ import de.htwg.se.ubongo.util.frame.imp.SwitchFrame;
 /** MainController-Subject of GUI. */
 public final class GuiManager implements IMainControllerSubject {
 
-    private static final int DEF_WIDTH = 400;
-    private static final int DEF_HEIGHT = 300;
+    private static final int DEF_WIDTH = 800;
+    private static final int DEF_HEIGHT = 600;
 
     private final ISwitchFrame frame;
 

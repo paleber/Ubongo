@@ -4,15 +4,26 @@ import java.awt.BasicStroke;
 import java.awt.Color;
 import java.awt.Graphics;
 import java.awt.Graphics2D;
-import java.awt.RenderingHints;
+import java.awt.event.ActionEvent;
+import java.awt.event.MouseAdapter;
+import java.awt.event.MouseEvent;
 
+import javax.swing.AbstractAction;
+import javax.swing.ActionMap;
+import javax.swing.InputMap;
+import javax.swing.JComponent;
 import javax.swing.JPanel;
+import javax.swing.KeyStroke;
 
 import de.htwg.se.ubongo.ctrl.obs.IGameController;
 import de.htwg.se.ubongo.ctrl.sub.IGameControllerSubject;
 import de.htwg.se.ubongo.model.gameobject.IBlock;
 import de.htwg.se.ubongo.util.frame.ISwitchFrame;
 import de.htwg.se.ubongo.util.geo.ILine;
+import de.htwg.se.ubongo.util.geo.IPoint;
+import de.htwg.se.ubongo.util.geo.IVector;
+import de.htwg.se.ubongo.util.geo.imp.Point2D;
+import de.htwg.se.ubongo.util.geo.imp.Vector2D;
 
 /** Subject-GameController of TUI. */
 public final class GuiGameController implements IGameControllerSubject {
@@ -23,59 +34,156 @@ public final class GuiGameController implements IGameControllerSubject {
     private IBlock board;
     private IBlock[] blocks;
 
+    private IBlock selected;
+
     private double width;
     private double height;
+    private IGameController observer;
 
     private class Content extends JPanel {
 
         private static final long serialVersionUID = 1L;
 
+        private double xOffset;
+        private double yOffset;
+        private double scale;
+
+        private IPoint last = new Point2D();
+        private IPoint cur = new Point2D();
+        private IVector v = new Vector2D();
+        private boolean pressed = false;
+
+        public Content() {
+            addMouseListener(new MouseAdapter() {
+                @Override
+                public void mousePressed(MouseEvent e) {
+                    pressed = true;
+                    double x = (e.getX() - xOffset) / scale;
+                    double y = (e.getY() - yOffset) / scale;
+                    cur.set(x, y);
+                    observer.selectBlock(cur);
+                }
+
+                @Override
+                public void mouseReleased(MouseEvent e) {
+                    pressed = false;
+                    observer.dropBlock();
+                }
+            });
+
+            addMouseMotionListener(new MouseAdapter() {
+                @Override
+                public void mouseDragged(MouseEvent e) {
+                    if (pressed) {
+                        last.copy(cur);
+                        double x = (e.getX() - xOffset) / scale;
+                        double y = (e.getY() - yOffset) / scale;
+                        cur.set(x, y);
+                        v.stretchBetween(last, cur);
+                        observer.moveBlock(v);
+                    }
+                }
+            });
+
+            InputMap inputMap = getInputMap(JComponent.WHEN_IN_FOCUSED_WINDOW);
+            ActionMap actionMap = getActionMap();
+
+            inputMap.put(KeyStroke.getKeyStroke("released A"), "left");
+            actionMap.put("left", new AbstractAction() {
+                private static final long serialVersionUID = 1L;
+
+                @Override
+                public void actionPerformed(ActionEvent e) {
+                    observer.rotateBlockLeft();
+                }
+            });
+
+            inputMap.put(KeyStroke.getKeyStroke("D"), "right");
+            actionMap.put("right", new AbstractAction() {
+                private static final long serialVersionUID = 1L;
+
+                @Override
+                public void actionPerformed(ActionEvent e) {
+                    observer.rotateBlockRight();
+                }
+            });
+
+            inputMap.put(KeyStroke.getKeyStroke("S"), "horizontal");
+            actionMap.put("horizontal", new AbstractAction() {
+                private static final long serialVersionUID = 1L;
+
+                @Override
+                public void actionPerformed(ActionEvent e) {
+                    observer.mirrorBlockHorizontal();
+                }
+            });
+
+            inputMap.put(KeyStroke.getKeyStroke("W"), "vertical");
+            actionMap.put("vertical", new AbstractAction() {
+                private static final long serialVersionUID = 1L;
+
+                @Override
+                public void actionPerformed(ActionEvent e) {
+                    observer.mirrorBlockVertical();
+                }
+            });
+
+        }
+
         @Override
         public void paint(final Graphics graphics) {
             super.paint(graphics);
-
-            Graphics2D g = (Graphics2D) graphics;
-
-            g.setRenderingHint(RenderingHints.KEY_ANTIALIASING,
-                    RenderingHints.VALUE_ANTIALIAS_ON);
-            g.setRenderingHint(RenderingHints.KEY_INTERPOLATION,
-                    RenderingHints.VALUE_INTERPOLATION_BILINEAR);
-            g.setStroke(new BasicStroke(1));
 
             if (board == null) {
                 return;
             }
 
-            g.setColor(Color.CYAN);
+            Graphics2D g = (Graphics2D) graphics;
 
             double xScale = content.getWidth() / width;
             double yScale = content.getHeight() / height;
-            double scale = Math.min(xScale, yScale);
+            scale = Math.min(xScale, yScale);
 
-            double xOffset = (getWidth() - width * scale) / 2;
-            double yOffset = (getHeight() - height * scale) / 2;
+            xOffset = (getWidth() - width * scale) / 2;
+            yOffset = (getHeight() - height * scale) / 2;
 
-            g.setStroke(new BasicStroke(2));
+            // Board
+            g.setColor(Color.GRAY);
+            board.paint(g, scale, xOffset, yOffset);
+
+            g.setStroke(new BasicStroke((int) (scale / 10)));
+            g.setColor(Color.DARK_GRAY);
             for (ILine edge : board.getEdgesOuter()) {
+                edge.paint(g, scale, xOffset, yOffset);
+            }
 
-                int x1 = (int) (edge.getStart().getX() * scale + xOffset) ;
-                int y1 = (int) (edge.getStart().getY() * scale + yOffset);
-                int x2 = (int) (edge.getEnd().getX() * scale + xOffset) ;
-                int y2 = (int) (edge.getEnd().getY() * scale + yOffset) ;
+            g.setStroke(new BasicStroke((int) (scale / 15)));
+            for (ILine edge : board.getEdgesInner()) {
+                edge.paint(g, scale, xOffset, yOffset);
+            }
 
-                g.setColor(Color.MAGENTA);
-                g.drawLine(x1, y1, x2, y2);
+            // Blocks
+            for (IBlock b : blocks) {
+                if (b == selected) {
+                    continue;
+                }
+                
+                g.setColor(Color.CYAN);
+                b.paint(g, scale, xOffset, yOffset);
+                g.setColor(Color.CYAN.darker().darker());
+                for (ILine edge : b.getEdgesOuter()) {
+                    edge.paint(g, scale, xOffset, yOffset);
+                }
 
             }
-            g.setStroke(new BasicStroke(1));
-            for (ILine edge : board.getEdgesInner()) {
-                int x1 = (int) (edge.getStart().getX() * scale + xOffset);
-                int y1 = (int) (edge.getStart().getY() * scale + yOffset);
-                int x2 = (int) (edge.getEnd().getX() * scale + xOffset);
-                int y2 = (int) (edge.getEnd().getY() * scale + yOffset);
 
-                g.setColor(Color.MAGENTA);
-                g.drawLine(x1, y1, x2, y2);
+            if (selected != null) {
+                g.setColor(Color.GREEN.brighter().brighter());
+                selected.paint(g, scale, xOffset, yOffset);
+                g.setColor(Color.GREEN.darker().darker());
+                for (ILine edge : selected.getEdgesOuter()) {
+                    edge.paint(g, scale, xOffset, yOffset);
+                }
             }
 
         }
@@ -89,6 +197,7 @@ public final class GuiGameController implements IGameControllerSubject {
             final ISwitchFrame frame) {
 
         observer.register(this);
+        this.observer = observer;
         this.frame = frame;
     }
 
@@ -123,12 +232,14 @@ public final class GuiGameController implements IGameControllerSubject {
 
     @Override
     public void onSelectBlock(final IBlock block) {
-        // TODO Auto-generated method stub
+        selected = block;
+        content.repaint();
     }
 
     @Override
     public void onDropBlock() {
-        // TODO Auto-generated method stub
+        selected = null;
+        content.repaint();
     }
 
     @Override

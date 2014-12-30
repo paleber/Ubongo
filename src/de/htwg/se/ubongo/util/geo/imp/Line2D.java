@@ -1,5 +1,8 @@
 package de.htwg.se.ubongo.util.geo.imp;
 
+import java.awt.Color;
+import java.awt.Graphics;
+
 import de.htwg.se.ubongo.util.geo.ILine;
 import de.htwg.se.ubongo.util.geo.IPoint;
 
@@ -131,6 +134,15 @@ public final class Line2D implements ILine {
         boolean se = start.diffsToLessThan(other.getEnd(), tolerance);
         boolean es = end.diffsToLessThan(other.getStart(), tolerance);
         return (ss && ee) || (se && es);
+    }
+
+    @Override
+    public void paint(Graphics g, double scale, double xOffset, double yOffset) {
+        int x1 = (int) (start.getX() * scale + xOffset);
+        int y1 = (int) (start.getY() * scale + yOffset);
+        int x2 = (int) (end.getX() * scale + xOffset);
+        int y2 = (int) (end.getY() * scale + yOffset);
+        g.drawLine(x1, y1, x2, y2);
     }
 
 }

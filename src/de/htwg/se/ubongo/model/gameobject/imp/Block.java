@@ -1,5 +1,6 @@
 package de.htwg.se.ubongo.model.gameobject.imp;
 
+import java.awt.Graphics;
 import java.util.LinkedList;
 import java.util.List;
 
@@ -127,8 +128,16 @@ public final class Block extends AbstractGameObject implements IBlock {
                 outer.add(cur);
             }
         }
-        edgesInner =inner.toArray(new ILine[inner.size()]);
+        edgesInner = inner.toArray(new ILine[inner.size()]);
         edgesOuter = outer.toArray(new ILine[outer.size()]);
+    }
+
+    @Override
+    public void paint(Graphics g, double scale, double xOffset, double yOffset) {
+        for(IPolygon poly: this) {
+            poly.paint( g,  scale,  xOffset,  yOffset);
+        }
+
     }
 
 }
