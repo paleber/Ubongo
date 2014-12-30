@@ -127,8 +127,8 @@ public final class Block extends AbstractGameObject implements IBlock {
                 outer.add(cur);
             }
         }
-        edgesInner = (ILine[]) inner.toArray();
-        edgesOuter = (ILine[]) outer.toArray();
+        edgesInner =inner.toArray(new ILine[inner.size()]);
+        edgesOuter = outer.toArray(new ILine[outer.size()]);
     }
 
 }

@@ -1,19 +1,18 @@
 package de.htwg.se.ubongo.gui;
 
+import java.awt.BasicStroke;
 import java.awt.Color;
 import java.awt.Graphics;
+import java.awt.Graphics2D;
+import java.awt.RenderingHints;
 
 import javax.swing.JPanel;
-
-import com.sun.org.apache.xerces.internal.impl.RevalidationHandler;
 
 import de.htwg.se.ubongo.ctrl.obs.IGameController;
 import de.htwg.se.ubongo.ctrl.sub.IGameControllerSubject;
 import de.htwg.se.ubongo.model.gameobject.IBlock;
 import de.htwg.se.ubongo.util.frame.ISwitchFrame;
 import de.htwg.se.ubongo.util.geo.ILine;
-import de.htwg.se.ubongo.util.timer.Timer;
-import de.htwg.se.ubongo.util.timer.Trigger;
 
 /** Subject-GameController of TUI. */
 public final class GuiGameController implements IGameControllerSubject {
@@ -27,42 +26,60 @@ public final class GuiGameController implements IGameControllerSubject {
     private double width;
     private double height;
 
-    private class Content extends JPanel  {
+    private class Content extends JPanel {
 
         private static final long serialVersionUID = 1L;
 
-        public Content() {
-            setLayout(null);
-            repaint();
-            System.out.println("fds");
-            
-         
-        }
-
         @Override
-        public void paint(final Graphics g) {
-            super.paint(g);
-            
-            System.out.println("###############");
-            
+        public void paint(final Graphics graphics) {
+            super.paint(graphics);
+
+            Graphics2D g = (Graphics2D) graphics;
+
+            g.setRenderingHint(RenderingHints.KEY_ANTIALIASING,
+                    RenderingHints.VALUE_ANTIALIAS_ON);
+            g.setRenderingHint(RenderingHints.KEY_INTERPOLATION,
+                    RenderingHints.VALUE_INTERPOLATION_BILINEAR);
+            g.setStroke(new BasicStroke(1));
+
+            if (board == null) {
+                return;
+            }
+
             g.setColor(Color.CYAN);
-            g.fillRect(0, 0, 200, 300);
-            
-            /* double sx = content.getWidth() / width;
-            double sy = content.getHeight() / height;
 
+            double xScale = content.getWidth() / width;
+            double yScale = content.getHeight() / height;
+            double scale = Math.min(xScale, yScale);
+
+            double xOffset = (getWidth() - width * scale) / 2;
+            double yOffset = (getHeight() - height * scale) / 2;
+
+            g.setStroke(new BasicStroke(2));
             for (ILine edge : board.getEdgesOuter()) {
-                int x1 = (int) (edge.getStart().getX() * sx);
-                int y1 = (int) (edge.getStart().getY() * sy);
-                int x2 = (int) (edge.getEnd().getX() * sx);
-                int y2 = (int) (edge.getEnd().getY() * sy);
 
+                int x1 = (int) (edge.getStart().getX() * scale + xOffset) ;
+                int y1 = (int) (edge.getStart().getY() * scale + yOffset);
+                int x2 = (int) (edge.getEnd().getX() * scale + xOffset) ;
+                int y2 = (int) (edge.getEnd().getY() * scale + yOffset) ;
+
+                g.setColor(Color.MAGENTA);
                 g.drawLine(x1, y1, x2, y2);
-            } */
+
+            }
+            g.setStroke(new BasicStroke(1));
+            for (ILine edge : board.getEdgesInner()) {
+                int x1 = (int) (edge.getStart().getX() * scale + xOffset);
+                int y1 = (int) (edge.getStart().getY() * scale + yOffset);
+                int x2 = (int) (edge.getEnd().getX() * scale + xOffset);
+                int y2 = (int) (edge.getEnd().getY() * scale + yOffset);
+
+                g.setColor(Color.MAGENTA);
+                g.drawLine(x1, y1, x2, y2);
+            }
 
         }
 
-    
     }
 
     /** Default-Constructor.
@@ -78,9 +95,7 @@ public final class GuiGameController implements IGameControllerSubject {
     @Override
     public void onStartSubController() {
         frame.showContent(content);
-        System.out.println("war hier");
-        content.repaint();
-        content.revalidate();
+        // content.repaint();
     }
 
     @Override
@@ -104,7 +119,6 @@ public final class GuiGameController implements IGameControllerSubject {
     @Override
     public void onStartGame() {
         content.repaint();
-        System.out.println("gestartet");
     }
 
     @Override
