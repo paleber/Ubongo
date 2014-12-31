@@ -178,8 +178,8 @@ public final class Polygon2D implements IPolygon {
         int[] x = new int[getNumberPoints()];
         int[] y = new int[getNumberPoints()];
         for (int i = 0; i < getNumberPoints(); i++) {
-            x[i] = (int) (getPoint(i).getX() * scale + xOffset);
-            y[i] = (int) (getPoint(i).getY() * scale + yOffset);
+            x[i] = (int) (getPoint(i).getX() * scale + xOffset + FACTOR_HALF);
+            y[i] = (int) (getPoint(i).getY() * scale + yOffset + FACTOR_HALF);
         }
         g.fillPolygon(x, y, getNumberPoints());
 

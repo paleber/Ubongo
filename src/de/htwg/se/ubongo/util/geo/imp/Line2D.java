@@ -11,6 +11,8 @@ public final class Line2D implements ILine {
 
     private static final double DELTA = 1e-9;
 
+    private static final double FACTOR_HALF = 0.5;
+
     private IPoint start;
     private IPoint end;
 
@@ -138,10 +140,10 @@ public final class Line2D implements ILine {
 
     @Override
     public void paint(Graphics g, double scale, double xOffset, double yOffset) {
-        int x1 = (int) (start.getX() * scale + xOffset);
-        int y1 = (int) (start.getY() * scale + yOffset);
-        int x2 = (int) (end.getX() * scale + xOffset);
-        int y2 = (int) (end.getY() * scale + yOffset);
+        int x1 = (int) (start.getX() * scale + xOffset + FACTOR_HALF);
+        int y1 = (int) (start.getY() * scale + yOffset + FACTOR_HALF);
+        int x2 = (int) (end.getX() * scale + xOffset + FACTOR_HALF);
+        int y2 = (int) (end.getY() * scale + yOffset + FACTOR_HALF);
         g.drawLine(x1, y1, x2, y2);
     }
 

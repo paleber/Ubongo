@@ -17,9 +17,20 @@ public final class Block extends AbstractGameObject implements IBlock {
     private static final double ROTATE_STEP = 90;
     private static final double FACTOR_HALF = 0.5;
     private static final double DELTA = 1e-3;
+    
+    private static final double ACTION_TIME = 0.3;
+    
+    private boolean isRotating;
+    private boolean isMirroring;
+    
+    private double timeStart;
+    private double timeLast;
 
     @Override
     public void mirrorVertical() {
+        if(isRotating || isMirroring) {
+            return;
+        }
         double xAxis = calcMid().getX();
         for (IPolygon poly : this) {
             poly.mirrorVertical(xAxis);
@@ -28,6 +39,9 @@ public final class Block extends AbstractGameObject implements IBlock {
 
     @Override
     public void mirrorHorizontal() {
+        if(isRotating || isMirroring) {
+            return;
+        }
         double yAxis = calcMid().getY();
         for (IPolygon poly : this) {
             poly.mirrorHorizontal(yAxis);
@@ -45,6 +59,10 @@ public final class Block extends AbstractGameObject implements IBlock {
     }
 
     private void rotate(final double angleDeg) {
+        if(isRotating || isMirroring) {
+            return;
+        }
+        
         IPoint pivot = calcMid();
         for (IPolygon poly : this) {
             poly.rotateAround(angleDeg, pivot);
@@ -60,6 +78,9 @@ public final class Block extends AbstractGameObject implements IBlock {
 
     @Override
     public IPoint[] calcAnchoredMids() {
+        if(isRotating || isMirroring) {
+            throw new IllegalStateException();
+        }
         IPoint[] aMid = new IPoint[getNumberPolygons()];
         for (int i = 0; i < getNumberPolygons(); i++) {
             aMid[i] = GeoModule.createPoint();

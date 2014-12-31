@@ -88,7 +88,7 @@ public final class GuiGameController implements IGameControllerSubject {
             InputMap inputMap = getInputMap(JComponent.WHEN_IN_FOCUSED_WINDOW);
             ActionMap actionMap = getActionMap();
 
-            inputMap.put(KeyStroke.getKeyStroke("released A"), "left");
+            inputMap.put(KeyStroke.getKeyStroke("A"), "left");
             actionMap.put("left", new AbstractAction() {
                 private static final long serialVersionUID = 1L;
 
