@@ -40,5 +40,7 @@ public interface IBlock extends IGameObject, IPaintable {
     /** Get the inner Edges.
      * @return inner edges */
     ILine[] getEdgesInner();
+    
+    boolean inAction();
 
 }

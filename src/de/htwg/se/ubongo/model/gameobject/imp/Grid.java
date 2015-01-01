@@ -12,9 +12,11 @@ import de.htwg.se.ubongo.util.geo.IPolygon;
 import de.htwg.se.ubongo.util.geo.IVector;
 import de.htwg.se.ubongo.util.geo.imp.Point2D;
 import de.htwg.se.ubongo.util.geo.module.GeoModule;
+import de.htwg.se.ubongo.util.timer.Timer;
+import de.htwg.se.ubongo.util.timer.Trigger;
 
 /** Implementation of IGrid. */
-public final class Grid implements IGrid {
+public final class Grid implements IGrid, Trigger {
 
     private static final double GRID_FRAME_SIZE = 1;
     private static final double BOARD_FRAME_SIZE = 1.1;
@@ -35,6 +37,8 @@ public final class Grid implements IGrid {
 
     private BlockAnchors selected;
 
+    private Timer dropWaitTimer = new Timer(this, 1);
+    
     private static final class BlockAnchors {
         private final IBlock block;
         private List<IPoint> source = null;
@@ -190,7 +194,6 @@ public final class Grid implements IGrid {
 
     @Override
     public IBlock selectBlock(final IPoint p) {
-
         if (selected != null) {
             throw new IllegalStateException();
         }
@@ -200,8 +203,7 @@ public final class Grid implements IGrid {
             return null;
         }
 
-        
-        if(selected.source == boardAnchors) {
+        if (selected.source == boardAnchors) {
             boardAnchors.addAll(selected.used);
         } else {
             freeAnchors.addAll(selected.used);
@@ -209,7 +211,7 @@ public final class Grid implements IGrid {
         }
         selected.used.clear();
         selected.blocked.clear();
-        
+
         selected.source = null;
 
         for (BlockAnchors other : blockAnchors) {
@@ -234,6 +236,11 @@ public final class Grid implements IGrid {
     public void dropBlock() {
         if (selected == null) {
             throw new IllegalStateException();
+        }
+
+        while (selected.block.inAction()) {
+            dropWaitTimer.start();
+            return;
         }
 
         IPoint blockFirstPolyMid = selected.block.getPolygon(0).calcMid();
@@ -344,5 +351,12 @@ public final class Grid implements IGrid {
             int y = (int) (p.getY() * 2 + DELTA);
             a[x][y] = c;
         }
+    }
+
+    @Override
+    public void onTrigger() {
+        dropWaitTimer.stop();
+        dropBlock();
+        
     }
 }

@@ -27,6 +27,10 @@ public interface IVector {
 
     /** Swap the direction of the Vector. */
     void swap();
+    
+    double getLength();
+    
+    void setLength(double length);
 
     /** Return the Vector as String with format "<%.3f|%.3f>".
      * @return Vector as String */

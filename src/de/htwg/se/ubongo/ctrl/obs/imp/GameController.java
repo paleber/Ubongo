@@ -55,7 +55,12 @@ public final class GameController extends SubController<IGameControllerSubject>
     @Override
     public void selectBlock(final IPoint p) {
         if (selected == null) {
-            selected = grid.selectBlock(p);
+            try {
+                selected = grid.selectBlock(p);
+            } catch (IllegalStateException e) {
+                return;
+            }
+
             if (selected != null) {
                 for (IGameControllerSubject s : getSubjects()) {
                     s.onSelectBlock(selected);

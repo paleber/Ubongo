@@ -68,12 +68,21 @@ public final class Vector2D implements IVector {
         return angle;
     }
 
-    /** Set the length of the vector.
-     * @param length */
+    @Override
+    public double getLength() {
+        return Math.sqrt(x * x + y * y);
+    }
+
+    @Override
     public void setLength(final double length) {
-        double cur = Math.sqrt(x * x + y * y);
-        x = (x / cur) * length;
-        y = (y / cur) * length;
+        if (length != 0) {
+            double cur = getLength();
+            x = (x / cur) * length;
+            y = (y / cur) * length;
+        } else {
+            x = 0;
+            y = 0;
+        }
     }
 
     /** Convert the vector to a normal. */

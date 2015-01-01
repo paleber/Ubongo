@@ -24,9 +24,11 @@ import de.htwg.se.ubongo.util.geo.IPoint;
 import de.htwg.se.ubongo.util.geo.IVector;
 import de.htwg.se.ubongo.util.geo.imp.Point2D;
 import de.htwg.se.ubongo.util.geo.imp.Vector2D;
+import de.htwg.se.ubongo.util.timer.Timer;
+import de.htwg.se.ubongo.util.timer.Trigger;
 
 /** Subject-GameController of TUI. */
-public final class GuiGameController implements IGameControllerSubject {
+public final class GuiGameController implements IGameControllerSubject, Trigger {
 
     private final JPanel content = new Content();
     private final ISwitchFrame frame;
@@ -39,6 +41,8 @@ public final class GuiGameController implements IGameControllerSubject {
     private double width;
     private double height;
     private IGameController observer;
+    
+    private final Timer repaintTimer = new Timer(this, 16);
 
     private class Content extends JPanel {
 
@@ -201,15 +205,18 @@ public final class GuiGameController implements IGameControllerSubject {
         this.frame = frame;
     }
 
+   
+    
     @Override
     public void onStartSubController() {
         frame.showContent(content);
-        // content.repaint();
+       repaintTimer.start();
     }
 
     @Override
     public void onStopSubController() {
         frame.hideContent();
+        repaintTimer.stop();
     }
 
     @Override
@@ -250,6 +257,14 @@ public final class GuiGameController implements IGameControllerSubject {
     @Override
     public void onWin() {
         // TODO Auto-generated method stub
+    }
+
+
+
+    @Override
+    public void onTrigger() {
+        content.repaint();
+        
     }
 
 }
