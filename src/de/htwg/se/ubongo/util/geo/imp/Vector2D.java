@@ -73,9 +73,11 @@ public final class Vector2D implements IVector {
         return Math.sqrt(x * x + y * y);
     }
 
+    private static final double DELTA = 1e-9;
+    
     @Override
     public void setLength(final double length) {
-        if (length != 0) {
+        if (length >= DELTA) {
             double cur = getLength();
             x = (x / cur) * length;
             y = (y / cur) * length;
