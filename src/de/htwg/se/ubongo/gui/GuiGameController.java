@@ -24,11 +24,9 @@ import de.htwg.se.ubongo.util.geo.IPoint;
 import de.htwg.se.ubongo.util.geo.IVector;
 import de.htwg.se.ubongo.util.geo.imp.Point2D;
 import de.htwg.se.ubongo.util.geo.imp.Vector2D;
-import de.htwg.se.ubongo.util.timer.Timer;
-import de.htwg.se.ubongo.util.timer.Trigger;
 
 /** Subject-GameController of TUI. */
-public final class GuiGameController implements IGameControllerSubject, Trigger {
+public final class GuiGameController implements IGameControllerSubject {
 
     private final JPanel content = new Content();
     private final ISwitchFrame frame;
@@ -41,8 +39,9 @@ public final class GuiGameController implements IGameControllerSubject, Trigger 
     private double width;
     private double height;
     private IGameController observer;
-    
-    private final Timer repaintTimer = new Timer(this, 16);
+
+    private static final int LINE_FACTOR_1 = 10;
+    private static final int LINE_FACTOR_2 = 15;
 
     private class Content extends JPanel {
 
@@ -60,7 +59,7 @@ public final class GuiGameController implements IGameControllerSubject, Trigger 
         public Content() {
             addMouseListener(new MouseAdapter() {
                 @Override
-                public void mousePressed(MouseEvent e) {
+                public void mousePressed(final MouseEvent e) {
                     pressed = true;
                     double x = (e.getX() - xOffset) / scale;
                     double y = (e.getY() - yOffset) / scale;
@@ -69,7 +68,7 @@ public final class GuiGameController implements IGameControllerSubject, Trigger 
                 }
 
                 @Override
-                public void mouseReleased(MouseEvent e) {
+                public void mouseReleased(final MouseEvent e) {
                     pressed = false;
                     observer.dropBlock();
                 }
@@ -77,7 +76,7 @@ public final class GuiGameController implements IGameControllerSubject, Trigger 
 
             addMouseMotionListener(new MouseAdapter() {
                 @Override
-                public void mouseDragged(MouseEvent e) {
+                public void mouseDragged(final MouseEvent e) {
                     if (pressed) {
                         last.copy(cur);
                         double x = (e.getX() - xOffset) / scale;
@@ -97,7 +96,7 @@ public final class GuiGameController implements IGameControllerSubject, Trigger 
                 private static final long serialVersionUID = 1L;
 
                 @Override
-                public void actionPerformed(ActionEvent e) {
+                public void actionPerformed(final ActionEvent e) {
                     observer.rotateBlockLeft();
                 }
             });
@@ -107,7 +106,7 @@ public final class GuiGameController implements IGameControllerSubject, Trigger 
                 private static final long serialVersionUID = 1L;
 
                 @Override
-                public void actionPerformed(ActionEvent e) {
+                public void actionPerformed(final ActionEvent e) {
                     observer.rotateBlockRight();
                 }
             });
@@ -117,7 +116,7 @@ public final class GuiGameController implements IGameControllerSubject, Trigger 
                 private static final long serialVersionUID = 1L;
 
                 @Override
-                public void actionPerformed(ActionEvent e) {
+                public void actionPerformed(final ActionEvent e) {
                     observer.mirrorBlockHorizontal();
                 }
             });
@@ -127,7 +126,7 @@ public final class GuiGameController implements IGameControllerSubject, Trigger 
                 private static final long serialVersionUID = 1L;
 
                 @Override
-                public void actionPerformed(ActionEvent e) {
+                public void actionPerformed(final ActionEvent e) {
                     observer.mirrorBlockVertical();
                 }
             });
@@ -155,13 +154,13 @@ public final class GuiGameController implements IGameControllerSubject, Trigger 
             g.setColor(Color.GRAY);
             board.paint(g, scale, xOffset, yOffset);
 
-            g.setStroke(new BasicStroke((int) (scale / 10)));
+            g.setStroke(new BasicStroke((int) (scale / LINE_FACTOR_1)));
             g.setColor(Color.DARK_GRAY);
             for (ILine edge : board.getEdgesOuter()) {
                 edge.paint(g, scale, xOffset, yOffset);
             }
 
-            g.setStroke(new BasicStroke((int) (scale / 15)));
+            g.setStroke(new BasicStroke((int) (scale / LINE_FACTOR_2)));
             for (ILine edge : board.getEdgesInner()) {
                 edge.paint(g, scale, xOffset, yOffset);
             }
@@ -171,7 +170,7 @@ public final class GuiGameController implements IGameControllerSubject, Trigger 
                 if (b == selected) {
                     continue;
                 }
-                
+
                 g.setColor(Color.CYAN);
                 b.paint(g, scale, xOffset, yOffset);
                 g.setColor(Color.CYAN.darker().darker());
@@ -205,18 +204,14 @@ public final class GuiGameController implements IGameControllerSubject, Trigger 
         this.frame = frame;
     }
 
-   
-    
     @Override
     public void onStartSubController() {
         frame.showContent(content);
-       repaintTimer.start();
     }
 
     @Override
     public void onStopSubController() {
         frame.hideContent();
-        repaintTimer.stop();
     }
 
     @Override
@@ -255,16 +250,6 @@ public final class GuiGameController implements IGameControllerSubject, Trigger 
     }
 
     @Override
-    public void onWin() {
-        // TODO Auto-generated method stub
-    }
-
-
-
-    @Override
-    public void onTrigger() {
-        content.repaint();
-        
-    }
+    public void onWin() {}
 
 }

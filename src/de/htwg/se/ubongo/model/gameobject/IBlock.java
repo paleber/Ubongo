@@ -40,7 +40,9 @@ public interface IBlock extends IGameObject, IPaintable {
     /** Get the inner Edges.
      * @return inner edges */
     ILine[] getEdgesInner();
-    
+
+    /** Check if the block is rotating or mirroring.
+     * @return true, when in action */
     boolean inAction();
 
 }

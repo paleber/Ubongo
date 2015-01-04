@@ -6,61 +6,54 @@ import java.awt.Dimension;
 import java.awt.Graphics;
 import java.awt.event.WindowAdapter;
 import java.awt.event.WindowEvent;
-import java.awt.event.WindowListener;
 
 import javax.swing.JFrame;
 import javax.swing.JPanel;
 
 import de.htwg.se.ubongo.ctrl.obs.IMainController;
 import de.htwg.se.ubongo.util.frame.ISwitchFrame;
+import de.htwg.se.ubongo.util.timer.Timer;
+import de.htwg.se.ubongo.util.timer.Trigger;
 
 /** Implementation of ISwitchFrame. */
-public final class SwitchFrame implements ISwitchFrame {
+public final class SwitchFrame implements ISwitchFrame, Trigger {
 
     private final JFrame frame = new JFrame();
-    private final LoadPanel loadPane = new LoadPanel();
+    private final LoadContent loadContent = new LoadContent();
+
+    private final Timer repaintTimer = new Timer(this, 16);
     
-    private final IMainController observer;
-    
-    private static final class LoadPanel extends JPanel {
-        
+    /* ContentPane for LoadScreen. */
+    private static final class LoadContent extends JPanel {
+
+        private static final long serialVersionUID = 1L;
+
         private static final Color COLOR_BACK = new Color(135, 206, 250);
 
         public void paint(final Graphics g) {
             g.setColor(COLOR_BACK);
             g.fillRect(0, 0, getWidth(), getHeight());
         }
+
     }
 
-    
+    /** Constructor.
+     * @param observer IMainController. */
     public SwitchFrame(final IMainController observer) {
-        this.observer = observer;
         frame.setLayout(null);
         frame.addWindowListener(new WindowAdapter() {
-         
             @Override
             public void windowClosing(final WindowEvent e) {
                 observer.shutdown();
-                
             }
-        }); 
+        });
         hideContent();
-        
         frame.setVisible(true);
+        repaintTimer.start();
     }
 
     @Override
-    public int getContentWidth() {
-        return frame.getContentPane().getWidth();
-    }
-
-    @Override
-    public int getContentHeight() {
-        return frame.getContentPane().getHeight();
-    }
-
-    @Override
-    public void setContentSize(int width, int height) {
+    public void setContentSize(final int width, final int height) {
         Container c = frame.getContentPane();
         Dimension dim = c.getSize();
         dim.setSize(width, height);
@@ -70,20 +63,27 @@ public final class SwitchFrame implements ISwitchFrame {
     }
 
     @Override
-    public void showContent(Container content) {
+    public void showContent(final Container content) {
         frame.setContentPane(content);
         content.revalidate();
     }
 
     @Override
     public void hideContent() {
-        frame.setContentPane(loadPane);
-        loadPane.revalidate();
+        frame.setContentPane(loadContent);
+        loadContent.revalidate();
     }
 
     @Override
     public void shutdown() {
+        repaintTimer.stop();
         frame.dispose();
+    }
+
+    @Override
+    public void onTrigger() {
+       frame.repaint();
+        
     }
 
 }
