@@ -2,14 +2,19 @@ package de.htwg.se.ubongo.model.gameobject.imp;
 
 import java.util.Iterator;
 
+import com.google.inject.Injector;
+
+import de.htwg.se.ubongo.UbongoModule;
 import de.htwg.se.ubongo.model.gameobject.IGameObject;
 import de.htwg.se.ubongo.util.geo.IPoint;
 import de.htwg.se.ubongo.util.geo.IPolygon;
 import de.htwg.se.ubongo.util.geo.IVector;
-import de.htwg.se.ubongo.util.geo.module.GeoModule;
 
 /** Superclass for Block and Board. */
 abstract class AbstractGameObject implements IGameObject {
+
+    /** Guice-Injector. */
+    protected static final Injector INJECTOR = UbongoModule.getInjector();
 
     private static final double FACTOR_HALF = 0.5d;
     private IPolygon[] polys;
@@ -31,7 +36,7 @@ abstract class AbstractGameObject implements IGameObject {
 
     @Override
     public final void setMid(final IPoint p) {
-        IVector v = GeoModule.createVector();
+        IVector v = INJECTOR.getInstance(IVector.class);
         v.stretchBetween(calcMid(), p);
         for (IPolygon poly : polys) {
             poly.move(v);
@@ -41,7 +46,7 @@ abstract class AbstractGameObject implements IGameObject {
     @Override
     public final IPoint calcMid() {
         Bounds b = calcBounds();
-        IPoint mid = GeoModule.createPoint();
+        IPoint mid = INJECTOR.getInstance(IPoint.class);
         double x = (b.xMin + b.xMax) * FACTOR_HALF;
         double y = (b.yMin + b.yMax) * FACTOR_HALF;
         mid.set(x, y);

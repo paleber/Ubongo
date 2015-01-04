@@ -1,10 +1,10 @@
 package de.htwg.se.ubongo.tui.cmd.game;
 
+import de.htwg.se.ubongo.UbongoModule;
 import de.htwg.se.ubongo.ctrl.obs.IGameController;
 import de.htwg.se.ubongo.util.cmd.TextCommand;
 import de.htwg.se.ubongo.util.console.IConsole;
 import de.htwg.se.ubongo.util.geo.IVector;
-import de.htwg.se.ubongo.util.geo.module.GeoModule;
 
 /** TextCommand to move the selected Block. */
 public final class TextCmdMoveBlock implements TextCommand {
@@ -24,7 +24,7 @@ public final class TextCmdMoveBlock implements TextCommand {
     @Override
     public void execute(final String... args) {
         try {
-            IVector v = GeoModule.createVector();
+            IVector v = UbongoModule.getInjector().getInstance(IVector.class);
             double x = Double.parseDouble(args[1]);
             double y = Double.parseDouble(args[2]);
             v.set(x, y);

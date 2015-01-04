@@ -7,17 +7,18 @@ import static org.junit.Assert.assertTrue;
 import org.junit.Before;
 import org.junit.Test;
 
-import de.htwg.se.ubongo.util.geo.IPoint;
-import de.htwg.se.ubongo.util.geo.IVector;
-import de.htwg.se.ubongo.util.geo.module.GeoModule;
+import com.google.inject.Injector;
+
+import de.htwg.se.ubongo.UbongoModule;
 
 /** Tests for IPoint and Iplementation. */
 public final class PointTest {
 
+    private static final Injector INJECTOR = UbongoModule.getInjector();
     private static final double DELTA = 1e-9;
 
-    private IPoint p = GeoModule.createPoint();
-    private IPoint q = GeoModule.createPoint();
+    private IPoint p = UbongoModule.getInjector().getInstance(IPoint.class);
+    private IPoint q = UbongoModule.getInjector().getInstance(IPoint.class);
 
     @Before
     public void setup() {
@@ -40,7 +41,7 @@ public final class PointTest {
 
     @Test
     public void testMove() {
-        IVector v = GeoModule.createVector();
+        IVector v = INJECTOR.getInstance(IVector.class);
         v.set(4, 5);
         q.move(v);
         p.set(6, 8);
@@ -84,7 +85,7 @@ public final class PointTest {
     public void testToString() {
         assertEquals("(2.000|3.000)", q.toString());
     }
-    
+
     @Test
     public void testDiffsToLessThan() {
         assertFalse(p.diffsToLessThan(q, 2));
@@ -92,5 +93,4 @@ public final class PointTest {
         assertTrue(p.diffsToLessThan(q, 3.01));
     }
 
-   
 }

@@ -1,14 +1,14 @@
 package de.htwg.se.ubongo.tui.cmd.game;
 
+import de.htwg.se.ubongo.UbongoModule;
 import de.htwg.se.ubongo.ctrl.obs.IGameController;
 import de.htwg.se.ubongo.util.cmd.TextCommand;
 import de.htwg.se.ubongo.util.console.IConsole;
 import de.htwg.se.ubongo.util.geo.IPoint;
-import de.htwg.se.ubongo.util.geo.module.GeoModule;
 
 /** TextCommand to select a block. */
 public final class TextCmdSelectBlock implements TextCommand {
-
+     
     private final IGameController observer;
     private final IConsole console;
 
@@ -24,7 +24,7 @@ public final class TextCmdSelectBlock implements TextCommand {
     @Override
     public void execute(final String... args) {
         try {
-            IPoint p = GeoModule.createPoint();
+            IPoint p = UbongoModule.getInjector().getInstance(IPoint.class);
             double x = Double.parseDouble(args[1]);
             double y = Double.parseDouble(args[2]);
             p.set(x, y);

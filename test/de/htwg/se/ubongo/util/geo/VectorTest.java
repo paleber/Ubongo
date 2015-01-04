@@ -5,18 +5,20 @@ import static org.junit.Assert.assertEquals;
 import org.junit.Before;
 import org.junit.Test;
 
-import de.htwg.se.ubongo.util.geo.IPoint;
-import de.htwg.se.ubongo.util.geo.IVector;
+import com.google.inject.Injector;
+
+import de.htwg.se.ubongo.UbongoModule;
 import de.htwg.se.ubongo.util.geo.imp.Vector2D;
-import de.htwg.se.ubongo.util.geo.module.GeoModule;
 
 /** Tests for IVector with Implementations. */
 public class VectorTest {
 
+    private static final Injector INJECTOR = UbongoModule.getInjector();
+
     private static final double DELTA = 1e-9;
 
-    private IVector v = GeoModule.createVector();
-    private IVector u = GeoModule.createVector();
+    private IVector v = INJECTOR.getInstance(IVector.class);
+    private IVector u = INJECTOR.getInstance(IVector.class);
 
     @Before
     public void setup() {
@@ -40,8 +42,8 @@ public class VectorTest {
 
     @Test
     public void testStretchBetween() {
-        IPoint p = GeoModule.createPoint();
-        IPoint q = GeoModule.createPoint();
+        IPoint p = INJECTOR.getInstance(IPoint.class);
+        IPoint q = INJECTOR.getInstance(IPoint.class);
         p.set(1, 1);
         q.set(2, 3);
         v.stretchBetween(p, q);
@@ -65,7 +67,7 @@ public class VectorTest {
         assertEquals(v.getX(), u.getX(), DELTA);
         assertEquals(v.getY(), u.getY(), DELTA);
     }
-    
+
     @Test
     public void testSetAngle() {
         Vector2D v = new Vector2D();
@@ -76,7 +78,7 @@ public class VectorTest {
         u.set(0, 1);
         testNearlyEquals(u, v);
     }
-    
+
     @Test
     public void testGetAngle() {
         Vector2D v = new Vector2D();
@@ -87,7 +89,7 @@ public class VectorTest {
         v.set(0, 1);
         assertEquals(270, v.getAngleDegree(), DELTA);
     }
-    
+
     @Test
     public void testConvertToNormal() {
         Vector2D v = new Vector2D();
@@ -95,12 +97,12 @@ public class VectorTest {
         v.convertToNormal();
         u.set(-1, 1);
         testNearlyEquals(u, v);
-        for(int i = 0; i < 4; i++) {
+        for (int i = 0; i < 4; i++) {
             v.convertToNormal();
         }
         testNearlyEquals(u, v);
     }
-    
+
     @Test
     public void testSetLength() {
         Vector2D v = new Vector2D();

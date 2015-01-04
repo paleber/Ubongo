@@ -7,13 +7,17 @@ import static org.junit.Assert.fail;
 
 import org.junit.Test;
 
+import com.google.inject.Injector;
+
+import de.htwg.se.ubongo.UbongoModule;
 import de.htwg.se.ubongo.model.gameobject.IBlock;
 import de.htwg.se.ubongo.model.loader.fake.FakeResourceLoader;
 import de.htwg.se.ubongo.util.geo.IPoint;
-import de.htwg.se.ubongo.util.geo.module.GeoModule;
 
 public class FakeLoaderTest {
 
+    private static final Injector INJECTOR = UbongoModule.getInjector();
+    
     private static final IResourceLoader loader = new FakeResourceLoader();
     private static final double DELTA = 1e-9;
 
@@ -31,7 +35,7 @@ public class FakeLoaderTest {
         for(int i = 0; i < board.getNumberPolygons(); i++) {
             assertEquals(4, board.getPolygon(i).getNumberPoints());
         }
-        IPoint p = GeoModule.createPoint();
+        IPoint p = INJECTOR.getInstance(IPoint.class);
         p.set(0,0);
         assertTrue(p.diffsToLessThan(board.getPolygon(0).getPoint(0), DELTA));
         p.set(1,0);
@@ -66,7 +70,7 @@ public class FakeLoaderTest {
             assertEquals(4, blocks[i].getPolygon(0).getNumberPoints());
         }
         
-        IPoint p = GeoModule.createPoint();
+        IPoint p = INJECTOR.getInstance(IPoint.class);;
         p.set(0,0);
         assertTrue(p.diffsToLessThan(blocks[0].getPolygon(0).getPoint(0), DELTA));
         p.set(1,0);

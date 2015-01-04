@@ -11,7 +11,6 @@ import de.htwg.se.ubongo.util.geo.IPolygon;
 import de.htwg.se.ubongo.util.geo.IVector;
 import de.htwg.se.ubongo.util.geo.imp.Polygon2D;
 import de.htwg.se.ubongo.util.geo.imp.Vector2D;
-import de.htwg.se.ubongo.util.geo.module.GeoModule;
 import de.htwg.se.ubongo.util.timer.Timer;
 import de.htwg.se.ubongo.util.timer.Trigger;
 
@@ -64,8 +63,8 @@ public final class Block extends AbstractGameObject implements IBlock, Trigger {
         calcMirrorVectors(mirroredCopys);
         startAction(ACTION.MIRROR);
     }
-    
-    private void calcMirrorVectors(IPolygon[] mirroredCopys) {
+
+    private void calcMirrorVectors(final IPolygon[] mirroredCopys) {
         mirrorVector =
                 new IVector[getNumberPolygons()][getPolygon(0)
                         .getNumberPoints()];
@@ -78,8 +77,6 @@ public final class Block extends AbstractGameObject implements IBlock, Trigger {
             }
         }
     }
-
-   
 
     private IVector[][] mirrorVector;
 
@@ -107,7 +104,7 @@ public final class Block extends AbstractGameObject implements IBlock, Trigger {
         }
         IPoint[] aMid = new IPoint[getNumberPolygons()];
         for (int i = 0; i < getNumberPolygons(); i++) {
-            aMid[i] = GeoModule.createPoint();
+            aMid[i] = INJECTOR.getInstance(IPoint.class);
             IPoint mid = getPolygon(i).calcMid();
             double x = (int) (mid.getX() * 2 + FACTOR_HALF) * FACTOR_HALF;
             double y = (int) (mid.getY() * 2 + FACTOR_HALF) * FACTOR_HALF;
@@ -178,13 +175,14 @@ public final class Block extends AbstractGameObject implements IBlock, Trigger {
     }
 
     @Override
-    public void paint(Graphics g, double scale, double xOffset, double yOffset) {
+    public void paint(final Graphics g, final double scale,
+            final double xOffset, final double yOffset) {
         for (IPolygon poly : this) {
             poly.paint(g, scale, xOffset, yOffset);
         }
     }
 
-    private void startAction(ACTION action) {
+    private void startAction(final ACTION action) {
         if (this.action != ACTION.NONE) {
             return;
         }
@@ -231,23 +229,23 @@ public final class Block extends AbstractGameObject implements IBlock, Trigger {
         }
     }
 
-    private void mirror(double procent) {
+    private void mirror(final double procent) {
         System.out.println("Start Mirror");
         IVector v = new Vector2D();
         for (int i = 0; i < getNumberPolygons(); i++) {
             for (int j = 0; j < getPolygon(0).getNumberPoints(); j++) {
-               
+
                 v.copy(mirrorVector[i][j]);
                 v.setLength(v.getLength() * procent);
-                System.out.println("O:" +  mirrorVector[i][j]);
-                System.out.println("V:"  + v);
+                System.out.println("O:" + mirrorVector[i][j]);
+                System.out.println("V:" + v);
                 getPolygon(i).getPoint(j).move(v);
             }
         }
         System.out.println("Stop Mirror");
     }
 
-    private void rotate(double angleDegree) {
+    private void rotate(final double angleDegree) {
         IPoint pivot = calcMid();
         for (IPolygon poly : this) {
             poly.rotateAround(angleDegree, pivot);

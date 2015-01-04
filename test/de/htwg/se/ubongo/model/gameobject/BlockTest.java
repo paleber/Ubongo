@@ -6,13 +6,17 @@ import static org.junit.Assert.assertTrue;
 import org.junit.Before;
 import org.junit.Test;
 
+import com.google.inject.Injector;
+
+import de.htwg.se.ubongo.UbongoModule;
 import de.htwg.se.ubongo.model.gameobject.module.GameObjectModule;
 import de.htwg.se.ubongo.util.geo.IPoint;
 import de.htwg.se.ubongo.util.geo.IPolygon;
 import de.htwg.se.ubongo.util.geo.IVector;
-import de.htwg.se.ubongo.util.geo.module.GeoModule;
 
 public final class BlockTest {
+
+    private static final Injector INJECTOR = UbongoModule.getInjector();
 
     private static final double DELTA = 1e-9;
     private final IBlock go = GameObjectModule.createBlock();
@@ -20,10 +24,10 @@ public final class BlockTest {
     public BlockTest() {
         IPoint[] p = new IPoint[3];
         for (int i = 0; i < p.length; i++) {
-            p[i] = GeoModule.createPoint();
+            p[i] = INJECTOR.getInstance(IPoint.class);
         }
         IPolygon[] poly = new IPolygon[1];
-        poly[0] = GeoModule.createPolygon();
+        poly[0] = INJECTOR.getInstance(IPolygon.class);
         poly[0].setPoints(p);
         go.setPolygons(poly);
     }
@@ -37,7 +41,7 @@ public final class BlockTest {
 
     @Test
     public void testMirrorVertical() {
-        IPoint p = GeoModule.createPoint();
+        IPoint p = INJECTOR.getInstance(IPoint.class);
         p.set(1, 0);
         go.mirrorVertical();
         assertTrue(p.diffsToLessThan(go.getPolygon(0).getPoint(0), DELTA));
@@ -45,7 +49,7 @@ public final class BlockTest {
 
     @Test
     public void testMirrorHorizontal() {
-        IPoint p = GeoModule.createPoint();
+        IPoint p = INJECTOR.getInstance(IPoint.class);
         p.set(0, 1);
         go.mirrorHorizontal();
         assertTrue(p.diffsToLessThan(go.getPolygon(0).getPoint(0), DELTA));
@@ -53,7 +57,7 @@ public final class BlockTest {
 
     @Test
     public void rotateLeft() {
-        IPoint p = GeoModule.createPoint();
+        IPoint p = INJECTOR.getInstance(IPoint.class);
         p.set(0, 1);
         go.rotateLeft();
         assertTrue(p.diffsToLessThan(go.getPolygon(0).getPoint(0), DELTA));
@@ -61,7 +65,7 @@ public final class BlockTest {
 
     @Test
     public void rotateRight() {
-        IPoint p = GeoModule.createPoint();
+        IPoint p = INJECTOR.getInstance(IPoint.class);
         p.set(1, 0);
         go.rotateRight();
         assertTrue(p.diffsToLessThan(go.getPolygon(0).getPoint(0), DELTA));
@@ -69,9 +73,9 @@ public final class BlockTest {
 
     @Test
     public void testMove() {
-        IVector v = GeoModule.createVector();
+        IVector v = INJECTOR.getInstance(IVector.class);
         v.set(3, 4);
-        IPoint p = GeoModule.createPoint();
+        IPoint p = INJECTOR.getInstance(IPoint.class);
         p.set(3, 4);
         go.move(v);
         assertTrue(p.diffsToLessThan(go.getPolygon(0).getPoint(0), DELTA));
@@ -79,10 +83,10 @@ public final class BlockTest {
 
     @Test
     public void testAnchoredMids() {
-        IVector v = GeoModule.createVector();
+        IVector v = INJECTOR.getInstance(IVector.class);
         v.set(-0.24, -0.24);
         go.move(v);
-        IPoint p = GeoModule.createPoint();
+        IPoint p = INJECTOR.getInstance(IPoint.class);
         p.set(0.5, 0.5);
         assertTrue(p.diffsToLessThan(go.calcAnchoredMids()[0], DELTA));
 

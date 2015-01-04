@@ -6,23 +6,27 @@ import static org.junit.Assert.assertTrue;
 import org.junit.Before;
 import org.junit.Test;
 
+import com.google.inject.Injector;
+
+import de.htwg.se.ubongo.UbongoModule;
 import de.htwg.se.ubongo.model.gameobject.module.GameObjectModule;
 import de.htwg.se.ubongo.util.geo.IPoint;
 import de.htwg.se.ubongo.util.geo.IPolygon;
-import de.htwg.se.ubongo.util.geo.module.GeoModule;
 
 public class GameObjectTest {
 
+    private static final Injector INJECTOR = UbongoModule.getInjector();
+    
     private static final double DELTA = 1e-9;
     private final IGameObject go = GameObjectModule.createBlock();
 
     public GameObjectTest() {
         IPoint[] p = new IPoint[3];
         for (int i = 0; i < p.length; i++) {
-            p[i] = GeoModule.createPoint();
+            p[i] = INJECTOR.getInstance(IPoint.class);
         }
         IPolygon[] poly = new IPolygon[1];
-        poly[0] = GeoModule.createPolygon();
+        poly[0] = INJECTOR.getInstance(IPolygon.class);
         poly[0].setPoints(p);
         go.setPolygons(poly);
     }
@@ -37,10 +41,10 @@ public class GameObjectTest {
     @Test
     public void testGetterSetter() {
         IPoint[] p = new IPoint[1];
-        p[0] = GeoModule.createPoint();
+        p[0] = INJECTOR.getInstance(IPoint.class);
         p[0].set(3, 4);
         IPolygon[] poly = new IPolygon[1];
-        poly[0] = GeoModule.createPolygon();
+        poly[0] = INJECTOR.getInstance(IPolygon.class);
         poly[0].setPoints(p);
         go.setPolygons(poly);
         assertTrue(p[0].diffsToLessThan(go.getPolygon(0).getPoint(0), DELTA));
@@ -63,14 +67,14 @@ public class GameObjectTest {
 
     @Test
     public void testCalcMid() {
-        IPoint p = GeoModule.createPoint();
+        IPoint p = INJECTOR.getInstance(IPoint.class);
         p.set(0.5, 0.5);
         assertTrue(p.diffsToLessThan(go.calcMid(), DELTA));
     }
 
     @Test
     public void testSetMid() {
-        IPoint p = GeoModule.createPoint();
+        IPoint p = INJECTOR.getInstance(IPoint.class);
         p.set(3, 5);
         go.setMid(p);
         assertTrue(p.diffsToLessThan(go.calcMid(), DELTA));

@@ -174,7 +174,8 @@ public final class Polygon2D implements IPolygon {
     }
 
     @Override
-    public void paint(Graphics g, double scale, double xOffset, double yOffset) {
+    public void paint(final Graphics g, final double scale,
+            final double xOffset, final double yOffset) {
         int[] x = new int[getNumberPoints()];
         int[] y = new int[getNumberPoints()];
         for (int i = 0; i < getNumberPoints(); i++) {

@@ -1,15 +1,19 @@
 package de.htwg.se.ubongo.model.loader.fake;
 
+import com.google.inject.Injector;
+
+import de.htwg.se.ubongo.UbongoModule;
 import de.htwg.se.ubongo.model.gameobject.IBlock;
 import de.htwg.se.ubongo.model.gameobject.module.GameObjectModule;
 import de.htwg.se.ubongo.model.loader.IResourceLoader;
 import de.htwg.se.ubongo.util.geo.IPoint;
 import de.htwg.se.ubongo.util.geo.IPolygon;
-import de.htwg.se.ubongo.util.geo.module.GeoModule;
 
 /** Fake resource loader. */
 public final class FakeResourceLoader implements IResourceLoader {
 
+    private static final Injector INJECTOR = UbongoModule.getInjector();
+    
     private static final int NUM_POINTS = 4;
 
     private static final int TOP_LEFT = 0;
@@ -44,7 +48,7 @@ public final class FakeResourceLoader implements IResourceLoader {
 
             IPoint[] points = new IPoint[NUM_POINTS];
             for (int k = 0; k < points.length; k++) {
-                points[k] = GeoModule.createPoint();
+                points[k] = INJECTOR.getInstance(IPoint.class);
             }
 
             points[TOP_LEFT].set(x, y);
@@ -52,7 +56,7 @@ public final class FakeResourceLoader implements IResourceLoader {
             points[BOT_RIGHT].set(x + 1, y + 1);
             points[BOT_LEFT].set(x, y + 1);
 
-            polys[j] = GeoModule.createPolygon();
+            polys[j] = INJECTOR.getInstance(IPolygon.class);
             polys[j].setPoints(points);
         }
 
@@ -87,7 +91,7 @@ public final class FakeResourceLoader implements IResourceLoader {
 
                 IPoint[] points = new IPoint[NUM_POINTS];
                 for (int k = 0; k < points.length; k++) {
-                    points[k] = GeoModule.createPoint();
+                    points[k] = INJECTOR.getInstance(IPoint.class);
                 }
 
                 points[TOP_LEFT].set(x, y);
@@ -95,7 +99,7 @@ public final class FakeResourceLoader implements IResourceLoader {
                 points[BOT_RIGHT].set(x + 1, y + 1);
                 points[BOT_LEFT].set(x, y + 1);
 
-                polys[j] = GeoModule.createPolygon();
+                polys[j] = INJECTOR.getInstance(IPolygon.class);
                 polys[j].setPoints(points);
             }
 

@@ -8,6 +8,9 @@ import static org.junit.Assert.assertTrue;
 import org.junit.Before;
 import org.junit.Test;
 
+import com.google.inject.Injector;
+
+import de.htwg.se.ubongo.UbongoModule;
 import de.htwg.se.ubongo.model.gameobject.imp.Block;
 import de.htwg.se.ubongo.model.gameobject.imp.Grid;
 import de.htwg.se.ubongo.model.loader.IResourceLoader;
@@ -16,10 +19,11 @@ import de.htwg.se.ubongo.util.geo.IPoint;
 import de.htwg.se.ubongo.util.geo.IVector;
 import de.htwg.se.ubongo.util.geo.imp.Point2D;
 import de.htwg.se.ubongo.util.geo.imp.Vector2D;
-import de.htwg.se.ubongo.util.geo.module.GeoModule;
 
 public class GridTest {
 
+    private static final Injector INJECTOR = UbongoModule.getInjector();
+    
     private IGrid grid = new Grid();
 
     private IBlock board;
@@ -84,7 +88,7 @@ public class GridTest {
     @Test
     public void testSelectDropBlock() {
         grid.init(board, blocks);
-        IPoint p = GeoModule.createPoint();
+        IPoint p = INJECTOR.getInstance(IPoint.class);
         p.set(5, 3);
         assertNull(grid.selectBlock(p));
         p.set(5.5, 6);
@@ -97,7 +101,7 @@ public class GridTest {
     @Test(expected = IllegalStateException.class)
     public void testSelectBlockIllegalState() {
         grid.init(board, blocks);
-        IPoint p = GeoModule.createPoint();
+        IPoint p = INJECTOR.getInstance(IPoint.class);
         p.set(5.5, 6);
         grid.selectBlock(p);
         grid.selectBlock(p);
@@ -112,7 +116,7 @@ public class GridTest {
     @Test(expected = IllegalStateException.class)
     public void testDropBlockIllegalState2() {
         grid.init(board, blocks);
-        IPoint p = GeoModule.createPoint();
+        IPoint p = INJECTOR.getInstance(IPoint.class);
         p.set(1.5, 3.5);
         IBlock b = grid.selectBlock(p);
         b.getPolygon(0).getPoint(0).set(20, 4);

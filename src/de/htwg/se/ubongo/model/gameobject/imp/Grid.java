@@ -5,19 +5,23 @@ import java.util.LinkedList;
 import java.util.List;
 import java.util.Map;
 
+import com.google.inject.Injector;
+
+import de.htwg.se.ubongo.UbongoModule;
 import de.htwg.se.ubongo.model.gameobject.IBlock;
 import de.htwg.se.ubongo.model.gameobject.IGrid;
 import de.htwg.se.ubongo.util.geo.IPoint;
 import de.htwg.se.ubongo.util.geo.IPolygon;
 import de.htwg.se.ubongo.util.geo.IVector;
 import de.htwg.se.ubongo.util.geo.imp.Point2D;
-import de.htwg.se.ubongo.util.geo.module.GeoModule;
 import de.htwg.se.ubongo.util.timer.Timer;
 import de.htwg.se.ubongo.util.timer.Trigger;
 
 /** Implementation of IGrid. */
 public final class Grid implements IGrid, Trigger {
 
+    private static final Injector INJECTOR = UbongoModule.getInjector();
+    
     private static final double GRID_FRAME_SIZE = 1;
     private static final double BOARD_FRAME_SIZE = 1.1;
     private static final double BLOCK_FRAME_SIZE = 1.1;
@@ -97,7 +101,7 @@ public final class Grid implements IGrid, Trigger {
     }
 
     private void initBoard(final IBlock board) {
-        IPoint mid = GeoModule.createPoint();
+        IPoint mid = INJECTOR.getInstance(IPoint.class);
         mid.set(WIDTH / 2, board.calcHeight() + GRID_FRAME_SIZE);
 
         board.setMid(mid);
@@ -145,7 +149,7 @@ public final class Grid implements IGrid, Trigger {
     }
 
     private void initBlocks(final IBlock[] blocks) {
-        IPoint mid = GeoModule.createPoint();
+        IPoint mid = INJECTOR.getInstance(IPoint.class);
         mid.set(WIDTH / 2, HEIGHT / 2);
 
         for (IBlock b : blocks) {
@@ -270,7 +274,7 @@ public final class Grid implements IGrid, Trigger {
 
     private boolean tryAnchoringFirstPolygon(final BlockAnchors ba,
             final IPoint anchor, final List<IPoint> anchorList) {
-        IVector v = GeoModule.createVector();
+        IVector v = INJECTOR.getInstance(IVector.class);
         v.stretchBetween(ba.block.getPolygon(0).calcMid(), anchor);
         ba.block.move(v);
         return tryAnchoring(ba, anchorList);
@@ -278,7 +282,7 @@ public final class Grid implements IGrid, Trigger {
 
     private boolean tryAnchoringMid(final BlockAnchors ba, final IPoint anchor,
             final List<IPoint> anchorList) {
-        IVector v = GeoModule.createVector();
+        IVector v = INJECTOR.getInstance(IVector.class);
         v.stretchBetween(ba.block.calcMid(), anchor);
         ba.block.move(v);
         return tryAnchoring(ba, anchorList);

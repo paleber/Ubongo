@@ -2,10 +2,9 @@ package de.htwg.se.ubongo.util.ctrl;
 
 import de.htwg.se.ubongo.util.ctrl.abs.IAbstractController;
 
-/** Interface for Abstract-Main-Controller.
- * @param <S> MainSubject*/
-public interface IAbstractMainController
-        extends IAbstractController<IMainControllerSubject> {
+/** Interface for Abstract-Main-Controller. */
+public interface IAbstractMainController extends
+        IAbstractController<IMainControllerSubject> {
 
     /** Shutdown the Application by shutting down all MainSubjects followed by
      * shutting down the MainController. */
