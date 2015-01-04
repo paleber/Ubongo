@@ -50,16 +50,14 @@ public final class Vector2D implements IVector {
         return String.format(Locale.ENGLISH, "<%.3f|%.3f>", x, y);
     }
 
-    /** Set the angle of the vector.
-     * @param degree */
+    @Override
     public void setAngleDegree(final double degree) {
         double radian = Math.toRadians(degree);
         x = Math.cos(radian);
         y = Math.sin(radian);
     }
 
-    /** Get the angle of the vector.
-     * @return angle */
+    @Override
     public double getAngleDegree() {
         double angle = Math.toDegrees(Math.atan2(-y, x));
         if (angle < 0) {

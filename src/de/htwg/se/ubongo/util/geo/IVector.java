@@ -35,6 +35,14 @@ public interface IVector {
     /** Set the length.
      * @param length */
     void setLength(double length);
+    
+    /** Set the angle of the vector.
+     * @param degree */
+    void setAngleDegree(double degree);
+
+    /** Get the angle of the vector.
+     * @return angle */
+    double getAngleDegree();
 
     /** Return the Vector as String with format "<%.3f|%.3f>".
      * @return Vector as String */
