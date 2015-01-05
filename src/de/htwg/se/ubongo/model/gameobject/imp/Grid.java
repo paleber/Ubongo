@@ -165,7 +165,8 @@ public final class Grid implements IGrid, Trigger {
         }
 
         if (blockAnchors.size() != blocks.length) {
-            throw new IllegalStateException();
+            throw new IllegalStateException("Anchor size: " + blockAnchors.size() +
+                    " Block length: " + blocks.length);
         }
 
     }

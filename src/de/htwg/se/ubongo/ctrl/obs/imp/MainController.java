@@ -9,7 +9,8 @@ import de.htwg.se.ubongo.ctrl.obs.abs.ISubController;
 import de.htwg.se.ubongo.model.data.ILevelData;
 import de.htwg.se.ubongo.model.data.imp.LevelData;
 import de.htwg.se.ubongo.model.loader.IResourceLoader;
-import de.htwg.se.ubongo.model.loader.fake.FakeResourceLoader;
+//import de.htwg.se.ubongo.model.loader.fake.FakeResourceLoader;
+import de.htwg.se.ubongo.model.loader.imp.BufferedResourceLoader;
 import de.htwg.se.ubongo.util.ctrl.imp.AbstractMainController;
 
 /** MainController manages SubController. */
@@ -29,7 +30,7 @@ public final class MainController extends AbstractMainController implements
     /** Default-Constructor. */
     public MainController() {
 
-        IResourceLoader loader = new FakeResourceLoader();
+        IResourceLoader loader = new BufferedResourceLoader();
         levelData = new LevelData(loader);
         level = new LevelController(this, levelData, loader);
         game = new GameController(this, levelData, loader);

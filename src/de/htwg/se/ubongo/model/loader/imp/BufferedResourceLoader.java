@@ -204,5 +204,4 @@ public final class BufferedResourceLoader implements IResourceLoader {
 
         return blocks;
     }
-
 }
