@@ -26,8 +26,8 @@ public final class Grid implements IGrid, Trigger {
     private static final double BOARD_FRAME_SIZE = 1.1;
     private static final double BLOCK_FRAME_SIZE = 1.1;
 
-    private static final double WIDTH = 10;
-    private static final double HEIGHT = 7;
+    private static final double WIDTH = 15;
+    private static final double HEIGHT = 10;
 
     private static final double FACTOR_HALF = 0.5;
 
