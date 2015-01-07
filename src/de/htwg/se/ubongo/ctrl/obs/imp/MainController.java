@@ -9,7 +9,6 @@ import de.htwg.se.ubongo.ctrl.obs.abs.ISubController;
 import de.htwg.se.ubongo.model.data.ILevelData;
 import de.htwg.se.ubongo.model.data.imp.LevelData;
 import de.htwg.se.ubongo.model.loader.IResourceLoader;
-//import de.htwg.se.ubongo.model.loader.fake.FakeResourceLoader;
 import de.htwg.se.ubongo.model.loader.imp.BufferedResourceLoader;
 import de.htwg.se.ubongo.util.ctrl.imp.AbstractMainController;
 

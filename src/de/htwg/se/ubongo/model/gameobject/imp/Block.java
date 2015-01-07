@@ -189,7 +189,6 @@ public final class Block extends AbstractGameObject implements IBlock, Trigger {
             return;
         }
 
-        System.out.println("start");
         timeLeft = ACTION_TIME;
         timeLast = System.currentTimeMillis();
         this.action = action;
@@ -210,7 +209,6 @@ public final class Block extends AbstractGameObject implements IBlock, Trigger {
         timeLeft -= delta;
 
         double procent = delta / (double) ACTION_TIME;
-        System.out.println(procent);
 
         switch (action) {
         case ROTATE_LEFT:
@@ -232,19 +230,14 @@ public final class Block extends AbstractGameObject implements IBlock, Trigger {
     }
 
     private void mirror(final double procent) {
-        System.out.println("Start Mirror");
         IVector v = new Vector2D();
         for (int i = 0; i < getNumberPolygons(); i++) {
             for (int j = 0; j < getPolygon(0).getNumberPoints(); j++) {
-
                 v.copy(mirrorVector[i][j]);
                 v.setLength(v.getLength() * procent);
-                System.out.println("O:" + mirrorVector[i][j]);
-                System.out.println("V:" + v);
                 getPolygon(i).getPoint(j).move(v);
             }
         }
-        System.out.println("Stop Mirror");
     }
 
     private void rotate(final double angleDegree) {

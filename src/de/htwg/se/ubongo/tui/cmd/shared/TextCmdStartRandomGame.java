@@ -28,7 +28,6 @@ public final class TextCmdStartRandomGame implements TextCommand {
         int variant = random.nextInt(level.getNumberVariantsOfBoard(index));
         level.setBoard(index);
         level.setVariant(variant);
-        System.out.println("Index: " + index + " Variant: " + variant);
         observer.switchToGame();
     }
 
