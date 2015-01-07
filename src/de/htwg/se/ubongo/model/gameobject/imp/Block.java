@@ -26,7 +26,9 @@ public final class Block extends AbstractGameObject implements IBlock, Trigger {
     }
 
     private ACTION action = ACTION.NONE;
-    private static final long ACTION_TIME = 150;
+    
+    /** rotation-and mirroring-time. */
+    public static final long ACTION_TIME = 150;
 
     private final Timer actionTimer = new Timer(this, 10);
     private long timeLeft;

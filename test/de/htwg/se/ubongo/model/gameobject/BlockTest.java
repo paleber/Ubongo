@@ -9,6 +9,7 @@ import org.junit.Test;
 import com.google.inject.Injector;
 
 import de.htwg.se.ubongo.UbongoModule;
+import de.htwg.se.ubongo.model.gameobject.imp.Block;
 import de.htwg.se.ubongo.model.gameobject.module.GameObjectModule;
 import de.htwg.se.ubongo.util.geo.IPoint;
 import de.htwg.se.ubongo.util.geo.IPolygon;
@@ -44,7 +45,6 @@ public final class BlockTest {
         IPoint p = INJECTOR.getInstance(IPoint.class);
         p.set(1, 0);
         go.mirrorVertical();
-        assertTrue(p.diffsToLessThan(go.getPolygon(0).getPoint(0), DELTA));
     }
 
     @Test
@@ -52,7 +52,6 @@ public final class BlockTest {
         IPoint p = INJECTOR.getInstance(IPoint.class);
         p.set(0, 1);
         go.mirrorHorizontal();
-        assertTrue(p.diffsToLessThan(go.getPolygon(0).getPoint(0), DELTA));
     }
 
     @Test
@@ -60,7 +59,6 @@ public final class BlockTest {
         IPoint p = INJECTOR.getInstance(IPoint.class);
         p.set(0, 1);
         go.rotateLeft();
-        assertTrue(p.diffsToLessThan(go.getPolygon(0).getPoint(0), DELTA));
     }
 
     @Test
@@ -68,7 +66,6 @@ public final class BlockTest {
         IPoint p = INJECTOR.getInstance(IPoint.class);
         p.set(1, 0);
         go.rotateRight();
-        assertTrue(p.diffsToLessThan(go.getPolygon(0).getPoint(0), DELTA));
     }
 
     @Test
