@@ -18,7 +18,7 @@ public final class TuiManager implements IMainControllerSubject {
               observer.getLevelData());
         new TuiLevelController(observer.getLevelController(), console,
                 observer.getLevelData());
-        new TuiGameController(observer.getGameController(), console);
+        new TuiGameController(observer.getGameController(), console, observer.getLevelData());
         new TuiHelpController(observer.getHelpController(), console);
         console.open();
         console.writeLine("--- start application ---");

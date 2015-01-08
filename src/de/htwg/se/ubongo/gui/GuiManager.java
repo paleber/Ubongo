@@ -19,7 +19,7 @@ public final class GuiManager implements IMainControllerSubject {
         observer.register(this);
         frame = new SwitchFrame(observer);
         frame.setContentSize(DEF_WIDTH, DEF_HEIGHT);
-        new GuiGameController(observer.getGameController(), frame);
+        new GuiGameController(observer.getGameController(), frame, observer.getLevelData());
     }
 
     @Override

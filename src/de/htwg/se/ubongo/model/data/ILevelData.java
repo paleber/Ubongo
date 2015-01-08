@@ -27,5 +27,9 @@ public interface ILevelData {
     /** Get the variant of the board.
      * @return variant */
     int getVariant();
+    
+    /** Select board and variant randomly. */
+    void random();
+    
 
 }
