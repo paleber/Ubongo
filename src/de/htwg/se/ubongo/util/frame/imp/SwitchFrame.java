@@ -119,13 +119,15 @@ public final class SwitchFrame implements ISwitchFrame, Trigger {
     }
 
     @Override
-    public void showContent(final Container content) {
-        frame.setContentPane(content);
+    public void showContent(final Container content, final String title) {
+		frame.setTitle(title);
+    	frame.setContentPane(content);
         content.revalidate();
     }
 
     @Override
     public void hideContent() {
+    	frame.setTitle("Loading...");
         frame.setContentPane(loadContent);
         loadContent.revalidate();
     }
@@ -141,5 +143,6 @@ public final class SwitchFrame implements ISwitchFrame, Trigger {
         frame.repaint();
 
     }
+
 
 }

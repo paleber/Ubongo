@@ -62,25 +62,24 @@ public final class GuiGameController implements IGameControllerSubject {
 		private IVector v = new Vector2D();
 		private boolean pressed = false;
 
-		
 		private final MouseListener mouseListener = new MouseAdapter() {
-			
-				@Override
-				public void mousePressed(final MouseEvent e) {
-					pressed = true;
-					double x = (e.getX() - xOffset) / scale;
-					double y = (e.getY() - yOffset) / scale;
-					cur.set(x, y);
-					observer.selectBlock(cur);
-				}
 
-				@Override
-				public void mouseReleased(final MouseEvent e) {
-					pressed = false;
-					observer.dropBlock();
-				}
+			@Override
+			public void mousePressed(final MouseEvent e) {
+				pressed = true;
+				double x = (e.getX() - xOffset) / scale;
+				double y = (e.getY() - yOffset) / scale;
+				cur.set(x, y);
+				observer.selectBlock(cur);
+			}
+
+			@Override
+			public void mouseReleased(final MouseEvent e) {
+				pressed = false;
+				observer.dropBlock();
+			}
 		};
-		
+
 		private final MouseMotionListener mouseMotionListener = new MouseAdapter() {
 			@Override
 			public void mouseDragged(final MouseEvent e) {
@@ -94,8 +93,6 @@ public final class GuiGameController implements IGameControllerSubject {
 				}
 			}
 		};
-		
-		
 
 		private void setGameRunning() {
 			removeAll();
@@ -144,20 +141,16 @@ public final class GuiGameController implements IGameControllerSubject {
 				}
 			});
 		}
-		
 
 		public void setGameFinished() {
-			
+
 			getInputMap(JComponent.WHEN_IN_FOCUSED_WINDOW).clear();
 			getActionMap().clear();
-			
-			
-			
+
 			removeAll();
 			removeMouseListener(mouseListener);
 			removeMouseMotionListener(mouseMotionListener);
-			
-			
+
 			JButton b = new JButton("Nächstes Level");
 			b.addActionListener(new ActionListener() {
 
@@ -170,7 +163,7 @@ public final class GuiGameController implements IGameControllerSubject {
 
 			content.add(b);
 			content.revalidate();
-			
+
 		}
 
 		@Override
@@ -254,7 +247,8 @@ public final class GuiGameController implements IGameControllerSubject {
 	@Override
 	public void onStartSubController() {
 		content.setGameRunning();
-		frame.showContent(content);
+		frame.showContent(content, "board " + levelData.getBoardIndex() + " - variant "
+				+ levelData.getVariant());
 	}
 
 	@Override

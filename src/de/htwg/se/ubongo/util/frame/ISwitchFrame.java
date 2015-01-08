@@ -11,8 +11,9 @@ public interface ISwitchFrame {
     void setContentSize(int width, int height);
 
     /** Show a content.
-     * @param content content to show */
-    void showContent(Container content);
+     * @param content content to show 
+     * @param title */
+    void showContent(Container content, String title);
 
     /** Hide the content and show a load screen. */
     void hideContent();
