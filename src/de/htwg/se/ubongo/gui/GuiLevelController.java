@@ -15,9 +15,11 @@ import de.htwg.se.ubongo.ctrl.sub.ILevelControllerSubject;
 import de.htwg.se.ubongo.model.data.ILevelData;
 import de.htwg.se.ubongo.util.frame.ISwitchFrame;
 
-public class GuiLevelController implements ILevelControllerSubject {
+public final class GuiLevelController implements ILevelControllerSubject {
 
     private final class Content extends JPanel {
+
+        private static final long serialVersionUID = 1L;
 
         private final JSlider levelSlider = new JSlider();
         private final JSlider variantSlider = new JSlider();
@@ -34,7 +36,7 @@ public class GuiLevelController implements ILevelControllerSubject {
             levelSlider.setPaintLabels(true);
             levelSlider.addChangeListener(new ChangeListener() {
                 @Override
-                public void stateChanged(ChangeEvent e) {
+                public void stateChanged(final ChangeEvent e) {
                     level.setBoard(levelSlider.getValue() - 1);
                     updateSlider();
                 }
@@ -52,26 +54,25 @@ public class GuiLevelController implements ILevelControllerSubject {
                 @Override
                 public void stateChanged(final ChangeEvent e) {
                     level.setVariant(variantSlider.getValue() - 1);
-                    // updateSlider();
                 }
             });
             add(variantSlider);
 
             updateSlider();
-            
+
             JButton b = new JButton("Zurück zum Menü");
             b.addActionListener(new ActionListener() {
                 @Override
-                public void actionPerformed(ActionEvent e) {
+                public void actionPerformed(final ActionEvent e) {
                     observer.switchToMenu();
                 }
             });
             add(b);
-            
+
             b = new JButton("Start");
             b.addActionListener(new ActionListener() {
                 @Override
-                public void actionPerformed(ActionEvent e) {
+                public void actionPerformed(final ActionEvent e) {
                     observer.switchToGame();
                 }
             });
@@ -79,7 +80,7 @@ public class GuiLevelController implements ILevelControllerSubject {
         }
 
         private void updateSlider() {
-           // variantSlider.setValue(level.);
+            // variantSlider.setValue(level.);
             variantSlider.setMaximum(level.getNumberVariantsOfBoard(level
                     .getBoardIndex()));
             levelSlider.setValue(level.getBoardIndex() + 1);
@@ -93,8 +94,8 @@ public class GuiLevelController implements ILevelControllerSubject {
     private final ISwitchFrame frame;
     private final ILevelController observer;
 
-    public GuiLevelController(ILevelController observer, ISwitchFrame frame,
-            ILevelData level) {
+    public GuiLevelController(final ILevelController observer,
+            final ISwitchFrame frame, final ILevelData level) {
         observer.register(this);
         this.frame = frame;
         this.level = level;
@@ -115,7 +116,7 @@ public class GuiLevelController implements ILevelControllerSubject {
     }
 
     @Override
-    public void onSelect(int index, int variant) {
+    public void onSelect(final int index, final int variant) {
         content.updateSlider();
 
     }
