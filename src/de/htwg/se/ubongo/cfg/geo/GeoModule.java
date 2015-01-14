@@ -1,4 +1,4 @@
-package de.htwg.se.ubongo.model.gameobject.imp;
+package de.htwg.se.ubongo.cfg.geo;
 
 import com.google.inject.AbstractModule;
 import com.google.inject.Guice;
@@ -13,11 +13,11 @@ import de.htwg.se.ubongo.util.geo.imp.Point2D;
 import de.htwg.se.ubongo.util.geo.imp.Polygon2D;
 import de.htwg.se.ubongo.util.geo.imp.Vector2D;
 
-final class Module extends AbstractModule {
+public final class GeoModule extends AbstractModule {
 
-    private static final Injector INJECTOR = Guice.createInjector(new Module());
+    private static final Injector INJECTOR = Guice.createInjector(new GeoModule());
 
-    private Module() {}
+    public GeoModule() {}
     
     @Override
     protected void configure() {
@@ -27,7 +27,7 @@ final class Module extends AbstractModule {
         bind(ILine.class).to(Line2D.class);
     }
 
-    protected static Injector getInjector() {
+    public static Injector getInjector() {
         return INJECTOR;
     }
 

@@ -10,7 +10,7 @@ import org.junit.Test;
 
 import com.google.inject.Injector;
 
-import de.htwg.se.ubongo.UbongoModule;
+import de.htwg.se.ubongo.cfg.UbongoModule;
 import de.htwg.se.ubongo.model.gameobject.imp.Block;
 import de.htwg.se.ubongo.model.gameobject.imp.Grid;
 import de.htwg.se.ubongo.model.loader.IResourceLoader;

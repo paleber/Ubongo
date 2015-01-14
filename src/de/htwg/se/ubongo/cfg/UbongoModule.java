@@ -1,9 +1,10 @@
-package de.htwg.se.ubongo;
+package de.htwg.se.ubongo.cfg;
 
 import com.google.inject.AbstractModule;
 import com.google.inject.Guice;
 import com.google.inject.Injector;
 
+import de.htwg.se.ubongo.cfg.geo.GeoModule;
 import de.htwg.se.ubongo.util.geo.IPoint;
 import de.htwg.se.ubongo.util.geo.IPolygon;
 import de.htwg.se.ubongo.util.geo.imp.Point2D;
@@ -19,9 +20,8 @@ public final class UbongoModule extends AbstractModule {
 
     @Override
     protected void configure() {
-        // Geometric
-        bind(IPoint.class).to(Point2D.class);
-        bind(IPolygon.class).to(Polygon2D.class);
+        install(new GeoModule());
+        
     }
 
     /** Get the Injector.

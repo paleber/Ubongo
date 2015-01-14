@@ -7,7 +7,7 @@ import java.util.Map;
 
 import com.google.inject.Injector;
 
-import de.htwg.se.ubongo.UbongoModule;
+import de.htwg.se.ubongo.cfg.geo.GeoModule;
 import de.htwg.se.ubongo.model.gameobject.IBlock;
 import de.htwg.se.ubongo.model.gameobject.IGrid;
 import de.htwg.se.ubongo.util.geo.IPoint;
@@ -20,7 +20,7 @@ import de.htwg.se.ubongo.util.timer.Trigger;
 /** Implementation of IGrid. */
 public final class Grid implements IGrid, Trigger {
 
-    private static final Injector INJECTOR = Module.getInjector();
+    private static final Injector INJECTOR = GeoModule.getInjector();
     
     private static final double GRID_FRAME_SIZE = 1;
     private static final double BOARD_FRAME_SIZE = 1.1;

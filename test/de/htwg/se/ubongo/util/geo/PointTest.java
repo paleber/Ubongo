@@ -9,7 +9,7 @@ import org.junit.Test;
 
 import com.google.inject.Injector;
 
-import de.htwg.se.ubongo.UbongoModule;
+import de.htwg.se.ubongo.cfg.UbongoModule;
 
 /** Tests for IPoint and Iplementation. */
 public final class PointTest {

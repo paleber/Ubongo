@@ -9,7 +9,7 @@ import org.junit.Test;
 
 import com.google.inject.Injector;
 
-import de.htwg.se.ubongo.UbongoModule;
+import de.htwg.se.ubongo.cfg.UbongoModule;
 import de.htwg.se.ubongo.model.gameobject.IBlock;
 import de.htwg.se.ubongo.model.loader.fake.FakeResourceLoader;
 import de.htwg.se.ubongo.util.geo.IPoint;
