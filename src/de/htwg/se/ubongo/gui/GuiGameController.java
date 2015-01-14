@@ -31,7 +31,6 @@ import de.htwg.se.ubongo.util.frame.ISwitchFrame;
 import de.htwg.se.ubongo.util.geo.ILine;
 import de.htwg.se.ubongo.util.geo.IPoint;
 import de.htwg.se.ubongo.util.geo.IVector;
-import de.htwg.se.ubongo.util.geo.imp.Vector2D;
 
 /** Subject-GameController of TUI. */
 public final class GuiGameController implements IGameControllerSubject {
@@ -64,7 +63,7 @@ public final class GuiGameController implements IGameControllerSubject {
 
         private IPoint last = INJECTOR.getInstance(IPoint.class);
         private IPoint cur = INJECTOR.getInstance(IPoint.class);
-        private IVector v = new Vector2D();
+        private IVector v = INJECTOR.getInstance(IVector.class);
         private boolean pressed = false;
 
         private final MouseListener mouseListener = new MouseAdapter() {

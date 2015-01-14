@@ -9,8 +9,6 @@ import de.htwg.se.ubongo.util.geo.ILine;
 import de.htwg.se.ubongo.util.geo.IPoint;
 import de.htwg.se.ubongo.util.geo.IPolygon;
 import de.htwg.se.ubongo.util.geo.IVector;
-import de.htwg.se.ubongo.util.geo.imp.Polygon2D;
-import de.htwg.se.ubongo.util.geo.imp.Vector2D;
 import de.htwg.se.ubongo.util.timer.Timer;
 import de.htwg.se.ubongo.util.timer.Trigger;
 
@@ -42,7 +40,7 @@ public final class Block extends AbstractGameObject implements IBlock, Trigger {
         double xAxis = calcMid().getX();
         IPolygon[] mirroredCopys = new IPolygon[getNumberPolygons()];
         for (int i = 0; i < mirroredCopys.length; i++) {
-            mirroredCopys[i] = new Polygon2D();
+            mirroredCopys[i] = INJECTOR.getInstance(IPolygon.class);
             mirroredCopys[i].copy(getPolygon(i));
             mirroredCopys[i].mirrorVertical(xAxis);
         }
@@ -58,7 +56,7 @@ public final class Block extends AbstractGameObject implements IBlock, Trigger {
         double yAxis = calcMid().getY();
         IPolygon[] mirroredCopys = new IPolygon[getNumberPolygons()];
         for (int i = 0; i < mirroredCopys.length; i++) {
-            mirroredCopys[i] = new Polygon2D();
+            mirroredCopys[i] = INJECTOR.getInstance(IPolygon.class);
             mirroredCopys[i].copy(getPolygon(i));
             mirroredCopys[i].mirrorHorizontal(yAxis);
         }
@@ -73,7 +71,7 @@ public final class Block extends AbstractGameObject implements IBlock, Trigger {
         for (int i = 0; i < getNumberPolygons(); i++) {
 
             for (int j = 0; j < getPolygon(0).getNumberPoints(); j++) {
-                mirrorVector[i][j] = new Vector2D();
+                mirrorVector[i][j] = INJECTOR.getInstance(IVector.class);
                 mirrorVector[i][j].stretchBetween(getPolygon(i).getPoint(j),
                         mirroredCopys[i].getPoint(j));
             }
@@ -230,7 +228,7 @@ public final class Block extends AbstractGameObject implements IBlock, Trigger {
     }
 
     private void mirror(final double procent) {
-        IVector v = new Vector2D();
+        IVector v = INJECTOR.getInstance(IVector.class);
         for (int i = 0; i < getNumberPolygons(); i++) {
             for (int j = 0; j < getPolygon(0).getNumberPoints(); j++) {
                 v.copy(mirrorVector[i][j]);

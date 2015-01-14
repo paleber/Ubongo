@@ -6,9 +6,10 @@ import de.htwg.se.ubongo.util.geo.IPoint;
 import de.htwg.se.ubongo.util.geo.IVector;
 
 /** Implementation of IVector. */
-public final class Vector2D implements IVector {
+final class Vector2D implements IVector {
 
     private static final double FULL_ROTATION = 360;
+    private static final double DELTA = 1e-9;
     private double x = 0;
     private double y = 0;
 
@@ -71,8 +72,6 @@ public final class Vector2D implements IVector {
         return Math.sqrt(x * x + y * y);
     }
 
-    private static final double DELTA = 1e-9;
-    
     @Override
     public void setLength(final double length) {
         if (length >= DELTA) {

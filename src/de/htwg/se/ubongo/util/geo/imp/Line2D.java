@@ -6,7 +6,7 @@ import de.htwg.se.ubongo.util.geo.ILine;
 import de.htwg.se.ubongo.util.geo.IPoint;
 
 /** Implementation of ILine. */
-public final class Line2D implements ILine {
+final class Line2D implements ILine {
 
     private static final double DELTA = 1e-9;
 

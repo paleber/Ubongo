@@ -5,15 +5,16 @@ import static org.junit.Assert.assertEquals;
 import org.junit.Before;
 import org.junit.Test;
 
+import com.google.inject.Guice;
 import com.google.inject.Injector;
 
-import de.htwg.se.ubongo.cfg.UbongoModule;
-import de.htwg.se.ubongo.util.geo.imp.Vector2D;
+import de.htwg.se.ubongo.util.geo.imp.GeoModule;
 
 /** Tests for IVector with Implementations. */
 public class VectorTest {
 
-    private static final Injector INJECTOR = UbongoModule.getInjector();
+    private static final Injector INJECTOR = Guice
+            .createInjector(new GeoModule());
 
     private static final double DELTA = 1e-9;
 
@@ -70,7 +71,7 @@ public class VectorTest {
 
     @Test
     public void testSetAngle() {
-        Vector2D v = new Vector2D();
+        IVector v = INJECTOR.getInstance(IVector.class);
         v.setAngleDegree(0);
         u.set(1, 0);
         testNearlyEquals(u, v);
@@ -81,7 +82,7 @@ public class VectorTest {
 
     @Test
     public void testGetAngle() {
-        Vector2D v = new Vector2D();
+        IVector v = INJECTOR.getInstance(IVector.class);
         v.set(1, 0);
         assertEquals(0, v.getAngleDegree(), DELTA);
         v.set(1, -1);
@@ -92,7 +93,7 @@ public class VectorTest {
 
     @Test
     public void testConvertToNormal() {
-        Vector2D v = new Vector2D();
+        IVector v = INJECTOR.getInstance(IVector.class);
         v.set(1, 1);
         v.convertToNormal();
         u.set(-1, 1);
@@ -105,7 +106,7 @@ public class VectorTest {
 
     @Test
     public void testSetLength() {
-        Vector2D v = new Vector2D();
+        IVector v = INJECTOR.getInstance(IVector.class);
         v.setAngleDegree(0);
         v.setLength(2.5);
         u.set(2.5, 0);

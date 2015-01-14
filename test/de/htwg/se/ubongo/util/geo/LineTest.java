@@ -7,19 +7,19 @@ import static org.junit.Assert.assertTrue;
 import org.junit.Before;
 import org.junit.Test;
 
+import com.google.inject.Guice;
 import com.google.inject.Injector;
 
-import de.htwg.se.ubongo.cfg.UbongoModule;
-import de.htwg.se.ubongo.util.geo.imp.Line2D;
+import de.htwg.se.ubongo.util.geo.imp.GeoModule;
 
 public class LineTest {
 
-    private static final Injector INJECTOR = UbongoModule.getInjector();
+    private static final Injector INJECTOR = Guice.createInjector(new GeoModule());
     
     private static final double DELTA = 1e-9;
 
-    Line2D l = new Line2D();
-    Line2D k = new Line2D();
+    private ILine l = INJECTOR.getInstance(ILine.class);
+    private ILine k = INJECTOR.getInstance(ILine.class);
 
     public LineTest() {
         l.setPoints(INJECTOR.getInstance(IPoint.class), INJECTOR.getInstance(IPoint.class));

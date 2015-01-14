@@ -17,7 +17,6 @@ import de.htwg.se.ubongo.ctrl.obs.IMainController;
 import de.htwg.se.ubongo.util.frame.ISwitchFrame;
 import de.htwg.se.ubongo.util.geo.IPoint;
 import de.htwg.se.ubongo.util.geo.IVector;
-import de.htwg.se.ubongo.util.geo.imp.Vector2D;
 import de.htwg.se.ubongo.util.timer.Timer;
 import de.htwg.se.ubongo.util.timer.Trigger;
 
@@ -62,7 +61,7 @@ public final class SwitchFrame implements ISwitchFrame, Trigger {
         private final IPoint[] mids = new IPoint[NUM_CIRCLES];
 
         private LoadContent() {
-            IVector v = new Vector2D();
+            IVector v = INJECTOR.getInstance(IVector.class);
             for (int i = 0; i < mids.length; i++) {
                 v.setAngleDegree((FULL_ANGLE / mids.length) * i);
                 v.setLength(DISTANCE_TO_MID);

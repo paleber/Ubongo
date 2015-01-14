@@ -9,7 +9,7 @@ import de.htwg.se.ubongo.util.geo.IPolygon;
 import de.htwg.se.ubongo.util.geo.IVector;
 
 /** Implementation of IPolygon. */
-public final class Polygon2D implements IPolygon {
+final class Polygon2D implements IPolygon {
 
     private static final double FACTOR_HALF = 0.5;
     private static final double DELTA = 1e-9;

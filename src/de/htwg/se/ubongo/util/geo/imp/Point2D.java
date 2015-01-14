@@ -96,6 +96,4 @@ final class Point2D implements IPoint {
         return true;
     }
 
-  
-
 }

@@ -7,6 +7,7 @@ import de.htwg.se.ubongo.util.geo.IPoint;
 import de.htwg.se.ubongo.util.geo.IPolygon;
 import de.htwg.se.ubongo.util.geo.IVector;
 
+/** Guice-Module for Geometric-Objects. */
 public final class GeoModule extends AbstractModule {
 
     @Override

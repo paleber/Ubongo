@@ -48,4 +48,6 @@ public interface IVector {
      * @return Vector as String */
     String toString();
 
+    void convertToNormal();
+
 }
