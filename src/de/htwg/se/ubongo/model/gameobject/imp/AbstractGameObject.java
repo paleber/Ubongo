@@ -2,21 +2,19 @@ package de.htwg.se.ubongo.model.gameobject.imp;
 
 import java.util.Iterator;
 
-import com.google.inject.Guice;
 import com.google.inject.Injector;
 
-import de.htwg.se.ubongo.cfg.UbongoModule;
 import de.htwg.se.ubongo.model.gameobject.IGameObject;
 import de.htwg.se.ubongo.util.geo.IPoint;
 import de.htwg.se.ubongo.util.geo.IPolygon;
 import de.htwg.se.ubongo.util.geo.IVector;
-import de.htwg.se.ubongo.util.geo.imp.GeoModule;
+
 
 /** Superclass for Block and Board. */
 abstract class AbstractGameObject implements IGameObject {
 
     /** Guice-Injector. */
-    protected static final Injector INJECTOR = Guice.createInjector(new GeoModule());
+    protected static final Injector INJECTOR = GameObjectModule.INJECTOR;
 
     private static final double FACTOR_HALF = 0.5d;
     private IPolygon[] polys;

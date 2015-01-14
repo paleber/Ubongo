@@ -8,6 +8,7 @@ import java.util.ArrayList;
 import java.util.LinkedList;
 import java.util.List;
 
+import com.google.inject.Guice;
 import com.google.inject.Injector;
 
 import de.htwg.se.ubongo.cfg.UbongoModule;
@@ -25,7 +26,7 @@ public final class BufferedResourceLoader implements IResourceLoader {
         IBlock board;
     }
 
-    private static final Injector INJECTOR = UbongoModule.getInjector();
+    private static final Injector INJECTOR = Guice.createInjector(new UbongoModule());
 
     private static final int QUAD_VERTEXES = 4;
     private static final int TOP_LEFT = 0;

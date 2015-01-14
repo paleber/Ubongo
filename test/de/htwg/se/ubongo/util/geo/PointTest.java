@@ -7,6 +7,7 @@ import static org.junit.Assert.assertTrue;
 import org.junit.Before;
 import org.junit.Test;
 
+import com.google.inject.Guice;
 import com.google.inject.Injector;
 
 import de.htwg.se.ubongo.cfg.UbongoModule;
@@ -14,11 +15,11 @@ import de.htwg.se.ubongo.cfg.UbongoModule;
 /** Tests for IPoint and Iplementation. */
 public final class PointTest {
 
-    private static final Injector INJECTOR = UbongoModule.getInjector();
+    private static final Injector INJECTOR = Guice.createInjector(new UbongoModule());
     private static final double DELTA = 1e-9;
 
-    private IPoint p = UbongoModule.getInjector().getInstance(IPoint.class);
-    private IPoint q = UbongoModule.getInjector().getInstance(IPoint.class);
+    private IPoint p = INJECTOR.getInstance(IPoint.class);
+    private IPoint q = INJECTOR.getInstance(IPoint.class);
 
     @Before
     public void setup() {

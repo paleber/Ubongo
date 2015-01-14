@@ -5,7 +5,6 @@ import java.util.LinkedList;
 import java.util.List;
 import java.util.Map;
 
-import com.google.inject.Guice;
 import com.google.inject.Injector;
 
 import de.htwg.se.ubongo.model.gameobject.IBlock;
@@ -13,15 +12,14 @@ import de.htwg.se.ubongo.model.gameobject.IGrid;
 import de.htwg.se.ubongo.util.geo.IPoint;
 import de.htwg.se.ubongo.util.geo.IPolygon;
 import de.htwg.se.ubongo.util.geo.IVector;
-import de.htwg.se.ubongo.util.geo.imp.GeoModule;
 import de.htwg.se.ubongo.util.timer.Timer;
 import de.htwg.se.ubongo.util.timer.Trigger;
 
 /** Implementation of IGrid. */
 public final class Grid implements IGrid, Trigger {
 
-    private static final Injector INJECTOR = Guice.createInjector(new GeoModule());
-    
+    private static final Injector INJECTOR = GameObjectModule.INJECTOR;
+
     private static final double GRID_FRAME_SIZE = 1;
     private static final double BOARD_FRAME_SIZE = 1.1;
     private static final double BLOCK_FRAME_SIZE = 1.1;
@@ -42,7 +40,7 @@ public final class Grid implements IGrid, Trigger {
     private BlockAnchors selected;
 
     private Timer dropWaitTimer = new Timer(this, 1);
-    
+
     private static final class BlockAnchors {
         private final IBlock block;
         private List<IPoint> source = null;
@@ -165,8 +163,8 @@ public final class Grid implements IGrid, Trigger {
         }
 
         if (blockAnchors.size() != blocks.length) {
-            throw new IllegalStateException("Anchor size: " + blockAnchors.size() +
-                    " Block length: " + blocks.length);
+            throw new IllegalStateException("Anchor size: "
+                    + blockAnchors.size() + " Block length: " + blocks.length);
         }
 
     }
@@ -362,6 +360,6 @@ public final class Grid implements IGrid, Trigger {
     public void onTrigger() {
         dropWaitTimer.stop();
         dropBlock();
-        
+
     }
 }

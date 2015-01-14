@@ -6,6 +6,7 @@ import static org.junit.Assert.assertTrue;
 import org.junit.Before;
 import org.junit.Test;
 
+import com.google.inject.Guice;
 import com.google.inject.Injector;
 
 import de.htwg.se.ubongo.cfg.UbongoModule;
@@ -14,7 +15,7 @@ import de.htwg.se.ubongo.util.geo.IPolygon;
 
 public class GameObjectTest {
 
-    private static final Injector INJECTOR = UbongoModule.getInjector();
+    private static final Injector INJECTOR = Guice.createInjector(new UbongoModule());
     
     private static final double DELTA = 1e-9;
     private final IGameObject go = INJECTOR.getInstance(IBlock.class);

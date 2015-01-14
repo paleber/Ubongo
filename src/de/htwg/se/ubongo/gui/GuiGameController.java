@@ -20,6 +20,7 @@ import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.KeyStroke;
 
+import com.google.inject.Guice;
 import com.google.inject.Injector;
 
 import de.htwg.se.ubongo.cfg.UbongoModule;
@@ -35,7 +36,7 @@ import de.htwg.se.ubongo.util.geo.IVector;
 /** Subject-GameController of TUI. */
 public final class GuiGameController implements IGameControllerSubject {
 
-    private static final Injector INJECTOR = UbongoModule.getInjector();
+    private static final Injector INJECTOR = Guice.createInjector(new UbongoModule());
     
     private final Content content = new Content();
     private final ISwitchFrame frame;

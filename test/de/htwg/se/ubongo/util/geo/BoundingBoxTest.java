@@ -5,6 +5,7 @@ import static org.junit.Assert.assertTrue;
 
 import org.junit.Test;
 
+import com.google.inject.Guice;
 import com.google.inject.Injector;
 
 import de.htwg.se.ubongo.cfg.UbongoModule;
@@ -12,7 +13,7 @@ import de.htwg.se.ubongo.util.geo.imp.BoundingBox2D;
 
 public final class BoundingBoxTest {
 
-    private static final Injector INJECTOR = UbongoModule.getInjector();
+    private static final Injector INJECTOR = Guice.createInjector(new UbongoModule());
     
     private BoundingBox2D bb = new BoundingBox2D();
 

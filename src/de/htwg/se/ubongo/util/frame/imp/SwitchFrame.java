@@ -10,6 +10,7 @@ import java.awt.event.WindowEvent;
 import javax.swing.JFrame;
 import javax.swing.JPanel;
 
+import com.google.inject.Guice;
 import com.google.inject.Injector;
 
 import de.htwg.se.ubongo.cfg.UbongoModule;
@@ -23,7 +24,7 @@ import de.htwg.se.ubongo.util.timer.Trigger;
 /** Implementation of ISwitchFrame. */
 public final class SwitchFrame implements ISwitchFrame, Trigger {
 
-    private static final Injector INJECTOR = UbongoModule.getInjector();
+    private static final Injector INJECTOR = Guice.createInjector(new UbongoModule());
     
     private final JFrame frame = new JFrame();
     private final LoadContent loadContent = new LoadContent();

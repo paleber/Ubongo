@@ -1,5 +1,8 @@
 package de.htwg.se.ubongo.tui.cmd.game;
 
+import com.google.inject.Guice;
+import com.google.inject.Injector;
+
 import de.htwg.se.ubongo.cfg.UbongoModule;
 import de.htwg.se.ubongo.ctrl.obs.IGameController;
 import de.htwg.se.ubongo.util.cmd.TextCommand;
@@ -9,6 +12,7 @@ import de.htwg.se.ubongo.util.geo.IPoint;
 /** TextCommand to select a block. */
 public final class TextCmdSelectBlock implements TextCommand {
      
+    private static final Injector INJECTOR = Guice.createInjector(new UbongoModule());
     private final IGameController observer;
     private final IConsole console;
 
@@ -24,7 +28,7 @@ public final class TextCmdSelectBlock implements TextCommand {
     @Override
     public void execute(final String... args) {
         try {
-            IPoint p = UbongoModule.getInjector().getInstance(IPoint.class);
+            IPoint p = INJECTOR.getInstance(IPoint.class);
             double x = Double.parseDouble(args[1]);
             double y = Double.parseDouble(args[2]);
             p.set(x, y);
