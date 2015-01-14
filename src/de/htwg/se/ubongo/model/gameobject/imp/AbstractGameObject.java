@@ -4,7 +4,7 @@ import java.util.Iterator;
 
 import com.google.inject.Injector;
 
-import de.htwg.se.ubongo.cfg.geo.GeoModule;
+import de.htwg.se.ubongo.cfg.GeoModule;
 import de.htwg.se.ubongo.model.gameobject.IGameObject;
 import de.htwg.se.ubongo.util.geo.IPoint;
 import de.htwg.se.ubongo.util.geo.IPolygon;

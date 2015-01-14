@@ -7,7 +7,7 @@ import java.util.Map;
 
 import com.google.inject.Injector;
 
-import de.htwg.se.ubongo.cfg.geo.GeoModule;
+import de.htwg.se.ubongo.cfg.GeoModule;
 import de.htwg.se.ubongo.model.gameobject.IBlock;
 import de.htwg.se.ubongo.model.gameobject.IGrid;
 import de.htwg.se.ubongo.util.geo.IPoint;
