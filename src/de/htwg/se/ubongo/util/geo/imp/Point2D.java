@@ -6,7 +6,7 @@ import de.htwg.se.ubongo.util.geo.IPoint;
 import de.htwg.se.ubongo.util.geo.IVector;
 
 /** Implementation of IPoint. */
-public final class Point2D implements IPoint {
+final class Point2D implements IPoint {
 
     private static final double FACTOR_DOUBLE = 2;
 

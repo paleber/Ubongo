@@ -5,26 +5,29 @@ import static org.junit.Assert.assertTrue;
 
 import org.junit.Test;
 
-import de.htwg.se.ubongo.util.geo.IPoint;
+import com.google.inject.Injector;
+
+import de.htwg.se.ubongo.cfg.UbongoModule;
 import de.htwg.se.ubongo.util.geo.imp.BoundingBox2D;
-import de.htwg.se.ubongo.util.geo.imp.Point2D;
 
 public final class BoundingBoxTest {
 
+    private static final Injector INJECTOR = UbongoModule.getInjector();
+    
     private BoundingBox2D bb = new BoundingBox2D();
 
     @Test
     public void testOverlapWith() {
         BoundingBox2D cc = new BoundingBox2D();
 
-        IPoint b1 = new Point2D();
-        IPoint b2 = new Point2D();
+        IPoint b1 = INJECTOR.getInstance(IPoint.class);
+        IPoint b2 = INJECTOR.getInstance(IPoint.class);
         b1.set(0.1, 0.1);
         b2.set(1, 1);
         bb.update(b1, b2);
 
-        IPoint c1 = new Point2D();
-        IPoint c2 = new Point2D();
+        IPoint c1 = INJECTOR.getInstance(IPoint.class);
+        IPoint c2 = INJECTOR.getInstance(IPoint.class);
         c1.set(0, 0);
         c2.set(1, 1);
         cc.update(c1, c2);
@@ -50,13 +53,13 @@ public final class BoundingBoxTest {
     
     @Test
     public void testContains() {
-        IPoint b1 = new Point2D();
-        IPoint b2 = new Point2D();
+        IPoint b1 = INJECTOR.getInstance(IPoint.class);
+        IPoint b2 = INJECTOR.getInstance(IPoint.class);
         b1.set(0, 0);
         b2.set(1, 1);
         bb.update(b1, b2);
 
-        IPoint p = new Point2D();
+        IPoint p = INJECTOR.getInstance(IPoint.class);
         p.set(0.5, 0.5);
         assertTrue(bb.contains(p));
         p.set(0.5, -0.5);

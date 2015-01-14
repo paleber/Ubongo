@@ -20,6 +20,9 @@ import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.KeyStroke;
 
+import com.google.inject.Injector;
+
+import de.htwg.se.ubongo.cfg.UbongoModule;
 import de.htwg.se.ubongo.ctrl.obs.IGameController;
 import de.htwg.se.ubongo.ctrl.sub.IGameControllerSubject;
 import de.htwg.se.ubongo.model.data.ILevelData;
@@ -28,12 +31,13 @@ import de.htwg.se.ubongo.util.frame.ISwitchFrame;
 import de.htwg.se.ubongo.util.geo.ILine;
 import de.htwg.se.ubongo.util.geo.IPoint;
 import de.htwg.se.ubongo.util.geo.IVector;
-import de.htwg.se.ubongo.util.geo.imp.Point2D;
 import de.htwg.se.ubongo.util.geo.imp.Vector2D;
 
 /** Subject-GameController of TUI. */
 public final class GuiGameController implements IGameControllerSubject {
 
+    private static final Injector INJECTOR = UbongoModule.getInjector();
+    
     private final Content content = new Content();
     private final ISwitchFrame frame;
 
@@ -58,8 +62,8 @@ public final class GuiGameController implements IGameControllerSubject {
         private double yOffset;
         private double scale;
 
-        private IPoint last = new Point2D();
-        private IPoint cur = new Point2D();
+        private IPoint last = INJECTOR.getInstance(IPoint.class);
+        private IPoint cur = INJECTOR.getInstance(IPoint.class);
         private IVector v = new Vector2D();
         private boolean pressed = false;
 

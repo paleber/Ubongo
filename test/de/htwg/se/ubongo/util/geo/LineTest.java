@@ -7,20 +7,23 @@ import static org.junit.Assert.assertTrue;
 import org.junit.Before;
 import org.junit.Test;
 
-import de.htwg.se.ubongo.util.geo.IPoint;
+import com.google.inject.Injector;
+
+import de.htwg.se.ubongo.cfg.UbongoModule;
 import de.htwg.se.ubongo.util.geo.imp.Line2D;
-import de.htwg.se.ubongo.util.geo.imp.Point2D;
 
 public class LineTest {
 
+    private static final Injector INJECTOR = UbongoModule.getInjector();
+    
     private static final double DELTA = 1e-9;
 
     Line2D l = new Line2D();
     Line2D k = new Line2D();
 
     public LineTest() {
-        l.setPoints(new Point2D(), new Point2D());
-        k.setPoints(new Point2D(), new Point2D());
+        l.setPoints(INJECTOR.getInstance(IPoint.class), INJECTOR.getInstance(IPoint.class));
+        k.setPoints(INJECTOR.getInstance(IPoint.class), INJECTOR.getInstance(IPoint.class));
     }
 
     @Before
@@ -33,9 +36,9 @@ public class LineTest {
 
     @Test
     public void testGetterSetter() {
-        Point2D start = new Point2D();
+        IPoint start = INJECTOR.getInstance(IPoint.class);
         start.set(2, 3);
-        Point2D end = new Point2D();
+        IPoint end = INJECTOR.getInstance(IPoint.class);
         end.set(4, 5);
         l.setPoints(start, end);
         assertTrue(l.getStart().diffsToLessThan(start, DELTA));
@@ -44,9 +47,9 @@ public class LineTest {
 
     @Test
     public void testSetPointAngleLength() {
-        IPoint start = new Point2D();
+        IPoint start = INJECTOR.getInstance(IPoint.class);
         start.set(0, 0);
-        IPoint end = new Point2D();
+        IPoint end = INJECTOR.getInstance(IPoint.class);
         end.set(Math.sin(Math.toRadians(45)) * 3,
                 Math.cos(Math.toRadians(45)) * 3);
         l.setStartAngleLength(start, 45, 3);
@@ -75,7 +78,7 @@ public class LineTest {
 
     @Test
     public void testGetDistance() {
-        IPoint p = new Point2D();
+        IPoint p = INJECTOR.getInstance(IPoint.class);
         p.set(1, 1);
         assertEquals(1, l.distanceTo(p), DELTA);
         p.set(-3, 0);

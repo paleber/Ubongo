@@ -4,7 +4,7 @@ import java.util.Iterator;
 
 import com.google.inject.Injector;
 
-import de.htwg.se.ubongo.cfg.GeoModule;
+import de.htwg.se.ubongo.cfg.UbongoModule;
 import de.htwg.se.ubongo.model.gameobject.IGameObject;
 import de.htwg.se.ubongo.util.geo.IPoint;
 import de.htwg.se.ubongo.util.geo.IPolygon;
@@ -14,7 +14,7 @@ import de.htwg.se.ubongo.util.geo.IVector;
 abstract class AbstractGameObject implements IGameObject {
 
     /** Guice-Injector. */
-    protected static final Injector INJECTOR = GeoModule.getInjector();
+    protected static final Injector INJECTOR = UbongoModule.getInjector();
 
     private static final double FACTOR_HALF = 0.5d;
     private IPolygon[] polys;

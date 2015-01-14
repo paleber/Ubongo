@@ -4,10 +4,7 @@ import com.google.inject.AbstractModule;
 import com.google.inject.Guice;
 import com.google.inject.Injector;
 
-import de.htwg.se.ubongo.util.geo.IPoint;
-import de.htwg.se.ubongo.util.geo.IPolygon;
-import de.htwg.se.ubongo.util.geo.imp.Point2D;
-import de.htwg.se.ubongo.util.geo.imp.Polygon2D;
+import de.htwg.se.ubongo.util.geo.imp.GeoModule;
 
 /** Module Configuration for Ubongo. */
 public final class UbongoModule extends AbstractModule {

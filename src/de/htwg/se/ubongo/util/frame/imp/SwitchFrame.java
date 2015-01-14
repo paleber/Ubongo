@@ -10,11 +10,13 @@ import java.awt.event.WindowEvent;
 import javax.swing.JFrame;
 import javax.swing.JPanel;
 
+import com.google.inject.Injector;
+
+import de.htwg.se.ubongo.cfg.UbongoModule;
 import de.htwg.se.ubongo.ctrl.obs.IMainController;
 import de.htwg.se.ubongo.util.frame.ISwitchFrame;
 import de.htwg.se.ubongo.util.geo.IPoint;
 import de.htwg.se.ubongo.util.geo.IVector;
-import de.htwg.se.ubongo.util.geo.imp.Point2D;
 import de.htwg.se.ubongo.util.geo.imp.Vector2D;
 import de.htwg.se.ubongo.util.timer.Timer;
 import de.htwg.se.ubongo.util.timer.Trigger;
@@ -22,6 +24,8 @@ import de.htwg.se.ubongo.util.timer.Trigger;
 /** Implementation of ISwitchFrame. */
 public final class SwitchFrame implements ISwitchFrame, Trigger {
 
+    private static final Injector INJECTOR = UbongoModule.getInjector();
+    
     private final JFrame frame = new JFrame();
     private final LoadContent loadContent = new LoadContent();
 
@@ -62,7 +66,7 @@ public final class SwitchFrame implements ISwitchFrame, Trigger {
             for (int i = 0; i < mids.length; i++) {
                 v.setAngleDegree((FULL_ANGLE / mids.length) * i);
                 v.setLength(DISTANCE_TO_MID);
-                mids[i] = new Point2D();
+                mids[i] = INJECTOR.getInstance(IPoint.class);
                 mids[i].move(v);
             }
 

@@ -16,9 +16,6 @@ import de.htwg.se.ubongo.model.gameobject.imp.Grid;
 import de.htwg.se.ubongo.model.loader.IResourceLoader;
 import de.htwg.se.ubongo.model.loader.fake.FakeResourceLoader;
 import de.htwg.se.ubongo.util.geo.IPoint;
-import de.htwg.se.ubongo.util.geo.IVector;
-import de.htwg.se.ubongo.util.geo.imp.Point2D;
-import de.htwg.se.ubongo.util.geo.imp.Vector2D;
 
 public class GridTest {
 
