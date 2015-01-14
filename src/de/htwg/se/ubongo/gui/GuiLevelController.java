@@ -80,7 +80,6 @@ public final class GuiLevelController implements ILevelControllerSubject {
         }
 
         private void updateSlider() {
-            // variantSlider.setValue(level.);
             variantSlider.setMaximum(level.getNumberVariantsOfBoard(level
                     .getBoardIndex()));
             levelSlider.setValue(level.getBoardIndex() + 1);
