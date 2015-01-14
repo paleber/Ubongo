@@ -20,7 +20,7 @@ import de.htwg.se.ubongo.util.timer.Trigger;
 /** Implementation of IGrid. */
 public final class Grid implements IGrid, Trigger {
 
-    private static final Injector INJECTOR = UbongoModule.getInjector();
+    private static final Injector INJECTOR = Module.getInjector();
     
     private static final double GRID_FRAME_SIZE = 1;
     private static final double BOARD_FRAME_SIZE = 1.1;

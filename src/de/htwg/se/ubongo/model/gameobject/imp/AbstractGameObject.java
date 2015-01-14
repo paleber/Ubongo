@@ -14,7 +14,7 @@ import de.htwg.se.ubongo.util.geo.IVector;
 abstract class AbstractGameObject implements IGameObject {
 
     /** Guice-Injector. */
-    protected static final Injector INJECTOR = UbongoModule.getInjector();
+    protected static final Injector INJECTOR = Module.getInjector();
 
     private static final double FACTOR_HALF = 0.5d;
     private IPolygon[] polys;
