@@ -9,7 +9,6 @@ import org.junit.Test;
 import com.google.inject.Injector;
 
 import de.htwg.se.ubongo.cfg.UbongoModule;
-import de.htwg.se.ubongo.model.gameobject.module.GameObjectModule;
 import de.htwg.se.ubongo.util.geo.IPoint;
 import de.htwg.se.ubongo.util.geo.IPolygon;
 
@@ -18,7 +17,7 @@ public class GameObjectTest {
     private static final Injector INJECTOR = UbongoModule.getInjector();
     
     private static final double DELTA = 1e-9;
-    private final IGameObject go = GameObjectModule.createBlock();
+    private final IGameObject go = INJECTOR.getInstance(IBlock.class);
 
     public GameObjectTest() {
         IPoint[] p = new IPoint[3];

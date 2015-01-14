@@ -13,7 +13,7 @@ import de.htwg.se.ubongo.util.timer.Timer;
 import de.htwg.se.ubongo.util.timer.Trigger;
 
 /** Implementation of IBlock. */
-public final class Block extends AbstractGameObject implements IBlock, Trigger {
+final class Block extends AbstractGameObject implements IBlock, Trigger {
 
     private static final double ROTATE_STEP = 90;
     private static final double FACTOR_HALF = 0.5;

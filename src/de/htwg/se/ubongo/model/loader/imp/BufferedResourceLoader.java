@@ -1,14 +1,5 @@
 package de.htwg.se.ubongo.model.loader.imp;
 
-import com.google.inject.Injector;
-
-import de.htwg.se.ubongo.cfg.UbongoModule;
-import de.htwg.se.ubongo.model.gameobject.IBlock;
-import de.htwg.se.ubongo.model.gameobject.module.GameObjectModule;
-import de.htwg.se.ubongo.model.loader.IResourceLoader;
-import de.htwg.se.ubongo.util.geo.IPoint;
-import de.htwg.se.ubongo.util.geo.IPolygon;
-
 import java.io.BufferedReader;
 import java.io.FileNotFoundException;
 import java.io.FileReader;
@@ -16,6 +7,14 @@ import java.io.IOException;
 import java.util.ArrayList;
 import java.util.LinkedList;
 import java.util.List;
+
+import com.google.inject.Injector;
+
+import de.htwg.se.ubongo.cfg.UbongoModule;
+import de.htwg.se.ubongo.model.gameobject.IBlock;
+import de.htwg.se.ubongo.model.loader.IResourceLoader;
+import de.htwg.se.ubongo.util.geo.IPoint;
+import de.htwg.se.ubongo.util.geo.IPolygon;
 
 
 /** Implementation of IResourceLoader, buffering loaded blocks. */
@@ -65,7 +64,7 @@ public final class BufferedResourceLoader implements IResourceLoader {
 
     /** Datablock to Polygon transformation. */
     private IBlock loadBlock(String data) {
-        IBlock block = GameObjectModule.createBlock();
+        IBlock block = INJECTOR.getInstance(IBlock.class);
         List<IPolygon> polygons = new LinkedList<>();
         String[] rows = data.split("\\n");
 

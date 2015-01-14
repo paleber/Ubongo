@@ -11,7 +11,6 @@ import org.junit.Test;
 import com.google.inject.Injector;
 
 import de.htwg.se.ubongo.cfg.UbongoModule;
-import de.htwg.se.ubongo.model.gameobject.imp.Block;
 import de.htwg.se.ubongo.model.gameobject.imp.Grid;
 import de.htwg.se.ubongo.model.loader.IResourceLoader;
 import de.htwg.se.ubongo.model.loader.fake.FakeResourceLoader;
@@ -57,7 +56,7 @@ public class GridTest {
         assertEquals(6, countBoard);
         assertEquals(6, countBlock);
 
-        grid.init(board, new Block[] {});
+        grid.init(board, new IBlock[] {});
         assertFalse(grid.toString().contains("1"));
 
     }

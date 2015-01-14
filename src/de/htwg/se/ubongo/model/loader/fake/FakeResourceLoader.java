@@ -4,7 +4,6 @@ import com.google.inject.Injector;
 
 import de.htwg.se.ubongo.cfg.UbongoModule;
 import de.htwg.se.ubongo.model.gameobject.IBlock;
-import de.htwg.se.ubongo.model.gameobject.module.GameObjectModule;
 import de.htwg.se.ubongo.model.loader.IResourceLoader;
 import de.htwg.se.ubongo.util.geo.IPoint;
 import de.htwg.se.ubongo.util.geo.IPolygon;
@@ -38,7 +37,7 @@ public final class FakeResourceLoader implements IResourceLoader {
             throw new IllegalArgumentException();
         }
 
-        IBlock board = GameObjectModule.createBlock();
+        IBlock board = INJECTOR.getInstance(IBlock.class);
 
         IPolygon[] polys = new IPolygon[BOARD_LIST.length / 2];
         for (int j = 0; j < polys.length; j++) {
@@ -103,7 +102,7 @@ public final class FakeResourceLoader implements IResourceLoader {
                 polys[j].setPoints(points);
             }
 
-            blocks[i] = GameObjectModule.createBlock();
+            blocks[i] = INJECTOR.getInstance(IBlock.class);
             blocks[i].setPolygons(polys);
         }
 
