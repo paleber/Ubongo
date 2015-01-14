@@ -5,21 +5,22 @@ import java.util.LinkedList;
 import java.util.List;
 import java.util.Map;
 
+import com.google.inject.Guice;
 import com.google.inject.Injector;
 
-import de.htwg.se.ubongo.cfg.UbongoModule;
 import de.htwg.se.ubongo.model.gameobject.IBlock;
 import de.htwg.se.ubongo.model.gameobject.IGrid;
 import de.htwg.se.ubongo.util.geo.IPoint;
 import de.htwg.se.ubongo.util.geo.IPolygon;
 import de.htwg.se.ubongo.util.geo.IVector;
+import de.htwg.se.ubongo.util.geo.imp.GeoModule;
 import de.htwg.se.ubongo.util.timer.Timer;
 import de.htwg.se.ubongo.util.timer.Trigger;
 
 /** Implementation of IGrid. */
 public final class Grid implements IGrid, Trigger {
 
-    private static final Injector INJECTOR = UbongoModule.getInjector();
+    private static final Injector INJECTOR = Guice.createInjector(new GeoModule());
     
     private static final double GRID_FRAME_SIZE = 1;
     private static final double BOARD_FRAME_SIZE = 1.1;
