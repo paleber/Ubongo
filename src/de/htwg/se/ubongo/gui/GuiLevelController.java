@@ -1,12 +1,10 @@
 package de.htwg.se.ubongo.gui;
 
+import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
-import javax.swing.JButton;
-import javax.swing.JLabel;
-import javax.swing.JPanel;
-import javax.swing.JSlider;
+import javax.swing.*;
 import javax.swing.event.ChangeEvent;
 import javax.swing.event.ChangeListener;
 
@@ -27,7 +25,10 @@ public final class GuiLevelController implements ILevelControllerSubject {
 
         private Content() {
 
-            JLabel text = new JLabel("Level");
+            setBorder(BorderFactory.createEmptyBorder(5, 50, 50, 50));
+            setLayout(new GridLayout(7,1));
+
+            JLabel text = new JLabel("Level", SwingConstants.CENTER);
             add(text);
 
             levelSlider.setMinimum(1);
@@ -44,7 +45,7 @@ public final class GuiLevelController implements ILevelControllerSubject {
             });
             add(levelSlider);
 
-            text = new JLabel("Variante");
+            text = new JLabel("Variante", SwingConstants.CENTER);
             add(text);
 
             variantSlider.setMinimum(1);
@@ -61,20 +62,23 @@ public final class GuiLevelController implements ILevelControllerSubject {
 
             updateSlider();
 
-            JButton b = new JButton("Zurück zum Menü");
-            b.addActionListener(new ActionListener() {
-                @Override
-                public void actionPerformed(final ActionEvent e) {
-                    observer.switchToMenu();
-                }
-            });
-            add(b);
 
-            b = new JButton("Start");
+            add(Box.createRigidArea(new Dimension(1,20)));
+
+            JButton b = new JButton("Start");
             b.addActionListener(new ActionListener() {
                 @Override
                 public void actionPerformed(final ActionEvent e) {
                     observer.switchToGame();
+                }
+            });
+            add(b);
+
+            b = new JButton("Zur\u00fcck zum Men\u00fc");
+            b.addActionListener(new ActionListener() {
+                @Override
+                public void actionPerformed(final ActionEvent e) {
+                    observer.switchToMenu();
                 }
             });
             add(b);

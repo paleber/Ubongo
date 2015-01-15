@@ -1,10 +1,10 @@
 package de.htwg.se.ubongo.gui;
 
+import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
-import javax.swing.JButton;
-import javax.swing.JPanel;
+import javax.swing.*;
 
 import de.htwg.se.ubongo.ctrl.obs.IMenuController;
 import de.htwg.se.ubongo.ctrl.sub.IMenuControllerSubject;
@@ -20,6 +20,13 @@ public final class GuiMenuController implements IMenuControllerSubject {
 
         private Content() {
 
+            setBorder(BorderFactory.createEmptyBorder(5,50,50,50));
+            setLayout(new GridLayout(5,1));
+
+            JLabel l = new JLabel("Ubongo", SwingConstants.CENTER);
+            l.setFont(new Font("Sans", Font.BOLD, 50));
+            add(l);
+
             // add button - select level
             JButton b = new JButton("Levelauswahl");
             b.addActionListener(new ActionListener() {
@@ -30,8 +37,9 @@ public final class GuiMenuController implements IMenuControllerSubject {
             });
             add(b);
 
+
             // add button - random level
-            b = new JButton("Zufälliges Level");
+            b = new JButton("Zuf\u00e4lliges Level");
             b.addActionListener(new ActionListener() {
                 @Override
                 public void actionPerformed(final ActionEvent e) {
@@ -83,7 +91,7 @@ public final class GuiMenuController implements IMenuControllerSubject {
 
     @Override
     public void onStartSubController() {
-        frame.showContent(content, "Menü");
+        frame.showContent(content, "Men\u00fc");
     }
 
     @Override

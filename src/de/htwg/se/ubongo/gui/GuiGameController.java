@@ -102,10 +102,10 @@ public final class GuiGameController implements IGameControllerSubject {
                     }
                 };
 
-        private final JButton bnRandom = new JButton("Zufälliges Level");
-        private final JButton bnLevel = new JButton("Levelauswahl");
-        private final JButton bnMenu = new JButton("Menü");
         private final JLabel lbWin = new JLabel("Level abgeschlossen");
+        private final JButton bnRandom = new JButton("Zuf\u00e4lliges Level");
+        private final JButton bnLevel = new JButton("Levelauswahl");
+        private final JButton bnMenu = new JButton("Men\u00fc");
 
         private Content() {
             ActionMap actionMap = getActionMap();
@@ -197,9 +197,9 @@ public final class GuiGameController implements IGameControllerSubject {
             removeMouseListener(mouseListener);
             removeMouseMotionListener(mouseMotionListener);
 
-            add(bnLevel);
-            add(bnRandom);
             add(lbWin);
+            add(bnRandom);
+            add(bnLevel);
 
             revalidate();
 

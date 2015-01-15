@@ -1,11 +1,10 @@
 package de.htwg.se.ubongo.gui;
 
+import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
-import javax.swing.JButton;
-import javax.swing.JLabel;
-import javax.swing.JPanel;
+import javax.swing.*;
 
 import de.htwg.se.ubongo.ctrl.obs.IHelpController;
 import de.htwg.se.ubongo.ctrl.sub.IHelpControllerSubject;
@@ -20,10 +19,17 @@ public final class GuiHelpController implements IHelpControllerSubject {
 
         private Content() {
 
+            setBorder(BorderFactory.createEmptyBorder(5,50,50,50));
+            setLayout(new BoxLayout(this, BoxLayout.Y_AXIS));
+
             JLabel text = new JLabel("Hier kommt eine kurze Anleitung hin");
+            text.setAlignmentX(Component.CENTER_ALIGNMENT);
             add(text);
 
-            JButton b = new JButton("Zurück zum Menü");
+            add(Box.createRigidArea(new Dimension(1,50)));
+
+            JButton b = new JButton("Zur\u00fcck zum Men\u00fc");
+            b.setAlignmentX(Component.CENTER_ALIGNMENT);
             b.addActionListener(new ActionListener() {
 
                 @Override
