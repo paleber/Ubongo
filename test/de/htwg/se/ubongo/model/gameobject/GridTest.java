@@ -1,25 +1,16 @@
 package de.htwg.se.ubongo.model.gameobject;
 
-import static org.junit.Assert.assertEquals;
-import static org.junit.Assert.assertFalse;
-import static org.junit.Assert.assertNull;
-import static org.junit.Assert.assertTrue;
-
-import org.junit.Before;
-import org.junit.Test;
-
-import com.google.inject.Guice;
-import com.google.inject.Injector;
-
-import de.htwg.se.ubongo.cfg.UbongoModule;
 import de.htwg.se.ubongo.model.gameobject.imp.Grid;
 import de.htwg.se.ubongo.model.loader.IResourceLoader;
 import de.htwg.se.ubongo.model.loader.fake.FakeResourceLoader;
-import de.htwg.se.ubongo.util.geo.IPoint;
+import org.junit.Before;
+import org.junit.Test;
+
+import static org.junit.Assert.*;
 
 public class GridTest {
 
-    private static final Injector INJECTOR = Guice.createInjector(new UbongoModule());
+    //private static final Injector INJECTOR = Guice.createInjector(new UbongoModule());
     
     private IGrid grid = new Grid();
 

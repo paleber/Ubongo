@@ -128,8 +128,8 @@ public final class BufferedResourceLoader implements IResourceLoader {
     }
 
     /** reads the amount of variants from a file. */
-    private ArrayList<LinkedList<Integer>> readVariants(BufferedReader reader) {
-        ArrayList<LinkedList<Integer>> variants = new ArrayList<>();
+    private List<LinkedList<Integer>> readVariants(BufferedReader reader) {
+        List<LinkedList<Integer>> variants = new ArrayList<>();
         for(;;) {
             try {
                 String line = reader.readLine();
