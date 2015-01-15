@@ -83,6 +83,7 @@ public class GridTest {
         grid.init(board, blocks);
     }
 
+    /*
     @Test
     public void testSelectDropBlock() {
         grid.init(board, blocks);
@@ -95,6 +96,7 @@ public class GridTest {
         grid.dropBlock();
         assertFalse(grid.toString().contains("S"));
     }
+    */
     
     /*
     @Test(expected = IllegalStateException.class)
