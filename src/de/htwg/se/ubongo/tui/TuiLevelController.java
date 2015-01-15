@@ -1,5 +1,8 @@
 package de.htwg.se.ubongo.tui;
 
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
+
 import de.htwg.se.ubongo.ctrl.obs.ILevelController;
 import de.htwg.se.ubongo.ctrl.sub.ILevelControllerSubject;
 import de.htwg.se.ubongo.model.data.ILevelData;
@@ -16,6 +19,7 @@ import de.htwg.se.ubongo.util.console.IConsole;
 public final class TuiLevelController extends AbstractTuiController implements
         ILevelControllerSubject {
 
+    private static final Logger LOGGER = LogManager.getLogger();
     private final IConsole console;
 
     /** Constructor.
@@ -39,7 +43,7 @@ public final class TuiLevelController extends AbstractTuiController implements
 
     @Override
     public void onSelect(final int index, final int variant) {
-        console.writeLine("selected - board: " + index + " - variant: "
+        LOGGER.info("selected - board: " + index + " - variant: "
                 + variant);
     }
 

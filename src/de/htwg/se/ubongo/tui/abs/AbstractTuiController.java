@@ -3,6 +3,9 @@ package de.htwg.se.ubongo.tui.abs;
 import java.util.LinkedHashMap;
 import java.util.Map;
 
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
+
 import de.htwg.se.ubongo.ctrl.obs.abs.ISubController;
 import de.htwg.se.ubongo.tui.cmd.shared.TextCmdPrintHelp;
 import de.htwg.se.ubongo.tui.cmd.shared.TextCmdShutdown;
@@ -16,6 +19,7 @@ import de.htwg.se.ubongo.util.timer.Timer;
 public abstract class AbstractTuiController implements IAbstractSubSubject,
         ITrigger {
 
+    private static final Logger LOGGER = LogManager.getLogger();
     private final String name;
     private final Timer timer = new Timer(this, 10);
     private final Map<String, TextCommand> cmdMap = new LinkedHashMap<>();
@@ -45,7 +49,7 @@ public abstract class AbstractTuiController implements IAbstractSubSubject,
     @Override
     public final void onStartSubController() {
         timer.start();
-        console.writeLine("--- " + name + " opened ---");
+        LOGGER.info("--- " + name + " opened ---");
         onStart();
     }
 
@@ -55,7 +59,7 @@ public abstract class AbstractTuiController implements IAbstractSubSubject,
     @Override
     public final void onStopSubController() {
         timer.stop();
-        console.writeLine("--- " + name + " closed ---");
+        LOGGER.info("--- " + name + " closed ---");
     }
 
     @Override
@@ -67,7 +71,7 @@ public abstract class AbstractTuiController implements IAbstractSubSubject,
             if (cmd != null) {
                 cmd.execute(words);
             } else {
-                console.writeLine("unknown command, \"help\" to print"
+                LOGGER.info("unknown command, \"help\" to print"
                         + " available commands");
             }
         }

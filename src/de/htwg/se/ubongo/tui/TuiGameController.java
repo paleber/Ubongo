@@ -1,5 +1,8 @@
 package de.htwg.se.ubongo.tui;
 
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
+
 import de.htwg.se.ubongo.ctrl.obs.IGameController;
 import de.htwg.se.ubongo.ctrl.sub.IGameControllerSubject;
 import de.htwg.se.ubongo.model.data.ILevelData;
@@ -21,6 +24,7 @@ import de.htwg.se.ubongo.util.console.IConsole;
 public final class TuiGameController extends AbstractTuiController implements
         IGameControllerSubject {
 
+    private static final Logger LOGGER = LogManager.getLogger();
     private final IConsole console;
     private final TextCmdPrintGrid cmdPrintGrid;
 
@@ -81,7 +85,7 @@ public final class TuiGameController extends AbstractTuiController implements
 
     @Override
     public void onWin() {
-        console.writeLine("you win!");
+        LOGGER.info("you win!");
     }
 
     @Override

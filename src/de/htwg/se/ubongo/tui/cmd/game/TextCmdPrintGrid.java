@@ -1,5 +1,8 @@
 package de.htwg.se.ubongo.tui.cmd.game;
 
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
+
 import de.htwg.se.ubongo.model.gameobject.IBlock;
 import de.htwg.se.ubongo.util.cmd.TextCommand;
 import de.htwg.se.ubongo.util.console.IConsole;
@@ -9,6 +12,7 @@ import de.htwg.se.ubongo.util.geo.IPolygon;
 /** Game-TextCommand to mirror a block vertical. */
 public final class TextCmdPrintGrid implements TextCommand {
 
+    private static final Logger LOGGER = LogManager.getLogger();
     private char[][] grid;
     private static final double FACTOR_HALF = 0.5;
     private final IConsole console;
@@ -49,15 +53,15 @@ public final class TextCmdPrintGrid implements TextCommand {
     }
 
     private void printGrid() {
-        console.writeLine("---------------------------------------------");
+        LOGGER.info("---------------------------------------------");
         for (int y = 0; y < grid[0].length; y++) {
             StringBuffer b = new StringBuffer();
             for (int x = 0; x < grid.length; x++) {
                 b.append(grid[x][y]);
             }
-            console.writeLine(b.toString());
+            LOGGER.info(b.toString());
         }
-        console.writeLine("---------------------------------------------");
+        LOGGER.info("---------------------------------------------");
     }
 
     private void paintBlocks() {

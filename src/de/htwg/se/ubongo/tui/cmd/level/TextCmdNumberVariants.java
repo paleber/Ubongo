@@ -1,5 +1,8 @@
 package de.htwg.se.ubongo.tui.cmd.level;
 
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
+
 import de.htwg.se.ubongo.model.data.ILevelData;
 import de.htwg.se.ubongo.util.cmd.TextCommand;
 import de.htwg.se.ubongo.util.console.IConsole;
@@ -7,6 +10,7 @@ import de.htwg.se.ubongo.util.console.IConsole;
 /** TextCommand to print number board-variants. */
 public final class TextCmdNumberVariants implements TextCommand {
 
+    private static final Logger LOGGER = LogManager.getLogger();
     private final ILevelData levelData;
     private final IConsole console;
 
@@ -23,7 +27,7 @@ public final class TextCmdNumberVariants implements TextCommand {
     public void execute(final String... args) {
         int index = levelData.getBoardIndex();
         int variant = levelData.getNumberVariantsOfBoard(index);
-        console.writeLine("number variants of board " + index + ": " + variant);
+        LOGGER.info("number variants of board " + index + ": " + variant);
     }
 
     @Override

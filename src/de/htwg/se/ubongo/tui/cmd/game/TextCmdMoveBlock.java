@@ -1,5 +1,8 @@
 package de.htwg.se.ubongo.tui.cmd.game;
 
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
+
 import com.google.inject.Guice;
 import com.google.inject.Injector;
 
@@ -12,6 +15,7 @@ import de.htwg.se.ubongo.util.geo.IVector;
 /** TextCommand to move the selected Block. */
 public final class TextCmdMoveBlock implements TextCommand {
 
+    private static final Logger LOGGER = LogManager.getLogger();
     private static final Injector INJECTOR = Guice
             .createInjector(new UbongoModule());
     private final IGameController observer;
@@ -35,7 +39,7 @@ public final class TextCmdMoveBlock implements TextCommand {
             v.set(x, y);
             observer.moveBlock(v);
         } catch (ArrayIndexOutOfBoundsException | NumberFormatException e) {
-            console.writeLine(args[0] + " require 2 double argument");
+            LOGGER.info(args[0] + " require 2 double argument");
         }
     }
 

@@ -1,6 +1,5 @@
 package de.htwg.se.ubongo.util.console.imp;
 
-import java.io.PrintStream;
 import java.nio.BufferOverflowException;
 import java.util.NoSuchElementException;
 import java.util.Scanner;
@@ -11,7 +10,6 @@ import de.htwg.se.ubongo.util.console.IConsole;
 public final class SimpleConsole implements IConsole {
 
     private Scanner scanner;
-    private PrintStream printer;
 
     @Override
     public void open() {
@@ -19,7 +17,6 @@ public final class SimpleConsole implements IConsole {
             throw new IllegalStateException("console already opened");
         }
         scanner = new Scanner(System.in);
-        printer = new PrintStream(System.out);
     }
 
     @Override
@@ -27,14 +24,7 @@ public final class SimpleConsole implements IConsole {
         if (scanner == null) {
             throw new IllegalStateException("console already closed");
         }
-        printer.close();
-        printer = null;
         scanner = null;
-    }
-
-    @Override
-    public void writeLine(final String line) {
-        printer.println(line);
     }
 
     @Override

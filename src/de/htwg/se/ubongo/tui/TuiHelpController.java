@@ -1,5 +1,8 @@
 package de.htwg.se.ubongo.tui;
 
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
+
 import de.htwg.se.ubongo.ctrl.obs.IHelpController;
 import de.htwg.se.ubongo.ctrl.sub.IHelpControllerSubject;
 import de.htwg.se.ubongo.tui.abs.AbstractTuiController;
@@ -11,6 +14,7 @@ import de.htwg.se.ubongo.util.timer.ITrigger;
 public final class TuiHelpController extends AbstractTuiController implements
         IHelpControllerSubject, ITrigger {
 
+    private static final Logger LOGGER = LogManager.getLogger();
     private final IConsole console;
 
     /** Default-Costructor.
@@ -28,7 +32,7 @@ public final class TuiHelpController extends AbstractTuiController implements
 
     @Override
     protected void onStart() {
-        console.writeLine("The Introduction of Ubongo");
+        LOGGER.info("The Introduction of Ubongo");
     }
 
 }

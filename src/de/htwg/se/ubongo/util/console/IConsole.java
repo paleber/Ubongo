@@ -9,10 +9,6 @@ public interface IConsole {
     /** Close the console. */
     void close();
 
-    /** Write a line into console.
-     * @param line */
-    void writeLine(String line);
-
     /** Try reading a line from Console.
      * @return next line when exists, otherwise null */
     String readLine();

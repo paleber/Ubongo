@@ -1,5 +1,8 @@
 package de.htwg.se.ubongo.tui.cmd.game;
 
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
+
 import com.google.inject.Guice;
 import com.google.inject.Injector;
 
@@ -12,6 +15,7 @@ import de.htwg.se.ubongo.util.geo.IPoint;
 /** TextCommand to select a block. */
 public final class TextCmdSelectBlock implements TextCommand {
      
+    private static final Logger LOGGER = LogManager.getLogger();
     private static final Injector INJECTOR = Guice.createInjector(new UbongoModule());
     private final IGameController observer;
     private final IConsole console;
@@ -34,7 +38,7 @@ public final class TextCmdSelectBlock implements TextCommand {
             p.set(x, y);
             observer.selectBlock(p);
         } catch (ArrayIndexOutOfBoundsException | NumberFormatException e) {
-            console.writeLine(args[0] + " require 2 double argument");
+            LOGGER.info(args[0] + " require 2 double argument");
         }
     }
 
