@@ -10,10 +10,8 @@ import java.awt.event.WindowEvent;
 import javax.swing.JFrame;
 import javax.swing.JPanel;
 
-import com.google.inject.Guice;
 import com.google.inject.Injector;
 
-import de.htwg.se.ubongo.cfg.UbongoModule;
 import de.htwg.se.ubongo.ctrl.obs.IMainController;
 import de.htwg.se.ubongo.util.frame.ISwitchFrame;
 import de.htwg.se.ubongo.util.geo.IPoint;
@@ -22,9 +20,9 @@ import de.htwg.se.ubongo.util.timer.Timer;
 import de.htwg.se.ubongo.util.timer.Trigger;
 
 /** Implementation of ISwitchFrame. */
-public final class SwitchFrame implements ISwitchFrame, Trigger {
+final class SwitchFrame implements ISwitchFrame, Trigger {
 
-    private static final Injector INJECTOR = Guice.createInjector(new UbongoModule());
+    private static final Injector INJECTOR = FrameModule.INJECTOR;
     
     private final JFrame frame = new JFrame();
     private final LoadContent loadContent = new LoadContent();
@@ -69,7 +67,6 @@ public final class SwitchFrame implements ISwitchFrame, Trigger {
                 mids[i] = INJECTOR.getInstance(IPoint.class);
                 mids[i].move(v);
             }
-
         }
 
         public void paint(final Graphics g) {
@@ -92,9 +89,7 @@ public final class SwitchFrame implements ISwitchFrame, Trigger {
                 g.fillOval((int) mids[i].getX() + x, (int) mids[i].getY() + y,
                         CIRCLE_DIAMETER, CIRCLE_DIAMETER);
             }
-
         }
-
     }
 
     /** Constructor.
