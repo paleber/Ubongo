@@ -69,6 +69,10 @@ public final class GuiMenuController implements IMenuControllerSubject {
     private final IMenuController observer;
     private final ILevelData level;
 
+    /** Constructor.
+     * @param observer Observer
+     * @param frame Frame
+     * @param level Level */
     public GuiMenuController(final IMenuController observer,
             final ISwitchFrame frame, final ILevelData level) {
         observer.register(this);

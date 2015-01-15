@@ -9,7 +9,6 @@ import com.google.inject.Injector;
 import de.htwg.se.ubongo.cfg.UbongoModule;
 import de.htwg.se.ubongo.ctrl.obs.IGameController;
 import de.htwg.se.ubongo.util.cmd.TextCommand;
-import de.htwg.se.ubongo.util.console.IConsole;
 import de.htwg.se.ubongo.util.geo.IVector;
 
 /** TextCommand to move the selected Block. */
@@ -19,15 +18,11 @@ public final class TextCmdMoveBlock implements TextCommand {
     private static final Injector INJECTOR = Guice
             .createInjector(new UbongoModule());
     private final IGameController observer;
-    private final IConsole console;
 
     /** Default-Constructor.
-     * @param observer IGameController
-     * @param console console */
-    public TextCmdMoveBlock(final IGameController observer,
-            final IConsole console) {
+     * @param observer IGameController */
+    public TextCmdMoveBlock(final IGameController observer) {
         this.observer = observer;
-        this.console = console;
     }
 
     @Override

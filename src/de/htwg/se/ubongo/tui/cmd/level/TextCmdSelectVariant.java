@@ -5,22 +5,17 @@ import org.apache.logging.log4j.Logger;
 
 import de.htwg.se.ubongo.ctrl.obs.ILevelController;
 import de.htwg.se.ubongo.util.cmd.TextCommand;
-import de.htwg.se.ubongo.util.console.IConsole;
 
 /** Text-Command to select a board-variant. */
 public final class TextCmdSelectVariant implements TextCommand {
 
     private static final Logger LOGGER = LogManager.getLogger();
     private final ILevelController observer;
-    private final IConsole console;
 
     /** Constructor.
-     * @param observer LevelController-Observer
-     * @param console Console */
-    public TextCmdSelectVariant(final ILevelController observer,
-            final IConsole console) {
+     * @param observer LevelController-Observer */
+    public TextCmdSelectVariant(final ILevelController observer) {
         this.observer = observer;
-        this.console = console;
     }
 
     @Override

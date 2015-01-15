@@ -17,7 +17,6 @@ import de.htwg.se.ubongo.model.loader.IResourceLoader;
 import de.htwg.se.ubongo.util.geo.IPoint;
 import de.htwg.se.ubongo.util.geo.IPolygon;
 
-
 /** Implementation of IResourceLoader, buffering loaded blocks. */
 public final class BufferedResourceLoader implements IResourceLoader {
 
@@ -26,7 +25,8 @@ public final class BufferedResourceLoader implements IResourceLoader {
         private IBlock board;
     }
 
-    private static final Injector INJECTOR = Guice.createInjector(new UbongoModule());
+    private static final Injector INJECTOR = Guice
+            .createInjector(new UbongoModule());
 
     private static final int QUAD_VERTEXES = 4;
     private static final int TOP_LEFT = 0;
@@ -39,14 +39,13 @@ public final class BufferedResourceLoader implements IResourceLoader {
     private static final IBlock[] BLOCK_STORE = new IBlock[NUM_BLOCKS];
     private static final BoardData[] BOARD_STORE = new BoardData[NUM_BOARDS];
 
-
     @Override
     public int getNumberBoards() {
         return NUM_BOARDS;
     }
 
     /** Creates a 2D Quad polygon with the upper left corner x and y. */
-    private IPolygon makeQuad(int x, int y) {
+    private IPolygon makeQuad(final int x, final int y) {
         IPolygon polygon = INJECTOR.getInstance(IPolygon.class);
         IPoint[] points = new IPoint[QUAD_VERTEXES];
 
@@ -64,7 +63,7 @@ public final class BufferedResourceLoader implements IResourceLoader {
     }
 
     /** Datablock to Polygon transformation. */
-    private IBlock loadBlock(String data) {
+    private IBlock loadBlock(final String data) {
         IBlock block = INJECTOR.getInstance(IBlock.class);
         List<IPolygon> polygons = new LinkedList<>();
         String[] rows = data.split("\\n");
@@ -85,7 +84,7 @@ public final class BufferedResourceLoader implements IResourceLoader {
     }
 
     @Override
-    public IBlock createBoard(int index) {
+    public IBlock createBoard(final int index) {
         if (index >= NUM_BOARDS || index < 0) {
             throw new IllegalArgumentException();
         }
@@ -111,9 +110,9 @@ public final class BufferedResourceLoader implements IResourceLoader {
     }
 
     /** reads a block from file. */
-    private String readBlock(BufferedReader reader) {
+    private String readBlock(final BufferedReader reader) {
         StringBuilder data = new StringBuilder();
-        for(;;) {
+        for (;;) {
             try {
                 String line = reader.readLine();
                 if (line == null || line.startsWith("#")) {
@@ -128,9 +127,9 @@ public final class BufferedResourceLoader implements IResourceLoader {
     }
 
     /** reads the amount of variants from a file. */
-    private List<LinkedList<Integer>> readVariants(BufferedReader reader) {
+    private List<LinkedList<Integer>> readVariants(final BufferedReader reader) {
         List<LinkedList<Integer>> variants = new ArrayList<>();
-        for(;;) {
+        for (;;) {
             try {
                 String line = reader.readLine();
                 if (line == null || line.length() == 0) {
@@ -149,7 +148,7 @@ public final class BufferedResourceLoader implements IResourceLoader {
     }
 
     @Override
-    public int getNumberVariantsOfBoard(int index) {
+    public int getNumberVariantsOfBoard(final int index) {
         if (index >= NUM_BOARDS || index < 0) {
             throw new IllegalArgumentException();
         }
@@ -162,7 +161,7 @@ public final class BufferedResourceLoader implements IResourceLoader {
     }
 
     /** loads a block from file or gets an instance of a cached one. */
-    private IBlock createBlock(int index) {
+    private IBlock createBlock(final int index) {
         if (index >= NUM_BLOCKS || index < 0) {
             throw new IllegalArgumentException();
         }
@@ -184,7 +183,7 @@ public final class BufferedResourceLoader implements IResourceLoader {
     }
 
     @Override
-    public IBlock[] createBlocksOfBoard(int index, int variant) {
+    public IBlock[] createBlocksOfBoard(final int index, final int variant) {
         if (index >= NUM_BOARDS || index < 0 || BOARD_STORE[index] == null) {
             throw new IllegalArgumentException();
         }

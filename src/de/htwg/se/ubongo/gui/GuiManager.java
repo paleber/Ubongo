@@ -1,9 +1,5 @@
 package de.htwg.se.ubongo.gui;
 
-import com.google.inject.Guice;
-import com.google.inject.Injector;
-
-import de.htwg.se.ubongo.cfg.UbongoModule;
 import de.htwg.se.ubongo.ctrl.obs.IMainController;
 import de.htwg.se.ubongo.model.data.ILevelData;
 import de.htwg.se.ubongo.util.ctrl.IMainControllerSubject;

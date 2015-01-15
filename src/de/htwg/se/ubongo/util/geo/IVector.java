@@ -35,7 +35,7 @@ public interface IVector {
     /** Set the length.
      * @param length */
     void setLength(double length);
-    
+
     /** Set the angle of the vector.
      * @param degree */
     void setAngleDegree(double degree);
@@ -48,6 +48,7 @@ public interface IVector {
      * @return Vector as String */
     String toString();
 
+    /** Convert to normal. */
     void convertToNormal();
 
 }

@@ -15,7 +15,6 @@ public final class TuiHelpController extends AbstractTuiController implements
         IHelpControllerSubject, ITrigger {
 
     private static final Logger LOGGER = LogManager.getLogger();
-    private final IConsole console;
 
     /** Default-Costructor.
      * @param observer Observer-HelpController.
@@ -26,7 +25,6 @@ public final class TuiHelpController extends AbstractTuiController implements
         super(observer, console, "guide");
         observer.register(this);
 
-        this.console = console;
         addTextCmd("menu", new TextCmdShowMenu(observer));
     }
 

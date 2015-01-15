@@ -34,7 +34,7 @@ public abstract class AbstractTuiController implements IAbstractSubSubject,
             final IConsole console, final String name) {
         this.console = console;
         this.name = name;
-        cmdMap.put("help", new TextCmdPrintHelp(console, cmdMap));
+        cmdMap.put("help", new TextCmdPrintHelp(cmdMap));
         cmdMap.put("exit", new TextCmdShutdown(observer));
     }
 

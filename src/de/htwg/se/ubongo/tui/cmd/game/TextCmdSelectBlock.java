@@ -9,7 +9,6 @@ import com.google.inject.Injector;
 import de.htwg.se.ubongo.cfg.UbongoModule;
 import de.htwg.se.ubongo.ctrl.obs.IGameController;
 import de.htwg.se.ubongo.util.cmd.TextCommand;
-import de.htwg.se.ubongo.util.console.IConsole;
 import de.htwg.se.ubongo.util.geo.IPoint;
 
 /** TextCommand to select a block. */
@@ -18,15 +17,12 @@ public final class TextCmdSelectBlock implements TextCommand {
     private static final Logger LOGGER = LogManager.getLogger();
     private static final Injector INJECTOR = Guice.createInjector(new UbongoModule());
     private final IGameController observer;
-    private final IConsole console;
+
 
     /** Default-Constructor.
-     * @param observer IGameController
-     * @param console console*/
-    public TextCmdSelectBlock(final IGameController observer,
-            final IConsole console) {
+     * @param observer IGameController */
+    public TextCmdSelectBlock(final IGameController observer) {
         this.observer = observer;
-        this.console = console;
     }
 
     @Override

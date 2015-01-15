@@ -5,7 +5,6 @@ import org.apache.logging.log4j.Logger;
 
 import de.htwg.se.ubongo.model.gameobject.IBlock;
 import de.htwg.se.ubongo.util.cmd.TextCommand;
-import de.htwg.se.ubongo.util.console.IConsole;
 import de.htwg.se.ubongo.util.geo.IPoint;
 import de.htwg.se.ubongo.util.geo.IPolygon;
 
@@ -15,17 +14,10 @@ public final class TextCmdPrintGrid implements TextCommand {
     private static final Logger LOGGER = LogManager.getLogger();
     private char[][] grid;
     private static final double FACTOR_HALF = 0.5;
-    private final IConsole console;
 
     private IBlock board;
     private IBlock[] blocks;
     private IBlock selectedBlock;
-
-    /** Constructor.
-     * @param console console */
-    public TextCmdPrintGrid(final IConsole console) {
-        this.console = console;
-    }
 
     @Override
     public void execute(final String... args) {

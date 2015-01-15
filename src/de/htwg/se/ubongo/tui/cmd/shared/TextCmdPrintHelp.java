@@ -6,21 +6,17 @@ import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 
 import de.htwg.se.ubongo.util.cmd.TextCommand;
-import de.htwg.se.ubongo.util.console.IConsole;
 
 /** TextCommand for printing help on console. */
 public final class TextCmdPrintHelp implements TextCommand {
 
     private static final Logger LOGGER = LogManager.getLogger();
-    private final IConsole console;
     private final Map<String, TextCommand> cmdMap;
 
     /** Default-Constructor.
-     * @param console TuiManager
      * @param cmdMap */
-    public TextCmdPrintHelp(final IConsole console,
+    public TextCmdPrintHelp(
             final Map<String, TextCommand> cmdMap) {
-        this.console = console;
         this.cmdMap = cmdMap;
     }
 

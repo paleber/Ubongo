@@ -15,6 +15,7 @@ import de.htwg.se.ubongo.ctrl.sub.ILevelControllerSubject;
 import de.htwg.se.ubongo.model.data.ILevelData;
 import de.htwg.se.ubongo.util.frame.ISwitchFrame;
 
+/** Gui-Level Controller. */
 public final class GuiLevelController implements ILevelControllerSubject {
 
     private final class Content extends JPanel {
@@ -93,6 +94,10 @@ public final class GuiLevelController implements ILevelControllerSubject {
     private final ISwitchFrame frame;
     private final ILevelController observer;
 
+    /** Constructor.
+     * @param observer Observer
+     * @param frame Frame
+     * @param level LevelData */
     public GuiLevelController(final ILevelController observer,
             final ISwitchFrame frame, final ILevelData level) {
         observer.register(this);

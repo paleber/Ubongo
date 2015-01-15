@@ -5,22 +5,17 @@ import org.apache.logging.log4j.Logger;
 
 import de.htwg.se.ubongo.model.data.ILevelData;
 import de.htwg.se.ubongo.util.cmd.TextCommand;
-import de.htwg.se.ubongo.util.console.IConsole;
 
 /** TextCommand to print number board-variants. */
 public final class TextCmdNumberVariants implements TextCommand {
 
     private static final Logger LOGGER = LogManager.getLogger();
     private final ILevelData levelData;
-    private final IConsole console;
 
     /** Constructor.
-     * @param levelData levelData
-     * @param console console */
-    public TextCmdNumberVariants(final ILevelData levelData,
-            final IConsole console) {
+     * @param levelData levelData */
+    public TextCmdNumberVariants(final ILevelData levelData) {
         this.levelData = levelData;
-        this.console = console;
     }
 
     @Override

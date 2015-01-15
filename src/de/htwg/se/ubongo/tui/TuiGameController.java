@@ -25,26 +25,25 @@ public final class TuiGameController extends AbstractTuiController implements
         IGameControllerSubject {
 
     private static final Logger LOGGER = LogManager.getLogger();
-    private final IConsole console;
     private final TextCmdPrintGrid cmdPrintGrid;
 
     /** Default-Constructor.
      * @param observer Observer-GameController
-     * @param console TuiManager */
+     * @param console TuiManager
+     * @param level LevelData */
     public TuiGameController(final IGameController observer,
-            final IConsole console, ILevelData level) {
+            final IConsole console, final ILevelData level) {
         super(observer, console, "game");
         observer.register(this);
 
-        this.console = console;
-        cmdPrintGrid = new TextCmdPrintGrid(console);
+        cmdPrintGrid = new TextCmdPrintGrid();
 
         addTextCmd("menu", new TextCmdShowMenu(observer));
         addTextCmd("random", new TextCmdStartRandomGame(observer, level));
         addTextCmd("grid", cmdPrintGrid);
-        addTextCmd("select", new TextCmdSelectBlock(observer, console));
+        addTextCmd("select", new TextCmdSelectBlock(observer));
         addTextCmd("drop", new TextCmdDropBlock(observer));
-        addTextCmd("move", new TextCmdMoveBlock(observer, console));
+        addTextCmd("move", new TextCmdMoveBlock(observer));
         addTextCmd("left", new TextCmdRotateBlockLeft(observer));
         addTextCmd("right", new TextCmdRotateBlockRight(observer));
         addTextCmd("horizontal", new TextCmdMirrorBlockHorizontal(observer));
