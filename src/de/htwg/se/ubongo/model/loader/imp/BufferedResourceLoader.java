@@ -22,8 +22,8 @@ import de.htwg.se.ubongo.util.geo.IPolygon;
 public final class BufferedResourceLoader implements IResourceLoader {
 
     private static class BoardData {
-        ArrayList<LinkedList<Integer>> variants;
-        IBlock board;
+        private List<LinkedList<Integer>> variants;
+        private IBlock board;
     }
 
     private static final Injector INJECTOR = Guice.createInjector(new UbongoModule());
@@ -98,10 +98,19 @@ public final class BufferedResourceLoader implements IResourceLoader {
         try {
             reader = new BufferedReader(new FileReader("res/boards/" + index));
         } catch (FileNotFoundException e) {
-            e.printStackTrace();
             return null;
         }
 
+        IBlock board = loadBlock(readBlock(reader));
+
+        BOARD_STORE[index] = new BoardData();
+        BOARD_STORE[index].board = board;
+        BOARD_STORE[index].variants = readVariants(reader);
+
+        return board;
+    }
+
+    private String readBlock(BufferedReader reader) {
         StringBuilder data = new StringBuilder();
         for(;;) {
             try {
@@ -111,14 +120,14 @@ public final class BufferedResourceLoader implements IResourceLoader {
                 }
                 data.append(line).append("\n");
             } catch (IOException e) {
-                e.printStackTrace();
                 return null;
             }
         }
-        IBlock board = loadBlock(data.toString());
-        BOARD_STORE[index] = new BoardData();
-        BOARD_STORE[index].board = board;
+        return data.toString();
+    }
 
+    /* reads the amount of variants from a file. **/
+    private ArrayList<LinkedList<Integer>> readVariants(BufferedReader reader) {
         ArrayList<LinkedList<Integer>> variants = new ArrayList<>();
         for(;;) {
             try {
@@ -132,13 +141,10 @@ public final class BufferedResourceLoader implements IResourceLoader {
                 }
                 variants.add(variant);
             } catch (IOException e) {
-                e.printStackTrace();
                 return null;
             }
         }
-        BOARD_STORE[index].variants = variants;
-
-        return board;
+        return variants;
     }
 
     @Override
@@ -168,32 +174,21 @@ public final class BufferedResourceLoader implements IResourceLoader {
         try {
             reader = new BufferedReader(new FileReader("res/blocks/" + index));
         } catch (FileNotFoundException e) {
-            e.printStackTrace();
             return null;
         }
 
-        StringBuilder data = new StringBuilder();
-        for(;;) {
-            String s;
-            try {
-                s = reader.readLine();
-                if (s == null || s.length() == 0) {
-                    break;
-                }
-                data.append(s).append("\n");
-            } catch (IOException e) {
-                e.printStackTrace();
-            }
-        }
-        IBlock block = loadBlock(data.toString());
+        IBlock block = loadBlock(readBlock(reader));
         BLOCK_STORE[index] = block;
         return block;
     }
 
     @Override
     public IBlock[] createBlocksOfBoard(int index, int variant) {
-        if (index >= NUM_BOARDS || index < 0 || BOARD_STORE[index] == null ||
-                variant >= BOARD_STORE[index].variants.size() || variant < 0) {
+        if (index >= NUM_BOARDS || index < 0 || BOARD_STORE[index] == null) {
+            throw new IllegalArgumentException();
+        }
+
+        if (variant >= BOARD_STORE[index].variants.size() || variant < 0) {
             throw new IllegalArgumentException();
         }
 
