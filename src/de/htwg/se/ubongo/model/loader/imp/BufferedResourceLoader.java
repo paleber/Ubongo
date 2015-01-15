@@ -110,6 +110,7 @@ public final class BufferedResourceLoader implements IResourceLoader {
         return board;
     }
 
+    /** reads a block from file. */
     private String readBlock(BufferedReader reader) {
         StringBuilder data = new StringBuilder();
         for(;;) {
@@ -126,7 +127,7 @@ public final class BufferedResourceLoader implements IResourceLoader {
         return data.toString();
     }
 
-    /* reads the amount of variants from a file. **/
+    /** reads the amount of variants from a file. */
     private ArrayList<LinkedList<Integer>> readVariants(BufferedReader reader) {
         ArrayList<LinkedList<Integer>> variants = new ArrayList<>();
         for(;;) {
