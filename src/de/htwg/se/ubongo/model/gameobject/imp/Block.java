@@ -9,11 +9,11 @@ import de.htwg.se.ubongo.util.geo.ILine;
 import de.htwg.se.ubongo.util.geo.IPoint;
 import de.htwg.se.ubongo.util.geo.IPolygon;
 import de.htwg.se.ubongo.util.geo.IVector;
+import de.htwg.se.ubongo.util.timer.ITrigger;
 import de.htwg.se.ubongo.util.timer.Timer;
-import de.htwg.se.ubongo.util.timer.Trigger;
 
 /** Implementation of IBlock. */
-final class Block extends AbstractGameObject implements IBlock, Trigger {
+final class Block extends AbstractGameObject implements IBlock, ITrigger {
 
     private static final double ROTATE_STEP = 90;
     private static final double FACTOR_HALF = 0.5;

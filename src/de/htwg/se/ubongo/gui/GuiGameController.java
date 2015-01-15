@@ -36,8 +36,9 @@ import de.htwg.se.ubongo.util.geo.IVector;
 /** Subject-GameController of TUI. */
 public final class GuiGameController implements IGameControllerSubject {
 
-    private static final Injector INJECTOR = Guice.createInjector(new UbongoModule());
-    
+    private static final Injector INJECTOR = Guice
+            .createInjector(new UbongoModule());
+
     private final Content content = new Content();
     private final ISwitchFrame frame;
 
@@ -105,7 +106,7 @@ public final class GuiGameController implements IGameControllerSubject {
         private final JButton bnLevel = new JButton("Levelauswahl");
         private final JButton bnMenu = new JButton("Menü");
         private final JLabel lbWin = new JLabel("Level abgeschlossen");
-                
+
         private Content() {
             ActionMap actionMap = getActionMap();
             actionMap.put("left", new AbstractAction() {
@@ -143,42 +144,41 @@ public final class GuiGameController implements IGameControllerSubject {
                     observer.mirrorBlockVertical();
                 }
             });
-            
+
             bnRandom.addActionListener(new ActionListener() {
-                
+
                 @Override
                 public void actionPerformed(final ActionEvent e) {
                     levelData.random();
                     observer.switchToGame();
-                    
+
                 }
             });
-            
+
             bnMenu.addActionListener(new ActionListener() {
-                
+
                 @Override
                 public void actionPerformed(final ActionEvent e) {
                     observer.switchToMenu();
                 }
             });
             add(bnMenu);
-            
+
             bnLevel.addActionListener(new ActionListener() {
-                
+
                 @Override
                 public void actionPerformed(final ActionEvent e) {
                     observer.switchToLevel();
                 }
             });
-            
-            
+
         }
 
         private void setGameRunning() {
             remove(bnLevel);
             remove(bnRandom);
             remove(lbWin);
-            
+
             addMouseListener(mouseListener);
             addMouseMotionListener(mouseMotionListener);
 
@@ -193,15 +193,13 @@ public final class GuiGameController implements IGameControllerSubject {
         public void setGameFinished() {
 
             getInputMap(JComponent.WHEN_IN_FOCUSED_WINDOW).clear();
-  
+
             removeMouseListener(mouseListener);
             removeMouseMotionListener(mouseMotionListener);
-            
-            
+
             add(bnLevel);
             add(bnRandom);
             add(lbWin);
-
 
             revalidate();
 
@@ -270,9 +268,9 @@ public final class GuiGameController implements IGameControllerSubject {
     /** Default-Constructor.
      * @param observer Observer-GameController
      * @param frame ISwitchFrame
-     * @param iLevelData */
+     * @param levelData LevelData */
     public GuiGameController(final IGameController observer,
-            final ISwitchFrame frame, ILevelData levelData) {
+            final ISwitchFrame frame, final ILevelData levelData) {
 
         observer.register(this);
         this.observer = observer;

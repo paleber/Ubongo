@@ -1,5 +1,9 @@
 package de.htwg.se.ubongo.gui;
 
+import com.google.inject.Guice;
+import com.google.inject.Injector;
+
+import de.htwg.se.ubongo.cfg.UbongoModule;
 import de.htwg.se.ubongo.ctrl.obs.IMainController;
 import de.htwg.se.ubongo.model.data.ILevelData;
 import de.htwg.se.ubongo.util.ctrl.IMainControllerSubject;
@@ -8,7 +12,7 @@ import de.htwg.se.ubongo.util.frame.imp.SwitchFrame;
 
 /** MainController-Subject of GUI. */
 public final class GuiManager implements IMainControllerSubject {
-
+    
     private static final int DEF_WIDTH = 800;
     private static final int DEF_HEIGHT = 600;
 

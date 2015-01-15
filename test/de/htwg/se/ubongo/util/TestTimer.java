@@ -4,13 +4,13 @@ import static org.junit.Assert.fail;
 
 import org.junit.Test;
 
+import de.htwg.se.ubongo.util.timer.ITrigger;
 import de.htwg.se.ubongo.util.timer.Timer;
-import de.htwg.se.ubongo.util.timer.Trigger;
 
 /** Tests for Timer. */
 public class TestTimer {
 
-    private static class PseudoTrigger implements Trigger {
+    private static class PseudoTrigger implements ITrigger {
         int procs = 0;
 
         @Override

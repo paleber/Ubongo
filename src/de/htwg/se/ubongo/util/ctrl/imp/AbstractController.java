@@ -8,7 +8,7 @@ import de.htwg.se.ubongo.util.ctrl.abs.IAbstractController;
 
 /** Super-Class for SuperController and SubController.
  * @param <S> Subject-Interface of SubClass. */
-public class AbstractController<S extends AbstractSubject> implements
+abstract class AbstractController<S extends AbstractSubject> implements
         IAbstractController<S> {
 
     private final List<S> subjects = new ArrayList<>();
