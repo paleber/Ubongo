@@ -9,12 +9,12 @@ import de.htwg.se.ubongo.tui.cmd.shared.TextCmdShutdown;
 import de.htwg.se.ubongo.util.cmd.TextCommand;
 import de.htwg.se.ubongo.util.console.IConsole;
 import de.htwg.se.ubongo.util.ctrl.IAbstractSubSubject;
+import de.htwg.se.ubongo.util.timer.ITrigger;
 import de.htwg.se.ubongo.util.timer.Timer;
-import de.htwg.se.ubongo.util.timer.Trigger;
 
 /** Abstract TuiControntroller for inheritance. */
 public abstract class AbstractTuiController implements IAbstractSubSubject,
-        Trigger {
+        ITrigger {
 
     private final String name;
     private final Timer timer = new Timer(this, 10);

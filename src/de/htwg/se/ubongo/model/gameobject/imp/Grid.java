@@ -12,11 +12,11 @@ import de.htwg.se.ubongo.model.gameobject.IGrid;
 import de.htwg.se.ubongo.util.geo.IPoint;
 import de.htwg.se.ubongo.util.geo.IPolygon;
 import de.htwg.se.ubongo.util.geo.IVector;
+import de.htwg.se.ubongo.util.timer.ITrigger;
 import de.htwg.se.ubongo.util.timer.Timer;
-import de.htwg.se.ubongo.util.timer.Trigger;
 
 /** Implementation of IGrid. */
-public final class Grid implements IGrid, Trigger {
+public final class Grid implements IGrid, ITrigger {
 
     private static final Injector INJECTOR = GameObjectModule.INJECTOR;
 
@@ -24,8 +24,8 @@ public final class Grid implements IGrid, Trigger {
     private static final double BOARD_FRAME_SIZE = 1.1;
     private static final double BLOCK_FRAME_SIZE = 1.1;
 
-    private static final double WIDTH = 15;
-    private static final double HEIGHT = 10;
+    private static final double WIDTH = 17;
+    private static final double HEIGHT = 11;
 
     private static final double FACTOR_HALF = 0.5;
 

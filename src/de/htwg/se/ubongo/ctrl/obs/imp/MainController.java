@@ -28,7 +28,6 @@ public final class MainController extends AbstractMainController implements
 
     /** Default-Constructor. */
     public MainController() {
-
         IResourceLoader loader = new BufferedResourceLoader();
         levelData = new LevelData(loader);
         level = new LevelController(this, levelData, loader);

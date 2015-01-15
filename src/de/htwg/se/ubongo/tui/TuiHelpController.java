@@ -5,11 +5,11 @@ import de.htwg.se.ubongo.ctrl.sub.IHelpControllerSubject;
 import de.htwg.se.ubongo.tui.abs.AbstractTuiController;
 import de.htwg.se.ubongo.tui.cmd.shared.TextCmdShowMenu;
 import de.htwg.se.ubongo.util.console.IConsole;
-import de.htwg.se.ubongo.util.timer.Trigger;
+import de.htwg.se.ubongo.util.timer.ITrigger;
 
 /** Implementation of IHelpController. */
 public final class TuiHelpController extends AbstractTuiController implements
-        IHelpControllerSubject, Trigger {
+        IHelpControllerSubject, ITrigger {
 
     private final IConsole console;
 

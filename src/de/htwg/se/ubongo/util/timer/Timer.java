@@ -3,7 +3,7 @@ package de.htwg.se.ubongo.util.timer;
 /** Timer repeatly calling Trigger Event from Inner-Interface. */
 public final class Timer {
 
-    private final Trigger trigger;
+    private final ITrigger trigger;
     private final int interval;
 
     private Runner runner;
@@ -37,7 +37,7 @@ public final class Timer {
     /** Constructor.
      * @param trigger Trigger-Interface.
      * @param interval interval to trigger */
-    public Timer(final Trigger trigger, final int interval) {
+    public Timer(final ITrigger trigger, final int interval) {
         if (interval <= 0) {
             throw new IllegalArgumentException("period <= 0");
         }

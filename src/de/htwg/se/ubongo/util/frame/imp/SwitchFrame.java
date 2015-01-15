@@ -10,19 +10,21 @@ import java.awt.event.WindowEvent;
 import javax.swing.JFrame;
 import javax.swing.JPanel;
 
+import com.google.inject.Guice;
 import com.google.inject.Injector;
 
 import de.htwg.se.ubongo.ctrl.obs.IMainController;
 import de.htwg.se.ubongo.util.frame.ISwitchFrame;
 import de.htwg.se.ubongo.util.geo.IPoint;
 import de.htwg.se.ubongo.util.geo.IVector;
+import de.htwg.se.ubongo.util.geo.imp.GeoModule;
 import de.htwg.se.ubongo.util.timer.Timer;
-import de.htwg.se.ubongo.util.timer.Trigger;
+import de.htwg.se.ubongo.util.timer.ITrigger;
 
 /** Implementation of ISwitchFrame. */
-final class SwitchFrame implements ISwitchFrame, Trigger {
+public final class SwitchFrame implements ISwitchFrame, ITrigger {
 
-    private static final Injector INJECTOR = FrameModule.INJECTOR;
+    private static final Injector INJECTOR = Guice.createInjector(new GeoModule());
     
     private final JFrame frame = new JFrame();
     private final LoadContent loadContent = new LoadContent();
