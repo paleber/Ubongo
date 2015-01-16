@@ -30,8 +30,8 @@ The game itself is controlled via the wasd keys and the mouse.
 - click on a block (selects the block, move the mouse to move the block)
 - a (turn 90 degree left)
 - d (turn 90 degree right)
-- w (rotate 180 degree around the y axis)
-- s (rotate 180 degree arount the x axis)
+- w (mirror block vertical)
+- s (mirror block horizontal)
 
 
 There are specific commands for testing, you can find them if you type "help" into the console.
